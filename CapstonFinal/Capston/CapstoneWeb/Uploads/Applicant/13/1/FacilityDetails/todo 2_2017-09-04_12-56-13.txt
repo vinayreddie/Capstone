@@ -1,0 +1,35 @@
+Open
+----
+- Remove date validation in Accommodation tab
+- Check boxes are unchecked in preview
+
+Fixed
+-----
+- Remove not more than today validation in date
+- Validate form in Trust details form
+
+Unit testing Amendmends
+-----------------------
+Yet to start
+- Add Facilities
+
+Verified
+- Instituation
+- Ownership
+- Equipments
+- Employees
+- Facilities
+- Test Procedures
+Amendment type is saving as D, it should be Direct
+	(error at dept side at 31_DM&HO) 
+- Cancel
+
+- Blood Bank
+	Applicant	okay
+	Establishment	okay
+	List of Items	okay
+	Employee	okay
+	Equipment	okay
+	Declaration	okay
+
+

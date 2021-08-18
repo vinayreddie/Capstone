@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<div class="modal-header">
+    <h4 class="modal-title" id="lineModalLabel">Contact</h4>
+</div>
+
+@model Capstone.Models.ContactModel
+@using (Ajax.BeginForm("SaveContact", "Account",
+                 new AjaxOptions
+                 {
+                     HttpMethod = "POST",
+                     OnSuccess = "ShowMessage",
+                     OnFailure = "ShowFailure"
+                 }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="modal-body">
+        <!-- content goes here -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <form class="form-horizontal" role="form">
+
+
+                    <div class="row">
+                        <div class="col-md-offset-2 col-sm-1 ">
+                            <span class="form-error">
+                                @Html.LabelFor(a => a.FirstName, "First Name")<span style="color:red;">*</span>
+                            </span>
+                        </div>
+                        <div class="col-sm-3 ">
+                            <span class="form-error">
+                                @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control", @placeholder = "Name", @Style = "text-transform: uppercase;" })
+                                @Html.ValidationMessageFor(a => a.FirstName, "", new { @class = "text-danger" })
+                            </span>
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="form-error">
+                                @Html.LabelFor(a => a.LastName, "Last Name")<span style="color:red;">*</span>
+                            </span>
+                        </div>
+                        <div class="col-sm-3 ">
+                            <span class="form-error">
+                                @Html.TextBoxFor(a => a.LastName, new { @class = "form-control", @placeholder = "Last Name", @Style = "text-transform: uppercase;" })
+                                @Html.ValidationMessageFor(a => a.LastName, "", new { @class = "text-danger" })
+                            </span>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-offset-2 col-sm-1">
+                            <span class="form-error">
+                                @Html.LabelFor(a => a.CollegeId, "College")<span style="color:red;">*</span>
+                            </span>
+                        </div>
+                        <div class="col-sm-3">
+                            <span class="form-error">
+                                @Html.DropDownListFor(model => model.CollegeId,
+                        new SelectList(ViewBag.College, "Id", "Name"), "Select College",
+                        new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.CollegeId, "", new { @class = "text-danger" })
+                            </span>
+                        </div>
+
+
+                    </div>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-md-offset-2 col-sm-1 ">
+                            <span class="form-error">
+                                @Html.LabelFor(a => a.EmailId, "EmailID")<span style="color:red;">*</span>
+                            </span>
+                        </div>
+                        <div class="col-sm-3 ">
+                            <span class="form-error">
+                                @Html.TextBoxFor(a => a.EmailId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(a => a.EmailId, "", new { @class = "text-danger" })
+                            </span>
+                        </div>
+
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-offset-2 col-sm-1 ">
+                            <span class="form-error">
+                                @Html.LabelFor(a => a.MobileNumber, "Mobile# ")<span style="color:red;">*</span>
+                            </span>
+                        </div>
+                        <div class="col-sm-3 ">
+                            <span class="form-error">
+                                @Html.TextBoxFor(a => a.MobileNumber, new { @class = "form-control", @maxlength = "10" })
+                                @Html.ValidationMessageFor(a => a.MobileNumber, "", new { @class = "text-danger" })
+                            </span>
+                        </div>
+
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-offset-2 col-sm-1">
+                            <span class="form-error">
+                                @Html.LabelFor(a => a.Query, "Query")<span style="color:red;">*</span>
+                            </span>
+                        </div>
+                        <div class="col-sm-3">
+                            <span class="form-error">
+                                @Html.TextAreaFor(a => a.Query, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(a => a.Query, "", new { @class = "text-danger" })
+                            </span>
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="pull-right">
+                                <!-- <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button">Close</button> -->
+                                <button type="submit" class="btn btn-success" style="margin-top:4%;margin-right: 611px;">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+
+@*<section style="text-align:center">
+
+        <address>
+            <br/>
+            <b>Commissioner of Health & Family Welfare,</b><br />
+            DM&HS Campus, Sultan Bazar,<br />
+            Hyderabad – 500095<br />
+            Telangana (India)<br />
+            @*<abbr title="Phone">Phone no:</abbr>
+            <b>9505778625</b>
+        </address>
+
+        <address>
+            <strong>Support</strong> <br />
+            Email : <a href="mailto:tamcehelpdesk@gmail.com">tamcehelpdesk@gmail.com</a><br />
+            Phone : 96181 55566, 98855 66677
+        </address>
+    </section>*@
+
+
+
+
+
+<script type="text/javascript">$('#DistrictId').on('change', function () {
+          debugger;
+          BindMandals('', this.value);
+      });
+
+      $('#MandalId').on('change', function () {
+          BindVillages('', this.value);
+      });
+      function ShowMessage(response) {
+          ShowModal(response);
+      }
+
+      function ShowFailure() {
+          console.log('failure');
+      }</script>
+

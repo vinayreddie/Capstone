@@ -1,0 +1,775 @@
+﻿<!DOCTYPE html>
+@using Capstone.Models;
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!-- jQuery 2.2.3 -->
+
+    <script src="~/Content/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="~/Content/plugins/jQuery/jquery.validate.js"></script>
+    @*<script src="~/Content/plugins/jQuery/jquery.validate.1.16.0.js"></script>*@
+    <script src="~/Content/plugins/jQuery/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/plugins/dist/js/app.min.js"></script>
+    <!-- jQuery Datatables-->
+    <link href="~/Content/plugins/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/plugins/datatables/js/jquery.dataTables.js"></script>
+    <script src="~/Content/plugins/datatables/js/dataTables.bootstrap.js"></script>
+    <!-- select2 -->
+    <link href="~/Content/plugins/select2/css/select2.css" rel="stylesheet" />
+    <script src="~/Content/plugins/select2/js/select2.full.js"></script>
+    <!-- slim scroll-->
+    <script src="~/Content/plugins/slimScroll/js/jquery.slimscroll.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    @*<script src="../../dist/js/demo.js"></script>*@
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link href="~/Content/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link href="~/Content/plugins/dist/css/AdminLTE.css" rel="stylesheet" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <!-- Date picker-->
+    <script src="~/Content/plugins/datepicker/js/bootstrap-datepicker.js"></script>
+    <link href="~/Content/plugins/datepicker/css/datepicker3.css" rel="stylesheet" />
+
+    <!-- Custom validations & Common methods-->
+    <script src="~/Content/plugins/custom/js/validations.js"></script>
+    <script src="~/Content/plugins/custom/js/common.js"></script>
+
+    <link href="~/Content/plugins/dist/css/skins/_all-skins.css" rel="stylesheet" />
+
+    <script src="~/Content/plugins/iCheck/icheck.js"></script>
+    <link rel="stylesheet" href="~/Content/plugins/iCheck/minimal/blue.css" />
+    <link rel="stylesheet" href="~/Content/plugins/iCheck/minimal/red.css" />
+    <link rel="stylesheet" href="~/Content/plugins/iCheck/flat/blue.css" />
+    <link rel="stylesheet" href="~/Content/plugins/iCheck/flat/green.css" />
+
+    <!-- custom files-->
+    <link href="~/Content/plugins/custom/css/global.css" rel="stylesheet" />
+
+
+    <!-- Datatable data Download as excel or pdf files purpose below files needs , added by Chandrakanth on 12-jul-2021-->
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+
+
+    <script>
+        // Accepting only alphabets are allowed
+        $(function () {
+            $(".alphabet").keypress(function (e) {
+                //if the use alphabets are allowed
+                //if (e.which != 8 && e.which != 0 && (e.which < 64 || e.which > 90) && (e.which < 97 || e.which > 122)) {
+                //    return false;
+
+                //function to allow enter only letters and white spaces
+                var inputValue = e.which;
+                if (!(inputValue >= 65 && inputValue <= 120) && (inputValue != 32 && inputValue != 0)) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        $(function () {
+
+            //Date picker
+            $('.datepicker').datepicker({
+                format: 'dd-mm-yyyy',
+                //endDate: '0d', // accept only upto today date@Url.Action("Home", "Index", new { Area = "" })"
+                autoclose: true
+            });
+            $('input').iCheck({ checkboxClass: 'icheckbox_minimal-blue', radioClass: 'iradio_minimal-blue' });
+            $(".select2").select2();
+            $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
+                checkboxClass: 'icheckbox_flat-blue',
+                radioClass: 'iradio_flat-blue'
+            });
+        });
+
+
+    </script>
+</head>
+<body class="hold-transition skin-green-light sidebar-mini">
+    @{
+        UserViewModel user = Session["User"] as UserViewModel;
+
+    }
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            @Html.Hidden("hfRoleId", user.RoleId)
+            <a id="aLogo" href="#" class="logo">
+
+
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>CPS</b></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>CPS</b></span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                                @if (string.IsNullOrEmpty(user.UserPhoto))
+                                {
+
+                                    <div>
+                                        <img src='@Url.Content("~/Content/images/uploadpic.png")' class="user-image" alt="User" style="height:25px;width:25px" />
+                                        <span class="hidden-xs username">@user.FirstName</span>
+                                    </div>
+                                }
+
+                                else
+                                {
+                                    <div>
+                                        <img src="@Url.Content("~/Uploads/"+user.UserPhoto)" class="user-image" alt="User" />
+                                        <span class="hidden-xs username">@user.FirstName</span>
+                                    </div>
+                                }
+
+
+
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    @if (string.IsNullOrEmpty(user.UserPhoto))
+                                    {
+                                        <div>
+                                            <img src="@Url.Content("~/Content/images/uploadpic.png")" class="img-circle" alt="User Image" style="height:90px;width:90px" />
+
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div>
+                                            <img src="@Url.Content("~/Uploads/"+user.UserPhoto)" class="img-circle" alt="User Image" style="height:90px;width:90px" />
+                                        </div>
+                                    }
+
+                                    <p>
+                                        <span class="username">  @user.FirstName </span>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <!-- /.row -->
+                                    @Html.ActionLink("Change Password", "ChangePassword", "Account", new { Area = "" }, new { @class = "btn btn-warning btn-flat" })
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <input type="button" id="btnProfile" name="Profile" class="btn btn-default btn-flat" value="Profile" />
+                                    </div>
+                                    <div class="pull-right">
+                                        @Html.ActionLink("Sign Out", "Signout", "Account", new { Area = "" }, new { @class = "btn btn-default btn-flat" })
+                                        @*<a href="#" class="btn btn-default btn-flat">Sign out</a>*@
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        @if (string.IsNullOrEmpty(user.UserPhoto))
+                        {
+                            <div>
+                                <img src="@Url.Content("~/Content/images/uploadpic.png")" class="img-circle" alt="User" style="height:45px;width:45px" />
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <img src="@Url.Content("~/Uploads/"+user.UserPhoto)" class="img-circle" alt="User" style="height:45px;width:45px" />
+                            </div>
+                        }
+                    </div>
+                    <div class="pull-left info">
+                        <p><span class="username">@user.FirstName</span></p>
+                        @*<a href="#"><i class="fa fa-circle text-success"></i> Online</a>*@
+                    </div>
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li class="header">MAIN NAVIGATION</li>
+
+
+
+                    @foreach (var firstLevelMenu in user.Role.LinkList
+.Where(item => item.ParentLinkId == 0)
+.OrderBy(item => item.OrderNumber)
+.ToList())
+                    {
+                        if (user.Role.LinkList.Count(item => item.ParentLinkId == firstLevelMenu.Id) == 0)
+                        {
+                            <li>
+                                <a href="@Url.Action(firstLevelMenu.ActionName, firstLevelMenu.ControllerName, new { Area = firstLevelMenu.AreaName })">
+                                    <i class="@firstLevelMenu.IconClass"></i> <span>@firstLevelMenu.LinkName</span>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="@firstLevelMenu.IconClass"></i> <span>@firstLevelMenu.LinkName</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    @foreach (var secondLevelMenu in user.Role.LinkList
+.Where(item => item.ParentLinkId == firstLevelMenu.Id)
+.OrderBy(item => item.OrderNumber)
+.ToList())
+                                    {
+                                        if (user.Role.LinkList.Count(item => item.ParentLinkId == secondLevelMenu.Id) == 0)
+                                        {
+                                            <li>
+                                                <a href="@Url.Action(secondLevelMenu.ActionName, secondLevelMenu.ControllerName, new { Area = secondLevelMenu.AreaName })">
+                                                    <i class="@secondLevelMenu.IconClass"></i> @secondLevelMenu.LinkName
+                                                </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="treeview">
+                                                <a href="#">
+                                                    <i class="@secondLevelMenu.IconClass"></i> <span>@secondLevelMenu.LinkName</span>
+                                                    <span class="pull-right-container">
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </span>
+                                                </a>
+                                                <ul class="treeview-menu">
+                                                    @foreach (var thirdLevelMenu in user.Role.LinkList.Where(item => item.ParentLinkId == secondLevelMenu.Id).ToList())
+                                                    {
+                                                        <li>
+                                                            <a href="@Url.Action(thirdLevelMenu.ActionName, thirdLevelMenu.ControllerName, new { Area = thirdLevelMenu.AreaName })">
+                                                                <i class="@thirdLevelMenu.IconClass"></i> @thirdLevelMenu.LinkName
+                                                            </a>
+                                                        </li>
+                                                    }
+
+                                                </ul>
+                                            </li>
+                                        }
+
+                                    }
+
+                                </ul>
+                            </li>
+                        }
+                    }
+                </ul>
+
+
+
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            @RenderBody()
+
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> @ViewContext.Controller.GetType().Assembly.GetName().Version
+            </div>
+            <strong>Copyright &copy; 2020-2021 <a href="#">Capston</a>.</strong> All rights
+            reserved.
+        </footer>
+        
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+    <!-- Popup Modals -->
+    <div class="modal fade" id="divModal">
+        <div class="modal-dialog" id="divModalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalTitle">Default Modal</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="divModalBody"></div>
+                    <div id="divNotificationMessage"></div>
+                    <div id="divListItems"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnAction" type="button" class="btn btn-default" hidden>Primary</button>
+                    <button id="btnNonAction" type="button" class="btn btn-warning" data-dismiss="modal" hidden>Cancel</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <div id="divspinner" hidden>
+        <img src="~/Images/spinner.gif" alt="Loading" />
+    </div>
+
+    <!-- /.Popup Modals -->
+
+
+    <div class="modal fade" id="divEmployeeUploadsPopup">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title"><span id="spanEmployeeDescription"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-10">
+                            <table id="tblEmployeeUploadsPopup" class="table table-bordered">
+                                <tr>
+                                    <th>#</th>
+                                    <th>File Type</th>
+                                    <th>File</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal" hidden>Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+</body>
+</html>
+
+@*<script>
+    $(function () {
+            var url = '@Url.Action("GetUserProfile", "Account", new { Area = "" })';  // EditProfile  ForgotPassword
+            var jqxhr = $.post(url, function () { }, 'json')
+              .done(function (response) {
+                  debugger;
+                  var json;
+                  if (response instanceof Object)
+                      json = response;
+                  else
+                      json = $.parseJSON(response);
+                  console.log(response);
+                  if (json.UserPhoto != "") {
+                     
+                      $('.user-image, .img-circle').prop('src', '/Uploads/' + response.UserPhoto);
+                      $('.username').text(response.FirstName);
+                  }
+              })
+              .fail(function (jqxhr, textStatus, error) {
+                  var err = textStatus + ", " + error;
+                  console.log("Edit profile request Failed: " + err);
+              });
+    });
+
+</script>*@
+
+<script>    
+    function ShowEmployeeUploads(json) {
+        $('#divEmployeeUploadsPopup').modal('show');
+
+        $('#spanEmployeeDescription').text(json.EmployeeDescription);
+
+        $('#tblEmployeeUploadsPopup tr').not(function () { return !!$(this).has('th').length; }).remove();
+        for (var i = 0; i < json.Uploads.length; i++) {
+            var filename = json.Uploads[i].DocumentPath.split('/')[1];
+            var lastIndex = filename.lastIndexOf('.');
+            var firstindex = lastIndex - 20;
+            var fileShortName = filename.substring(0, firstindex) + filename.substring(lastIndex, filename.length);
+
+            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+            fileLink = fileLink.replace("displaytext", fileShortName);
+            fileLink = fileLink.replace("filepath", json.Uploads[i].DocumentPath);
+            fileLink = fileLink.replace("downloadfilename", fileShortName);
+            tr = $('<tr/>');
+            tr.append("<td>" + (i + 1) + "</td>");
+            tr.append("<td>" + json.Uploads[i].UploadType + "</td>");
+            tr.append("<td>" + fileLink + "</td>");
+            $('#tblEmployeeUploadsPopup').append(tr);
+        }
+    }
+
+    /*  Developer       : vinay K
+Created Date    : 21-12-2016
+Purpose         : All Modal related functions will be here
+*/
+
+    function GetModalJSON() {
+        var jsonObject = {};
+        jsonObject.NotificationType;
+        jsonObject.NotificationTypeClass = null;
+        jsonObject.Title = null;
+        jsonObject.HasError = false;
+        jsonObject.NotificationMessage = null;
+        jsonObject.ShowListItems = false;
+        jsonObject.ListItems = [];
+        jsonObject.BodyContent = null;
+        jsonObject.ActionName = null;
+        jsonObject.ControllerName = null;
+        jsonObject.AreaName = null;
+        jsonObject.ShowActionButton = false;
+        jsonObject.ActionButtonText = null;
+        jsonObject.ActionButtonClass = null;
+        jsonObject.ShowNonActionButton = false;
+        jsonObject.NonActionButtonText = null;
+        jsonObject.NonActionButtonClass = null;
+        jsonObject.IsLargeModal = false;
+        jsonObject.JavaScript = null;
+        return jsonObject;
+    }
+
+    function ShowModal(jsonObject) {
+
+        // Clear existing values
+        $('#modalTitle').empty();
+        $('#divNotificationMessage').empty();
+        $('#divValidationErrors').empty();
+        $('#btnAction').removeClass();
+        $('#btnNonAction').removeClass();
+
+        $('#modalTitle').html('<b style="color:' + GetTitleTextColor(jsonObject.NotificationTypeClass) + ';">' + jsonObject.Title + '</b>');
+        $('#divNotificationMessage').append(jsonObject.NotificationMessage);
+
+        if (jsonObject.ShowListItems) {
+            var orderedList = $('<ol/>');
+            for (var i = 0; i < jsonObject.ListItems.length; i++) {
+                orderedList.append('<li>' + jsonObject.ListItems[i] + '</li>');
+            }
+            $('#divListItems').append(orderedList);
+        }
+        $('#divModalBody').html(jsonObject.BodyContent);
+
+        if (jsonObject.IsLargeModal)
+            $('#divModalDialog').addClass('modal-lg');
+        else
+            $('#divModalDialog').removeClass('modal-lg');
+
+        if (jsonObject.ShowActionButton) {
+            $('#btnAction').show();
+            $('#btnAction').addClass(GetButtonColorClass(jsonObject.ActionButtonClass));
+            $('#btnAction').text(jsonObject.ActionButtonText);
+            if (jsonObject.ActionName != undefined && jsonObject.ActionName != '' &&
+                jsonObject.ControllerName != undefined && jsonObject.ControllerName != '') {
+                $('#btnAction').on('click', function () {
+                    var link = '@Url.Action("ActionName","ControllerName")';
+                    link = link.replace('ActionName', jsonObject.ActionName);
+                    link = link.replace('ControllerName', jsonObject.ControllerName);
+                    location.href = link;
+                });
+            }
+        }
+        else {
+            $('#btnAction').hide();
+        }
+
+        if (jsonObject.ShowNonActionButton) {
+            $('#btnNonAction').show();
+            $('#btnNonAction').addClass(GetButtonColorClass(jsonObject.NonActionButtonClass));
+            $('#btnNonAction').text(jsonObject.NonActionButtonText);
+        }
+        else {
+            $('#btnNonAction').hide();
+        }
+
+        // Unbind existing javascript links
+        //$('#btnNonAction').unbind('Click');
+
+
+        // Bind javascript if any
+        $('#btnNonAction').click(function () {
+            jsonObject.JavaScript;
+        });
+
+
+        $('#divModal').modal('show');
+    }
+
+    function HideModal() {
+        $('#divModal').modal('hide');
+    }
+
+    function GetButtonColorClass(NotificationType) {
+        switch (NotificationType) {
+            case 'Information':
+                return 'btn btn-info';
+            case 'Success':
+                return 'btn btn-success';
+                break;
+            case 'Warning':
+                return 'btn btn-warning';
+                break;
+            case 'Danger':
+                return 'btn btn-danger';
+                break;
+            case 'Primary':
+                return 'btn btn-primary';
+                break;
+            default:
+                return 'btn btn-default';
+                break;
+        }
+    }
+
+    function GetTitleTextColor(notificationType) {
+        switch (notificationType) {
+            case 'Information':
+                return '#46b8da';
+                break;
+            case 'Success':
+                return '#398439';
+                break;
+            case 'Warning':
+                return '#eea236';
+                break;
+            case 'Danger':
+                return '#ac2925';
+                break;
+            default:
+                return '#73879C';
+                break;
+        }
+    }
+
+    function ToJavaScriptDate(value) {
+        var pattern = /Date\(([^)]+)\)/;
+        var results = pattern.exec(value);
+        var dt = new Date(parseFloat(results[1]));
+        var date = dt.getDate().toString().length == 2 ? dt.getDate().toString() : '0' + dt.getDate().toString();
+        var month = (dt.getMonth() + 1).toString().length == 2 ? (dt.getMonth() + 1).toString() : '0' + (dt.getMonth() + 1).toString();
+        return date + "-" + month + "-" + dt.getFullYear();
+    }
+
+</script>
+<script>
+    function BindMandals(controlPrefix, controlValue) {
+        var mandalControlId = controlPrefix + 'MandalId';
+        var villageControlId = controlPrefix + 'VillageId';
+
+        // Clear existing Mandal values
+        $('#' + mandalControlId).empty();
+        $('#' + mandalControlId).append('<option value="">Select Mandal</option>');
+        // Clear existing Village values
+        $('#' + villageControlId).empty();
+        $('#' + villageControlId).append('<option value="">Select Village</option>');
+
+        if (controlValue != '') {
+            var url = '@Url.Action("GetMandals", "License", new { Area = "User" })';
+
+            var data = {
+                id: controlValue
+            };
+
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#' + mandalControlId).append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetMandals api Request Failed: " + err);
+            });
+        }
+    }
+
+    function BindVillages(controlPrefix, controlValue) {
+        var villageControlId = controlPrefix + 'VillageId';
+
+        // Clear existing Village values
+        $('#' + villageControlId).empty();
+        $('#' + villageControlId).append('<option value="">Select Village</option>');
+
+        if (controlValue != '') {
+            var url = '@Url.Action("GetVillages", "License", new { Area = "User" })';
+
+            var data = {
+                id: controlValue
+            };
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#' + villageControlId).append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetVillages api Request Failed: " + err);
+            });
+        }
+    }
+</script>
+<script>
+    $('#btnProfile').click(function (e) {
+        
+        var url = '@Url.Action("EditProfile", "Account", new { Area = "" })';  // EditProfile  ForgotPassword
+        var jqxhr = $.post(url,  function () { }, 'html')
+          .done(function (response) {
+              console.log(response);
+              //alert('success');
+              //if (response instanceof Object)
+              //    json = response;
+              //else
+              //    json = $.parseJSON(response);
+              var jsonObject = GetModalJSON();
+              jsonObject.Title = 'Profile';
+              jsonObject.IsLargeModal = true;
+              jsonObject.BodyContent = response;
+              ShowModal(jsonObject);
+          })
+          .fail(function (jqxhr, textStatus, error) {
+              var err = textStatus + ", " + error;
+              console.log("Edit profile request Failed: " + err);
+          });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        
+        var RoleId = $("#hfRoleId").val();
+        if (RoleId == 5) {
+            $('#aLogo').prop('href','@Url.Action("Index", "Dashboard", new { Area = "User" })');
+        }
+        else if(RoleId == 4)
+        {
+            $('#aLogo').prop('href', '@Url.Action("Dashboard", "Dashboard", new { Area = "Department" })');
+        }
+        else if (RoleId == 9) {
+            $('#aLogo').prop('href','@Url.Action("Index", "Dashboard", new { Area = "Admin" })');
+                }
+        else if (RoleId == 10) {
+            $('#aLogo').prop('href','@Url.Action("Dashboard", "Department", new { Area = "DepartmentAdmin" })');
+        }
+        else if (RoleId == 12) {
+            $('#aLogo').prop('href', '@Url.Action("CommissionerDashboard", "Commissioner", new { Area = "Admin" })');
+        }
+        else {
+            $('#aLogo').prop("href", "/Home/Index");
+        }
+    })
+    function ValidateFromDateToDate(FromDate, ToDate) {
+        if (FromDate != '' && ToDate != '') {
+            var FromDateConv = customDateParse2(FromDate);
+            var ToDateConv = customDateParse2(ToDate);
+            if (FromDateConv >= ToDateConv) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    }
+    // Returns Converted Date from  dd-MM-yyyy
+    function customDateParse2(sDate) {
+        
+        var sptdate = String(sDate).split("-");
+        var myDay = sptdate[0];
+        var myMonth = sptdate[1];
+        var myYear = sptdate[2];
+        var DateConv = myYear + "-" + myMonth + "-" + myDay;
+        DateConv = new Date(DateConv);
+        return DateConv;
+    }
+
+    function GetUrlValues() {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+
+</script>
+
+<script>
+        function ShowSpinner() {
+            $('#divspinner').fadeIn();
+        }
+
+        function ShowTransparentSpinner() {
+            $('#divspinner').css({ 'opacity': '0.2' });
+            $('#divspinner').fadeIn();
+        }
+
+        function StopSpinner() {
+            $('#divspinner').fadeOut();
+        }
+</script>

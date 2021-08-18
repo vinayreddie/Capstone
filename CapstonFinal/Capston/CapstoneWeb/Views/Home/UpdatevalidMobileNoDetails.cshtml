@@ -1,0 +1,584 @@
+﻿
+@using Medical.Models
+@model LoginModel
+
+@{
+    //ViewBag.Title = "UpdatevalidMobileNoDetails";
+    //Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+    Layout = null;
+    //UserViewModel user = Session.GetDataFromSession<UserViewModel>("User");
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>*@
+    <script src="~/Content/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!--Password Hashing-->
+    <script src="~/Content/plugins/Decryption/md5.js"></script>
+    <script src="~/Content/plugins/jQuery/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Content/plugins/jQuery/jquery.validate.js"></script>
+    <script src="~/Content/plugins/jQuery/jquery.validate.1.16.0.js"></script>
+    <script src="~/Content/plugins/jQuery/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Content/plugins/custom/js/validations.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- coustom stylesheet -->
+    <link href="~/Content/plugins/custom/css/style.css" rel="stylesheet" />
+    @*<script src="~/Content/plugins/custom/js/jquery-3.2.0.min.js"></script>*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+
+
+    <link href="~/Content/plugins/custom/css/styles.css" rel="stylesheet" />
+    @*<script src="~/Content/plugins/custom/js/jquery.js"></script>*@
+
+    <!-- End WOWSlider.com HEAD section -->
+    <script type="text/javascript">
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+
+        function GenerateOTPFunction()
+        {
+            if($('#txtMobileNumber').val() == "" || $('#txtMobileNumber').val().length != 10)
+            {
+                alert('Please Enter Valid MobileNo!'); //Passwords do not match.
+                return;
+            }
+            else
+            {
+                //GenerateOTP($('#txtMobileNumber').val(),$('#hfId').val()); divOTPSection1
+                $('#divOTPSection1').show();
+                $('#btnGenerateOTP').prop('disabled','true');
+                $('#txtMobileNumber').prop('disabled','true');
+
+            var data = {
+                mobilenumber: $('#txtMobileNumber').val(),
+                userName : $('#txtUsername').val(),
+                userId : $('#hdnUserId').val()
+            }
+            var url = '@Url.Action("GenerateOTP", "Home", new { Area = "" })';
+            var jqxhr = $.post(url, data, function () { }, 'html')
+                 .done(function (response) {
+                  //   debugger;
+               // console.log('response result :' + response);
+                     $('#divOTPSection1').hide();
+                     $('#divOTPSection').show();
+                     $('#hdnOTP').val(response);
+                 })
+                 .fail(function (jqxhr, textStatus, error) {
+                     var err = textStatus + ", " + error;
+                     console.log("OTP Request Failed: " + err);
+                    $('#btnGenerateOTP').removeAttr("disabled");
+                    $('#txtMobileNumber').removeAttr("disabled");
+                 });
+            }
+        }
+    </script>
+
+    <script>
+    function OnSuccess(data) {
+        console.log(data);
+        var json = data;
+        if (json.redirecturl != undefined)
+            window.location.href = json.redirecturl;
+        else {
+
+            $('#spnErrorMessage').text(json.errormessage);
+        }
+
+
+
+    }
+    function ShowModal(jsonObject) {
+        // Clear existing values
+        $('#modalTitle').empty();
+        $('#divNotificationMessage').empty();
+        $('#divValidationErrors').empty();
+        $('#btnAction').removeClass();
+        $('#btnNonAction').removeClass();
+
+        $('#modalTitle').html('<b style="color:' + GetTitleTextColor(jsonObject.NotificationTypeClass) + ';">' + jsonObject.Title + '</b>');
+        $('#divNotificationMessage').append(jsonObject.NotificationMessage);
+
+        if (jsonObject.ShowListItems) {
+            var orderedList = $('<ol/>');
+            for (var i = 0; i < jsonObject.ListItems.length; i++) {
+                orderedList.append('<li>' + jsonObject.ListItems[i] + '</li>');
+            }
+            $('#divListItems').append(orderedList);
+        }
+        $('#divModalBody').html(jsonObject.BodyContent);
+
+        if (jsonObject.IsLargeModal)
+            $('#divModalDialog').addClass('modal-lg');
+        else
+            $('#divModalDialog').removeClass('modal-lg');
+
+        if (jsonObject.ShowActionButton) {
+            $('#btnAction').show();
+            $('#btnAction').addClass(GetButtonColorClass(jsonObject.ActionButtonClass));
+            $('#btnAction').text(jsonObject.ActionButtonText);
+            if (jsonObject.ActionName != undefined && jsonObject.ActionName != '' &&
+                jsonObject.ControllerName != undefined && jsonObject.ControllerName != '') {
+                $('#btnAction').on('click', function () {
+                    var link = '@Url.Action("ActionName","ControllerName")';
+                    link = link.replace('ActionName', jsonObject.ActionName);
+                    link = link.replace('ControllerName', jsonObject.ControllerName);
+                    location.href = link;
+                });
+            }
+        }
+        else {
+            $('#btnAction').hide();
+        }
+
+        if (jsonObject.ShowNonActionButton) {
+            $('#btnNonAction').show();
+            $('#btnNonAction').addClass(GetButtonColorClass(jsonObject.NonActionButtonClass));
+            $('#btnNonAction').text(jsonObject.NonActionButtonText);
+        }
+        else {
+            $('#btnNonAction').hide();
+        }
+
+        $('#divModal').modal('show');
+    }
+
+    function HideModal() {
+        $('#divModal').modal('hide');
+    }
+    function GetButtonColorClass(NotificationType) {
+        switch (NotificationType) {
+            case 'Information':
+                return 'btn btn-info';
+            case 'Success':
+                return 'btn btn-success';
+                break;
+            case 'Warning':
+                return 'btn btn-warning';
+                break;
+            case 'Danger':
+                return 'btn btn-danger';
+                break;
+            case 'Primary':
+                return 'btn btn-primary';
+                break;
+            default:
+                return 'btn btn-default';
+                break;
+        }
+    }
+
+    function GetTitleTextColor(notificationType) {
+        switch (notificationType) {
+            case 'Information':
+                return '#46b8da';
+                break;
+            case 'Success':
+                return '#398439';
+                break;
+            case 'Warning':
+                return '#eea236';
+                break;
+            case 'Danger':
+                return '#ac2925';
+                break;
+            default:
+                return '#73879C';
+                break;
+        }
+    }
+    </script>
+
+    <script>
+
+    function GetModalJSON() {
+        var jsonObject = {};
+        jsonObject.NotificationType;
+        jsonObject.NotificationTypeClass = null;
+        jsonObject.Title = null;
+        jsonObject.HasError = false;
+        jsonObject.NotificationMessage = null;
+        jsonObject.ShowListItems = false;
+        jsonObject.ListItems = [];
+        jsonObject.BodyContent = null;
+        jsonObject.ActionName = null;
+        jsonObject.ControllerName = null;
+        jsonObject.AreaName = null;
+        jsonObject.ShowActionButton = false;
+        jsonObject.ActionButtonText = null;
+        jsonObject.ActionButtonClass = null;
+        jsonObject.ShowNonActionButton = false;
+        jsonObject.NonActionButtonText = null;
+        jsonObject.NonActionButtonClass = null;
+        jsonObject.IsLargeModal = false;
+        jsonObject.JavaScript = null;
+        return jsonObject;
+    }
+
+    function ShowModal(jsonObject) {
+
+        // Clear existing values
+        $('#modalTitle').empty();
+        $('#divNotificationMessage').empty();
+        $('#divValidationErrors').empty();
+        $('#btnAction').removeClass();
+        $('#btnNonAction').removeClass();
+
+        $('#modalTitle').html('<b style="color:' + GetTitleTextColor(jsonObject.NotificationTypeClass) + ';">' + jsonObject.Title + '</b>');
+        $('#divNotificationMessage').append(jsonObject.NotificationMessage);
+
+        if (jsonObject.ShowListItems) {
+            var orderedList = $('<ol/>');
+            for (var i = 0; i < jsonObject.ListItems.length; i++) {
+                orderedList.append('<li>' + jsonObject.ListItems[i] + '</li>');
+            }
+            $('#divListItems').append(orderedList);
+        }
+        $('#divModalBody').html(jsonObject.BodyContent);
+
+        if (jsonObject.IsLargeModal)
+            $('#divModalDialog').addClass('modal-lg');
+        else
+            $('#divModalDialog').removeClass('modal-lg');
+
+        if (jsonObject.ShowActionButton) {
+            $('#btnAction').show();
+            $('#btnAction').addClass(GetButtonColorClass(jsonObject.ActionButtonClass));
+            $('#btnAction').text(jsonObject.ActionButtonText);
+            if (jsonObject.ActionName != undefined && jsonObject.ActionName != '' &&
+                jsonObject.ControllerName != undefined && jsonObject.ControllerName != '') {
+                $('#btnAction').on('click', function () {
+                    var link = '@Url.Action("ActionName","ControllerName")';
+                    link = link.replace('ActionName', jsonObject.ActionName);
+                    link = link.replace('ControllerName', jsonObject.ControllerName);
+                    location.href = link;
+                });
+            }
+        }
+        else {
+            $('#btnAction').hide();
+        }
+
+        if (jsonObject.ShowNonActionButton) {
+            $('#btnNonAction').show();
+            $('#btnNonAction').addClass(GetButtonColorClass(jsonObject.NonActionButtonClass));
+            $('#btnNonAction').text(jsonObject.NonActionButtonText);
+        }
+        else {
+            $('#btnNonAction').hide();
+        }
+
+        // Unbind existing javascript links
+        //$('#btnNonAction').unbind('Click');
+
+
+        // Bind javascript if any
+        $('#btnNonAction').click(function () {
+            jsonObject.JavaScript;
+        });
+
+
+        $('#divModal').modal('show');
+    }
+
+    function HideModal() {
+        $('#divModal').modal('hide');
+    }
+
+    function GetButtonColorClass(NotificationType) {
+        switch (NotificationType) {
+            case 'Information':
+                return 'btn btn-info';
+            case 'Success':
+                return 'btn btn-success';
+                break;
+            case 'Warning':
+                return 'btn btn-warning';
+                break;
+            case 'Danger':
+                return 'btn btn-danger';
+                break;
+            case 'Primary':
+                return 'btn btn-primary';
+                break;
+            default:
+                return 'btn btn-default';
+                break;
+        }
+    }
+
+    function GetTitleTextColor(notificationType) {
+        switch (notificationType) {
+            case 'Information':
+                return '#46b8da';
+                break;
+            case 'Success':
+                return '#398439';
+                break;
+            case 'Warning':
+                return '#eea236';
+                break;
+            case 'Danger':
+                return '#ac2925';
+                break;
+            default:
+                return '#73879C';
+                break;
+        }
+    }
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+
+    var OTPvalue = $('#hdnOTP').val();
+
+    $('#txtOTP').keyup(function (e) {
+
+        OTPvalue = $('#hdnOTP').val();
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8) {
+            var reg = /[0-9]/;
+            if (this.value.length == 6) {
+                if (this.value == OTPvalue) {
+                    $('#txtOTP').css('border-color', '');
+                    $('#imgCorrect').show();
+                    $('#imgNotCorrect').hide();
+                    $('#divHidden').show();
+                }
+                else {
+                    $('#imgCorrect').hide();
+                    $('#imgNotCorrect').show();
+
+                    $('#txtOTP').css('border-color', 'red');
+                    $('#divHidden').hide();
+                }
+            }
+        }
+    });
+
+});
+
+    </script>
+
+    <script type="text/javascript">
+                     
+    $('#btnUpdateMobileNo').click(function (e) {
+        debugger;
+        var strval = $('#txtMobileNumber').val();
+        if($('#txtMobileNumber').val() == "")
+        {
+            alert('Please Enter Valid MobileNo!'); 
+            return;
+        }
+        else {
+                $('#btnUpdateMobileNo').attr('disabled', true);
+                var url = '@Url.Action("VerifyUpdateMobileNumber", "Home", new { Area = "" })';
+                var model = {
+                    Id: $('#hdnUserId').val(), // UserId, // $('#hfId').val()
+                    MobileNumber: $('#txtMobileNumber').val(),
+                    userName: $('#txtUsername').val()
+                }
+                var jqxhr = $.post(url, model, function () { })
+           .done(function (data) {
+
+                ShowModal(data);
+              // ShowMessage(data);
+                $('#btnUpdatePassword').removeAttr('disabled');
+
+           })
+       .fail(function (jqxhr, status, error) {
+           var err = status + ", " + error;
+           console.log("Change password Request Failed: " + err);
+       });
+
+            }
+        });
+
+    function ClearPasswordDetails()
+    {
+        $('#txtUsername').val('');
+        $('#txtPassword').val('');
+        $('#txtConfirmPassword').val('');
+    }
+    
+    </script>
+
+    <!-- loader -->
+    <script>
+$(window).load(function() {
+    $(".loader").fadeOut("slow");
+});
+    </script>
+    <style>
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('../../Content/HomeScreen/images/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+        }
+    </style>
+</head>
+<header>
+    <div class="container-fluid" style="background-color: white;">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 text-left">
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+            <div class="col-xs-10 col-sm-10 col-md-12 col-lg-12">
+                <img src="~/Content/images/govlogo1A.png" style="margin-top:5px; ">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2"></div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <img src="~/Content/images/hg4-3.png" style="max-width:220% !important; margin-left:-100px; margin-top:0px;">
+            </div>
+
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+        </div>
+    </div>
+</header>
+<body>
+    <div class="loader"></div>
+    <div class="topnav" id="myTopnav" >
+        <a href='@Url.Action("Home", "Home")'><span class="glyphicon glyphicon-home"></span>&nbspHome</a>
+    </div>
+
+    <div><br/><br/>
+       <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="formVerifyMobileNo">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Verify and Update MobileNo. Details</legend>
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-2  text-right">
+                                    @Html.LabelFor(model => model.Username, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" id="txtUsername" class="form-control" value="@Model.Username" disabled />
+                                </div>
+                            </div><br />
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-2  text-right">
+                                    <input type="hidden" value="@Model.Id" id="hdnUserId" />
+                                    @Html.LabelFor(model => model.MobileNumber, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" id="txtMobileNumber" class="form-control numeric" value="" autocomplete="off" maxlength="10" />
+                                </div>
+                                <div class="col-md-2">
+                                    <input type='button' value='Generate OTP' id="btnGenerateOTP" onclick="GenerateOTPFunction();" class='btn btn-success' />
+                                </div>
+                            </div>
+                            <br />
+                            <div id="divOTPSection1" hidden>
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <span style="color:darkgreen;">Please Wait..... !!!</span>
+                                </div>
+                                <br />
+                            </div>
+                            <br />
+                            <div id="divOTPSection" hidden>
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <span style="color:darkgreen;">OTP sent to Mobile and Email !!!</span>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-1">
+                                    </div>
+                                    <div class="col-md-2 text-right">
+                                        <input type="hidden" value="@ViewBag.OTP" id="hdnOTP" />
+                                        @Html.Label("Enter OTP")
+                                    </div>
+                                    <div class="col-md-2">
+                                        @Html.TextBox("OTP", "", new { @id = "txtOTP", @class = "form-control numeric", @maxlength = 6 })
+                                    </div>
+                                    <div class="col-md-3">
+                                        <img id="imgCorrect" src="~/Content/images/tickmark.png" height="30px" width="30px" hidden />
+                                        <img id="imgNotCorrect" src="~/Content/images/close.png" height="30px" width="30px" hidden />
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                            </div>
+                            <div class="row" id="divHidden" hidden>
+                                <div class="col-md-12 text-center">
+                                    <input type="button" id="btnUpdateMobileNoClear" value="Clear" class="btn btn-default" /> &nbsp;&nbsp;&nbsp;
+                                    <input type="button" id="btnUpdateMobileNo" value="Update MobileNo" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <!-- /.col -->
+            </div>
+        </section>
+    </div>
+    <!-- Footer starts here -->
+
+    <div class="navbar-default navbar-fixed-bottom" style="margin-top: 2%">
+        <a class="acs" href="#"><p style="font-weight: light; text-align: center;">Powered By |  Aegis Consulting Services<h4></a>
+    </div>
+    <!-- Popup Modals -->
+    <div class="modal fade" id="divModal">
+        <div class="modal-dialog" id="divModalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalTitle">Default Modal</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="divModalBody"></div>
+                    <div id="divNotificationMessage"></div>
+                    <div id="divListItems"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnAction" type="button" class="btn btn-default" hidden>Primary</button>
+                    <button id="btnNonAction" type="button" class="btn btn-warning" data-dismiss="modal" hidden>Cancel</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- /.Popup Modals -->  
+</body>
+</html>
+
+
+
+

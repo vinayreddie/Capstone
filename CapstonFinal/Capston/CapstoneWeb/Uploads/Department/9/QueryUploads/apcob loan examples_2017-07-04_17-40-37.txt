@@ -1,0 +1,9 @@
+loanid		desc
+3376681		d 	- only single disbursement
+
+3600538		d d c 	- 2 debits & 1 credit
+3604279		d c d d c
+3609053		d c d c
+3609137		d c d d c		
+
+4297824		d d c c

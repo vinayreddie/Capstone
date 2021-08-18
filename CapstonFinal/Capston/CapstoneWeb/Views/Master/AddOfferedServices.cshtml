@@ -1,0 +1,420 @@
+﻿
+@model Capstone.Models.OfferedServiceEquipmentsMasterModel
+@{
+    ViewBag.Title = "Add Offered Services";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+
+@*@using (Ajax.BeginForm("SaveOfferedServicesEquipments", "Master", new { Area = "" },
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "onSuccess",
+        OnFailure = "ShowFailure"
+    }))
+{*@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Offered Services
+        </h1>
+        @*<ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="@Url.Action("Index","Dashboard",new { Area = "Admin" })">Back to Dashboard</a></li>
+                @*<li class="active">General Elements</li>*@
+            </ol>*@
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row" id="frmEquipment">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Offered Services Details</legend>
+                            <div class="row">
+                                @Html.HiddenFor(model => model.Id)
+                                <div class="col-md-2 text-right">
+                                    @Html.LabelFor(model => model.HospitalTypeId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.HospitalTypeId,
+                               new List<SelectListItem>() { new SelectListItem() { Text = "Select HospitalType", Value = "", Selected = true } },
+                               new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.HospitalTypeId, "", new { @class = "text-danger" })
+                                    @*@Html.DropDownListFor(model => model.HospitalTypeId,
+                               new SelectList(ViewBag.HospitalTypesList, "Id", "Name"), "Select HospitalType",
+                               new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.HospitalTypeId, "", new { @class = "text-danger" })*@
+                                </div>
+                            @*</div>
+                            <div class="row">*@
+                                <div class="col-md-2 text-right">
+                                    @Html.LabelFor(model => model.ServiceId,"Offered Service", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.DropDownListFor(model => model.ServiceId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Offered Service", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.ServiceId, "", new { @class = "text-danger" })
+                                    @*@Html.DropDownListFor(model => model.Id,
+        new SelectList(ViewBag.OfferedServicesList, "Id", "Name"), "Select Offered Services",
+        new { @class = "form-control select2", @style = "width:100%;" })
+             @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })*@
+                                </div>
+                            </div>
+                            <div class="row" id="divExistEquipment" hidden>
+                                Existing Equipments : <b><span id="spanEquipments"></span></b>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.HiddenFor(model => model.EquipmentId)
+                                    @Html.LabelFor(model => model.EquipmentIds, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.EquipmentIds,
+                            new List<SelectListItem> {  },
+                            new { @class = "form-control select2 multiselect", @multiple = "multiple", @style = "width:100%;", data_placeholder = "Select a Equipment" })
+                                    @Html.ValidationMessageFor(model => model.EquipmentIds, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    @Html.CheckBoxFor(model => model.IsActive, new { @Class = "icheckbox_minimal-blue", @id = "chkIsActive" }) IsActive
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="box-footer">
+                            <input type="button" id="btnEquipmentClear" class="btn btn-default" value="Clear" onclick="ClearControls()" />
+                            <input type="button" id="btnOfferedServiceSave" value="Save" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">All Offeres Services & Equipments</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="tblEquipments" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Sl.No</th>
+                                    <th>Hospital Type</th>
+                                    <th>Offered Service</th>
+                                    <th>Equipments</th>
+                                    <th>Status</th>
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+
+
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+@*}*@
+
+<script>
+    $('#HospitalTypeId').on('change', function (e) {            
+        if (this.value != '') {
+            GetOfferedServices(this.value);
+            //GetEquipmentsList(this.value);
+        }
+         $('#divExistEquipment').hide();
+    });
+
+        function GetHospitalTypes() {
+        $("#HospitalTypeId").empty();
+        $('#HospitalTypeId').append($('<option></option>').val('').html('Select HospitalType'));
+         var data = '';
+        var url = '@Url.Action("GetHospitalTypes", "License", "User")';
+        var jqxhr = $.post(url, data, function () { }, 'json')
+            .done(function (json) {
+                debugger;
+                $.each(json, function () {
+                    $('#HospitalTypeId').append($('<option></option>').val(this.Id).html(this.Name));
+                });
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                console.log("Getting HospitalTypes list Request Failed: " + err);
+            });
+    }
+
+    function GetOfferedServices(hospitalTypeId) {
+        $("#ServiceId").empty();
+        $('#ServiceId').append($('<option></option>').val('').html('Select Service'));
+        if (hospitalTypeId == '')
+            return;
+
+        var data = { hospitalTypeId };
+        var url = '@Url.Action("GetOfferedServicesByHospitalTypeId", "License", "User")';
+        var jqxhr = $.post(url, data, function () { }, 'json')
+            .done(function (json) {
+                debugger;
+                $.each(json, function () {
+                    $('#ServiceId').append($('<option></option>').val(this.Id).html(this.Name));
+                });
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                console.log("Getting Offered Services list Request Failed: " + err);
+            });
+    }
+
+    function GetEquipmentsList(hospitalTypeId) {
+        $('#EquipmentIds').html('');
+        $('#EquipmentIds').append($('<option></option>').val('').html('Select Equipment'));
+        var data = { HospitalTypeId : hospitalTypeId };
+            var url = '@Url.Action("GetEquipmentsList", "License","User")';
+            var jqxhr = $.post(url, data, function () { }, 'json')
+            .done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                $.each(json, function () {
+                    $('#EquipmentIds').append($('<option></option>').val(this.Id).html(this.Name));
+                });
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                console.log("Getting Equipment list Request Failed: " + err);
+            });
+    }
+
+    $('#ServiceId').on('change', function (e) {
+        $('#divExistEquipment').hide();
+
+        GetOfferedServiceExistingEquipments(this.value);
+       // GetEquipmentOnOfferedServicesChange();
+     //$('#EquipmentIds').html('');
+    });
+
+    function GetEquipmentOnOfferedServicesChange() {
+        $('#EquipmentIds').html('');
+        $('#EquipmentIds').append($('<option></option>').val('').html('Select Equipment'));
+        var offeredServices = $("#ServiceId").val();
+        if (offeredServices == null)
+            return;
+
+        var offeredServiceIds = offeredServices; //offeredServices.join(',');
+        var data = { offeredServiceIds };
+            var url = '@Url.Action("GetEquipmentBasedonOfferedServiceIds", "License","User")';
+            var jqxhr = $.post(url, data, function () { }, 'json')
+            .done(function (json) {
+
+                $.each(json, function () {
+                    $('#EquipmentIds').append($('<option></option>').val(this.Id).html(this.Name));
+                });
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                console.log("Getting Equipment list Request Failed: " + err);
+            });
+    }
+ var equipmentIds=null;
+ $('#EquipmentIds').on('change', function (e) {
+          var equipments = $("#EquipmentIds").val();
+         if (equipments == null)
+            return;
+         
+        equipmentIds = equipments.join(',');
+        //$("#EquipmentIds").val().join(','),
+    });
+
+ </script>
+
+<script>
+
+     $(function () {
+        $('#tblEquipments').dataTable({
+            "columnDefs": [
+              { className: "text-center", "targets": [3] }
+            ]
+        });
+     $('#divExistEquipment').hide();
+        GetHospitalTypes();
+        BindOfferedServicesInGRID();
+        GetEquipmentsList(0);
+    });
+
+     $('#btnOfferedServiceSave').on('click', function (e) {
+    debugger;
+        e.preventDefault();
+        if (true) {
+            var url = '@Url.Action("SaveOfferedServicesEquipments", "Master", new { Area = "" })';
+            var data = {
+                objData: {
+                    Id: $('#Id').val() == '' ? 0 : $('#Id').val(),
+                    ServiceId :$('#ServiceId  option:selected').val(),
+                    Name: $('#ServiceId  option:selected').text(),
+                    HospitalTypeId: $('#HospitalTypeId option:selected').val(),
+                    EquipmentIds: $("#EquipmentIds").val().join(','),
+                    IsActive: $("#chkIsActive").parent('[class*="icheckbox"]').hasClass("checked")
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+             .done(function (response) {
+                 console.log(response);
+                 var json;
+                 if (response instanceof Object)
+                     json = response;
+                 else
+                     json = $.parseJSON(response);
+
+                 if (json.result == undefined) {
+                     //alert(json.notification.NotificationMessage);
+                     ShowModal(json.notification);
+                        ResetControls();
+                        window.location.reload();
+                        BindOfferedServicesInGRID();
+                     if (json.notification.NotificationTypeClass == 'Success') {                         
+                         ResetControls();
+                        BindOfferedServicesInGRID();
+                     }
+                 }
+                 else {
+                     console.log('errors');
+                 }
+        BindOfferedServicesInGRID();
+             })
+         .fail(function (jqxhr, status, error) {
+             var err = status + ", " + error;
+             console.log("Add OfferedService Request Failed: " + err);
+         });
+        }
+     $('#divExistEquipment').hide();
+    });
+
+    function ResetControls() {
+    $('#divExistEquipment').hide();
+        $('#Id').val('');
+        $('#ServiceId option:selected').val('').change();
+        $('#HospitalTypeId option:selected').val('').change();
+        $("#EquipmentIds").val('');
+        $('#chkIsActive').iCheck('uncheck');
+        $('#btnOfferedServiceSave').val('Save');
+    }
+
+    function BindOfferedServicesInGRID() {
+        var url = '@Url.Action("GetOfferedServicesEquipmentsList", "Master", new { Area = "" })';
+        var data = '';
+        var jqxhr = $.post(url, data, function () { })
+         .done(function (response) {
+             var json;
+             if (response instanceof Object)
+                 json = response;
+             else
+                 json = $.parseJSON(response);
+             BindOfferedServices(json);
+                 })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Bind Offered Services Request Failed: " + err);
+        });
+    }
+
+    function BindOfferedServices(json) {
+       // $('#fsCropList').show();
+
+        var table = $('#tblEquipments').DataTable();
+
+        // Clear all existing rows
+        table.clear().draw();
+
+        for (var i = 0; i < json.length; i++) {
+                table.row.add([
+       (i + 1),
+        json[i].HospitalType,
+       json[i].Name,    
+        json[i].Equipments,
+       json[i].IsActive == true ? 'Active' : 'In Active'
+      // '<a class="glyphicon glyphicon-pencil actionlink-button" href="javascript:void(0);" onclick="EditOfferedService(' + json[i].Id + ');"></a>'
+    ]);
+            }
+            table.draw();
+
+    }
+
+    function GetOfferedServiceExistingEquipments(id) {
+        var url = '@Url.Action("EditOfferedService", "Master", new { Area = "" })';
+            var data = {
+                id: id
+            };
+            var jqxhr = $.post(url, data, function () { })
+         .done(function (response) {
+             var json;
+             if (response instanceof Object)
+                 json = response;
+             else
+                 json = $.parseJSON(response);
+               
+              if(json != null)
+              {
+                $('#divExistEquipment').show();
+                $('#spanEquipments').text(json.EquipmentIds);
+            }
+
+         })
+     .fail(function (jqxhr, status, error) {
+         var err = status + ", " + error;
+         console.log("Get Equipments Exis Names Request Failed: " + err);
+     });
+        
+    }
+
+
+    function EditOfferedService(id) {
+        var url = '@Url.Action("EditOfferedService", "Master", new { Area = "" })';
+            var data = {
+                id: id
+            };
+            var jqxhr = $.post(url, data, function () { })
+         .done(function (response) {
+             var json;
+             if (response instanceof Object)
+                 json = response;
+             else
+                 json = $.parseJSON(response);
+
+             console.log('crop');
+             console.log(json);
+               // GetHospitalTypes();
+                $('#Id').val(json.Id);
+                $('#HospitalTypeId').val(json.HospitalTypeId).change();
+   
+               GetOfferedServices(json.HospitalTypeId);
+               // $('#divExistEquipment').show();
+             //$('#spanEquipments').text(json.EquipmentIds);
+
+             if(json.IsActive)
+                 $('#chkIsActive').iCheck('check');
+             else
+                 $('#chkIsActive').iCheck('uncheck');
+
+             $('#btnOfferedServiceSave').val('Update');
+
+            $('#ServiceId').val(json.Id).change();
+         })
+     .fail(function (jqxhr, status, error) {
+         var err = status + ", " + error;
+         console.log("Edit OfferedService Request Failed: " + err);
+     });
+        
+    }
+
+</script>

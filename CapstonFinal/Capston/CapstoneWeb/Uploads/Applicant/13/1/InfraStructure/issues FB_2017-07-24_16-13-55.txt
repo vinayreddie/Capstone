@@ -1,0 +1,26 @@
+
+1.records availble in header table,but not in trans table
+
+2. After Duedate,If repayment done,but it will not effect to modify to schemtypeid =2 in header table.SO that it will displayed in any vlr/nonvlr report
+
+3.If deleted in header table,but still that loan  available in incentive table.
+
+4.Same date disburse date and repay dates available
+
+5. multiple loans with same amounts,dates..but diff loantypes (especially krishna dccb)
+
+6. multiple credits
+
+7. Amounts mismatch with old  report amounts and newly taken report amounts 2015-16 (debits,credits entered)
+
+8. In TSCAB,NEwglno's mismatch in khammam,nalgonda PACS especially
+
+9. IN TSCAB, branches missing in m_branch tbl in khammam and Farmers also 
+
+10. Branch mismtach in nalgonda (ex: tirumalgiri branch pacs displyed with bela branch)
+
+11. Missing branches in TSCAB 2016-17 year
+
+
+
+   

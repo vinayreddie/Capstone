@@ -1,0 +1,116 @@
+﻿@using Capstone.Models
+@model CabserviceModel
+@{
+    ViewBag.Title = "Change Password";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        Change Password Details
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+                 <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">CabserviceModel Details</legend>
+                    <form id="formProfile">
+                             <div class="col-md-12">
+                                <div class="row">
+                               
+
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        @Html.HiddenFor(model => model.Id)
+                                        @Html.LabelFor(model => model.PNR, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.PNR, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PNR, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.DepartureDate, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.DepartureDate, new { htmlAttributes = new { @class = "form-control datepicker", Value = Model.DepartureDate.ToString("dd-MMM-yyyy") } })
+                                        @Html.ValidationMessageFor(model => model.DepartureDate, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.ArrivalDate, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3" id="TxtUserName">
+                                        @Html.EditorFor(model => model.ArrivalDate, new { htmlAttributes = new { @class = "form-control datepicker", Value = Model.ArrivalDate.ToString("dd-MMM-yyyy") } })
+                                        @Html.ValidationMessageFor(model => model.ArrivalDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.DropingAddress, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.DropingAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.DropingAddress, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.PostalCode, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                                    </div>
+                                   
+                                </div>
+                                <div class="row">
+ 
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.CountryId, "Country", new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.DropDownListFor(model => model.CountryId,
+                        new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select Country",
+                         new { @class = "form-control select2", @style = "width:100%;" })
+                                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.AirportId, "AirportId", new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.DropDownListFor(model => model.AirportId,
+                       new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select AirportId",
+                        new { @class = "form-control select2", @style = "width:100%;" })
+                                        @Html.ValidationMessageFor(model => model.AirportId, "", new { @class = "text-danger" })
+                                        @*@Html.ValidationMessageFor(model => model.MandalId, "", new { @class = "text-danger" })*@
+                                    </div>
+                                </div>
+                                <div class="row">
+                                   
+                                </div>
+
+                                <div class="row" id="DivdeptProfile" hidden>
+                                     
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.DropingAddress, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.DropingAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.DropingAddress, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:center;">
+                            <input type="button" id="btnClosePreview" value="Close" data-dismiss="modal" class="btn btn-default" />
+                            <input type="button" id="btnUpdateProfile" value="Update" class="btn btn-success" />
+                        </div>
+                    </div>
+                </fieldset>
+         </div>
+        <!-- /.col -->
+
+    </div>
+    </section>
+

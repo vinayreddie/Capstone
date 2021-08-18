@@ -1,0 +1,23 @@
+﻿
+
+
+@using (Html.BeginForm("SendEmail","Demo", FormMethod.Post))
+
+{
+    <div class="row text-left">
+        <div class="col-sm-6">
+            <label for="contact-name">Your Name</label>
+            <input type="text" name="Name" id="contact-name">
+            <label for="contact-email">Your Email <span class="required">*</span></label>
+            <input type="text" name="Email" id="contact-email">
+            <label for="contact-subject">Subject</label>
+            <input type="text" name="subject" id="contact-subject">
+        </div>
+        <div class="col-sm-6">
+            <label for="contact-message">Your Message <span class="required">*</span></label>
+            <textarea name="Message" id="contact-message"></textarea>
+        </div>
+    </div>
+    <input type="submit" class="btn-custom btn-border margin-top20 margin-bottom20" name="submit" value="Yes, I Want a Free Consultation!">
+    <div class="submit-status"></div>
+}

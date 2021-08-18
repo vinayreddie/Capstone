@@ -1,0 +1,400 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+@{
+    var message = TempData["AlertMessage"] ?? string.Empty;
+}
+@{
+    ViewBag.Title = "Existing User Registration";
+}
+<head>
+    <title>@ViewBag.Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- coustom stylesheet -->
+    <link href="~/css/style.css" rel="stylesheet" />
+    @*<link href="css/style.css" rel='stylesheet' type='text/css' />*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+    @*--new*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- coustom stylesheet -->
+
+    <link href="~/Content/HomeScreen/css/style.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="~/Content/HomeScreen/js/jquery-3.2.0.min.js"></script>
+    <!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+    <link rel="stylesheet" type="text/css" href="~/Content/HomeScreen/engine1/style.css" />
+    <script type="text/javascript" src="~/Content/HomeScreen/engine1/jquery.js"></script>
+
+    <script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+    </script>
+
+    <!-- loader -->
+    <script>
+$(window).load(function() {
+	$(".loader").fadeOut("slow");
+});
+    </script>
+    <style>
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('../../Content/HomeScreen/images/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+        }
+    </style>
+</head>
+<header>
+    <!-- <!-- Header starts here -->
+    <div class="container-fluid" style="background-color: white;">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 text-left">
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+            <div class="col-xs-10 col-sm-10 col-md-12 col-lg-12">
+                <img src="~/Content/HomeScreen/images/govlogo1.png" style="margin-top:; ">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2"></div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <img src="~/Content/HomeScreen/images/hg1.png" style="">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+        </div>
+    </div>
+</header>
+<body style="overflow-x: hidden;">
+
+    <!-- Navigation Bar Starts Here -->
+    @*<div class="topnav" id="myTopnav">
+        <button type="button" class="btn btn-success btn-md" style="margin-top: 10px" data-toggle="modal" data-target="#mymodal">
+            <span class="glyphicon glyphicon-log-in"></span> Login
+        </button>
+        <a href="#about">Contact Us</a>
+        <a href='@Url.Action("EODB", "UserInfo")'>EODvfgB</a>
+        <a href='@Url.Action("About", "UserInfo")'>About Us</a>
+        <a href='@Url.Action("HomeIndex", "UserInfo")'>Home</a>
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>*@
+    @*<nav class="navbar navbar avimenu">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar" style="background-color: black;"></span>
+                    <span class="icon-bar" style="background-color: black;"></span>
+                    <span class="icon-bar" style="background-color: black;"></span>
+                </button>
+                <a class="navbar-brand" href="#">LMS</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pharmacy <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Page 1-1</a></li>
+                            <li><a href="#">Page 1-2</a></li>
+                            <li><a href="#">Page 1-3</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ayurvedic<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Page 1-1</a></li>
+                            <li><a href="#">Page 1-2</a></li>
+                            <li><a href="#">Page 1-3</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Hospital<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Page 1-1</a></li>
+                            <li><a href="#">Page 1-2</a></li>
+                            <li><a href="#">Page 1-3</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Scanning Center<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Page 1-1</a></li>
+                            <li><a href="#">Page 1-2</a></li>
+                            <li><a href="#">Page 1-3</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Homeopathy<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Page 1-1</a></li>
+                            <li><a href="#">Page 1-2</a></li>
+                            <li><a href="#">Page 1-3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href='@Url.Action("HomeIndex", "UserInfo")' type="submit"><span class="glyphicon glyphicon-log-in" data-toggle="modal" data-target="#myModal"></span>Back</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>*@
+    <!-- Login Modal -->
+
+  
+
+     <!-- BODY STATRS HERE -->
+    @*<a href='@Url.Action("HomeIndex", "UserInfo")' button type="submit" class="btn btn-success" style="margin-left:90%; margin-top:0.5%;">Back</a>*@
+    <div class="modal-header">
+        <h4 class="modal-title" id="lineModalLabel">Existing User Registration Details</h4>
+    </div>
+    <div class="modal-body">
+        <!-- content goes here -->
+        <div class="form-group">
+            <span class="form-error">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label>License Number</label>
+                </div>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="txtlicensenumber" placeholder="Enter License Number" />
+                </div>
+                <input type="button" class="btn btn-success" value="Search Registration Number" id="btnSearchLicense" onclick="SearchLicenseNumber()" />
+            </span>
+            <br /><br />
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12" hidden id="divtable">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="tblExistingUsers">
+                        <thead>
+                            <tr style="background-color:aliceblue;">
+                                @*<th>Sl.No</th>*@
+                                <th>Name</th>
+                                <th>License Number</th>
+                                <th>Applicant Address</th>
+                                <th>Aadhar No</th>
+                                <th>License Issue Date</th>
+                                <th>License Expiry Date</th>
+                                <th>Mobile No</th>
+                                <th>EmailID</th>
+                                <th></th>
+                            </tr>
+                        </thead>                      
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br />
+       
+        <br />   <br />   <br />
+        @*<div class="row" id="otp" hidden>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <form class="form-horizontal otp" role="form">
+                    <div class="form-group">
+                        <span class="form-error">
+                            <label for="email" class="col-sm-4 col-sm-offset-1  control-label">Enter OTP </label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="txt_OTP" />
+                            </div>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#myModal"  onclick="ActivateUserLicense()">
+                                Activate
+                            </button>
+                        </span>
+                       
+                        
+                           
+                            <br/><br /><br />
+                            <div class="col-sm-2 col-sm-offset-5">
+                                <button class="btn btn-success genOtp" id="genOtp" onclick="GenerateOTP()">Generate OTP</button>
+                            </div>
+                     
+                    </div>
+                </form>
+            </div>
+        </div>*@
+        <br/><br /><br />
+        <!-- Footer starts here -->
+
+        <div class="navbar-default navbar-fixed-bottom" style="margin-top: 2%">
+            <a class="acs" href="http://www.aegisconsultingservices.in/"><p style="font-weight: light; text-align: center;">Powered By |  Aegis Consulting Services<h4></a>
+        </div>
+        <script type="text/javascript">
+            var message = '@message';
+            if (message)
+                alert(message);
+        </script>
+
+        <script type="text/javascript">
+
+            $(function(){
+            $('#btnShowLoginPopup').hide();
+            });
+
+            function SearchLicenseNumber() {
+
+                if($('#txtlicensenumber').val() == "")
+                {
+                alert('Please Enter License Number!');
+                return;
+                }
+                var jqxhr = $.post('GetExistingLicenseDetails', { LicenseNumber: $('#txtlicensenumber').val() }, function () { }, 'json')
+                 .done(function (response) {
+            debugger;
+                     if (response instanceof Object)
+                         var json = response;
+                     else
+                         var json = $.parseJSON(response);
+                     console.log(json);
+                     //BindLicenNumberDetails(json)
+                     $('#tblExistingUsers').find("tr:gt(0)").remove();
+                     if (json.length > 0) {
+                         $('#divtable').show();
+                         $('#otp').show();
+                     }
+            else
+            {
+             $('#divtable').hide();
+             $('#otp').hide();
+            alert('No Record Found!');
+            return;
+            }
+
+                     for (var i = 0; i < json.length; i++) {
+
+                         var tr;
+                         tr = $('<tr/>');
+                         //tr.append("<td>" + (i + 1) + "</td>")
+                         tr.append("<td>" + json[i].Name + "</td>")
+                         tr.append("<td>" + json[i].ExistingLicenseNumber + "</td>")
+                         tr.append("<td>" + json[i].Address + "</td>")
+                         tr.append("<td>" + json[i].Aadhar + "</td>")
+                         tr.append("<td>" + json[i].LicenseIssuedDate + "</td>")
+                         tr.append("<td>" + json[i].LicenseExpiryDate + "</td>")
+                         tr.append("<td>" + json[i].Mobile + "</td>")
+                         tr.append("<td>" + json[i].Email + "</td>")
+                         tr.append("<td><input type='button' value='Register' class='btn btn-success' onclick='EditApplication(" + json[i].Id + ")' /></td>")
+
+                        // tr.append("<td><a href='@Url.Action("ExistingApplication", "Account")' class='btn btn-success col-sm-12 col-md-12'>Existing</a></td>")
+
+
+                         $("[id$=tblExistingUsers]").append(tr);
+                     }
+                 })
+                 .fail(function (jqxhr, textStatus, error) {
+                     var err = textStatus + ", " + error;
+                     console.log("Existing License Request Failed: " + err);
+                     alert('No Record found');
+                     $('#tblExistingUsers').find("tr:gt(0)").remove();
+                     $('#txtlicensenumber').val("");
+                 });
+            }
+
+            var existingTransId;
+            function EditApplication(Id) {
+                existingTransId= Id;
+                var viewlink = '@Url.Action("ExistingApplication", "Account", new { Area = "", Id = 1 })';
+                viewlink = viewlink.replace("1", Id);
+
+                var viewlink1 = '@Url.Action("ExistingRegister", "Account", new { Area = "", Id = 1 })';
+                viewlink1 = viewlink1.replace("1", Id);
+                window.location.href = viewlink1; //'@Url.Action("Register", "Account", new { Area = "" })';
+            }
+
+ function EditApplication1(uId,uName) {
+  
+        var url ='@Url.Action("ExistingRegister", "Account", new { Area = "" })';
+        var data = { Id: uId,
+            UserName : uName
+            }
+        var jqxhr = $.post(url,data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);                
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get Applications, Request Failed: " + err);
+            });
+    // StopSpinner();
+    }
+
+
+            function GenerateOTP() {
+                var jqxhr = $.post('GenerateOTP', '', function () { }, 'json')
+                 .done(function (response) {
+
+                     if (response instanceof Object)
+                         var json = response;
+                     else
+                         var json = $.parseJSON(response);
+                     console.log(json);
+                     $('#txt_OTP').val(json[0].OTPNumber);
+                 })
+                 .fail(function (jqxhr, textStatus, error) {
+                     var err = textStatus + ", " + error;
+                     console.log("Existing License Request Failed: " + err);
+                     alert('No Record found');
+                     //$('#tblExistingUsers').find("tr:gt(0)").remove();
+                     // $('#txtlicensenumber').val("");
+                 });
+            }
+
+            function ActivateUserLicense() {
+                var jqxhr = $.post('ActivateUserLicense', { LicenseNumber: $('#txtlicensenumber').val() }, function () { }, 'json')
+                 .done(function (response) {
+                     if (response instanceof Object)
+                         var json = response;
+                     else
+                         var json = $.parseJSON(response);
+                     console.log('success' + json);
+                     if (json.length > 0) {
+                         // Html.Action("HomePage","UserAccounts");
+                     }
+                 })
+                 .fail(function (jqxhr, textStatus, error) {
+                     var err = textStatus + ", " + error;
+                     console.log("Existing License Request Failed: " + err);
+                 });
+            }
+
+        </script>
+</body>
+
+
+
+
+
+

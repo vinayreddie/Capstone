@@ -1,0 +1,23 @@
+﻿
+@{
+    
+    Layout = "~/Views/Shared/_DemoLayout.cshtml";
+}
+
+
+
+@model Capstone.Models.LicenseQuestionnaireModel
+<section class="content">
+
+    <div class="row">
+        @{
+            Html.RenderPartial("_ExistingPCPNDT", Model.ApplicationModel.ExistingPCPNDTModel);
+        }
+
+
+    </div>
+   
+
+
+
+</section>

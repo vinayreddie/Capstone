@@ -1,0 +1,2 @@
+http://www.tech-coder.com/2015/12/jquery-chosen-plugin-dynamically.html
+https://davidwalsh.name/jquery-chosen

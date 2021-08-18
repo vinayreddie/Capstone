@@ -1,0 +1,41 @@
+inserting 30,000 records into t_application
+
+using entity framework
+1. inside savechanges	27,82,803 ms (46.38 mins) (individual saving)	
+2. outside savechanges	 9,95,969 ms (16.59 mins) (bulk saving)
+3. using table type	      991 ms (just 991 ms)
+	991
+	544
+	817
+	611
+	562
+	avg(705)
+
+	1380
+	11052
+	514
+	452
+	670
+	avg(2813.6)
+
+using sp
+1. using table type	      647 ms (just 647 ms)
+	1057
+	594
+	961
+	541
+	640
+	avg(758.6)
+	1405
+	3176
+	687
+	566
+	2607
+	avg(1688.2)
+
+
+
+
+
+
+	    

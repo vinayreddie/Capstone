@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+ <!-- BODY STATRS HERE -->
+    <!-- Slider -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" style="margin-top: 1%;">
+
+
+            <div id="wowslider-container1">
+                <div class="ws_images">
+                    <ul>
+                        <li><img src="~/Content/images/slide234.jpg" alt="slider123" title="slider123" id="wows1_0" /></li>
+                    </ul>
+                </div>
+                <div class="ws_shadow"></div>
+            </div>
+            <script src="~/Content/plugins/custom/js/wowslider.js"></script>
+            <script src="~/Content/plugins/custom/js/script.js"></script>
+
+        </div>
+        <!-- panel whats new	 -->
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="panelavi" style="padding-left: 0px;">
+                <div class="panel-heading" style="font-weight: bold;background-color: #24b95c;color: white;">Whats New...</div>
+                <div class="panel-body" style="">
+                    <ul>
+                        <li style="color:#24b95c;font-size:medium;">
+                            More than just a platform – We Are a Community!
+                        </li>
+                        <li>You’ll make friends, you’ll fall in love, you’ll laugh.</li>
+                        <li>you’ll cry, you’ll party and of course, you’ll study</li>
+                     </ul>
+
+
+                </div>
+            </div>
+            <div class="panelavi" style="padding-left: 0px; margin-top:5%">
+                <div class="panel-heading" style="font-weight: bold;background-color: #24b95c;color: white;">Media</div>
+                <div class="panel-body" style="">
+                    <p>
+                        COVID-19 Update – July 20, 2021: Vaccine Expectation & Fall Semester
+                        Confederation College Takes Important Next Step on Decolonization Journey
+                    </p>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row" style="margin-bottom:2%">
+        <div class="outerbox col-md-4">
+            <div class="head"><h4>Important information:</h4></div>
+            <ul class="">
+                <li>
+                    COVID-19 Update – July 20, 2021: Vaccine Expectation & Fall Semester
+                    Confederation College Takes Important Next Step on Decolonization Journey
+
+                    Confederation College Graduates Over 2100 Students in 2021
+
+                </li>
+                
+            </ul>
+
+        </div>
+
+        <div class="outerbox col-md-4">
+            <div class="head"><h4>Why Us</h4></div>
+            <ul class="">
+                <li>
+                    Through us students and newcomers can get details about where they can stay, 
+                    will also get information about the rental’s places, will also have options to choose from different banks,
+                    they will also get details from where they can get their SIN number, also they will have options to choose for their mobile plan details,
+                    Wi-Fi and other essential things like grocery food store, room supplies
+                </li>
+             
+            </ul>
+        </div>
+        <div class="outerbox col-md-4">
+            <div class="head"><h4>About Us</h4></div>
+            <ul class="">
+                <li> To provide a total package to students which will help them with all the information they require for a smooth arrival in Canada so that they do not need to depend on any other sources. 
+                This will save people from many fraudulent services available in market. </li>
+               
+            </ul>
+        </div>
+
+        <!-- <div class="outerbox col-md-3">
+         <div class="row">
+             <marquee>
+                 <div class="head"><h4>OTHER LINKS</h4></div>
+                 <div class="init-image"><a href="" target="_blank"><img src="~/Content/images/ol.gif" height="210px" width="100%"></a></div>
+                 <div class="head"><h4>OTHER LINKS</h4></div>
+                 <div class="init-image"><a href="" target="_blank"><img src="~/Content/images/ol.gif" height="210px" width="100%"></a></div>
+
+             </marquee>
+         </div>
+     </div>
+     <div class="outerbox col-md-3">
+         <div class="head"><h4>GENERAL INFO</h4></div>
+         <div class="init-image"><a href="" target="_blank"><img src="~/Content/images/gi.jpg" style="height:210px;width:315px;" alt=""></a></div>
+
+     </div>-->
+    </div>
+
+<script>
+    //Plugin start
+    (function ($) {
+        var methods =
+          {
+              init: function (options) {
+                  return this.each(function () {
+                      var _this = $(this);
+                      _this.data('marquee', options);
+                      var _li = $('>li', _this);
+
+                      _this.wrap('<div class="slide_container"></div>')
+                           .height(_this.height())
+                          .hover(function () { if ($(this).data('marquee').stop) { $(this).stop(true, false); } },
+                                 function () { if ($(this).data('marquee').stop) { $(this).marquee('slide'); } })
+                           .parent()
+                           .css({ position: 'relative', overflow: 'hidden', 'height': $('>li', _this).height() })
+                           .find('>ul')
+                           .css({ width: screen.width * 2, position: 'absolute' });
+
+                      for (var i = 0; i < Math.ceil((screen.width * 3) / _this.width()) ; ++i) {
+                          _this.append(_li.clone());
+                      }
+
+                      _this.marquee('slide');
+                  });
+              },
+
+              slide: function () {
+                  var $this = this;
+                  $this.animate({ 'left': $('>li', $this).width() * -1 },
+                                $this.data('marquee').duration,
+                                'swing',
+                                function () {
+                                    $this.css('left', 0).append($('>li:first', $this));
+                                    $this.delay($this.data('marquee').delay).marquee('slide');
+
+                                }
+                               );
+
+              }
+          };
+
+        $.fn.marquee = function (m) {
+            var settings = {
+                'delay': 2000,
+                'duration': 900,
+                'stop': true
+            };
+
+            if (typeof m === 'object' || !m) {
+                if (m) {
+                    $.extend(settings, m);
+                }
+
+                return methods.init.apply(this, [settings]);
+            }
+            else {
+                return methods[m].apply(this);
+            }
+        };
+    }
+    )(jQuery);
+
+    //Plugin end
+
+    //call
+    $(document).ready(
+      function () { $('.slide').marquee({ delay: 5000 }); }
+    );
+</script>
+
+

@@ -1,0 +1,433 @@
+﻿@model Capstone.Models.UserViewModel
+<!-- Date picker-->
+<script src="~/Content/plugins/datepicker/js/bootstrap-datepicker.js"></script>
+<link href="~/Content/plugins/datepicker/css/datepicker3.css" rel="stylesheet" />
+<!-- Validate -->
+<script src="~/Content/plugins/jQuery/jquery.validate.1.16.0.js"></script>
+<script src="~/Content/plugins/jQuery/jquery.validate.unobtrusive.js"></script>
+<script>
+    $(function(){
+        //Date picker
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            endDate: '0d', // accept only upto today date
+            autoclose: true
+        });
+        $('input').iCheck({ checkboxClass: 'icheckbox_minimal-blue', radioClass: 'iradio_minimal-blue' });
+        $(".select2").select2();
+        $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
+            checkboxClass: 'icheckbox_flat-blue',
+            radioClass: 'iradio_flat-blue'
+        });
+    });
+</script>
+<form id="formProfile">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                @*<div class="col-md-9"></div>*@
+                    @*<div class="col-md-2">
+                        @Html.LabelFor(model => model.UserPhoto, new { @class = "control-label" })
+                        <span style="color:red">*</span>
+                    </div>*@
+                <div class="col-md-1">
+                   
+                    @Html.LabelFor(model => model.UserPhoto, new { @class = "control-label" })
+                </div>
+                    <div class="col-md-2">
+                        @if (string.IsNullOrEmpty(Model.UserPhoto))
+                    {
+                            <div>
+                                <img id="targetImg1" src="@Url.Content("~/Content/images/uploadpic.png")" style="height:100px;width:100px;" />
+                            </div>
+                    }
+                    else
+                    {
+                            <div>
+                                <img id="targetImg1" src="@Url.Content("~/Uploads/"+Model.UserPhoto)" style="height:100px;width:100px;" />
+                            </div>
+                    }
+                        @Html.TextBoxFor(model => model.UserPhoto, new { @class = "", type = "file" })
+
+                        <div class="caption">
+                            @*<a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>*@
+                            <span id="description"></span>
+                            <span style="color:red" id="spanUploadValidation1"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2">
+                    </div>
+               
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.LabelFor(model => model.FirstName, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.LastName, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.UserName, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3" id="TxtUserName">
+                    @Html.TextBoxFor(model => model.UserName, new { @readonly  = "readonly ", @class = "form-control numeric" } )
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.MobileNumber, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.EmailId, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                </div>
+                @*<div class="col-md-1">
+                    @Html.LabelFor(model => model.AadharNumber, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.AadharNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AadharNumber, "", new { @class = "text-danger" })
+                </div>*@
+            </div>
+            <div class="row">
+
+                @*<div class="col-md-1">
+                    @Html.LabelFor(model => model.PANNumber, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.PANNumber, new {  @class = "form-control numeric" })
+                    @Html.ValidationMessageFor(model => model.PANNumber, "", new { @class = "text-danger" })
+                </div>*@
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.DistrictId, "Country", new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.CountryId,
+    new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select Country",
+     new { @class = "form-control select2", @style = "width:100%;" })
+                    @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.MandalId, "College", new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.CollegeId,
+   new SelectList(ViewBag.Collegelst, "Id", "Name"), "Select College",
+    new { @class = "form-control select2", @style = "width:100%;" })
+                    @Html.ValidationMessageFor(model => model.CollegeId, "", new { @class = "text-danger" })
+                    @*@Html.ValidationMessageFor(model => model.MandalId, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+            <div class="row">
+                @*<div class="col-md-1">
+                    @Html.LabelFor(model => model.VillageId, "Village", new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.VillageId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+     new { @class = "form-control select2", @style = "width:100%;" })
+                   @Html.ValidationMessageFor(model => model.VillageId, "", new { @class = "text-danger" })
+                </div>*@
+                @*<div class="col-md-1">
+                    @Html.LabelFor(model => model.HouseNo, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.HouseNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HouseNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.StreetName, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StreetName, "", new { @class = "text-danger" })
+                </div>*@
+            </div>
+      
+            <div class="row" id="DivdeptProfile" hidden>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.Role.Name, "Role", new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.Role.Name, new { @readonly = "readonly ", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Role.Name, "", new { @class = "text-danger" })
+                </div>
+                @*<div class="col-md-1">
+                    @Html.LabelFor(model => model.JurisdictionLevel, "Jurisdiction", new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.JurisdictionLevel, new { @readonly = "readonly ", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.JurisdictionLevel, "", new { @class = "text-danger" })
+                </div>*@
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.DateofJoin, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.DateofJoin, new { htmlAttributes = new { @class = "form-control datepicker", Value= Model.DateofJoin.ToString("dd-MMM-yyyy") } })
+                    @Html.ValidationMessageFor(model => model.DateofJoin, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col-md-12" style="text-align:center;">
+        <input type="button" id="btnClosePreview" value="Close" data-dismiss="modal" class="btn btn-default" />
+        <input type="button" id="btnUpdateProfile" value="Update" class="btn btn-success" />
+    </div>
+</div>
+<script>
+    $(function () {
+        BindProfileData();
+    });
+    function BindProfileData() {
+        var userModel = @Html.Raw(Json.Encode(Model));
+        if (userModel.DistrictId > 0) {
+            BindMandals('', userModel.DistrictId);
+            setTimeout(
+               function () {
+                   if (userModel.MandalId > 0) {
+                       $('#MandalId').val(userModel.MandalId).trigger('change');
+                       BindVillages('', userModel.MandalId);
+                       setTimeout(function () {
+                           if (userModel.VillageId > 0) {
+                               $('#VillageId').val(userModel.VillageId).trigger('change');
+                           }
+                       }, 500);
+                   }
+               }
+                , 500);
+        }
+    }
+    $('#DistrictId').on('change', function () {
+        BindMandals('', this.value);
+    });
+
+    $('#MandalId').on('change', function () {
+        BindVillages('', this.value);
+    });
+
+    
+</script>
+<script>
+
+    $('#btnUpdateProfile').on('click', function (e) {
+
+        debugger;
+        e.preventDefault();
+
+        var formProfile  = $('#formProfile').validate();
+        $('#MandalId').rules('remove', 'required');
+        $('#VillageId').rules('remove', 'required');
+
+
+        if ($('#formProfile').valid()) {
+
+            if (window.FormData !== undefined) {
+
+
+                var uri = '@Url.Action("UpdateProfile", "Account", new { Area = "" })';
+
+                var UserPhoto   = $("#UserPhoto").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append( 'Id', $('#Id').val() == '' ? 0 : $('#Id').val());
+                fileData.append('FirstName',$('#FirstName').val());
+                fileData.append('LastName', $('#LastName').val());
+                fileData.append('MobileNumber', $('#MobileNumber').val());
+                fileData.append('EmailId', $('#EmailId').val());
+               // fileData.append('AadharNumber',  $('#AadharNumber').val());
+                //fileData.append('PANNumber', $('#PANNumber').val());
+                fileData.append('CountryId',  $('#CountryId').val());
+                fileData.append('CollegeId', $('#CollegeId').val());
+                //fileData.append('VillageId', $('#VillageId').val());
+               // fileData.append('HouseNo', $('#HouseNo').val());
+                //fileData.append('StreetName', $('#StreetName').val());
+                fileData.append('DateofJoin', $('#DateofJoin').val());
+                fileData.append('UserPhoto', UserPhoto);
+
+
+                $.ajax({
+                    type: "POST",
+                    url: uri,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+
+
+                        ShowModal(response);
+                        BindUpdatedData();
+
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+
+                });
+            }
+            else{
+                alert("FormData is not supported.");
+
+            }
+        }
+    });
+    function BindUpdatedData(){
+
+
+            var url = '@Url.Action("GetUserProfile", "Account", new { Area = "" })';  // EditProfile  ForgotPassword
+            var jqxhr = $.post(url,  function () { }, 'json')
+              .done(function (response) {
+                  debugger;
+                  var json;
+                  if (response instanceof Object)
+                      json = response;
+                  else
+                      json = $.parseJSON(response);
+                  console.log("Image from Layout");
+                var ImagePath = '@Url.Content("~/Uploads/")';
+                  $('.user-image, .img-circle').prop('src', ImagePath+response.UserPhoto);
+                  //$('.user-image, .img-circle').prop('src', '/Uploads/'+response.UserPhoto);
+                  $('.username').text(response.FirstName);
+
+
+
+              })
+              .fail(function (jqxhr, textStatus, error) {
+                  var err = textStatus + ", " + error;
+                  console.log("Edit profile request Failed: " + err);
+              });
+
+    }
+
+</script>
+<script>
+    console.log('@ViewBag.RoleName');
+    if ('@ViewBag.RoleName' == 'Applicant') {
+        $('#DivdeptProfile').hide();
+    }
+    else if ('@ViewBag.RoleName' != 'Applicant') {
+        $('#DivdeptProfile').show();
+    }
+</script>
+<script>
+
+    $(document).ready(function ()
+    {
+        debugger;
+        //Console.log(model.PANNumber);
+        var x = @Html.Raw(Json.Encode(Model.PANNumber));
+        if(x != null && x != "")
+        {
+            $("#PANNumber").prop("disabled", true); 
+        }
+        var y = @Html.Raw(Json.Encode(Model.AadharNumber));
+        if(y != null && y != "")
+        {
+            $("#AadharNumber").prop("disabled", true); 
+        }
+       
+    });
+</script>
+<script>
+    $(document).ready(function () {        
+
+        $("#UserPhoto").change(function () {
+
+
+            var File = this.files;
+
+            if(File[0].type=="image/jpeg"){
+
+                if (File && File[0]) {
+                    ReadImage(File[0]);
+                }
+            }
+            else{
+
+                $("#targetImg1").attr('src', '@Url.Content("~/Content/images/uploadpic.png")');
+                $("#description").text('');
+                $("#spanUploadValidation1").text("Please upload images of JPEG format only");
+                $("#UserPhoto").val('');
+                return false;
+            }
+
+
+        });
+        var ReadImage = function (file) {
+            debugger;
+            var reader = new FileReader;
+            var image = new Image;
+
+            reader.readAsDataURL(file);
+            reader.onload = function (_file) {
+
+                image.src = _file.target.result;
+                image.onload = function () {
+
+                    var height = this.height;
+                    var width = this.width;
+                    var type = file.type;
+
+                    console.log("height:"+height+", width:"+width+", type:"+type);
+                    var size = file.size / 1024;
+
+                    if(type=="image/jpeg"){
+                        if(size<100){
+                            $("#spanUploadValidation1").text('');
+                            $("#targetImg1").attr('src', _file.target.result);
+                            //$("#description").text("Size:" + size+" KB");
+                            $("#imgPreview").show();
+                        }
+                        else{
+
+                            $("#targetImg1").attr('src', '@Url.Content("~/Content/images/uploadpic.png")');
+                            $("#description").text('');
+                            $("#spanUploadValidation1").text("Size should be less than 100KB");
+                            $("#UserPhoto").val('');
+                            return false;
+                        }
+                    }
+                    else{
+
+                        $("#targetImg1").attr('src', '@Url.Content("~/Content/images/uploadpic.png")');
+                        $("#description").text('');
+                        $("#spanUploadValidation1").text("Please upload image JPEG format only");
+                        $("#UserPhoto").val('');
+                        return false;
+                    }
+
+                }
+
+            }
+
+        }});
+
+</script>
