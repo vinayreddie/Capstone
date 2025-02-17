@@ -1,0 +1,997 @@
+﻿@model Capstone.Models.TAMCEFacilityModel
+
+<div class="row">
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large;"><u>All Facilities Details</u></span>
+            <br />
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">1. OUT PATIENT DEPARTMENT (OPD) </legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> A) Reception Counter :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th style="width:480px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th style="width:260px;">Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Posting of Knowledgeable staff as a Receptionist with a board <b>"My I Help You?"</b>
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMyhelpYou" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td style="width:528px;">
+                                        All Sections of the OPD numbered and depicted on flow chart near reception counter</b>
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td style="width:528px;">
+                                        Boards indicating days of Special Services and Hospital timings near reception counter
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> B) Registration :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Seperate registration windows with railing arrangements for Male / Female, Old/New, Freedom Fighters & Govt. Servants
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        Board indicating hospital fees for various services provided for OPD, IPD and Surgical Procedures
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> C) OPD Sections :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Every OPD section should have : seperate register for diagnosis, Complete examination tray with B P apparatus, torch and hammer, X-ray view box,examination table with foot steps, writing table, stool for patinets wash basin, adequate sitting arrangement for waiting OPD patients, appropriate Health Education material displayed
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        In Addition to above,
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <b>Capstone OPD :</b><br />
+                                        CNS examination tray, tuning fork, ECG Machine
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <b>Surgical OPD :</b><br />
+                                        PR examination tray with proctoscope and gloves, Kidney trays, Tongue depresser
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <b>Gynaecology OPD :</b><br />
+                                        PS & PV examination Tray, IUD tray, Kidney tray,Weighing machine, pap smear tray, exam table with lithotomy facility, table lamp.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <b>Pediatric OPD :</b><br />
+                                        Paed. Weighing Machine, Measure tape, Height and Weight Scale
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <b>Opthalmic OPD :</b><br />
+                                        Near and Distant Vision charts, Refraction set Opthalmoscope, Dark room facilities for Retinoscopy
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <b>Ear,Nose & Throat OPD :</b><br />
+                                        Head light mirror, Indirect laryngoscopes, tounge depresser, Nasal and ear speculum, electric sterilizer, tuning fork, audiometry diagnostic ENT
+                                        set, audiometry, wax syringe etc.,
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <b>Dental OPD :</b><br />
+                                        Dental Unit, Dental motor, Dental X-ray, Continuos water supply, denture preparation(prosthesis),
+                                        Biosafety measures adopted etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <b>Orthopedic OPD :</b><br />
+                                        Emanination table, foot steps, X-ray view box, patella hammer etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> D) Dressing Room :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Seperate dressing rooms for Male and Female patients
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        Autoclaved/Disposable material used
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        Dressing table sink for hand washing available
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        Dresser wares Plastic apron, face mask, Gloves etc. while doing dressing
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        Antiseptic lotions and dressing materials and foot operated dustbins or adequately available
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> E) Injection Room :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Seperate rooms for male and female available
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Staff nurse is trained in management of injection reactions</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        Updated emeregency drug tray and availability of Oxygen Cylinder withaccessories, Suction Machine(Electric and foot operated),
+                                        Cot and maltresses with arrangements for head low position, venesection tray, chart of management of Anaphylactic reaction, Availability
+                                        of Wash basin, Biosafety measures adopted, Inventory maintained
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Sufficient No. of Disposable? Sterile syringes & needles depending upon OPD load</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> F) Pharmacy :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Availability of male and female windows seperately with railing arrangements
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        Daily accounting of drugs kept ? ( Any proof of checking of inventory)
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Surprise check by Inspector for actual dispensing against prescription</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Drugs are dispensed in paper packets</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Morbidity statistics kept upto date (Verify the record)</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> G) Physiotherapy :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Availability of short wave diathermy, infrared facilities etc. for Myalagia
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Availability of Lumbar/Cervical traction for Spondylitis</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Shoulder mobilization wheels, walking bars available</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Wax bath and Muscle stimulator Available</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> H) Minor Operation Theatre and Plaster Room :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Availability of Anaesthetic apparatus, shadowless lamp, operation table suction apparus (electric and foot operated),
+                                        fumigation apparatus
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        Availability for wash basin, cap, mask, gown, sleepers etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        Availability of autoclaved/sterile linen material, dressing drums, minor surgery instruments,
+                                        life saving drugs and anesthetic agents etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Availability of plaster room, plaster material & plaster cutting saw etc.,</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Maintenance of records and registers of minor OT etc,.</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> I) Safe Drinking Water Facilities :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Water coolers available with adequate number of taps for OPD
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Water samples are tested for potability. Verify the register & actions taken on unsatisfactory reports</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> J) Sanitary Units :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Seperate well-maintained arrangements of toilet for male and female patients & their attendents
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Seperate toilets and wash basins for staff members?</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> K) Vehicle Parking :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Seperate stand for staff/Public vehicles
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> L) R.M.O Office:</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Availability of telephone for RMO and public
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Film show arrangements made for OPD patients, Verify the register</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Suggestion book in OPD Actiontaken, if any, for valid suggestions made.</td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        Availability of RMO during entire OPD Period and musters of interns, class III and para Capstones
+                                        are available in RMO's chamber
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        Availability of wheel chairs & stretches for shifting Pts. From OPD to Ward.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkBoardIndicate" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> M) Verifications of adequacy of treatment :<br/>
+                    (Minimum 5 case sheets/prescription notes should be checked)</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Clinical Notes, Diagnosis, Investigations and Legible hand writing
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        Proper Prescription of drugs with dose schedule
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Views of the patients regarding treatment and their satisfaction
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkSeperateRegistration" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+</div>

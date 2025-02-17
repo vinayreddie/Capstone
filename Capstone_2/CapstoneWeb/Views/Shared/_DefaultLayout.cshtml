@@ -1,0 +1,908 @@
+﻿<!DOCTYPE html>
+
+<html lang="">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>*@
+    <script src="~/Content/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!--Password Hashing-->
+    <script src="~/Content/plugins/Decryption/md5.js"></script>
+    <script src="~/Content/plugins/jQuery/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Content/plugins/jQuery/jquery.validate.js"></script>
+    <script src="~/Content/plugins/jQuery/jquery.validate.1.16.0.js"></script>
+    <script src="~/Content/plugins/jQuery/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Content/plugins/custom/js/validations.js"></script>
+
+
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- coustom stylesheet -->
+    <link href="~/Content/plugins/custom/css/style.css" rel="stylesheet" />
+    @*<script src="~/Content/plugins/custom/js/jquery-3.2.0.min.js"></script>*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+
+
+    <link href="~/Content/plugins/custom/css/styles.css" rel="stylesheet" />
+    @*<script src="~/Content/plugins/custom/js/jquery.js"></script>*@
+
+    <!-- End WOWSlider.com HEAD section -->
+    <script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+    </script>
+
+    <!-- loader -->
+    <script>
+$(window).load(function() {
+    $(".loader").fadeOut("slow");
+});
+    </script>
+
+    <style>
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('../../Content/HomeScreen/images/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+        }
+
+        .modal-backdrop {
+            display: none !important;
+        }
+    </style>
+
+    <script>
+  $(document).ready(function () {
+        //Disable full page
+        $("body").on("contextmenu", function (e) {
+            return false;
+        });
+        $("#btnLogin").html(' Login');
+  });
+
+  $('input[type=radio][name="LoginType"]').on('change', function () {
+      if (this.value == 'APMCE') {
+          $('#btnLogin').html(' Login');
+          $('#newRegistration').html('TAMCE Registration');
+          $('#existRegistration').html('Existing TAMCE Registration');
+      }
+      else {
+          $('#btnLogin').html(' Login');
+          $('#newRegistration').html('PCPNDT Registration');
+          $('#existRegistration').html('Existing PCPNDT Registration');
+      }
+  });
+    </script>
+    <script>
+
+
+
+
+
+
+    $(document).ready(function () {
+        $('#btnLogin').click(function (e) {
+            var strmd5 = '';
+            var saltedstrmd5 = '';
+
+            var strval = $('#Password').val();
+
+
+
+            // set the length of the string
+            var stringLength1 = 3;
+            var stringLength2 = 4;
+
+            // list containing characters for the random string
+            var stringArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '?'];
+
+
+
+            var rndString1 = "";
+            var rndString2 = "";
+
+                // build a string with random characters
+                for (var i = 1; i < stringLength1; i++) {
+                    var rndNum = Math.ceil(Math.random() * stringArray.length) - 1;
+                    rndString1 = rndString1 + stringArray[rndNum];
+                };
+                for (var i = 1; i < stringLength2; i++) {
+                    var rndNum = Math.ceil(Math.random() * stringArray.length) - 1;
+                    rndString2 = rndString2 + stringArray[rndNum];
+                };
+
+
+
+
+            if (strval.length == 0) {
+
+            }
+            else {
+               strmd5 = $().crypt({
+                    method: "md5",
+                    source: strval
+               });
+               saltedstrmd5 = $().crypt({
+                   method: "md5",
+                   source: strmd5+'ultimate_2018'
+               });
+
+
+               $('#Password').val(rndString1 + saltedstrmd5 + rndString2);
+
+
+            }
+            if($('#CaptchaText').val() == "" ||$('#Username').val() =="" || $('#Password').val() == "")
+            {
+            alert('Please Enter UserName/Password/Captcha !');
+            return;
+            }
+            var url = '@Url.Action("Login", "Account", new { Area = "" })';
+            var model = {
+                UserName: $('#Username').val(),
+                Password: strval,  // rndString1 + saltedstrmd5 + rndString2
+                CaptchaText: $('#CaptchaText').val(),
+            }
+            debugger;
+            var jqxhr = $.post(url, model, function () { })
+       .done(function (data) {
+           OnSuccess(data);
+
+       })
+   .fail(function (jqxhr, status, error) {
+       var err = status + ", " + error;
+       console.log("Email Submit Request Failed: " + err);
+   });
+
+        });
+    });
+
+    function BindMandals(controlPrefix, controlValue) {
+        var mandalControlId = controlPrefix + 'MandalId';
+        var villageControlId = controlPrefix + 'VillageId';
+
+        // Clear existing Mandal values
+        $('#' + mandalControlId).empty();
+        $('#' + mandalControlId).append('<option value="">Select Mandal</option>');
+        // Clear existing Village values
+        $('#' + villageControlId).empty();
+        $('#' + villageControlId).append('<option value="">Select Village</option>');
+
+        if (controlValue != '') {
+            var url = '@Url.Action("GetMandals", "Account")';
+
+            var data = {
+                id: controlValue
+            };
+
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#' + mandalControlId).append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetMandals api Request Failed: " + err);
+            });
+        }
+    }
+
+    function BindVillages(controlPrefix, controlValue) {
+        var villageControlId = controlPrefix + 'VillageId';
+
+        // Clear existing Village values
+        $('#' + villageControlId).empty();
+        $('#' + villageControlId).append('<option value="">Select Village</option>');
+
+        if (controlValue != '') {
+            var url = '@Url.Action("GetVillages", "Account")';
+
+            var data = {
+                id: controlValue
+            };
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#' + villageControlId).append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetVillages api Request Failed: " + err);
+            });
+        }
+    }
+    </script>
+
+    <script>
+    function OnSuccess(data) {
+        console.log(data);
+        var json = data;
+        if (json.redirecturl != undefined)
+            window.location.href = json.redirecturl;
+        else {
+
+            $('#spnErrorMessage').text(json.errormessage);
+        }
+
+
+
+    }
+    function ShowModal(jsonObject) {
+        // Clear existing values
+        $('#modalTitle').empty();
+        $('#divNotificationMessage').empty();
+        $('#divValidationErrors').empty();
+        $('#btnAction').removeClass();
+        $('#btnNonAction').removeClass();
+
+        $('#modalTitle').html('<b style="color:' + GetTitleTextColor(jsonObject.NotificationTypeClass) + ';">' + jsonObject.Title + '</b>');
+        $('#divNotificationMessage').append(jsonObject.NotificationMessage);
+
+        if (jsonObject.ShowListItems) {
+            var orderedList = $('<ol/>');
+            for (var i = 0; i < jsonObject.ListItems.length; i++) {
+                orderedList.append('<li>' + jsonObject.ListItems[i] + '</li>');
+            }
+            $('#divListItems').append(orderedList);
+        }
+        $('#divModalBody').html(jsonObject.BodyContent);
+
+        if (jsonObject.IsLargeModal)
+            $('#divModalDialog').addClass('modal-lg');
+        else
+            $('#divModalDialog').removeClass('modal-lg');
+
+        if (jsonObject.ShowActionButton) {
+            $('#btnAction').show();
+            $('#btnAction').addClass(GetButtonColorClass(jsonObject.ActionButtonClass));
+            $('#btnAction').text(jsonObject.ActionButtonText);
+            if (jsonObject.ActionName != undefined && jsonObject.ActionName != '' &&
+                jsonObject.ControllerName != undefined && jsonObject.ControllerName != '') {
+                $('#btnAction').on('click', function () {
+                    var link = '@Url.Action("ActionName","ControllerName")';
+                    link = link.replace('ActionName', jsonObject.ActionName);
+                    link = link.replace('ControllerName', jsonObject.ControllerName);
+                    location.href = link;
+                });
+            }
+        }
+        else {
+            $('#btnAction').hide();
+        }
+
+        if (jsonObject.ShowNonActionButton) {
+            $('#btnNonAction').show();
+            $('#btnNonAction').addClass(GetButtonColorClass(jsonObject.NonActionButtonClass));
+            $('#btnNonAction').text(jsonObject.NonActionButtonText);
+        }
+        else {
+            $('#btnNonAction').hide();
+        }
+
+        $('#divModal').modal('show');
+    }
+
+    function HideModal() {
+        $('#divModal').modal('hide');
+    }
+    function GetButtonColorClass(NotificationType) {
+        switch (NotificationType) {
+            case 'Information':
+                return 'btn btn-info';
+            case 'Success':
+                return 'btn btn-success';
+                break;
+            case 'Warning':
+                return 'btn btn-warning';
+                break;
+            case 'Danger':
+                return 'btn btn-danger';
+                break;
+            case 'Primary':
+                return 'btn btn-primary';
+                break;
+            default:
+                return 'btn btn-default';
+                break;
+        }
+    }
+
+    function GetTitleTextColor(notificationType) {
+        switch (notificationType) {
+            case 'Information':
+                return '#46b8da';
+                break;
+            case 'Success':
+                return '#398439';
+                break;
+            case 'Warning':
+                return '#eea236';
+                break;
+            case 'Danger':
+                return '#ac2925';
+                break;
+            default:
+                return '#73879C';
+                break;
+        }
+    }
+    </script>
+
+    <script>
+
+    var OTP = "";
+    $('#').click(function (e) {
+        var flag = true;
+
+        if ($('#Username').val() == '') {
+            $('#Username').css('border-color', 'red');
+
+
+            var flag = false;
+            return false;
+        }
+        else {
+            $('#Username').css('border-color', '');
+            var flag = true;
+        }
+        if (flag) {
+
+            var model = {
+                UserName: $('#Username').val()
+            }
+
+            var url = '@Url.Action("CheckForUserName", "Account", new { Area = "" })';
+            var jqxhr = $.post(url, model, function () { }, 'json')
+              .done(function (response) {
+                  if (response.UserName !=null) {
+                      OTP = response.OTP;
+                      flag = true;
+                      forgotPassword();
+                  }
+
+                  else {
+                      flag = false;
+
+                      $('#spnUserNameErr').text('The Username that you\'ve entered doesn\'t match any account.');
+                      $('#mymodal').modal('toggle');
+                      $('#mymodal').modal('show');
+                      $('#Username').css('border-color', 'red');
+                  }
+              })
+              .fail(function (jqxhr, textStatus, error) {
+                  var err = textStatus + ", " + error;
+                  console.log("ForgotPassword request Failed: " + err);
+              });
+
+        }
+    });
+
+
+    function forgotPassword() {
+            var url = '@Url.Action("ForgotPassword", "Account", new { Area = "" })';
+            var jqxhr = $.post(url, function () { }, 'html')
+              .done(function (response) {
+                  console.log(response);
+                  //alert('success');
+                  //if (response instanceof Object)
+                  //    json = response;
+                  //else
+                  //    json = $.parseJSON(response);
+                  var jsonObject = GetModalJSON();
+                  jsonObject.Title = 'Password Reset';
+                  jsonObject.BodyContent = response;
+                  ShowModal(jsonObject);
+              })
+              .fail(function (jqxhr, textStatus, error) {
+                  var err = textStatus + ", " + error;
+                  console.log("ForgotPassword request Failed: " + err);
+              });
+
+        }
+
+
+
+
+    function GetModalJSON() {
+        var jsonObject = {};
+        jsonObject.NotificationType;
+        jsonObject.NotificationTypeClass = null;
+        jsonObject.Title = null;
+        jsonObject.HasError = false;
+        jsonObject.NotificationMessage = null;
+        jsonObject.ShowListItems = false;
+        jsonObject.ListItems = [];
+        jsonObject.BodyContent = null;
+        jsonObject.ActionName = null;
+        jsonObject.ControllerName = null;
+        jsonObject.AreaName = null;
+        jsonObject.ShowActionButton = false;
+        jsonObject.ActionButtonText = null;
+        jsonObject.ActionButtonClass = null;
+        jsonObject.ShowNonActionButton = false;
+        jsonObject.NonActionButtonText = null;
+        jsonObject.NonActionButtonClass = null;
+        jsonObject.IsLargeModal = false;
+        jsonObject.JavaScript = null;
+        return jsonObject;
+    }
+
+    function ShowModal(jsonObject) {
+
+        // Clear existing values
+        $('#modalTitle').empty();
+        $('#divNotificationMessage').empty();
+        $('#divValidationErrors').empty();
+        $('#btnAction').removeClass();
+        $('#btnNonAction').removeClass();
+
+        $('#modalTitle').html('<b style="color:' + GetTitleTextColor(jsonObject.NotificationTypeClass) + ';">' + jsonObject.Title + '</b>');
+        $('#divNotificationMessage').append(jsonObject.NotificationMessage);
+
+        if (jsonObject.ShowListItems) {
+            var orderedList = $('<ol/>');
+            for (var i = 0; i < jsonObject.ListItems.length; i++) {
+                orderedList.append('<li>' + jsonObject.ListItems[i] + '</li>');
+            }
+            $('#divListItems').append(orderedList);
+        }
+        $('#divModalBody').html(jsonObject.BodyContent);
+
+        if (jsonObject.IsLargeModal)
+            $('#divModalDialog').addClass('modal-lg');
+        else
+            $('#divModalDialog').removeClass('modal-lg');
+
+        if (jsonObject.ShowActionButton) {
+            $('#btnAction').show();
+            $('#btnAction').addClass(GetButtonColorClass(jsonObject.ActionButtonClass));
+            $('#btnAction').text(jsonObject.ActionButtonText);
+            if (jsonObject.ActionName != undefined && jsonObject.ActionName != '' &&
+                jsonObject.ControllerName != undefined && jsonObject.ControllerName != '') {
+                $('#btnAction').on('click', function () {
+                    var link = '@Url.Action("ActionName","ControllerName")';
+                    link = link.replace('ActionName', jsonObject.ActionName);
+                    link = link.replace('ControllerName', jsonObject.ControllerName);
+                    location.href = link;
+                });
+            }
+        }
+        else {
+            $('#btnAction').hide();
+        }
+
+        if (jsonObject.ShowNonActionButton) {
+            $('#btnNonAction').show();
+            $('#btnNonAction').addClass(GetButtonColorClass(jsonObject.NonActionButtonClass));
+            $('#btnNonAction').text(jsonObject.NonActionButtonText);
+        }
+        else {
+            $('#btnNonAction').hide();
+        }
+
+        // Unbind existing javascript links
+        //$('#btnNonAction').unbind('Click');
+
+
+        // Bind javascript if any
+        $('#btnNonAction').click(function () {
+            jsonObject.JavaScript;
+        });
+
+
+        $('#divModal').modal('show');
+    }
+
+    function HideModal() {
+        $('#divModal').modal('hide');
+    }
+
+    function GetButtonColorClass(NotificationType) {
+        switch (NotificationType) {
+            case 'Information':
+                return 'btn btn-info';
+            case 'Success':
+                return 'btn btn-success';
+                break;
+            case 'Warning':
+                return 'btn btn-warning';
+                break;
+            case 'Danger':
+                return 'btn btn-danger';
+                break;
+            case 'Primary':
+                return 'btn btn-primary';
+                break;
+            default:
+                return 'btn btn-default';
+                break;
+        }
+    }
+
+    function GetTitleTextColor(notificationType) {
+        switch (notificationType) {
+            case 'Information':
+                return '#46b8da';
+                break;
+            case 'Success':
+                return '#398439';
+                break;
+            case 'Warning':
+                return '#eea236';
+                break;
+            case 'Danger':
+                return '#ac2925';
+                break;
+            default:
+                return '#73879C';
+                break;
+        }
+    }
+    </script>
+
+    <script>
+
+
+    $("#Username").keyup(function () {
+        $('#Username').css('border-color', '');
+        $('#spnUserNameErr').text('');
+    });
+
+    $(document).ready(function () {
+        $('btnLogin').click(function (e) {
+            var strval = $('#Username').val();
+            var password = $('#Password').val();
+            if (strval.length == 0) {
+
+            }
+            else {
+                var strmd5 = $().crypt({
+                    method: "md5",
+                    source: strval
+                });
+                $('#Password').val(strmd5);
+
+
+            }
+            var url = '@Url.Action("ValidateLogin", "Account", new { Area = "" })';
+            var model = {
+                UserName: $('#Username').val(),
+                Password: password
+
+            }
+            var jqxhr = $.post(url, model, function () { })
+       .done(function (data) {
+           OnSuccess(data);
+
+       })
+   .fail(function (jqxhr, status, error) {
+       var err = status + ", " + error;
+       console.log("Email Submit Request Failed: " + err);
+   });
+
+        });
+    });
+    </script>
+
+    <script>
+        function ShowSpinner() {
+            $('#divspinner').fadeIn();
+        }
+
+        function ShowTransparentSpinner() {
+            $('#divspinner').css({ 'opacity': '0.2' });
+            $('#divspinner').fadeIn();
+        }
+
+        function StopSpinner() {
+            $('#divspinner').fadeOut();
+        }
+    </script>
+
+    <style>
+        ul, #myUL {
+            list-style-type: none;
+        }
+
+        #myUL {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            cursor: pointer;
+            -webkit-user-select: none; /* Safari 3.1+ */
+            -moz-user-select: none; /* Firefox 2+ */
+            -ms-user-select: none; /* IE 10+ */
+            user-select: none;
+        }
+
+            .box::before {
+                content: "\2610";
+                color: black;
+                display: inline-block;
+                margin-right: 6px;
+            }
+
+        .check-box::before {
+            content: "\2611";
+            color: dodgerblue;
+        }
+
+        .nested {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+
+    <style>
+        .reportheadertext {
+            text-align: center;
+            font-size: larger;
+        }
+
+        .textunderline {
+            text-decoration: underline;
+        }
+
+        .parabody {
+            text-indent: 50px;
+            text-align: justify;
+        }
+
+        p {
+            text-align: justify;
+        }
+    </style>
+
+    <style>
+        html, body {
+            margin: 0
+        }
+
+        ul.slide {
+            margin: 0;
+            padding: 0;
+            height: 210px;
+            list-style-type: none;
+        }
+
+            ul.slide li {
+                float: left;
+                list-style-type: none;
+            }
+
+            ul.slide img {
+                height: 160px;
+                border-bottom-left-radius: 12px;
+            }
+    </style>
+</head>
+@*<header>
+    
+</header>*@
+<body>
+    <div class="container-fluid" style="background-color: white;">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 text-left">
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+            <div class="col-xs-10 col-sm-10 col-md-12 col-lg-12">
+                <img src="~/Content/images/govlogo1A.png" style="margin-top:5px;" alt="">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2"></div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                @*<img src="~/Content/images/hg4-3.png" style="max-width:220% !important; margin-left:-100px; margin-top:0px;">*@
+            </div>
+
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+        </div>
+    </div>
+
+
+    <div class="loader"></div>
+    <div class="topnav" id="myTopnav">
+        <button type="button" class="btn btn-success btn-md" id="btnShowLoginPopup" style="margin-top: 10px; float:right;" data-toggle="modal" data-target="#mymodal">
+            <span class="glyphicon glyphicon-log-in"></span> Login
+        </button>
+        <a href='@Url.Action("Home", "Home")'><span class="glyphicon glyphicon-home"></span>&nbspHome</a>
+        @*<a href='@Url.Action("EODB", "Home")'><i class="fa fa-group"></i>&nbspEODB</a>*@
+        <!-- <a href='@Url.Action("ProcedureChecklist", "Home")'><span class="glyphicon glyphicon-user"></span>&nbspProcedure & Checklist</a> -->
+        <a href='@Url.Action("About", "Home")'><span class="glyphicon glyphicon-user"></span>&nbspAbout Us</a>
+        <a href='@Url.Action("Contact","Home")'><span class="glyphicon glyphicon-earphone"></span>&nbspContact Us</a>
+        <a href='@Url.Action("About", "Home")'><i class="fa fa-group"></i>&nbspFAQ</a>
+
+        @*<a href='@Url.Action("ApplicationForm1Details","Home")'><span class="glyphicon glyphicon-file"></span>&nbsp Application Form</a>
+        <a href='@Url.Action("SiteMapDetails","Home")'><span class="glyphicon glyphicon-globe"></span>&nbsp SiteMap </a>
+        <a href='@Url.Action("SLADays","Home")'><span class="glyphicon glyphicon-time"></span>&nbsp Timelines </a>
+        <a href='@Url.Action("TamceDemoVideo","Home")'><span class="glyphicon glyphicon-facetime-video"></span>&nbsp How to Apply</a>*@
+
+
+
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+
+
+
+    @model  Capstone.Models.LoginModel
+    @*@using (Ajax.BeginForm("Login", "Account", null, new AjaxOptions { OnComplete = "OnSuccess" },  null))
+
+        {*@
+    <div id="divLogin">
+        <div class="modal fade" id="mymodal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center">Welcome to Capstone Management System</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            @*<div class="row form-group">
+                                    <div class="col-md-3 text-right">
+                                        @Html.Label("Login Type", new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-9">
+                                        @Html.RadioButton("LoginType", "APMCE", new { @checked = true }) TAMCE &nbsp;&nbsp;&nbsp;
+                                        @Html.RadioButton("LoginType", "PCPNDT") PCPNDT
+                                    </div>
+                                    <br />
+                                </div>*@
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    @*<input type="text" class="form-control" id="email" placeholder="Enter UserName">*@
+                                    @Html.TextBoxFor(a => a.Username, new { @class = "form-control", @placeholder = "UserName" })
+                                    @Html.ValidationMessageFor(a => a.Username, "", new { @id = "spnUserNameErr", @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    @*<input type="password" class="form-control" id="pwd" placeholder="Enter Password">*@
+                                    @Html.PasswordFor(a => a.Password, new { @class = "form-control", @placeholder = "Password" })
+                                    @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="control-label col-md-2"></span>
+                                <div class="col-md-10">
+                                    <img src="@Url.Action("CaptchaIndex","Home")" alt="image" />
+                                    @*<a href='@Url.Action("CaptchaIndex","Home")' >Refresh</a>*@
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    @Html.TextBoxFor(a => a.CaptchaText, new { @class = "form-control", @placeholder = "Captcha" })
+                                    @Html.ValidationMessageFor(a => a.CaptchaText, "", new { @id = "spnCaptchaTextErr", @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox"> remember me</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="margin-top: 10px" data-toggle="modal" data-target="#mymodal">
+                                    @*<a href="#">forgot password?<a>*@
+                                    @*<input type="button" id="forgotPswdLink" value="Forgot" />*@
+                                    @*<a id="forgotPswdLink" href="#">Forgot Password?</a>*@
+                                    @*@Html.ActionLink("forgot password?", "ForgotPassword", "Account", new { Area = "" }, new { id = "forgotPswdLink" ,style = "margin-top: 10px" })*@
+                                    @*@Html.ActionLink("forgot password?", "ForgotPassword", "Home", new { Area = "" })*@
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div style="text-align:center;color:red">
+                                    <span id="spnErrorMessage">
+                                    </span>
+                                </div>
+                            </div>
+                            <div id="divAPMCE">
+
+                            </div>
+                            <div id="divPCPNDT">
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3"></div>
+                                <div class="col-sm-6 col-md-6">
+                                    <button type="submit" class="btn btn-success col-sm-12 col-md-12" id="btnLogin"></button>
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                            <div class="form-group">
+                                @* <div class="col-sm-12 col-md-12">
+            <button type="button" class="btn btn-success col-sm-12 col-md-12">new user registration</button>
+                                <a href='@Url.Action("Register", "Account")' id="newRegistration" class="btn btn-success col-sm-12 col-md-12"> Registration</a>
+                            </div>
+                               <div class="col-sm-6 col-md-6">
+                                   <button type="button" class="btn btn-success col-sm-12 col-md-12">exsisting user registration</button>
+                                    <a href='@Url.Action("ExistingUserRegistration", "Account")' id="existRegistration" class="btn btn-success col-sm-12 col-md-12">Existing TAMCE Registration</a>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @*}*@
+    <div>
+        @RenderBody()
+    </div>
+    <!-- Footer starts here -->
+
+    <div class="navbar-default navbar-fixed-bottom" style="margin-top: 2%">
+        <a class="acs" href="#"><p style="font-weight:lighter; text-align: center;">Powered By |  Capstone</p></a>
+    </div>
+    <!-- Popup Modals -->
+    <div class="modal fade" id="divModal">
+        <div class="modal-dialog" id="divModalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalTitle">Default Modal</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="divModalBody"></div>
+                    <div id="divNotificationMessage"></div>
+                    <div id="divListItems"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnAction" type="button" class="btn btn-default" hidden>Primary</button>
+                    <button id="btnNonAction" type="button" class="btn btn-warning" data-dismiss="modal" hidden>Cancel</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- /.Popup Modals -->
+</body>
+</html>
+

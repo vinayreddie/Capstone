@@ -1,0 +1,119 @@
+Open
+- [object HTMLInputElement] in declaration address
+
+
+
+
+
+
+
+- Replace Application View with Application Preview at dept	- Siva
+- Display Insepectin pdfs in grid at dept	- Siva
+- Application Track	- Prakash
+- ack, preview
+- APMCE
+	- Corresponding Address			save completed
+	- Trust Details				save completed
+	- Registration Type			save completed
+	- Accomodation Details			save completed
+	- Establishment Details			ui completed, 4
+	- Service Offered			ui completed 3
+	- Staff Details				ui completed 2
+	- Equipment & Furniture Details		save completed
+	- Facilities Available			ui completed 5
+	- Attachments				yet to start, should start first 1
+- PCPNDT Institution Tab (Ownership & Institution & Uploads)
+- some tabs creates a new id (may be session issue)
+- Clear the application once user submitted the aplication
+- pass route values (View Application, Print Ack)
+- Add Applicantion Number in query response
+- Date control
+- remove @ApplicantId, @ServiceId in establishment sp
+- display an error messaage when data has been truncated in equipment
+- Pass Current Designation Id dynamically
+- Track submitted application
+
+Completed
+- Populate fields
+- Bind Rejected Applications
+- Appeal, Resubmit
+- PCPNDT Amendments database
+- Check for FormStatus in Registration Save
+- Add New/Old in equipment type
+- PCPNDT Field validations
+- Change Facility tab name to Facility for Registration
+- Change Facilities for Facilities Test
+- Facility details are not binding
+- Tests & facilities are not binding when edit
+- Print PCPNDT License
+- Print PCPNDT Ack
+- hide/show tests & facilities based on some selection
+- Add Designation master data
+- Remove Establishment tab, change controls into Facility
+	- Create/Edit					completed
+	- View						completed
+	- Preview					completed		
+	- Tables					completed
+	- Procedures					completed
+	- Insert Facility address in Transaction	completed
+	- Get pcpndt data				completed
+- View application
+	- desgin view for declaration 100
+	- Employees 87
+	- Equipments 79
+	- Facility 70
+	- Tests 105
+	- Facilities 88
+- Bind uploaded files to controls
+- Edit application
+- Application num is always 1
+- Transaction status id should be 4
+- Generate Application Number
+- Employees & Equipments delete based on index
+- Transaction Status should be draft
+- apply checkboxes styles & make check them
+- Clear all the sessions(equipments/employees..) & tempdata
+- Submit application
+- once delete the equipment/employee, its remains
+- Button class is not changing when modify existing data
+- Enable submit button
+- Get form complete status from Equipments, Employees
+- Enable Sumbit flag
+ 	- Applicant		- completed
+	- Establishment		- completed
+	- Facility		- completed
+	- Tests			- completed
+	- Equipments		- completed
+	- Facilities		- completed
+	- Employees		- completed
+	- Institution		- completed 
+	- Declaration		- completed
+- Save Query id along with response
+- Dashboard
+- Indexes (drafts/Subitted/Licenses/Queries)
+- Declaration
+- Applicant
+- Ownership & Instituion
+- Add delete function in Add Equipments
+- Save Facilities
+- bind id to epuipment id
+- bind id to employees id
+
+put these in sessions
+AffidavitDocPath
+ArticleFilePath
+StudyCertificates
+
+2XNFG-KFHR8-QV3CP-3W6HT-683CH
+HM6NR-QXX7C-DFW2Y-8B82K-WTYJV
+
+Go To Help->Change Product Key
+Enter Any Serial From Below & Activate
+That’s It!
+Enterprise Edition Serials (Use Any)
+2XNFG-KFHR8-QV3CP-3W6HT-683CH
+HM6NR-QXX7C-DFW2Y-8B82K-WTYJV
+
+Microsoft Visual Studio Pro 2017 Iso file final with Serial:
+
+Serial Key: HMGNV-WCYXV-X7G9W-YCX63-B98R2

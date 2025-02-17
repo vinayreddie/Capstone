@@ -1,0 +1,80 @@
+﻿@model Capstone.Models.APMCEViewModel
+
+<div id="divStaffDetails">
+    <form id="formStaffDetails">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Staff Details</legend>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblStaffdetails" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Designation</th>
+                                    <th>Name</th>
+                                    <th>RegistrationNo</th>
+                                    <th>Uploaded File</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Speciality</th>
+                                    <th></th>
+                                </tr>
+                                @if (Model.StaffDetailsLog != null)
+                                {
+                                    for (int i = 0; i < Model.StaffDetailsLog.Count; i++)
+                                    {
+                                        <tr>
+                                            <td> @Convert.ToInt32(@i + 1)</td>
+                                            <td>@Model.StaffDetailsLog[i].StaffDesignation</td>
+                                            <td>@Model.StaffDetailsLog[i].Name</td>
+                                            <td>@Model.StaffDetailsLog[i].RegistrationNumber</td>
+                                            <td>
+                                                @if (Model.StaffDetailsLog[i].UploadedFilePath != null)
+                                                {
+                                                    var addressindex = Model.StaffDetailsLog[i].UploadedFilePath.LastIndexOf("/");
+                                                    var addressfileName = Model.StaffDetailsLog[i].UploadedFilePath.Substring(addressindex + 1);
+                                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.StaffDetailsLog[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                }
+                                            </td>
+                                            <td>@Model.StaffDetailsLog[i].Email</td>
+                                            <td>@Model.StaffDetailsLog[i].PhoneNumber</td>
+                                            <td>@Model.StaffDetailsLog[i].Speciality</td>
+
+                                            @*@if (@Model.StaffDetailsLog[i].Id != 0)
+                                            {
+                                                <td>Existing</td>
+                                                                <td><input type='button' value='Delete' onclick='DeleteInfraStructure(@i);' /></td>
+                                            }
+                                            else if (@Model.StaffDetailsLog[i].Id == 0)
+                                            {
+                                                <td>New</td>
+                                                                <td><input type='button' value='Delete' onclick='DeleteInfraStructure(@i);' /></td>
+                                            }
+                                            else if (@Model.StaffDetailsLog[i].Id != 0 && @Model.StaffDetailsLog[i].IsDeleted == true)
+                                            {
+                                                <td>Deleted</td>
+                                            }*@
+
+                                            @*<td><input type='button' value='Delete' onclick='DeleteStaffDetails(@i);'/></td>*@
+                                        </tr>
+
+                                    }
+                                }
+
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+
+
+
+      
+
+    </form>
+</div>

@@ -1,0 +1,165 @@
+﻿
+
+@{
+    ViewBag.Title = "Received Today Applications";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<section class="content-header"></section>
+<br />
+<section class="content">
+    <div class="row" id="divDistricts">
+        <div class="col-md-3"></div>
+        <div class="col-md-1 text-right">
+            @Html.Label("District")
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownList("D",
+                                     new SelectList(string.Empty), "Select District",
+                                     new { id = "ddlDistrictId", @Class = "form-control select2", @data_placeholder = "Select District" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Received Today Applications</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblReceivedTodayApplications" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Application Number</th>
+                                <th>Service </th>
+                                <th>Applied Date</th>
+                                <th>Status</th>
+                                <th>Application</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var userDistrictId=0;
+    $(function () {
+
+        userDistrictId='@ViewBag.DistrictId';
+        GetDistricts();
+    $('#ddlDistrictId').attr("disabled", false);
+    $('#divDistricts').show();
+    $("#tblReceivedTodayApplications").DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Excel',
+                        text:'Export to excel'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'PDF',
+                        text: 'Export to PDF'
+                    }
+                ]
+    });
+        GetReceivedTodayTAMCEApplications();
+        if(userDistrictId > 0)
+        {
+            $('#ddlDistrictId').attr("disabled", true);
+            $('#ddlDistrictId').val(userDistrictId).change();
+        }
+    });
+
+    function GetDistricts() {
+        var Url = '@Url.Action("GetDistricts", "License", new { Area="User"})'
+        var jqxhr = $.post(Url, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+            BindDistricts(json);
+
+        }).fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Get Districts Request Failed: " + err);
+        });
+    }
+
+    function BindDistricts(json) {
+        $('#ddlDistrictId').html('');
+       $('#ddlDistrictId').append($('<option></option>').val('-1').html('All'));
+        $.each(json, function () {
+            $('#ddlDistrictId').append($('<option></option>').val(this.Id).html(this.Name));
+        });
+        $('#ddlDistrictId').val(userDistrictId).change();
+    }
+
+    function GetReceivedTodayTAMCEApplications() {
+        var url = '@Url.Action("GetReceivedTodayTAMCEApplications", "Dashboard", new { Area = "Admin" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                BindReceivedTodayList(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get ReceivedToday list in TAMCE, Request Failed: " + err);
+            });
+    }
+
+    function BindReceivedTodayList(json) {
+        var table = $('#tblReceivedTodayApplications').DataTable();
+
+        // Clear all existing rows
+        table.clear().draw();
+
+    console.log('json.length :' + json.length);
+
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+            var ViewLink ='<input type="button" value="View" onclick="ViewApplication(' + json[i].TransactionId + ', \'' + json[i].TransactionType + '\')" />';
+
+    table.row.add([
+        (i + 1),
+        json[i].ApplicationNumber,
+        json[i].ServiceName,
+        json[i].AppliedDate,
+        json[i].Status,
+        ViewLink
+            ]);
+        }
+        table.draw();
+
+        if(json.length <= 0)
+            $('.dt-buttons').hide();
+    }
+
+    function ViewApplication(TransactionId, TransactionType) {
+        if (TransactionType == 'Grant')
+            TransactionType = 'Transaction'
+        var viewlink = '@Url.Action("ApplicationView", "License", new { Area = "User", TransactionId = "_transactionId", TransactionType = "_transactionType" })';
+        viewlink = viewlink.replace("_transactionId", TransactionId).replace("&amp;", "&").replace("_transactionType", TransactionType);
+        window.location.href = viewlink;
+    }
+</script>
+
+
+
+
+

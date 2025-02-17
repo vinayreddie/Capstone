@@ -1,0 +1,147 @@
+﻿@model Capstone.Models.APMCECertificate
+
+
+<style>
+    .reportheadertext {
+        text-align: center;
+        font-size: larger;
+    }
+
+    .textunderline {
+        text-decoration: underline;
+    }
+
+    .parabody {
+        text-indent: 50px;
+        text-align: justify;
+    }
+
+    p {
+        text-align: justify;
+    }
+</style>
+
+<fieldset class="scheduler-border">
+    <div style="text-align:center">
+        <img src="~/Content/images/logogovts.png" />
+    </div>
+    <div class="col-md-12" style="text-align:center;">
+        <span style="font-size:x-large; color:red;">Government of Telangana</span>
+        <br />
+        <i>Capstone, Health and Family Welfare Department</i>
+        <br />
+        <i>TAMCE</i>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large;">Form-VI</span>
+            <br />
+            <i>[See Rule-6]</i>
+            <br />
+            @*<span style="font-size:x-large;">Government of Telangana </span>
+                <br />
+                 <span style="font-size:x-large;"> Health Capstone & Family Welfare Department District Registering Authority</span>*@
+            <br />
+            <span style="font-size:x-large;">Application for Renewal of Certificate of Registration</span>
+            <hr style="border: 1px solid #9f9fb1;"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <ol>
+                <p>
+                    To,<br />
+                    The Registering Authority,<br/>
+                    <b>@Model.IssuingAuthority</b>
+                </p>
+                <br/>
+                <p>
+                    I request to renew the Certificate of Registration issued in respect of M/s. <b>@Model.ApplicantNameAddress</b>  for a period of 5 (five) years for which I furnish the following particulars:
+                </p>
+                <li>
+                    <ol type="A">
+                        <li>
+                            Date of issue of Certificate of Registration to be renewed (enclosed the original Certificate in duplicate)
+                        </li>
+                        <li>
+                            Date of Expiry of Certificate of Registration to be renewed.
+                        </li>
+                        <li>
+                            File number of the Registering Authority.
+                        </li>
+                        <li>
+                            Particulars of Renewal fee paid (D.D.No., Name of the Bank, and date) (Original D.D. enclosed).
+                        </li>
+                        <li>
+                            I hereby declare that the contents mentioned in this application are true and correct to the best of the my knowledge
+                        </li>
+                    </ol>
+                </li>
+            </ol>            
+            <br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-12 text-center">
+            <table>
+                <tr>
+                    <td style="text-align:left;">Place : @Model.District</td>
+                </tr>
+                <tr></tr>
+                @{
+                    if (Model.AppropriateAuthority != null)
+                    {
+                        var x = Model.AppropriateAuthority.Split(';');
+                        foreach (var item in x)
+                        {
+                            <tr>
+                                <td style="text-align:left;"></td>
+                                <td style="width:54%"></td>
+                                <td style="text-align:center;">
+                                    @item
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td style="text-align:left;">Dated : @Model.IssuedDate.ToShortDateString()</td>
+                            <td style="width:54%;"></td>
+                            <td style="text-align:center;">
+                                <img src='@Url.Content("~/Content/signatures/" + Model.District + ".jpg")' width="190" height="60" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<div class="row">
+    <div class="col-md-12" style="text-align:center;">
+        <input type="button" id="btnClosePreview" value="Close" data-dismiss="modal" class="btn btn-default" />
+        <input type="button" id="btnPrintAPMCELicense" value="Print" class="btn btn-primary" />
+    </div>
+</div>
+
+<script>
+    $('#btnPrintAPMCELicense').on('click', function (e) {
+        printDiv();
+    });
+    function printDiv() {
+
+        var divToPrint = document.getElementById('divModalBody');
+
+        var newWin = window.open('', 'Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function () { newWin.close(); }, 10);
+    }
+</script>
+
+
+

@@ -1,0 +1,325 @@
+﻿@model Capstone.Models.HomeopathyDrugStoreViewModel
+
+<div class="row">
+    <div class="col-md-12" style="text-align:center;">
+        <span style="font-size:large">Homeopathy Drug Store - FORM 19 B</span>
+        <br />
+        <i>[See Rule 57(A)]</i>
+        <br />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-body">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Applicant</legend>
+                    <form id="formHDApplicant">
+                        <div class="row">
+                            @Html.HiddenFor(model => model.HDApplicantModel.Id, new { @id = "HD_ApplicantID" })
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDApplicantModel.Name, "Owner Name", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">                                
+                                @Html.DisplayFor(model => model.HDApplicantModel.Name)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDApplicantModel.OwnershipType, "Ownership Type", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDApplicantModel.OwnershipType)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDApplicantModel.Aadhar, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDApplicantModel.Aadhar)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDApplicantModel.PAN, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDApplicantModel.PAN)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDApplicantModel.MobileNo, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDApplicantModel.MobileNo)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDApplicantModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDApplicantModel.DistrictName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDApplicantModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDApplicantModel.MandalName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDApplicantModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDApplicantModel.VillageName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDApplicantModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDApplicantModel.HouseNumber)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDApplicantModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDApplicantModel.StreetName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDApplicantModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDApplicantModel.PINCode)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDApplicantModel.UploadDocument, "Document (AOA/MOA/Ownership)", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @if (!string.IsNullOrEmpty(Model.HDApplicantModel.UploadDocument))
+                                        {
+                                            var documentindex = Model.HDApplicantModel.UploadDocument.LastIndexOf("/");
+                                            var documentfileName = Model.HDApplicantModel.UploadDocument.Substring(documentindex + 1);
+                                            @Html.ActionLink(documentfileName, "DownloadFile", "Generic",
+                                    new { Area = "", path = Model.HDApplicantModel.UploadDocument, downloadName = documentfileName },null);
+                                        }
+                            </div>
+                        </div>
+                    </form>
+                </fieldset>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Establishment</legend>
+                    <form id="formHDEstablishment">
+                        <div class="row">
+                            @Html.HiddenFor(model => model.HDEstablishment.Id, new { @id = "HD_EstablishmentID" })
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDEstablishment.Name, "Store Name", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">                                
+                                @Html.DisplayFor(model => model.HDEstablishment.Name)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDEstablishment.OwnedBy, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDEstablishment.OwnedBy)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDEstablishment.Rent, "Rent/Lease", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Model.HDEstablishment.Fromdate.ToString("dd-MM-yyyy")
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Model.HDEstablishment.ToDate.ToString("dd-MM-yyyy")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDEstablishment.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                               @Html.DisplayFor(model => model.HDEstablishment.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDEstablishment.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDEstablishment.MandalName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDEstablishment.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDEstablishment.VillageName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDEstablishment.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDEstablishment.HouseNumber)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDEstablishment.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDEstablishment.StreetName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDEstablishment.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDEstablishment.PINCode)
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDEstablishment.RentalDocument, "Document (Rent deed/Taxes)", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @if (!string.IsNullOrEmpty(Model.HDEstablishment.RentalDocument))
+                                    {
+                                        var taxesindex = Model.HDEstablishment.RentalDocument.LastIndexOf("/");
+                                        var taxdocumentName = Model.HDEstablishment.RentalDocument.Substring(taxesindex + 1);
+                                        @Html.ActionLink(taxdocumentName, "DownloadFile", "Generic",
+                                new { Area = "", path = Model.HDEstablishment.RentalDocument, downloadName = taxdocumentName },null);
+                                    }
+                                 </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDEstablishment.PlanPremisesDocument, "Document (Plan of the Premises)", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @if (!string.IsNullOrEmpty(Model.HDEstablishment.PlanPremisesDocument))
+                                    {
+                                        var premisesindex = Model.HDEstablishment.PlanPremisesDocument.LastIndexOf("/");
+                                        var premisesfileName = Model.HDEstablishment.PlanPremisesDocument.Substring(premisesindex + 1);
+                                        @Html.ActionLink(premisesfileName, "DownloadFile", "Generic",
+                                new { Area = "", path = Model.HDEstablishment.PlanPremisesDocument, downloadName = premisesfileName },null);
+                                    }
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDEstablishment.AddressProff, "Address Proof", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @if (!string.IsNullOrEmpty(Model.HDEstablishment.AddressProff))
+                                    {
+                                        var addressindex = Model.HDEstablishment.AddressProff.LastIndexOf("/");
+                                        var addressfileName = Model.HDEstablishment.AddressProff.Substring(addressindex + 1);
+                                        @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                new { Area = "", path = Model.HDEstablishment.AddressProff , downloadName = addressfileName },null);
+                                    }
+                                </div>
+                            </div>
+                    </form>
+                </fieldset>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Competent Person Incharge Details</legend>
+                    <form id="formHDCompetentPerson">
+                        @Html.HiddenFor(model => model.HDCompetentModel.Id, new { @id = "HD_CompetentID" })
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDCompetentModel.Name, "Owner Name", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDCompetentModel.Name)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDCompetentModel.Aadhar, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDCompetentModel.Aadhar)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDCompetentModel.MobileNo, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDCompetentModel.MobileNo)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDCompetentModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDCompetentModel.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDCompetentModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDCompetentModel.MandalName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDCompetentModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDCompetentModel.VillageName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDCompetentModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDCompetentModel.HouseNumber)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDCompetentModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDCompetentModel.StreetName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDCompetentModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDCompetentModel.PINCode)
+                            </div>
+                        </div>
+                    </form>
+                </fieldset>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Declaration</legend>
+                    <form id="formHDDeclaration">
+                        @Html.HiddenFor(model => model.HDDeclaration.Id, new { @id = "HDDeclarationId" })
+                        <br />
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-2">
+                                @Html.LabelFor(model => model.HDDeclaration.CoveringLetter, "Covering Letter", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-4">
+                                @if (!string.IsNullOrEmpty(Model.HDDeclaration.CoveringLetter))
+                                {
+                                    var letterindex = Model.HDDeclaration.CoveringLetter.LastIndexOf("/");
+                                    var documentfileName = Model.HDDeclaration.CoveringLetter.Substring(letterindex + 1);
+                                    @Html.ActionLink(documentfileName, "DownloadFile", "Generic",
+                                    new { Area = "", path = Model.HDDeclaration.CoveringLetter, downloadName = documentfileName }, null);
+                                }
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HDDeclaration.Date, "Date", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Model.HDDeclaration.Date.ToString("dd-MM-yyyy")
+                            </div>
+                            <div class="col-md-6 text-right">
+                                @Html.LabelFor(model => model.HDDeclaration.Signature, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.HDDeclaration.Signature)
+                            </div>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <!-- /.col -->
+</div>

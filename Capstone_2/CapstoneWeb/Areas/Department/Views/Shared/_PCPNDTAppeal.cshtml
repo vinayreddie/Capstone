@@ -1,0 +1,44 @@
+﻿@model Medical.Models.ApprovalComplexViewModel
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Reasons</legend>
+    @if (Model.ServiceId ==26 || Model.ServiceId==27)
+
+    {
+        <div class="row">
+            <div class="col-md-offset-2 col-md-2">
+                @Html.LabelFor(model => model.PCPNDTModel.RejectionRemarks, "Reasons for Rejection", new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.PCPNDTModel.RejectionRemarks)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-2">
+                @Html.LabelFor(model => model.PCPNDTModel.ReasonforAppeal, "Reasons for Appeal", new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.PCPNDTModel.ReasonforAppeal)
+            </div>
+        </div>
+    }
+    else if(Model.ServiceId==14 || Model.ServiceId==17)
+    {
+        <div class="row">
+            <div class="col-md-offset-2 col-md-2">
+                @Html.LabelFor(model => model.APMCEModel.RejectionRemarks, "Reasons for Rejection", new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.APMCEModel.RejectionRemarks)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-2">
+                @Html.LabelFor(model => model.APMCEModel.ReasonforAppeal, "Reasons for Appeal", new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.APMCEModel.ReasonforAppeal)
+            </div>
+        </div>
+    }
+   
+</fieldset>

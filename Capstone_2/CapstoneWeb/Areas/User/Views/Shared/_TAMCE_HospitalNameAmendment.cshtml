@@ -1,0 +1,109 @@
+﻿@model Medical.Models.RegistrationModel
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabRegistration" data-toggle="tab">Amendment - @Model.AmendmentSNo [Hospital Name]</a></li>
+            </ul>
+            <div class="tab-content">
+
+                <div class="tab-pane active" id="tabRegistration">
+                    <form id="formRegistrationAmendament">
+                        <div class="row">
+                            <div class="col-md-2 text-right">
+                                @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.Id)
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                @*<input type="button" id="btnRegistrationClear" value="Clear" class="btn btn-default" />*@
+                                <input type="button" id="btnRegistrationSave" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->                
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>
+<script>
+    $(function(){
+            $('#btnRegistrationSave').val('Update');
+            $('#btnRegistrationSave').removeClass('btn-primary');
+            $('#btnRegistrationSave').addClass('btn-success');
+    });
+
+    $('#btnRegistrationSave').on('click', function (e) {
+            var clinicType="",bedStrength="",speciality="";
+            e.preventDefault();
+            if($('#Name').val() == "")
+            {
+                alert('Please Enter Hospital Name!');
+                return;
+            }
+            if ($('#formRegistrationAmendament').valid()) {
+                var url = '@Url.Action("SaveRegistrationDetails", "Amendment", new { Area = "User" })';
+                
+                var data = {
+                    model: {
+                        Id: $('#Id').val(),
+                        Name: $('#Name').val(),
+                        //LicenseNumber: licenseNumber,
+                        //DistrictId: $('#RegistrationModel_DistrictId').val(),
+                        //MandalId: $('#RegistrationModel_MandalId').val(),
+                        //VillageId: $('#RegistrationModel_VillageId').val(),
+                        //HouseNumber: $('#RegistrationModel_HouseNumber').val(),
+                        //StreetName: $('#RegistrationModel_StreetName').val(),
+                        //PINCode: $('#RegistrationModel_PINCode').val()
+                    }
+                };
+
+                var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+
+                //$('#Id').val(response.ReturnData.split(',')[0]);
+                ShowModal(response);
+                //if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                //    $('#btnRegistrationSave').val('Update');
+                //    $('#btnRegistrationSave').removeClass('btn-success');
+                //    $('#btnRegistrationSave').addClass('btn-primary');
+                //}
+                //else if (response.ReturnData.split(',')[1] == 'Completed') {
+                //    $('#btnRegistrationSave').val('Update');
+                //    $('#btnRegistrationSave').removeClass('btn-primary');
+                //    $('#btnRegistrationSave').addClass('btn-success');
+                //}
+                //else if (response.ReturnData.split(',')[1] == 'Empty') {
+                //    $('#btnRegistrationSave').val('Save');
+                //    $('#btnRegistrationSave').removeClass('btn-success');
+                //    $('#btnRegistrationSave').addClass('btn-primary');
+                //}
+
+                //GetEquipmentsList($('#RegistrationModel_HospitalTypeId').val());
+                // CheckforEnableSubmit();
+            })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Save Registration Details Request Failed: " + err);
+        });
+            }
+        });
+
+</script>

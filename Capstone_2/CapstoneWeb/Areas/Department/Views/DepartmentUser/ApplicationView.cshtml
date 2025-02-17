@@ -1,0 +1,79 @@
+﻿@model Medical.Models.ApplicationModel
+@{
+    ViewBag.Title = "ApplicationView";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+<style>
+    hr.new1 {
+        border-top: 2px solid green;
+    }
+</style>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Application View
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="@Url.Action("DistrictwiseHospitalLicensesReport","DepartmentUser","Department")">Back To Report</a></li>
+    </ol>
+    <hr class="new1">
+</section>
+@Html.HiddenFor(model => Model.TransactionId, new { @id = "hfTransactionId" })
+<!-- Main content -->
+<section class="content">
+    @if (Model.APMCEModel != null)
+    {
+        Html.RenderPartial("_APMCEView", Model.APMCEModel);
+    }
+</section>
+
+<script>
+    $(function () {
+        BindPaymentDetails();
+    })
+
+    function BindPaymentDetails() {
+        var url = '@Url.Action("GetUserPaymentDetails", "License", new { Area = "User" })';
+        var data = {
+            tamceTransactionId: $('#hfTransactionId').val()
+        };
+        var jqxhr = $.get(url, data, function () { })
+            .done(function (response) {
+
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+
+                if (json.length == 0) {
+                    $('.nopayment').show();
+                    $('.payment').hide();
+                }
+                else {
+                    $('.nopayment').hide();
+                    $('.payment').show();
+
+                    $('#spanOrderId1').text(json[0]['OrderId']);
+                    $('#spanPaymentId1').text(json[0]['PaymentId']);
+                    $('#spanAmount1').text('₹ ' + json[0]['Amount']);
+                    $('#spanPaidOn1').text(json[0]['PaymentDatetime']);
+
+                    $('#spanHospitalName').text(json[0]['HospitalName']);
+                    $('#spanLicenseNumber').text(json[0]['LicenseNumber']);
+                    $('#spanExpiryDate').text(json[0]['LicenseExpiryDate']);
+                }
+                console.log(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get inspectionlist, Request Failed: " + err);
+            });
+    }
+
+</script>
+
+
+

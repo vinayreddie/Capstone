@@ -1,0 +1,48 @@
+﻿@model Capstone.Models.ResubmitModel
+@{
+    ViewBag.Title = "Resubmit";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-md-offset-1 col-md-5">
+        @Html.LabelFor(model => model.ExistingApplicationNo, "Existing Application No:", new { @class = "control-label" })
+    </div>
+    <div class="col-md-6">
+        @Html.DisplayFor(model => model.ExistingApplicationNo)
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-1 col-md-11">
+        @{
+
+            Html.RenderPartial("_PCPNDT", new Capstone.Models.PCPNDTViewModel());
+        }
+    </div>
+    <div class="row text-right">
+        <input type="button" id="btnPreview" value="Preview & Submit" class="btn btn-success" disabled />
+    </div>
+</div>
+
+<script>
+
+    $('#btnPreview').on('click', function () {
+        debugger;
+        var url = '@Url.Action("PreviewApplication", "License", new { Area = "User" })';
+        var jqxhr = $.post(url, function () { })
+        .done(function (response) {
+            debugger;
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "Application Preview";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Preview Application Request Failed: " + err);
+        });
+    });
+
+</script>

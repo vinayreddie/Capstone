@@ -1,0 +1,230 @@
+﻿@model Capstone.Models.APMCECertificate
+@*@using (Ajax.BeginForm("DownloadPDF", "DepartmentUser", new { Area = "Department" },*@
+@*@using(Ajax.BeginForm("DownloadPDF", "License", new { Area = "User" },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        OnSuccess = "GoToListView",
+                        OnFailure = "ShowFailure"
+                    }))
+    {*@
+    <style>
+        .reportheadertext {
+            text-align: center;
+            font-size: larger;
+        }
+
+        .textunderline {
+            text-decoration: underline;
+        }
+
+        .parabody {
+            text-indent: 50px;
+            text-align: justify;
+        }
+
+        p {
+            text-align: justify;
+        }
+    </style>
+
+
+    <div id="testdiv">
+        <br /><br /><br /><br /><br />
+        <fieldset class="scheduler-border">
+            @*<legend class="scheduler-border">APMCE Certificate</legend>*@
+            <div style="text-align:center">
+                <img src="@Url.Content("~/Content/images/logogovts.png")" />
+            </div>
+            <div class="col-md-12" style="text-align:center;">
+                <span style="font-size:x-large; color:red;">Government of Telangana</span>
+                <br />
+                <i>Capstone, Health and Family Welfare Department</i>
+                <br />
+                <i>TAMCE</i>
+                <br />
+                <i>(prohibition of sex selection)act, 1994 & rules, 1996</i>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align:center;">
+                    <span style="font-size:x-large;">FORM-IV</span>
+                    <br />
+                    <i>[See rule 5 (a)]</i>
+                    <br />
+                    @*<span style="font-size:x-large;">Government of Telangana </span>
+                    <br />
+                    <span style="font-size:x-large;"> Health Capstone & Family Welfare Department District Registering Authority</span>
+                    <br />*@
+                    <span style="font-size:x-large;">Certificate of Registration of Allopathic Private Capstone Care Establishments</span>
+                    <hr style="border: 1px solid #9f9fb1;" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    <ol>
+                        <li>
+                            <p>
+                                Application No. and Date: <b>@Model.ApplicationNumber</b> &nbsp; & <b>@Model.ApplicationDate.ToString("dd-MM-yyyy")</b>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Inspection Report No. and Date: <b>@Model.InspectionReportNo</b> &nbsp; & <b>@Model.InspectionDate.ToString("dd-MM-yyyy")</b>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                File number of Registration Authority: <b>@Model.IssuingAuthority</b>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Date of Issue: <b>@Model.IssuedDate.ToString("dd-MM-yyyy")</b>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Valid up to:<b>@Model.ExpiryDate.ToString("dd-MM-yyyy")</b>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                This is to Certify that <b>@Model.ApplicantNameAddress</b> Dist.
+                            </p>
+                            <p>
+                                Is hereby registered under the provisions of T.S.
+                                Allopathic Private Capstone Care Establishments registration and regulation act, 2002, to
+                                provide following Capstone care services:
+                            </p>
+                            <ol type="A">
+                                @foreach (string item in Model.ServiceDetails)
+                                {
+                                    <li>
+                                        <b>@item</b>
+                                    </li>
+                                }
+                            </ol>
+                        </li>
+                        <li>
+                            <p>
+                                This registration shall be in force for a period  of Five(5) years from the
+                                date of issue.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                This Certificate shall be produced whenever it is required to the officer authorised
+                                by the Registration Authority.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                This Establishment shall not rent, lend, sell, transfer or otherwise close down the without
+                                obtaining prior permission of the regulatory authority.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Any unauthorized change in personnel, equipment or working conditions as mentioned in the
+                                application by the Establishmnet shall constitute a branch of registration.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                The Establishmnet shall not violate the provisions of T.S. Allopathic Private Capstone Care
+                                Establishments(Registration and Regulation) Act, 2002 as amended from time and the
+                                rules made there under.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                The Certificate is subject to the conditions and the provisions of the T.S. Allopathic
+                                Private Capstone Care Establishments(Registration and Regulation) Act, 2002.
+                            </p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-12 text-center">
+                    <table>
+                        @{
+                            <tr>
+                                <td style="width:63%;"></td>
+                                <td style="text-align:center;">
+                                    <img src='@Url.Content("~/Content/signatures/" + Model.District + ".jpg")' width="190" height="60" />
+                                </td>
+                            </tr>
+
+                            var x = Model.AppropriateAuthority.Split(';');
+                            foreach (var item in x)
+                            {
+                                <tr>
+                                    <td style="width:63%"></td>
+                                    <td style="text-align:center;">
+                                        @item
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <input type="button" id="btnClosePreview" value="Close" data-dismiss="modal" class="btn btn-default" />
+            <input type="button" id="btnPrintAPMCELicense" value="Print" class="btn btn-primary" />
+            @*<input type="button" id="btnSubmitAPMCELicense" value="Download" class="btn btn-primary" />
+            <input type="submit" id="btnInspection" name="Submit" class="btn btn-default" value="New Download" />*@
+        </div>
+    </div>
+@*}*@
+<script>
+    $('#btnPrintAPMCELicense').on('click', function (e) {
+        printDiv();
+    });
+    function printDiv() {
+
+        var divToPrint = document.getElementById('divModalBody');
+
+        var newWin = window.open('', 'Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function () { newWin.close(); }, 10);
+    }
+
+    $('#btnSubmitAPMCELicense').on('click', function (e) {
+
+    DownloadInspectionPDF();
+    });
+
+        function DownloadInspectionPDF(){
+
+        var nonSerialized = $('#testdiv').html();
+        //            var serialized = $.toJSON(nonSerialized);
+        var serialized = Encode(nonSerialized);
+        var setting = {
+            type: 'POST',
+            dataType: 'json',
+            cache: false,
+            async: false,
+            data: { serializedString: serialized },
+            success:  null,
+            url: '/DepartmentUser/GetAndReturnSerializedString'
+        }
+        $.ajax(setting);
+
+        function Encode(input) {
+            return $('<div/>').text(input).html();
+        }
+
+
+    }
+</script>

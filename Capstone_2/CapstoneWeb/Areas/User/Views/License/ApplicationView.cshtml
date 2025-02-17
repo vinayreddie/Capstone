@@ -1,0 +1,204 @@
+﻿@model Capstone.Models.ApplicationModel
+@{
+    ViewBag.Title = "ApplicationView";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+<style>
+    hr.new1 {
+        border-top: 2px solid green;
+    }
+</style>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Application View
+    </h1>
+    <hr class="new1">
+</section>
+@Html.HiddenFor(model => Model.TransactionId, new { @id = "hfTransactionId" })
+
+@Html.HiddenFor(model => Model.ApplicationType, new { @id = "hfApplicationType" })
+
+<!-- Main content -->
+<section class="content">
+    @if (Model.APMCEModel != null)
+    {
+        Html.RenderPartial("_APMCEView", Model.APMCEModel);
+    }
+
+    @if (Model.PCPNDTModel != null)
+    {
+        Html.RenderPartial("_PCPNDTView", Model.PCPNDTModel);
+    }
+    @if (Model.BloodBankModel != null)
+    {
+        Html.RenderPartial("_BloodBankForm27CView", Model.BloodBankModel);
+    }
+    @if (Model.BloodBankForm27EModel != null)
+    {
+        Html.RenderPartial("_BloodBankForm27EView", Model.BloodBankForm27EModel);
+    }
+    @if (Model.OrganTransplantModel != null)
+    {
+        Html.RenderPartial("_OrganTransplantaionView", Model.OrganTransplantModel);
+    }
+    @if (Model.BioCapstoneModel != null)
+    {
+        Html.RenderPartial("_BioCapstoneView", Model.BioCapstoneModel);
+    }
+    @if (Model.HomeopathyDrugStore != null)
+    {
+        Html.RenderPartial("_HomeopathyView", Model.HomeopathyDrugStore);
+    }
+    @if (Model.AllopathicDrugModel != null)
+    {
+        Html.RenderPartial("_AllopathicForm19View", Model.AllopathicDrugModel);
+    }
+
+    @if (Model.PCPNDTModel != null && Model.PCPNDTModel.ServiceType == "Amendment")
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Amendment</h3>
+                    </div>
+                    <div class="box-body">
+                        @switch (Model.PCPNDTModel.ServiceId)
+                        {
+                            case 18: //Add/delete Facility
+                                { Html.RenderPartial(Url.Content("~/Areas/Department/Views/Shared/_PCPNDTFacilities.cshtml"), Model.PCPNDTModel); }
+                                break;
+                            case 21: //PCPNDT Lists of Tests/Procedures
+                                { Html.RenderPartial(Url.Content("~/Areas/Department/Views/Shared/_PCPNDTTests.cshtml"), Model.PCPNDTModel); }
+                                break;
+                            case 23: //PCPNDT Facilities available
+                                { Html.RenderPartial(Url.Content("~/Areas/Department/Views/Shared/_PCPNDTFacilitiesforTests.cshtml"), Model.PCPNDTModel); }
+                                break;
+                            case 22://PCPNDT Equipment details
+                                { Html.RenderPartial(Url.Content("~/Areas/Department/Views/Shared/_PCPNDTEquipmentDetails.cshtml"), Model.PCPNDTModel); }
+                                break;
+                            case 24:// PCPNDT Employee Details
+                                { Html.RenderPartial(Url.Content("~/Areas/Department/Views/Shared/_PCPNDTEmployeeDetails.cshtml"), Model.PCPNDTModel); }
+                                break;
+                            case 19://PCPNDT Type of Ownership
+                                { Html.RenderPartial(Url.Content("~/Areas/Department/Views/Shared/_PCPNDTOwnership.cshtml"), Model.PCPNDTModel); }
+                                break;
+                            case 20://  PCPNDT Type of Institution
+                                { Html.RenderPartial(Url.Content("~/Areas/Department/Views/Shared/_PCPNDTInstitution.cshtml"), Model.PCPNDTModel); }
+                                break;
+                            case 28: //PCPNDT Cancellation of License
+                                { Html.RenderPartial(Url.Content("~/Areas/Department/Views/_CancelLicense.cshtml"), Model.PCPNDTModel); }
+                                break;
+                            case 3: //APMCE Correspondent Details
+                                {
+                                    Html.RenderPartial("_APMCECorrespondentAddress", Model.APMCEModel);
+                                }
+                                break;
+                            case 4: //APMCE Correspondent Details
+                                { Html.RenderPartial("_APMCEAccomodation", Model.APMCEModel); }
+                                break;
+                            case 5: //APMCE Type of Services
+                                { Html.RenderPartial("_APMCETypeOfServices", Model.APMCEModel); }
+                                break;
+                            case 6: //APMCE Type of Services
+                                { Html.RenderPartial("_APMCEStaffDetails", Model.APMCEModel); }
+                                break;
+                            case 8: //APMCE EquipmentAndFurniture
+                                { Html.RenderPartial("_APMCEEquipmentAndFurniture", Model.APMCEModel); }
+                                break;
+                            case 7: //APMCE Facilities Available
+                                { Html.RenderPartial("_APMCEFacilitiesAvailable", Model.APMCEModel); }
+                                break;
+                            case 38://NOC for Equipment
+                                { Html.RenderPartial("~/Areas/Department/Views/Shared/_PCPNDTNOCforEquipmentView.cshtml", Model.PCPNDTModel.NocforEquipmentModel); }
+                                break;
+
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</section>
+
+<script>
+    $(function () {
+       BindPaymentDetails();
+    })
+
+    function BindPaymentDetails() {
+        var url = '@Url.Action("GetUserPaymentDetails", "License", new { Area = "User" })';
+        var data = {
+            tamceTransactionId: $('#hfTransactionId').val()
+        };
+        var jqxhr = $.get(url, data, function () { })
+            .done(function (response) {
+
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+
+                if (json.length == 0) {
+                    $('.nopayment').show();
+                    $('.payment').hide();
+                }
+                else {
+                    $('.nopayment').hide();
+                    $('.payment').show();
+
+                    $('#spanOrderId').text(json[0]['OrderId']);
+                    $('#spanPaymentId').text(json[0]['PaymentId']);
+                    $('#spanAmount').text('₹ ' + json[0]['Amount']);
+                    $('#spanPaidOn').text(json[0]['PaymentDatetime']);
+
+                    $('#spanHospitalName').text(json[0]['HospitalName']);
+                    $('#spanLicenseNumber').text(json[0]['LicenseNumber']);
+                    $('#spanExpiryDate').text(json[0]['LicenseExpiryDate']);
+                }
+                console.log(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get inspectionlist, Request Failed: " + err);
+            });
+    }
+
+    $('#btnPreview').on('click', function () {
+        var result= true; //CheckforEnableSubmit();
+        if(result==true)
+        {
+            var url = '@Url.Action("PreviewApplication", "License", new { Area = "User" })';
+            var data = {
+                applicationType : 'Grant'
+            };
+            //  alert(data.applicationType);
+            var jqxhr = $.post(url, data, function () { }, 'html')
+            .done(function (response) {
+              
+               // $('#btnMakePayment').css("visibility", "hidden");
+                var notificationModel = GetModalJSON();
+                notificationModel.Title = "Application Preview";
+                notificationModel.BodyContent = response;
+                notificationModel.IsLargeModal = true;
+                ShowModal(notificationModel);
+                $('#btnMakePayment').prop('disabled',true);
+                $('#btnMakePayment').hide();
+            })
+            .fail(function (jqxhr, status, error) {
+
+                var err = status + ", " + error;
+                console.log("Preview Application Request Failed: " + err);
+            });
+        }
+    });
+</script>
+
+
+

@@ -1,0 +1,64 @@
+﻿@model Capstone.Models.BloodBankNOCModel
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Bloodbank NOC</legend>
+    <div class="row">
+        <div style="text-align:center">
+            <img src="~/Content/images/logogovts.png" />
+        </div>
+        <div style="text-align:right">
+            <b> <span>NOC NO- 01</span></b>
+        </div>
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large; ">Blood Bank</span>
+            <br />
+            <span style="font-size:x-large; ">GOVERNMENT OF TELANGANA</span>
+            <br />
+            <span style="font-size:x-large; ">HEALTH Capstone & FAMILY WELFARE DEPARTMENT</span>
+            <br />
+            <span style="font-size:medium; ">State Blood Transfusion Council</span>
+            <br />
+            <i>*******</i>
+            <br />
+            <span style="font-size:medium; ">No Objection Certificate</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <ol>
+                <li>
+                    <p>
+                        Application No. and  Date: <b>@Model.ApplicationNo</b> , <b>@Model.ApplicationDate.ToString("dd-MM-yyyy")</b>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Date of Issue: <b>@Model.Date.ToString("dd-MM-yyyy")</b>
+                    </p>
+                <li>
+                    <p>
+                        Name of the Owner/Applicant: <b>@Model.Name</b>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This is certify that M/s <b>@Model.HospitalNameAndAddress</b> has compiled with all the requirements to establish
+                        a Blood Bank <b>@Model.BloodbankFrom</b> hereby issued No Objection Certificate  by the SBTC, Hyderabad, Telangana.
+                    </p>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:medium; ">State Blood Transfusion Council</span>
+            <br />
+            <span style="font-size:medium; ">Hyderabad, Telangana</span>
+            <br />
+            <span style="font-size:medium; ">(Office Seal).</span>
+        </div>
+        <div style="text-align:right">
+            Date: <b>@Model.Date.ToString("dd-MM-yyyy")</b>
+        </div>
+    </div>
+</fieldset>

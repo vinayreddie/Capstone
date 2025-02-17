@@ -1,0 +1,768 @@
+﻿@model Capstone.Models.OrganTransplantViewModel
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Organ Transplant Hospital Registration</h3>
+                </div>
+                <div class="box-body">
+                    @*Hospital*@
+                    <form id="frmHospital">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Hospital</legend>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.HospitalName, "Hospital Name", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.HospitalName)                                    
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.DistrictName)                                    
+
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.MandalName)                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.VillageId, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.VillageName)
+                                    
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.StreetName, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.StreetName)
+                                    
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.HouseNo, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.HouseNo)
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.Pincode, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.Pincode)
+                                    
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.PhoneNo, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.PhoneNo)
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.TeacherNonTeach, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.TeacherNonTeach)
+                                    
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.Govtorpvt, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.Govtorpvt)
+                                    
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.AnnualBudjet, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.AnnualBudjet)
+                                    
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.TotalBedStrength, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.TotalBedStrength)
+                                    
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.Nameofdisciplines, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.Nameofdisciplines)                                    
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.PatientTurnoverPerYear, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                @Html.DisplayFor(model => model.HospitalModel.PatientTurnoverPerYear)
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Approached by
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.ByRoad, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                   @Html.DisplayFor(model => model.HospitalModel.ByRoad)
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.ByRail, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                   @Html.DisplayFor(model => model.HospitalModel.ByRail)
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.HospitalModel.ByAir, new { @Class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HospitalModel.ByAir)
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    @*Surgical Team*@
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Surgical Team</legend>
+                        <form id="frmSurgicalInput">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Surgical.NumberofBeds, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.Surgical.NumberofBeds, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Surgical.NoofOperationsPerYear, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.Surgical.NoofOperationsPerYear, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </form>
+                        <form id="frmSurgical">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table class="table table-hover" id="tblSurgical">
+                                            <tr>
+                                                <th>S.NO.</th>
+                                                <th>Staff Type</th>
+                                                <th>Designation</th>
+                                                <th>No. of Members</th>
+                                              
+                                            </tr>
+                                            @if (Model.Surgical.StaffDetailsList != null)
+                                            {
+                                                for (int i = 0; i < Model.Surgical.StaffDetailsList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.Surgical.StaffDetailsList[i].StaffType</td>
+                                                        <td>@Model.Surgical.StaffDetailsList[i].Designation</td>
+                                                        <td>@Model.Surgical.StaffDetailsList[i].NoOfMembers</td>
+                                                       
+
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+
+                    @*Capstone Team*@
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Capstone Team</legend>
+                        <form id="frmCapstoneInput">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.CapstoneTeam.NoofBeds, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.CapstoneTeam.NoofBeds, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.CapstoneTeam.PatientTurnover, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.CapstoneTeam.PatientTurnover, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.CapstoneTeam.TransplantPatients, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.CapstoneTeam.TransplantPatients, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </form>
+                        <form id="frmCapstone">
+                        
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table class="table table-hover" id="tblCapstoneStaff">
+                                            <tr>
+                                                <th>S.NO.</th>
+                                                <th>Staff Type</th>
+                                                <th>Designation</th>
+                                                <th>No. of Members</th>
+                                            </tr>
+                                            @if (Model.CapstoneTeam.StaffDetailsList != null)
+                                            {
+                                                for (int i = 0; i < Model.CapstoneTeam.StaffDetailsList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.CapstoneTeam.StaffDetailsList[i].StaffType</td>
+                                                        <td>@Model.CapstoneTeam.StaffDetailsList[i].Designation</td>
+                                                        <td>@Model.CapstoneTeam.StaffDetailsList[i].NoOfMembers</td>
+                                                       
+
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+
+                    @*Anaesthesiology*@
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Anaesthesiology</legend>
+                        <form id="frmAnaesthesiologyInput">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Anaesthesiology.OperationTheatres, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.Anaesthesiology.OperationTheatres, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Anaesthesiology.EmergencyOperationTheatres, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.Anaesthesiology.EmergencyOperationTheatres, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Anaesthesiology.TransplantOperationTheatres, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.Anaesthesiology.TransplantOperationTheatres, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </form>
+                        <form id="frmAnaesthesiology">
+                         
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table class="table table-hover" id="tblAnaesthesiology">
+                                            <tr>
+                                                <th>S.NO.</th>
+                                                <th>Staff Type</th>
+                                                <th>Designation</th>
+                                                <th>No. of Members</th>
+                                            </tr>
+                                            @if (Model.Anaesthesiology.StaffDetailsList != null)
+                                            {
+                                                for (int i = 0; i < Model.Anaesthesiology.StaffDetailsList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.Anaesthesiology.StaffDetailsList[i].StaffType</td>
+                                                        <td>@Model.Anaesthesiology.StaffDetailsList[i].Designation</td>
+                                                        <td>@Model.Anaesthesiology.StaffDetailsList[i].NoOfMembers</td>
+
+
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table class="table table-hover" id="tblOperation">
+                                            <tr>
+                                                <th>S.NO.</th>
+                                                <th>Name of the Operation</th>
+                                                <th>Name of Operations Performed</th>
+                                            </tr>
+                                            @if (Model.Anaesthesiology.OperationsList != null)
+                                            {
+                                                for (int i = 0; i < Model.Anaesthesiology.OperationsList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.Anaesthesiology.OperationsList[i].Name</td>
+                                                        <td>@Model.Anaesthesiology.OperationsList[i].OperationsPerformed</td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table class="table table-hover" id="tblEquipment">
+                                            <tr>
+                                                <th>S.NO.</th>
+                                                <th>Name of the Equipment</th>
+                                                <th>Name of Equipments</th>
+                                            </tr>
+                                            @if (Model.Anaesthesiology.EquipmentsList != null)
+                                            {
+                                                for (int i = 0; i < Model.Anaesthesiology.EquipmentsList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.Anaesthesiology.EquipmentsList[i].Name</td>
+                                                        <td>@Model.Anaesthesiology.EquipmentsList[i].NoofEquipments</td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+
+                    @*I.C.U / H.D.U. Facilities*@
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">I.C.U / H.D.U. Facilities</legend>
+                        <form id="frmFacilitiesInput">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.ICUHDUFacilities.ICUBeds, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.ICUHDUFacilities.ICUBeds, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.ICUHDUFacilities.Trained, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.ICUHDUFacilities.Trained, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.ICUHDUFacilities.Nurses, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.ICUHDUFacilities.Nurses, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.ICUHDUFacilities.Technicians, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.ICUHDUFacilities.Technicians, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </form>
+                        <form id="frmFacilites">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Name and No. of Equipments in ICU
+                                </div>
+                            </div>
+                          
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table class="table table-hover" id="tblICUHDUEquipment">
+                                            <tr>
+                                                <th>S.NO.</th>
+                                                <th>Name of the Equipment</th>
+                                                <th>Name of Equipments</th>
+                                            </tr>
+                                            @if (Model.ICUHDUFacilities.EquipmentsList != null)
+                                            {
+                                                for (int i = 0; i < Model.ICUHDUFacilities.EquipmentsList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.ICUHDUFacilities.EquipmentsList[i].Name</td>
+                                                        <td>@Model.ICUHDUFacilities.EquipmentsList[i].NoofEquipments</td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Other Supportive Facilities
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.ICUHDUFacilities.OtherSupportiveFacilities, "Data about facilities availabel in hospital", new { @Class = "control-label" })
+
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.ICUHDUFacilities.OtherSupportiveFacilities, new { HtmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+
+                    @*Laboratory Facilities*@
+                    <form id="frmLaboratory">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Laboratory Facilities</legend>
+                          
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-8">
+                                    <table class="table table-bordered" id="tblLaboratoryFacilityStaffDetails">
+                                        <tr>
+                                            <th style="width: 10px">S.No</th>
+                                            <th>Staff Type</th>
+                                            <th>Designation</th>
+                                            <th>No of Members</th>
+                                        </tr>
+                                        @if (Model.LaboratoryFacilities.StaffDetailsList != null)
+                                        {
+                                            for (int i = 0; i < Model.LaboratoryFacilities.StaffDetailsList.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td>@Convert.ToInt32(i + 1)</td>
+                                                    <td>@Model.LaboratoryFacilities.StaffDetailsList[i].StaffType</td>
+                                                    <td>@Model.LaboratoryFacilities.StaffDetailsList[i].Designation</td>
+                                                    <td>@Model.LaboratoryFacilities.StaffDetailsList[i].NoOfMembers</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.LaboratoryFacilities.Investigations, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.LaboratoryFacilities.Investigations, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-8">
+                                    <table class="table table-bordered" id="tblLaboratoryEquipments">
+                                        <tr>
+                                            <th style="width: 10px">S.No</th>
+                                            <th>Equipment Name</th>
+                                            <th>No of Equipments</th>
+                                        </tr>
+                                        @if (Model.LaboratoryFacilities.EquipmentsList != null)
+                                        {
+                                            for (int i = 0; i < Model.LaboratoryFacilities.EquipmentsList.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td>@Convert.ToInt32(i + 1)</td>
+                                                    <td>@Model.LaboratoryFacilities.EquipmentsList[i].Name</td>
+                                                    <td>@Model.LaboratoryFacilities.EquipmentsList[i].NoofEquipments</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    @*Imaging Services*@
+                    @*<form id="frmImaging">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Imaging Services</legend>
+                          
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-8">
+                                    <table class="table table-bordered" id="tblImagingServicesStaffDetails">
+                                        <tr>
+                                            <th style="width: 10px">S.No</th>
+                                            <th>Staff Type</th>
+                                            <th>Designation</th>
+                                            <th>No of Members</th>
+                                        </tr>
+                                        @if (Model.ImagingServices.StaffDetailsList != null)
+                                        {
+                                            for (int i = 0; i < Model.ImagingServices.StaffDetailsList.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td>@Convert.ToInt32(i + 1)</td>
+                                                    <td>@Model.ImagingServices.StaffDetailsList[i].StaffType</td>
+                                                    <td>@Model.ImagingServices.StaffDetailsList[i].Designation</td>
+                                                    <td>@Model.ImagingServices.StaffDetailsList[i].NoOfMembers</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ImagingServices.Investigations, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.ImagingServices.Investigations,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                  
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-8">
+                                    <table class="table table-bordered" id="tblImagingServicesEquipments">
+                                        <tr>
+                                            <th style="width: 10px">S.No</th>
+                                            <th>Equipment Name</th>
+                                            <th>No of Equipments</th>
+                                        </tr>
+                                        @if (Model.ImagingServices.EquipmentsList != null)
+                                        {
+                                            for (int i = 0; i < Model.ImagingServices.EquipmentsList.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td>@Convert.ToInt32(i + 1)</td>
+                                                    <td>@Model.ImagingServices.EquipmentsList[i].Name</td>
+                                                    <td>@Model.ImagingServices.EquipmentsList[i].NoofEquipments</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>*@
+                    @*Haematology Services*@
+                    @*<form id="frmHaematology">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Haematology Services</legend>
+                         
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-8">
+                                    <table class="table table-bordered" id="tblHaematologyService">
+                                        <tr>
+                                            <th style="width: 10px">S.No</th>
+                                            <th>Staff Type</th>
+                                            <th>Designation</th>
+                                            <th>No of Members</th>
+                                        </tr>
+                                        @if (Model.HaematologyServices.StaffDetailsList != null)
+                                        {
+                                            for (int i = 0; i < Model.HaematologyServices.StaffDetailsList.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td>@Convert.ToInt32(i + 1)</td>
+                                                    <td>@Model.HaematologyServices.StaffDetailsList[i].StaffType</td>
+                                                    <td>@Model.HaematologyServices.StaffDetailsList[i].Designation</td>
+                                                    <td>@Model.HaematologyServices.StaffDetailsList[i].NoOfMembers</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HaematologyServices.Investigations, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.HaematologyServices.Investigations,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                  
+                                </div>
+                            </div>
+                         
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-8">
+                                    <table class="table table-bordered" id="tblHaematologyEquipment">
+                                        <tr>
+                                            <th style="width: 10px">S.No</th>
+                                            <th>Equipment Name</th>
+                                            <th>No of Equipments</th>
+                                        </tr>
+                                         @if (Model.HaematologyServices.EquipmentsList != null)
+                                        {
+                                            for (int i = 0; i < Model.HaematologyServices.EquipmentsList.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td>@Convert.ToInt32(i + 1)</td>
+                                                    <td>@Model.HaematologyServices.EquipmentsList[i].Name</td>
+                                                    <td>@Model.HaematologyServices.EquipmentsList[i].NoofEquipments</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>*@
+                    @*Available Facilities*@
+                    <form id="frmAvailableFacilities">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Available Facilities</legend>
+
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-2">
+                                    @Html.LabelFor(model => model.Facilities.BloodBankFacilities, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.DisplayFor(model => model.Facilities.BloodBankFacilities, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Facilities.DialysisFacilities, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.DisplayFor(model => model.Facilities.DialysisFacilities, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-2">
+                                    @Html.LabelFor(model => model.Facilities.Nephrologist, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.DisplayFor(model => model.Facilities.Nephrologist, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Facilities.Neurologist, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.DisplayFor(model => model.Facilities.Neurologist, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-2">
+                                    @Html.LabelFor(model => model.Facilities.NeuroSurgeon, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.DisplayFor(model => model.Facilities.NeuroSurgeon, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Facilities.Urologist, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.DisplayFor(model => model.Facilities.Urologist, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-2">
+                                    @Html.LabelFor(model => model.Facilities.GISurgeon, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.DisplayFor(model => model.Facilities.GISurgeon, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Facilities.Paediatrician, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.DisplayFor(model => model.Facilities.Paediatrician, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-2">
+                                    @Html.LabelFor(model => model.Facilities.Physicotherapist, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.DisplayFor(model => model.Facilities.Physicotherapist, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Facilities.SocialWorker, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.DisplayFor(model => model.Facilities.SocialWorker, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-2">
+                                    @Html.LabelFor(model => model.Facilities.Immunologist, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.DisplayFor(model => model.Facilities.Immunologist, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Facilities.Cardiologist, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.DisplayFor(model => model.Facilities.Cardiologist, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    @*Declaration Details*@
+                    <form id="frmDeclaration">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Declaration</legend>
+
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <p style="text-indent: 50px; text-align:justify;line-height: 30px;">
+                                        The above said information is true to the best of my knowledge and I have no objection
+                                        to any scrutiny of our facility by athorised personnel.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-offset-8 col-md-4" style="text-align:center">
+                                    <b>Signature</b>
+                                    <br />
+                                    Head of the Insitution
+                                    <br/>
+                                    @Html.DisplayFor(model => model.Declaration.Signature, new { htmlAttributes = new { @class = "form-control" } })                                    
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <input type="button" value="Save" id="btnSubmit" class="btn btn-primary" />
+        </div>
+    </div>
+</section>

@@ -1,0 +1,223 @@
+﻿
+@{
+    ViewBag.Title = "PCPNDTApplicationsView";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<section class="content-header">
+    
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Graphs","Dashboard","Admin")"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        @*<li><a href="#">Licenses</a></li>*@
+        <li class="active">Applications</li>
+    </ol>
+</section>
+<br/>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Applications</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblApplications" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Application Number</th>
+                                <th>Service </th>
+                                <th>Applied Date</th>
+                                <th>Status</th>
+                                <th>Application</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(function () {
+        $("#tblApplications").DataTable();
+        GetCommissionerPCPNDTApplications();
+    });
+
+    function GetCommissionerPCPNDTApplications() {
+        debugger;
+        var url = '@Url.Action("GetCommissionerPCPNDTApplications", "Dashboard", new { Area = "Admin" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                BindAmmendments(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get Ammendments list in Amendment, Request Failed: " + err);
+            });
+    }
+
+    function BindAmmendments(json) {
+        var table = $('#tblApplications').DataTable();
+
+        // Clear all existing rows
+        table.clear().draw();
+
+
+
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+
+
+            //var ViewLink = '';
+            //if (json[i].TransactionType == 'Amendment')
+            //    ViewLink = '<input type="button" value="View" onclick="ViewAmendment(' + json[i].TransactionId + ',' + json[i].ServiceId + ',' + json[i].TransactionId + ')"/>';
+            //else
+            //    ViewLink = '<input type="button" value="View" onclick="ViewApplication(' + json[i].TransactionId + ')"/>';
+            var ViewLink =
+           '<input type="button" value="View" onclick="ViewApplication(' + json[i].TransactionId + ', \'' + json[i].TransactionType + '\')" />';
+
+
+            table.row.add([
+        (i + 1),
+        json[i].ApplicationNumber,
+        json[i].ServiceName,
+        json[i].AppliedDate,
+        json[i].Status,
+        //'<input type="button" value="View" onclick="ViewAmendment(' + json[i].TransactionId + ',' + json[i].ServiceId + ',' + json[i].TransactionId + ')"/>',
+       ViewLink,
+       
+      // NOCLink
+        //'<input type="button" value="Reject" onclick="RejectLicense(' + json[i].Id + ')"/>',
+
+            ]);
+        }
+        table.draw();
+    }
+
+    function ViewAmendment(AId, SId,TId) {
+
+        var url = '@Url.Action("GetAmendment", "DepartmentUser", new { Area = "Department" })';
+        var data = {
+            AmendmentId: AId,
+            ServiceId: SId,
+            TransactionId:TId
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            debugger;
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "Amendment";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+
+            var err = status + ", " + error;
+            console.log("GetAmendment Request Failed: " + err);
+        });
+    }
+    function GETNOC(Id) {
+
+        var url = '@Url.Action("GetNOCCertificate", "Amendment", new { Area = "User" })';
+        var data = {
+            AmendmentId: Id
+
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "License";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetPCPNDTLicense Request Failed: " + err);
+        });
+    }
+
+    function ViewApplication(TId) {
+
+        var url = '@Url.Action("ViewApplication", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            _transactionId: TId
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            debugger;
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "Application";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            ShowModal(notificationModel);
+            $('#divPayment').hide();
+        })
+        .fail(function (jqxhr, status, error) {
+
+            var err = status + ", " + error;
+            console.log("View Application Request Failed: " + err);
+        });
+    }
+
+    function ShowHideOwnershipUploads(value) {
+        if (value != '') {
+            debugger;
+            $('#divOwnershipUploads').show();
+            switch (value) {
+                case '1':
+                case 1:
+                    {
+                        $('#divAffidavitFile').show();
+                        $('#divStudyCertificateFiles').show();
+                        $('#divAssociationFile').hide();
+                    }
+                    break;
+                case '2':
+                case '3':
+                case '5':
+                case 2:
+                case 3:
+                case 5: {
+                    $('#divAffidavitFile').show();
+                    $('#divStudyCertificateFiles').show();
+                    $('#divAssociationFile').show();
+                    $('#spanArticlesofAssociation').text('Articles of Association');
+                }
+                    break;
+                case '4': {
+                    $('#divAffidavitFile').show();
+                    $('#divStudyCertificateFiles').show();
+                    $('#divAssociationFile').show();
+                    $('#spanArticlesofAssociation').text('Articles of Association/Memorandum of Association');
+                }
+                default:
+
+            }
+        }
+        else {
+            $('#divOwnershipUploads').hide();
+        }
+    }
+    function ViewApplication(TransactionId, TransactionType) {
+        debugger;
+        if (TransactionType == 'Grant')
+            TransactionType = 'Transaction'
+        var viewlink = '@Url.Action("ApplicationView", "License", new { Area = "User", TransactionId = "_transactionId", TransactionType = "_transactionType" })';
+        viewlink = viewlink.replace("_transactionId", TransactionId).replace("&amp;", "&").replace("_transactionType", TransactionType);
+        window.location.href = viewlink;
+    }
+</script>

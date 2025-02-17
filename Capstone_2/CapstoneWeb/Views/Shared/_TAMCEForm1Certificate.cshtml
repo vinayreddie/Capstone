@@ -1,0 +1,235 @@
+﻿@*@model Capstone.Models.APMCEAckModel*@
+@*@model Capstone.Models.APMCECertificate*@
+
+
+
+<fieldset class="scheduler-border">
+    @*<div style="text-align:center">
+        <img src="~/Content/images/logogovts.png" />
+    </div>
+    <div class="col-md-12" style="text-align:center;">
+        <span style="font-size:x-large; color:red;">Government of Telangana</span>
+        <br />
+        <i>Capstone, Health and Family Welfare Department</i>
+        <br />
+        <i>TAMCE</i>
+    </div>*@
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large;">Form-I</span>
+            <br />
+            <i>[See rule 4 (a)]</i>
+            <br />
+            <span style="font-size:x-large;">Application for Registration of Telangana Allopathic Private Capstone Care Establishments</span>
+            <br />
+            <i>(to be submitted in Duplicate)</i>
+            <hr style="border: 1px solid #9f9fb1;" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <ol>
+                <li>
+                    <p>
+                        Name and address of the Allopathic Private Capstone Care Establishment
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Name of Correspondent or any Authorised person for correspondence.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Name and Address of the Society/Trust and date on which it was established:
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Whether the accommodation is owned by the Establishment or on lease/rent. If so, please furnish the period of lease/rent along with the documentary proof. (Please Enclose the relevant copies)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        The date of establishment of Capstone care establishment
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Total area of Establishment: (One set of photographs of the premises with its functional areas to be furnished)
+                    </p>
+                    <ol type="A">
+                        <li>
+                            <b> Open area</b>
+                        </li>
+                        <li>
+                            <b> Constructed area</b>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <p>
+                        Bed strength
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Types of Services offered
+                    </p>
+                    <ol type="A">
+                        <li>
+                            <b> Basic</b>
+                        </li>
+                        <li>
+                            <b> Speciality</b>
+                        </li>
+                        <li>
+                            <b> Super Speciality</b>
+                        </li>
+                        <li>
+                            <b> Diagnostics</b>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <p>
+                        Names of Doctors, along with Registration Number Allotted by MCI/APMC (Please Enclose the details)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Names of qualified Nursing Staff, with their of Registration numbers of NCI/any other board (Please Enclose the details)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Names of Para Capstone Staff and their Registration numbers (list to be enclosed)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        No. of Supporting staff (list to be enclosed)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        No. of Specialities available (Please Enclose the details)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        The List of Equipment and Furniture available (Please Enclose the details)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        No. of Supporting staff (list to be enclosed)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Labour room with Paediatric care facilities
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Operation theatres
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Diagnostic Facilities including Clinical Laboratory and Imaging facilities
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Whether registration is sought for main facility, or branches also, if so details (separate application shall be submitted for each branch)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        The financial position of the Hospital/Institute (enclose Audit Report of the last two years)
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Any other information relating to Hospital
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Declaration on Stamp Paper for willingness to comply Yes/No with the prescribed rules is enclosed
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Particulars of the Registration fee paid (D.D No., Name f the Bank, and Date)
+                    </p>
+                </li>
+            </ol>
+
+            <br />
+            <p><b>I hereby declare that the information furnished above is true to the best of my knowledge and belief and if it is found that any wrong information is furnished or suppressed the arterial facts, I will take full responsibility for the consequential action as per law.</b></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-12 text-center">
+            @*<table>
+                <tr>
+                    <td style="text-align:left;">Place : @Model.District</td>
+                </tr>
+                <tr></tr>
+                @{
+                    if (Model.AppropriateAuthority != null)
+                    {
+                        var x = Model.AppropriateAuthority.Split(';');
+                        foreach (var item in x)
+                        {
+                            <tr>
+                                <td style="text-align:left;"></td>
+                                <td style="width:54%"></td>
+                                <td style="text-align:center;">
+                                    @item
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td style="text-align:left;">Dated : @Model.ApplicationDate.ToShortDateString()</td>
+                            <td style="width:54%;"></td>
+                            <td style="text-align:center;">
+                                <img src='@Url.Content("~/Content/signatures/" + Model.District + ".jpg")' width="190" height="60" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>*@
+        </div>
+    </div>
+</fieldset>
+
+<div class="row" style="display:none;">
+    <div class="col-md-12" style="text-align:center;">
+        <input type="button" id="btnClosePreview" value="Close" data-dismiss="modal" class="btn btn-default" />
+        <input type="button" id="btnPrintAPMCELicense" value="Print" class="btn btn-primary" />
+    </div>
+</div>
+
+<script>
+    $('#btnPrintAPMCELicense').on('click', function (e) {
+        printDiv();
+    });
+    function printDiv() {
+
+        var divToPrint = document.getElementById('divModalBody');
+
+        var newWin = window.open('', 'Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function () { newWin.close(); }, 10);
+    }
+</script>

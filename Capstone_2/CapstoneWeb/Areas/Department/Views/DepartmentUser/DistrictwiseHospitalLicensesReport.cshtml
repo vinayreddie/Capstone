@@ -1,0 +1,170 @@
+﻿
+@using Medical.Models;
+
+@{
+    ViewBag.Title = "Districtwise Licenses Report";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        District-wise Hospital Licenses | Index
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">District-wise Hospital Licenses Details</h3><br/>
+                </div>
+                <div class="row">
+                    <div class="col-md-3  text-right">
+                        @Html.Label("District", new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownList("DistrictID",
+                    new SelectList(ViewBag.DistrictList, "Id", "Name"), "All",
+                    new { @class = "form-control select2", @style = "width:100%;" })
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <input type="button" class="btn btn-primary" value="Get Details" id="btnSearchData" />
+                        &nbsp;&nbsp;<input type="button" class="btn btn-default" value="Clear" id="btnClearData" />
+                    </div>
+                    @*<div class="col-md-1  text-right">
+            @Html.Label("Centre", new { @class = "control-label" })
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownList("CentreID",
+        new SelectList(ViewBag.CentresList, "Id", "Name"), "",
+        new { @class = "form-control select2", @style = "width:100%;" })
+        </div>*@
+                </div>
+                <!-- /.box-header -->
+                @using (Html.BeginForm("ExportHospitalLicenses", "DepartmentUser", FormMethod.Post))
+                {
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="submit" name="btnExportLicensing" style="width: 140px;margin-left:930px;"
+                                   value="Export" id="exportLicensing" class="form-control btn-success" />
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered" id="tblDistrictwiseHospitalLicensesList">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th style="width:240px;">Centre</th>
+                                    <th>Contact Details</th>
+                                    <th>Mobile</th>
+                                    @*<th>Email</th>*@
+                                    <th>License Number</th>
+                                    <th>License Issued On</th>
+                                    <th>License Valid Till</th>
+                                    @*<th>Expired Within Days</th>*@                                    
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                }
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</section>
+
+<script>
+    var user;
+    $(function () {
+        user = @Html.Raw(Json.Encode(Session["User"] as UserModel));
+        if(user.RoleId == 4)
+        {
+            BindDistrictwiseHospitalLicensesList(user.DistrictId,0);
+            $('#DistrictID').val(user.DistrictId).change();
+            $("#DistrictID").prop("disabled", true);
+        }
+        else
+            BindDistrictwiseHospitalLicensesList(0,0);
+    });
+
+
+      function BindDistrictwiseHospitalLicensesList(districtId,centreId) {
+        var url = '@Url.Action("GetDistrictwiseHospitalLicensesReport", "DepartmentUser", new { Area = "Department" })';
+        var data = {
+                    DistrictId : districtId,
+                    CentreId : centreId
+                };
+        var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            var table = $('#tblDistrictwiseHospitalLicensesList').DataTable();
+            table.clear().draw();
+
+
+            $("#tblDistrictwiseHospitalLicensesList tbody").empty();
+            var trans = json;
+            var tr;
+            for (var i = 0; i < json.length; i++) {
+
+                table.row.add([
+                    (i + 1),                    
+                    json[i].CentreName,
+                    json[i].AddressDetails,
+                    json[i].MobileNumber, 
+                    //json[i].EmailId,
+                    json[i].LicenseNumber,
+                    json[i].LicenseIssuedDate,
+                    json[i].LicenseExpiryDate,                    
+                    //json[i].ValidTillNew,
+                    '<input type="button" value="View" onclick="ViewApplication('+ json[i].Id +', \'Transaction\')" />',
+                ]);
+            }
+
+            table.draw();
+
+            // TODO : Bind data to table
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.log("BindDistrictwiseHospitalLicensesList Request Failed: " + err);
+        });
+    }
+
+    function ViewApplication(TransactionId, TransactionType) {
+        var viewlink = '@Url.Action("ApplicationView", "DepartmentUser", new { Area = "Department", TransactionId = "_transactionId", TransactionType = "_transactionType" })';
+        viewlink = viewlink.replace("_transactionId", TransactionId).replace("&amp;", "&").replace("_transactionType", TransactionType);
+        window.location.href = viewlink;
+    }
+</script>
+
+<script>
+    $('#btnSearchData').click(function(){
+                var distId=$('#DistrictID').val();
+                var centreId=$('#CentreID').val();
+    if($('#DistrictID').val() == 0 && $('#CentreID').val())
+    {
+        alert('Please Select District/Centre!');
+        return;
+    }
+    else
+         BindDistrictwiseHospitalLicensesList(distId,centreId);
+    });
+
+    $('#btnClearData').click(function(){
+       $('#DistrictID').val('');
+       $('#CentreID').val('');
+    });
+
+</script>
+
+

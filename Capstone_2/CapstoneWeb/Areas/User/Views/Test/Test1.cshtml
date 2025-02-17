@@ -1,0 +1,818 @@
+﻿@model Capstone.Models.OrganTransplantViewModel
+
+@{
+    ViewBag.Title = "Test1";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        New License Application Form
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        @*<li class="active">General Elements</li>*@
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Ogran Transplant</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @*Laboratory Facilities*@
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Laboratory Facilities</legend>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.LaboratoryFacilities.StaffDetailsModel.StaffType, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.LaboratoryFacilities.StaffDetailsModel.StaffType,
+                               new List<SelectListItem>
+                               {
+                                   new SelectListItem() { Text = "Select", Value = "", Selected = true },
+                                   new SelectListItem() { Text= "Permanent Staff", Value = "Permanent Staff" },
+                                   new SelectListItem() {Text = "Temporary Staff", Value = "Temporary Staff" }
+                               }, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LaboratoryFacilities.StaffDetailsModel.StaffType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.LaboratoryFacilities.StaffDetailsModel.Designation, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.LaboratoryFacilities.StaffDetailsModel.Designation,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LaboratoryFacilities.StaffDetailsModel.Designation, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.LaboratoryFacilities.StaffDetailsModel.NoOfMembers, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.LaboratoryFacilities.StaffDetailsModel.NoOfMembers,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LaboratoryFacilities.StaffDetailsModel.NoOfMembers, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="btnAddLaboratoryFacilityStaffDetails" value="Add" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-8">
+                                <table class="table table-bordered" id="tblLaboratoryFacilityStaffDetails">
+
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Staff Type</th>
+                                        <th>Designation</th>
+                                        <th>No of Members</th>
+                                        <th></th>
+                                    </tr>
+                                   
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.LaboratoryFacilities.Investigations, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.LaboratoryFacilities.Investigations,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LaboratoryFacilities.Investigations, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.LaboratoryFacilities.EquipmentModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.LaboratoryFacilities.EquipmentModel.Name,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LaboratoryFacilities.EquipmentModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.LaboratoryFacilities.EquipmentModel.NoofEquipments, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.LaboratoryFacilities.EquipmentModel.NoofEquipments,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LaboratoryFacilities.EquipmentModel.NoofEquipments, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="btnAddLaboratoryEquipment" value="Add" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-8">
+                                <table class="table table-bordered" id="tblLaboratoryEquipments">
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Equipment Name</th>
+                                        <th>No of Equipments</th>
+                                        <th></th>
+                                    </tr>
+                                   
+                                </table>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    @*Imaging Services*@
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Imaging Services</legend>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ImagingServices.StaffDetailsModel.StaffType, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.ImagingServices.StaffDetailsModel.StaffType,
+                               new List<SelectListItem>
+                               {
+                                   new SelectListItem() { Text = "Select", Value = "", Selected = true },
+                                   new SelectListItem() { Text= "Permanent Staff", Value = "Permanent Staff" },
+                                   new SelectListItem() {Text = "Temporary Staff", Value = "Temporary Staff" }
+                               }, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ImagingServices.StaffDetailsModel.StaffType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ImagingServices.StaffDetailsModel.Designation, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ImagingServices.StaffDetailsModel.Designation,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ImagingServices.StaffDetailsModel.Designation, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ImagingServices.StaffDetailsModel.NoOfMembers, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ImagingServices.StaffDetailsModel.NoOfMembers,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ImagingServices.StaffDetailsModel.NoOfMembers, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="btnAddImagingServicesStaffDetails" value="Add" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-8">
+                                <table class="table table-bordered" id="tblImagingServicesStaffDetails">
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Staff Type</th>
+                                        <th>Designation</th>
+                                        <th>No of Members</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>Update software</td>
+                                        <td>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-red">55%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td>Clean database</td>
+                                        <td>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-yellow">70%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td>Cron job running</td>
+                                        <td>
+                                            <div class="progress progress-xs progress-striped active">
+                                                <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-light-blue">30%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.</td>
+                                        <td>Fix and squish bugs</td>
+                                        <td>
+                                            <div class="progress progress-xs progress-striped active">
+                                                <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-green">90%</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ImagingServices.Investigations, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ImagingServices.Investigations,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ImagingServices.Investigations, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ImagingServices.EquipmentModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ImagingServices.EquipmentModel.Name,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ImagingServices.EquipmentModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ImagingServices.EquipmentModel.NoofEquipments, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ImagingServices.EquipmentModel.NoofEquipments,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ImagingServices.EquipmentModel.NoofEquipments, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="btnAddImagingServicesEquipment" value="Add" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-8">
+                                <table class="table table-bordered" id="tblImagingServicesEquipments">
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Equipment Name</th>
+                                        <th>No of Equipments</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>Update software</td>
+                                        <td>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td>Clean database</td>
+                                        <td>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td>Cron job running</td>
+                                        <td>
+                                            <div class="progress progress-xs progress-striped active">
+                                                <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    @*Haematology Services*@
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Haematology Services</legend>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HaematologyServices.StaffDetailsModel.StaffType, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.HaematologyServices.StaffDetailsModel.StaffType,
+                               new List<SelectListItem>
+                               {
+                                   new SelectListItem() { Text = "Select", Value = "", Selected = true },
+                                   new SelectListItem() { Text= "Permanent Staff", Value = "Permanent Staff" },
+                                   new SelectListItem() {Text = "Temporary Staff", Value = "Temporary Staff" }
+                               }, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.HaematologyServices.StaffDetailsModel.StaffType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HaematologyServices.StaffDetailsModel.Designation, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HaematologyServices.StaffDetailsModel.Designation,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HaematologyServices.StaffDetailsModel.Designation, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HaematologyServices.StaffDetailsModel.NoOfMembers, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HaematologyServices.StaffDetailsModel.NoOfMembers,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HaematologyServices.StaffDetailsModel.NoOfMembers, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="btnAddHaematologyServiceStaffDetails" value="Add" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-8">
+                                <table class="table table-bordered" id="tblHaematologyService">
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Staff Type</th>
+                                        <th>Designation</th>
+                                        <th>No of Members</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>Update software</td>
+                                        <td>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-red">55%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td>Clean database</td>
+                                        <td>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-yellow">70%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td>Cron job running</td>
+                                        <td>
+                                            <div class="progress progress-xs progress-striped active">
+                                                <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-light-blue">30%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.</td>
+                                        <td>Fix and squish bugs</td>
+                                        <td>
+                                            <div class="progress progress-xs progress-striped active">
+                                                <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-green">90%</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HaematologyServices.Investigations, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HaematologyServices.Investigations,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HaematologyServices.Investigations, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HaematologyServices.EquipmentModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HaematologyServices.EquipmentModel.Name,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HaematologyServices.EquipmentModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HaematologyServices.EquipmentModel.NoofEquipments, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HaematologyServices.EquipmentModel.NoofEquipments,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HaematologyServices.EquipmentModel.NoofEquipments, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="btnAddHaematologyEquipment" value="Add" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-8">
+                                <table class="table table-bordered" id="tblHaematologyEquipment">
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Equipment Name</th>
+                                        <th>No of Equipments</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>Update software</td>
+                                        <td>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                            </div>
+                                        </td>                                        
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td>Clean database</td>
+                                        <td>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td>Cron job running</td>
+                                        <td>
+                                            <div class="progress progress-xs progress-striped active">
+                                                <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>                                    
+                                </table>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    @*Available Facilities*@
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Available Facilities</legend>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.BloodBankFacilities, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.BloodBankFacilities, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.BloodBankFacilities, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.BloodBankFacilities, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.DialysisFacilities, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.DialysisFacilities, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.DialysisFacilities, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.DialysisFacilities, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Nephrologist, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Nephrologist, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Nephrologist, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Nephrologist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Neurologist, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Neurologist, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Neurologist, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Neurologist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.NeuroSurgeon, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.NeuroSurgeon, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.NeuroSurgeon, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.NeuroSurgeon, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Urologist, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Urologist, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Urologist, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Urologist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.GISurgeon, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.GISurgeon, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.GISurgeon, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.GISurgeon, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Paediatrician, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Paediatrician, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Paediatrician, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Paediatrician, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Physicotherapist, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Physicotherapist, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Physicotherapist, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Physicotherapist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.SocialWorker, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.SocialWorker, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.SocialWorker, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.SocialWorker, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Immunologist, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Immunologist, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Immunologist, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Immunologist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Cardiologist, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Cardiologist, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Cardiologist, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Cardiologist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    @*Declaration Details*@
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Declaration</legend>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                <input type="checkbox" value="Yes" id="chbDeclaration" /> Declaration
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-11">
+                                <p style="text-indent: 50px; text-align:justify;line-height: 30px;">
+                                    The above said information is true to the best of my knowledge and I have no objection
+                                    to any scrutiny of our facility by athorised personnel.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-8 col-md-4" style="text-align:center">
+                                <b>Signature</b>
+                                <br />
+                                Head of the Insitution<br />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-8 col-md-4">
+                                @Html.EditorFor(model => model.Declaration.Signature,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Declaration.Signature, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+</section>
+
+<script>
+    $('#btnAddLaboratoryFacilityStaffDetails').on('click', function (e) {
+        e.preventDefault();
+        debugger;
+        if (true) {
+            var url = '@Url.Action("addLaboratoryFacilityStaffDetails", "Test", new { Area = "User" })';
+            if (window.FormData !== undefined) {
+                // Create FormData object
+                //var category = $("#QuantityWasteModel_CategoryId option:selected").text();
+                //var unit = $("#QuantityWasteModel_UnitsId option:selected").text();
+                var fileData = new FormData();
+                fileData.append('StaffType', $('#LaboratoryFacilities_StaffDetailsModel_StaffType').val());
+                fileData.append('Designation', $('#LaboratoryFacilities_StaffDetailsModel_Designation').val());
+                fileData.append('NoOfMembers', $('#LaboratoryFacilities_StaffDetailsModel_NoOfMembers').val());
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#tblLaboratoryFacilityStaffDetails tr').not(function () { return !!$(this).has('th').length; }).remove();
+                        var json = response;
+                        console.log('response value' + File);
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].StaffType + "</td>");
+                            tr.append("<td>" + json[i].Designation + "</td>");
+                            tr.append("<td>" + json[i].NoOfMembers + "</td>");
+
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteLaboratoryFacilitiesStaffDetails(" + i + ");'/></td>");
+                            $('#tblLaboratoryFacilityStaffDetails').append(tr);
+                        }
+
+                        // ClearControls();
+                        $('#LaboratoryFacilities_StaffDetailsModel_StaffType').val('');
+                        $('#LaboratoryFacilities_StaffDetailsModel_Designation').val('');
+                        $('#LaboratoryFacilities_StaffDetailsModel_NoOfMembers').val('');
+                    },
+
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            }
+        } else {
+            alert("FormData is not supported.");
+        }
+    });
+
+    function DeleteLaboratoryFacilitiesStaffDetails(index) {
+        if (confirm('Do you really want to delete?')) {
+            var url = '@Url.Action("DeleteLaboratoryFacilityStaffDetails", "Test", new { Area = "User" })';
+            var data = { index: index };
+            var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblLaboratoryFacilityStaffDetails tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].StaffType + "</td>");
+                tr.append("<td>" + json[i].Designation + "</td>");
+                tr.append("<td>" + json[i].NoOfMembers + "</td>");
+
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteLaboratoryFacilitiesStaffDetails(" + i + ");'/></td>");
+                $('#tblLaboratoryFacilityStaffDetails').append(tr);
+            }
+        }
+    }).fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Delete Staff Details Request Failed: " + err);
+    });
+        }
+    }
+
+    $('#btnAddLaboratoryEquipment').on('click', function (e) {
+        e.preventDefault();
+        debugger;
+        if (true) {
+            var url = '@Url.Action("addLaboratoryEquipments", "Test", new { Area = "User" })';
+            if (window.FormData !== undefined) {
+                var fileData = new FormData();
+                fileData.append('Name', $('#LaboratoryFacilities_EquipmentModel_Name').val());
+                fileData.append('NoofEquipments', $('#LaboratoryFacilities_EquipmentModel_NoofEquipments').val());
+               
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#tblLaboratoryEquipments tr').not(function () { return !!$(this).has('th').length; }).remove();
+                        var json = response;
+                        console.log('response value' + File);
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Name + "</td>");
+                            tr.append("<td>" + json[i].NoofEquipments + "</td>");
+                           
+
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteLaboratoryEquipments(" + i + ");'/></td>");
+                            $('#tblLaboratoryEquipments').append(tr);
+                        }
+
+                        // ClearControls();
+                        $('#LaboratoryFacilities_EquipmentModel_Name').val('');
+                        $('#LaboratoryFacilities_EquipmentModel_NoofEquipments').val('');
+                      
+                    },
+
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            }
+        } else {
+            alert("FormData is not supported.");
+        }
+    });
+
+    function DeleteLaboratoryEquipments(index) {
+        if (confirm('Do you really want to delete?')) {
+            var url = '@Url.Action("DeleteLaboratoryEquipments", "Test", new { Area = "User" })';
+            var data = { index: index };
+            var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblLaboratoryEquipments tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].NoofEquipments + "</td>");
+
+
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteLaboratoryEquipments(" + i + ");'/></td>");
+                $('#tblLaboratoryEquipments').append(tr);
+            }
+        }
+    }).fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Delete Laboratory Equipments Details Request Failed: " + err);
+    });
+        }
+    }
+</script>

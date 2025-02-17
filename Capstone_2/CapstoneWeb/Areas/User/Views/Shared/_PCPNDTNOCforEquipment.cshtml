@@ -1,0 +1,275 @@
+﻿@using Capstone.Models
+@model Capstone.Models.NOCforquipmentModel
+
+
+<section class="content">
+    <form id="frmNOCEquipment">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">NOC Application for Equipment</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            @Html.HiddenFor(model => model.TransactionId, new { @Id="hfTransactionId"})
+                            <div class="col-md-2">
+                                @Html.LabelFor(model=>model.EquipmentId)
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.EquipmentId, 
+                                     new SelectList(string.Empty), "Select Equipment",
+                                     new { id = "ddlEquipment", @Class = "form-control select2", @data_placeholder = "Select Equipment" })
+                                @Html.ValidationMessageFor(model => model.EquipmentId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.RadioButtonFor(model=>model.Type,"DistrictId")DistrictId
+                                @*<input type="radio" name="Type" value="DistrictId" />DistrictId*@
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.DistrictId,
+                                     new SelectList(string.Empty), "Select District",
+                                     new { id = "ddlDistrict", @Class = "form-control select2", @data_placeholder = "Select District" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.RadioButtonFor(model => model.Type, "OtherState")Other State
+                                @*<input type="radio" name="Type" value="OtherState" />Other State*@
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model=>model.OtherState, new { htmlattributes = new {  @Class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model=>model.Remarks)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model=>model.Remarks,new { htmlattributes=new {@class="form-control"}})
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <input type="button" value="Add" class="btn btn-primary" id="btnAdd" />
+                                <input type="button" value="Clear" class="btn btn-default" id="btnClear" />
+                            </div>
+                        </div>
+                        <div id="divEquipmentListNOC" hidden>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-8">
+                                    <fieldset class="scheduler-border">
+                                        <legend class="scheduler-border">Equipment List</legend>
+                                        <table class="table table-striped" id="tblEquipmentList">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Equipment</th>
+                                                    <th>District/State</th>
+                                                    <th>Remark</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </fieldset>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <input type="button" value="Save" class="btn btn-primary" id="btnSave" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</section>
+
+<script>
+    $(function () {
+        GetEquipmentList();
+        GetDistrict();
+    })
+    function GetEquipmentList() {
+        var TrasactionId = '@Model.TransactionId';
+        var Url = '@Url.Action("GetEquipmentList", "Amendment",new { Area="User"})'
+        var Data = {
+            TransactionId: TrasactionId
+        }
+        var jqxhr = $.post(Url, Data, function () { })
+                   .done(function (response) {
+                       var json;
+                       if (response instanceof Object)
+                           json = response;
+                       else
+                           json = $.parseJSON(response);
+                       console.log(json);
+                       BindEquipments(json);
+                   }).fail(function (jqxhr, status, error) {
+                       var err = status + ", " + error;
+                       console.log("Get Equipment Request Failed: " + err);
+                   });
+    }
+    function BindEquipments(json) {
+        $('#ddlEquipment').html('');
+        $('#ddlEquipment').append($('<option></option>').val('-1').html('Select Equipment'));
+        $.each(json, function () {
+            $('#ddlEquipment').append($('<option></option>').val(this.Id).html(this.Name));
+        });
+    }
+
+    function GetDistrict() {
+        var Url = '@Url.Action("GetDistricts", "License", new { Area="User"})'
+        var jqxhr = $.post(Url, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+            BindDistrict(json);
+
+        }).fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Get Districts Request Failed: " + err);
+        });
+    }
+
+    function BindDistrict(json) {
+        $('#ddlDistrict').html('');
+       $('#ddlDistrict').append($('<option></option>').val('-1').html('Select District'));        
+        $.each(json, function () {
+            $('#ddlDistrict').append($('<option></option>').val(this.Id).html(this.Name));
+        });
+    }
+</script>
+
+@*Add*@
+<script>
+    $('#btnAdd').click(function (e) {
+        e.preventDefault;        
+        var value = $('#frmNOCEquipment').validate();
+        if ($('#frmNOCEquipment').valid()) {
+            var flag = true;
+            var Type = $("input:radio[name='Type']:checked").val()
+            if (Type == undefined) {
+                alert('Please Select Either district or other state')
+                flag = false;
+            }
+            else if (Type == "DistrictId") {
+                if ($('#ddlDistrict').val() == '-1') {
+                    alert('Please Select District')
+                    flag = false;
+                }
+            }
+            else if (Type == "OtherState") {
+                if ($('#OtherState').val() == '-1') {
+                    alert('Please Enter State');
+                    flag = false;
+                }
+            }
+            if (flag) {
+
+                var Url = '@Url.Action("AddEquipments", "Amendment", new { Area="User"})';
+                var Data = {
+                    EquipmentId: $('#ddlEquipment').val(),
+                    DistrictId: $('#ddlDistrict').val(),
+                    OtherState: $('#OtherState').val(),
+                    TransactionId: $('#hfTransactionId').val(),
+                    Remarks: $('#Remarks').val(),
+                    DistrictName: $('#ddlDistrict option:selected').text(),
+                    EquipmentName: $('#ddlEquipment option:selected').text(),
+                    Type: $("input:radio[name='Type']:checked").val()
+                }
+                var jqxhr = $.post(Url, Data, function () { })
+                    .done(function (response) {
+                        var json;
+                        if (response instanceof Object)
+                            json = response;
+                        else
+                            json = $.parseJSON(response);
+                        console.log(json);
+                        BindEquipmentList(json);
+                        Clear();
+                    }).fail(function (jqxhr, status, error) {
+                        var err = status + ", " + error;
+                        console.log("Add Equipment Request Failed: " + err);
+                    });
+
+
+            }
+        }
+    });
+    function BindEquipmentList(json) {
+        if (json.length > 0) {
+            $('#divEquipmentListNOC').show();
+            $('#tblEquipmentList tr').not(function () { return !!$(this).has('th').length; }).remove();
+            for (i = 0; i < json.length; i++) {
+                var tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].EquipmentName + "</td>");
+                if (json[i].Type == 'DistrictId')
+                    tr.append("<td>" + json[i].DistrictName + "</td>");
+                else
+                    tr.append("<td>" + json[i].OtherState + "</td>");
+                tr.append("<td>" + json[i].Remarks + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteEquipmentNOC(" + i + ");'></td>")
+                $('#tblEquipmentList').append(tr);
+            }
+        }
+        else
+            $('#divEquipmentListNOC').hide();
+      
+        
+    }
+    $('#btnClear').click(function (e) {
+        Clear();
+    });
+    function Clear() {
+        $('#ddlEquipment').val('-1').trigger('change');
+        $('#ddlDistrict').val('-1').trigger('change');
+        $('#OtherState').val('');
+        $('#Remarks').val('');
+        $('input:radio[name="Type"]:checked').iCheck('uncheck');
+    }
+
+    function DeleteEquipmentNOC(index) {
+        var Url = '@Url.Action("DeleteEquipmentNOC","Amendment",new { Area="User"})';
+        var Data = {
+            Index :index
+        }
+        var jqxhr = $.post(Url, Data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+          
+            BindEquipmentList(json);
+
+        }).fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Delete Equipment Request Failed: " + err);
+        });
+    }
+    $('#btnSave').click(function (e) {
+        e.preventDefault;
+        var Url = '@Url.Action("SaveEquipmentNOC", "Amendment",new { Area="User"})';
+        var jqxhr = $.post(Url, function () { })
+        .done(function (response) {
+
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+            ShowModal(response);
+
+        }).fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Save Equipment Request Failed: " + err);
+        });
+    });
+</script>
+

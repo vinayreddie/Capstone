@@ -1,0 +1,120 @@
+﻿@model Capstone.Models.APMCERejection
+
+<style>
+    .reportheadertext {
+        text-align: center;
+        font-size: larger;
+    }
+
+    .textunderline {
+        text-decoration: underline;
+    }
+
+    .parabody {
+        text-indent: 50px;
+        text-align: justify;
+    }
+</style>
+<div id="divPrint">
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">APMCE Rejection</legend>
+        <div class="row">
+            <div class="col-md-12" style="text-align:center;">
+                <span style="font-size:x-large;">FORM-V</span>
+                <br />
+                <i>[See rule 5(c)]</i>
+                <br />
+                <span style="font-size:x-large;">Government of TELANGANA</span>
+                <br />
+                <span style="font-size:x-large;">Health Capstone & Family Welfare Department District Registering Authority</span>
+                <br />
+                <span style="font-size:x-large;">Rejection of Application For @Model.ApplicationType of Registration</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <b>Reference Number and Date:</b> <b><span id="currentDate"> </span></b>
+                <p class="parabody">
+                    In exercise of the powers conferred under Section 7(3) of the Allopathic Private Capstone care
+                    Establishments (Registration and Regulation) Act, 2002, the Registration Authority here by
+                    rejects the application for <b>@Model.ApplicationType</b> of registration submitted by the
+                    under-mentioned Private Capstone Care Establishment.
+                </p>
+
+                <ol type="1">
+                    <li>
+                        <p>
+                            Name and address of the <b>@Model.FacilityNameAddress</b> Allopathic Private Capstone care Establishment.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Reasons for rejection of application for <b>@Model.ApplicationType</b> of registration .
+                            <br />
+                            <b style="padding-left: 20px;">@Model.ReasonsOfRejection</b>
+                        </p>
+                    </li>
+                </ol>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-3 col-md-12">
+                <div style="text-align:center;">
+                    @{
+                    var x = Model.AppropriateAuthority.Split(';');
+                    foreach (var item in x)
+                    {
+                            <div>
+                                @item
+                            </div>
+                    }
+                    }
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="row">
+    <div class="col-md-12" style="text-align:center;">
+        <input type="button" id="btnClosePreview" value="Close" data-dismiss="modal" class="btn btn-default" />
+        <input type="button" id="btnPrintRejection" value="Print" class="btn btn-primary" />
+    </div>
+</div>
+
+<script>
+    $('#btnPrintRejection').on('click', function (e) {
+        //alert('This function is under working');
+        printDiv();
+    });
+    function printDiv() {
+
+        var divToPrint = document.getElementById('divPrint');
+
+        var newWin = window.open('', 'Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function () { newWin.close(); }, 10);
+
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        var d = new Date();
+
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+
+        var getdate = (day < 10 ? '0' : '') + day + '/' +
+            (month < 10 ? '0' : '') + month + '/' + d.getFullYear();
+        $('#currentDate').text(getdate);
+    });
+
+</script>

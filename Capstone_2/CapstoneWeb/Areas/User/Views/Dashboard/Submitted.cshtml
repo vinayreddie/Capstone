@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "Submitted";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Applications Submitted
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">Applications Submitted</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Applications Submitted</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblSubmittedApplications" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sl.No</th>
+                                <th>Application Number</th>
+                                <th>Service Type</th>
+                                <th>Application Type</th>
+                                <th>Created On</th>
+                                <th>Submitted On</th>
+                                <th>Ack</th>
+                                <th>Temp.Cert.</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(function () {
+        $("#tblSubmittedApplications").DataTable();
+        GetSubmittedApplications();
+    });
+
+    function GetSubmittedApplications() {
+       
+        var url = '@Url.Action("GetSubmittedApplications", "Dashboard", new { Area = "User" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindDetails(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetSubmittedApplications in User, Request Failed: " + err);
+            });
+    }
+
+    function BindDetails(json) {
+       
+        var table = $('#tblSubmittedApplications').DataTable();
+
+        // Clear all existing rows
+        table.clear().draw();
+
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+
+            debugger;
+            var ACKLink;
+    var TempCertificateLink;
+            if (json[i].HasACK != undefined && json[i].HasACK==1)
+                ACKLink = '<input type="button" value="Print" onclick="GetPCPNDTAck(' + json[i].Id + ', \''+json[i].TableName+'\' )" />';  
+            else
+                ACKLink = 'Need approval';
+                //ACKLink = '<input type="button" value="Print" onclick="GetAPMCEAck(' + json[i].Id + ')" />';
+
+        if (json[i].StatusId != undefined && json[i].StatusId == 1 && json[i].CurrentDesignationId == 7)
+                TempCertificateLink = '<input type="button" value="Print" onclick="GenerateTemparoryCertificate(' + json[i].TransactionId + ', \''+json[i].TableName+'\' )" />'; 
+        else
+         TempCertificateLink = '-';
+
+         table.row.add([
+        (i + 1),
+        json[i].ApplicationNumber,
+        json[i].TableName,
+        json[i].ServiceName,
+        json[i].CreatedOn,
+        json[i].LastModifiedOn,
+        ACKLink,
+        TempCertificateLink,
+        '<input type="button" value="View" onclick="ViewApplication('+ json[i].TransactionId +', \''+json[i].TableName+'\')" />',
+        '<input type="button" value="Track" onclick="ViewTrackApplication(' + json[i].TransactionId +', \''+json[i].TableName+'\')" />'
+            ]);
+        }
+
+        table.draw();
+    }
+
+    function ViewApplication(TransactionId, TransactionType) {
+        var viewlink = '@Url.Action("ApplicationView", "License", new { Area = "User", TransactionId = "_transactionId", TransactionType = "_transactionType" })';
+        viewlink = viewlink.replace("_transactionId", TransactionId).replace("&amp;", "&").replace("_transactionType", TransactionType);
+        window.location.href = viewlink;
+    }
+
+    function ViewTrackApplication(TransactionId, TransactionType) {
+        debugger;
+        var viewlink = '@Url.Action("TransactionTrackList", "Test", new { Area = "User", TransactionId = "_transactionId", TransactionType="_transactionType"})';
+        viewlink = viewlink.replace("_transactionId", TransactionId).replace("&amp;", "&").replace("_transactionType", TransactionType);
+       
+       
+        window.location.href = viewlink;
+    }
+
+
+    function GetPCPNDTAck(id, TableName) {
+        debugger;
+        var url = '@Url.Action("GetAcknowledge", "Application", new { Area = "User" })';
+        var data = {
+            applicationId: id,
+            TableName: TableName
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "Acknowledgment Certificate";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            //notificationModel.ShowNonActionButton = true;
+            //notificationModel.NonActionButtonText = 'Close';
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetAcknowledge Request Failed: " + err);
+        });
+    }
+   
+
+    function GetAPMCEAck(id) {
+        var url = '@Url.Action("GetAcknowledge", "Application", new { Area = "User" })';
+        var data = {
+            applicationId: id
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "Acknowledgment Certificate";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            notificationModel.ShowNonActionButton = true;
+            notificationModel.NonActionButtonText = 'Close';
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetAcknowledge Request Failed: " + err);
+        });
+    }
+
+    function GenerateTemparoryCertificate(Id, TableName) {
+        debugger;
+        var url = '@Url.Action("GenerateTemparoryCertificate", "Application", new { Area = "User" })';
+        var data = {
+            TransactionId: Id,
+            TableName: TableName
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "Temparory Certificate";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GenerateTemparoryCertificate Request Failed: " + err);
+        });
+    }
+
+</script>
+

@@ -1,0 +1,2384 @@
+﻿
+@model Capstone.Models.APMCEAmendmentModel
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabRegistration" data-toggle="tab">Registration</a></li>
+                <li><a href="#tabCorreespondingAddress" data-toggle="tab">Address</a></li>
+                <li><a href="#tabTrust" data-toggle="tab">Trust Details</a></li>
+                <li><a href="#tabAccommodation" data-toggle="tab">Accommodation Details</a></li>
+                <li><a href="#tabEstablishment" data-toggle="tab">Establishment Details</a></li>
+                <li><a href="#tabServices" data-toggle="tab">Services Offered</a></li>
+                <li><a href="#tabStaffDetails" data-toggle="tab">Staff Details</a></li>
+                <li><a href="#tabInfraStructure" data-toggle="tab">Equipment &nbsp; Furniture Details</a></li>
+                <li><a href="#tabFacilitiesAvailable" data-toggle="tab">Facilities Available</a></li>
+                <li id="li_LicenseCancel"><a href="#tabLicenseCancel" data-toggle="tab">License Cancel</a></li>
+
+            </ul>
+            <div class="tab-content">
+
+                <div class="tab-pane active" id="tabRegistration">
+                    <form id="formRegistration">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                                Whether Registration is sought for Main Facility or branches also, if so details (separate application shall be submitted for each branch)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2" style="font-size: larger;">
+                                @Html.LabelFor(model => model.APMCEModel.RegistrationModel.FacilityType, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3" style="font-size: large;">
+                                <b> @Html.DisplayFor(model => model.APMCEModel.RegistrationModel.FacilityType)</b>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.RegistrationModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.APMCEModel.RegistrationModel.Name)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.RegistrationModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.APMCEModel.RegistrationModel.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.RegistrationModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.APMCEModel.RegistrationModel.MandalName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.RegistrationModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.APMCEModel.RegistrationModel.VillageName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.RegistrationModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.APMCEModel.RegistrationModel.HouseNumber)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.RegistrationModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.APMCEModel.RegistrationModel.StreetName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.RegistrationModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.APMCEModel.RegistrationModel.PINCode)
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+
+                <div class="tab-pane" id="tabCorreespondingAddress">
+                    @if (Model.CorrespondentAmendment == true)
+                    {
+                        <form id="formCorrespondingAddress">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.Name, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.HiddenFor(model => model.APMCEModel.CorrespondingAddress.Id)
+                                    @Html.EditorFor(model => model.APMCEModel.CorrespondingAddress.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.APMCEModel.CorrespondingAddress.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.APMCEModel.CorrespondingAddress.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                 new { @class = "form-control select2", @style = "width:100%;" })
+                                    @*@Html.TextBoxFor(model => model.APMCEModel.CorrespondingAddress.DistrictId, new { @class = "form-control" })*@
+
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.APMCEModel.CorrespondingAddress.MandalId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+     new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.APMCEModel.CorrespondingAddress.MandalId, "", new { @class = "text-danger" })
+                                    @*@Html.HiddenFor(model => model.APMCEModel.CorrespondingAddress.MandalId, new { })
+                                        @Html.TextBoxFor(model => model.APMCEModel.CorrespondingAddress.MandalName, new { @class = "form-control" })*@
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.VillageId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.APMCEModel.CorrespondingAddress.VillageId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+     new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.APMCEModel.CorrespondingAddress.VillageId, "", new { @class = "text-danger" })
+
+
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.APMCEModel.CorrespondingAddress.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.APMCEModel.CorrespondingAddress.HouseNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.APMCEModel.CorrespondingAddress.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.APMCEModel.CorrespondingAddress.StreetName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.PINCode, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.APMCEModel.CorrespondingAddress.PINCode, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.APMCEModel.CorrespondingAddress.PINCode, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-8 text-right">
+                                    <input type="button" value="Clear" id="btnCorrespondingClear" class="btn btn-default" />
+                                    <input type="button" value="Save" id="btnCorrespondingSave" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    else if (Model.CorrespondentAmendment == false)
+                    {
+
+                        <form id="formCorrespondingAddress">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.Name, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.CorrespondingAddress.Name)
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.CorrespondingAddress.DistrictName)
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.CorrespondingAddress.MandalName)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.VillageId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.CorrespondingAddress.VillageName)
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.CorrespondingAddress.HouseNumber)
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.CorrespondingAddress.StreetName)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.CorrespondingAddress.PINCode, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.CorrespondingAddress.PINCode)
+                                </div>
+                            </div>
+                        </form>
+
+                    }
+
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabAccommodation" class="tab-pane">
+                    @if (Model.AccomodationAmendment == true)
+                    {
+
+                    <form id="formAccommodation">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.APMCEModel.Accommadation.EstablishementType, "Establishment Owned by", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.APMCEModel.Accommadation.Id)
+                                @Html.DropDownListFor(model => model.APMCEModel.Accommadation.EstablishementType,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Own", Value = "Own" },
+                                    new SelectListItem {Text = "Rent", Value = "Rent" },
+                                    new SelectListItem {Text = "Lease", Value = "Lease" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.APMCEModel.Accommadation.EstablishementType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.Accommadation.FromDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.APMCEModel.Accommadation.FromDate, new { htmlAttributes = new { @class = "form-control datepicker", @Value = Model.APMCEModel.Accommadation.FromDate.ToString("dd/MM/yyyy") } })
+                                @*@Html.ValidationMessageFor(model => model.APMCEModel.Accommadation.FromDate, "", new { @class = "text-danger" })*@
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.Accommadation.ToDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.APMCEModel.Accommadation.ToDate, new { htmlAttributes = new { @class = "form-control datepicker", @Value = Model.APMCEModel.Accommadation.ToDate.ToString("dd/MM/yyyy") } })
+                                @*@Html.ValidationMessageFor(model => model.APMCEModel.Accommadation.ToDate, "", new { @class = "text-danger" })*@
+                            </div>
+                        </div>
+                        <div class="row" id="divAccommodationUpload">
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.APMCEModel.Accommadation.UploadedFilePath, new { @class = "control-label", @id = "lblAccommodationLabel" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.APMCEModel.Accommadation.UploadedFilePath, new { @class = "", type = "file", @style = "margin-left:-56%;" })
+                                @Html.ValidationMessageFor(model => model.APMCEModel.Accommadation.UploadedFilePath, "", new { @class = "text-danger" })
+
+                                @if (!string.IsNullOrEmpty(Model.APMCEModel.Accommadation.UploadedFilePath))
+                                    {
+                                        var layoutindex = Model.APMCEModel.Accommadation.UploadedFilePath.LastIndexOf("/");
+                                        var layoutfileName = Model.APMCEModel.Accommadation.UploadedFilePath.Substring(layoutindex + 1);
+                                @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+ new { Area = "", path = Model.APMCEModel.Accommadation.UploadedFilePath, downloadName = layoutfileName }, null);
+                                    }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" id="btnAccommodationClear" value="Clear" class="btn btn-default" />
+                                <input type="button" id="btnAccommodationSave" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                    }
+                    else if (Model.AccomodationAmendment == false)
+                    {
+
+                    <form id="formAccommodation">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.APMCEModel.Accommadation.EstablishmentTypeName, "Establishment Owned by", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.APMCEModel.Accommadation.Id)
+                                @Html.DisplayFor(model => model.APMCEModel.Accommadation.EstablishmentTypeName, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.Accommadation.FromDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Model.APMCEModel.Accommadation.FromDate.ToString("dd-MM-yyyy")
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.Accommadation.ToDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Model.APMCEModel.Accommadation.ToDate.ToString("dd-MM-yyyy")
+
+                            </div>
+                        </div>
+                        <div class="row" id="divAccommodationUpload">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.APMCEModel.Accommadation.UploadedFilePath, new { @class = "control-label", @id = "lblAccommodationLabel" })
+                            </div>
+                            <div class="col-md-3">
+                                @*@Html.DisplayFor(model => model.APMCEModel.Accommadation.UploadedFilePath, new { @class = "", type = "file" })*@
+                                @if (Model.APMCEModel.Accommadation.UploadedFilePath != null)
+                                    {
+                                        var addressindex = Model.APMCEModel.Accommadation.UploadedFilePath.LastIndexOf("/");
+                                        var addressfileName = Model.APMCEModel.Accommadation.UploadedFilePath.Substring(addressindex + 1);
+                                @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                         new { Area = "", path = Model.APMCEModel.Accommadation.UploadedFilePath, downloadName = addressfileName }, null);
+                                    }
+
+                            </div>
+                        </div>
+
+                    </form>
+
+                    }
+                </div>
+                <!-- /.tab-pane -->
+
+                <div class="tab-pane" id="tabTrust">
+                    <form id="formTrust">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.TrustModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.APMCEModel.TrustModel.Name)
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.APMCEModel.TrustModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.APMCEModel.TrustModel.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.TrustModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.APMCEModel.TrustModel.MandalName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.TrustModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.APMCEModel.TrustModel.VillageName)
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.APMCEModel.TrustModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.APMCEModel.TrustModel.HouseNumber)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.TrustModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.APMCEModel.TrustModel.StreetName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.TrustModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.APMCEModel.TrustModel.PINCode)
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.APMCEModel.TrustModel.EstablishedDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Model.APMCEModel.TrustModel.EstablishedDate.ToString("dd-MM-yyyy")
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabInfraStructure">
+                    @if (Model.EquipmentFurnitureAmendment == true)
+                    {
+                    <form id="formInfraStructure">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.InfraStructure.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.APMCEModel.InfraStructure.Id)
+                                @Html.EditorFor(model => model.APMCEModel.InfraStructure.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.APMCEModel.InfraStructure.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.InfraStructure.Quantity, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.APMCEModel.InfraStructure.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.APMCEModel.InfraStructure.Quantity, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.InfraStructure.ItemModel, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.APMCEModel.InfraStructure.ItemModel, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.APMCEModel.InfraStructure.ItemModel, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.InfraStructure.Remarks, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.APMCEModel.InfraStructure.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.APMCEModel.InfraStructure.Remarks, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.APMCEModel.InfraStructure.UploadedFilePath, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.APMCEModel.InfraStructure.UploadedFilePath, new { @type = "file" })
+                                @Html.ValidationMessageFor(model => model.APMCEModel.InfraStructure.UploadedFilePath, "", new { @class = "text-danger" })
+                                @if (!string.IsNullOrEmpty(Model.APMCEModel.InfraStructure.UploadedFilePath))
+                                    {
+                                        var layoutindex = Model.APMCEModel.InfraStructure.UploadedFilePath.LastIndexOf("/");
+                                        var layoutfileName = Model.APMCEModel.InfraStructure.UploadedFilePath.Substring(layoutindex + 1);
+                                @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+ new { Area = "", path = Model.APMCEModel.InfraStructure.UploadedFilePath, downloadName = layoutfileName }, null);
+                                    }
+                            </div>
+                            <div class="col-md-1 text-right">
+                                <input type="button" value="Add" id="btnAddInfraStructure" class="btn btn-default" />
+                            </div>
+
+                        </div>
+
+                    </form>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Items List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblInfraStructure" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Quantity</th>
+                                                <th>Model</th>
+                                                <th>Remarks</th>
+                                                <th>Uploaded File</th>
+                                                <th>Status</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.APMCEModel.InfraStructureList != null)
+                                                {
+                                                    for (int i = 0; i < Model.APMCEModel.InfraStructureList.Count; i++)
+                                                    {
+                                            <tr>
+                                                <td> @Convert.ToInt32(@i + 1)</td>
+                                                <td>@Model.APMCEModel.InfraStructureList[i].Name</td>
+                                                <td>@Model.APMCEModel.InfraStructureList[i].Quantity</td>
+                                                <td>@Model.APMCEModel.InfraStructureList[i].ItemModel</td>
+                                                <td>@Model.APMCEModel.InfraStructureList[i].Remarks</td>
+                                                <td>
+                                                    @if (Model.APMCEModel.InfraStructureList[i].UploadedFilePath != null)
+                                                                {
+                                                                    var addressindex = Model.APMCEModel.InfraStructureList[i].UploadedFilePath.LastIndexOf("/");
+                                                                    var addressfileName = Model.APMCEModel.InfraStructureList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                        @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.APMCEModel.InfraStructureList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                                }
+                                                </td>
+                                                @if (@Model.APMCEModel.InfraStructureList[i].Id != 0)
+                                                            {
+                                                    <td>Existing</td>
+                                                    <td><input type='button' value='Delete' onclick='DeleteInfraStructure(@i);' /></td>
+                                                            }
+                                                            else if (@Model.APMCEModel.InfraStructureList[i].Id == 0)
+                                                            {
+                                                    <td>New</td>
+                                                    <td><input type='button' value='Delete' onclick='DeleteInfraStructure(@i);' /></td>
+                                                            }
+                                                            else if (@Model.APMCEModel.InfraStructureList[i].Id != 0 && @Model.APMCEModel.InfraStructureList[i].IsDeleted == true)
+                                                            {
+                                                    <td>Deleted</td>
+                                                            }
+                                                    @*<td><input type='button' value='Delete' onclick='DeleteInfraStructure(@i);' /></td>*@
+                                                </tr>
+                                                    }
+                                                }
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="button" value="Clear" id="btnInfraStructureClear" class="btn btn-default" />
+                            <input type="button" value="Save" id="btnInfraStructureSave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                    }
+                    else if (Model.EquipmentFurnitureAmendment == false)
+                    {
+                    <form id="formInfraStructure"></form>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Items List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblInfraStructure" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Quantity</th>
+                                                <th>Model</th>
+                                                <th>Remarks</th>
+                                                <th>Uploaded File</th>
+
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.APMCEModel.InfraStructureList != null)
+                                                {
+                                                    for (int i = 0; i < Model.APMCEModel.InfraStructureList.Count; i++)
+                                                    {
+                                            <tr>
+                                                <td> @Convert.ToInt32(@i + 1)</td>
+                                                <td>@Model.APMCEModel.InfraStructureList[i].Name</td>
+                                                <td>@Model.APMCEModel.InfraStructureList[i].Quantity</td>
+                                                <td>@Model.APMCEModel.InfraStructureList[i].ItemModel</td>
+                                                <td>@Model.APMCEModel.InfraStructureList[i].Remarks</td>
+                                                <td>
+                                                    @if (Model.APMCEModel.InfraStructureList[i].UploadedFilePath != null)
+                                                                {
+                                                                    var addressindex = Model.APMCEModel.InfraStructureList[i].UploadedFilePath.LastIndexOf("/");
+                                                                    var addressfileName = Model.APMCEModel.InfraStructureList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                        @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.APMCEModel.InfraStructureList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                                }
+                                                </td>
+
+
+
+                                            </tr>
+                                                    }
+                                                }
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                    }
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabEstablishment" class="tab-pane">
+                    <form id="formEstablishment">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-2">
+                                @Html.LabelFor(model => model.APMCEModel.EstablishmentModel.EstablishmentDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Model.APMCEModel.EstablishmentModel.EstablishmentDate.ToString("dd-MM-yyyy")
+                                @*@Html.HiddenFor(model => model.EstablishmentModel.Id)
+                                    @Html.DisplayFor(model => model.EstablishmentModel.EstablishmentDate, new { htmlAttributes = new { @class = "form-control datepicker" } })*@
+
+                            </div>
+                        </div>
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Total Area of Establishment</legend>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.APMCEModel.EstablishmentModel.OpenArea, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @*@Model.EstablishmentModel.EstablishmentDate.ToString("dd-MM-yyyy")*@
+                                    @Html.DisplayFor(model => model.APMCEModel.EstablishmentModel.OpenArea, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-3">
+                                    @*@Html.DisplayFor(model => model.APMCEModel.EstablishmentModel.OpenAreaFilePath, new { @class = "", type = "file" })*@
+                                    @if (Model.APMCEModel.EstablishmentModel.OpenAreaFilePath != null && Model.APMCEModel.EstablishmentModel.OpenAreaFilePath.ToString() != "")
+                                    {
+                                        var addressindex = Model.APMCEModel.EstablishmentModel.OpenAreaFilePath.LastIndexOf("/");
+                                        var addressfileName = Model.APMCEModel.EstablishmentModel.OpenAreaFilePath.Substring(addressindex + 1);
+                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                         new { Area = "", path = Model.APMCEModel.EstablishmentModel.OpenAreaFilePath, downloadName = addressfileName }, null);
+                                    }
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.APMCEModel.EstablishmentModel.ConstructionArea, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.APMCEModel.EstablishmentModel.ConstructionArea, new { htmlAttributes = new { @class = "form-control" } })
+
+                                </div>
+                                <div class="col-md-7">
+                                    @*@Html.DisplayFor(model => model.EstablishmentModel.ConstructionAreaFilePath, new { @class = "", type = "file" })*@
+                                    @if (Model.APMCEModel.EstablishmentModel.ConstructionAreaFilePath != null && Model.APMCEModel.EstablishmentModel.ConstructionAreaFilePath.ToString() != "")
+                                    {
+                                        var addressindex = Model.APMCEModel.EstablishmentModel.ConstructionAreaFilePath.LastIndexOf("/");
+                                        var addressfileName = Model.APMCEModel.EstablishmentModel.ConstructionAreaFilePath.Substring(addressindex + 1);
+                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                         new { Area = "", path = Model.APMCEModel.EstablishmentModel.ConstructionAreaFilePath, downloadName = addressfileName }, null);
+                                    }
+                                </div>
+                            </div>
+                        </fieldset>
+
+                    </form>
+                </div>
+
+
+                <div id="tabServices" class="tab-pane">
+                    @if (Model.ServicesAmendment == true)
+                    {
+                    <form id="formServices">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.APMCEModel.OfferedServices.BedStrength, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.HiddenFor(model => model.APMCEModel.OfferedServices.Id)
+                                @Html.EditorFor(model => model.APMCEModel.OfferedServices.BedStrength, new { htmlAttributes = new { @class = "form-control numeric" } })
+                                @Html.ValidationMessageFor(model => model.APMCEModel.OfferedServices.BedStrength, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.APMCEModel.OfferedServices.OfferedServices, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.APMCEModel.OfferedServices.OfferedServices,
+                                new SelectList(ViewBag.OfferedServices, "Id", "Name"),
+                                new { @class = "form-control select2", @multiple = "multiple", @style = "width:100%;", data_placeholder = "Select a Service" })
+                                @Html.ValidationMessageFor(model => model.APMCEModel.OfferedServices.OfferedServices, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" id="btnOfferedServicesClear" value="Clear" class="btn btn-default" />
+                                <input type="button" id="btnOfferedServicesSave" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                    }
+                    else if (Model.ServicesAmendment == false)
+                    {
+                    <form id="formServices">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.APMCEModel.OfferedServices.BedStrength, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.HiddenFor(model => model.APMCEModel.OfferedServices.Id)
+                                @Html.DisplayFor(model => model.APMCEModel.OfferedServices.BedStrength, new { htmlAttributes = new { @class = "form-control numeric" } })
+
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.APMCEModel.OfferedServices.OfferedServices, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-6">
+
+                                @Html.DisplayFor(model => model.APMCEModel.OfferedServices.OfferedServices, new { htmlAttributes = new { @class = "form-control numeric" } })
+                            </div>
+                        </div>
+                    </form>
+                    }
+                </div>
+
+                <div id="tabStaffDetails" class="tab-pane">
+                    @if (Model.EmployeeAemndment == true)
+                    {
+                        <form id="formStaffDetails">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.APMCEModel.StaffDetails.StaffDesignation, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.HiddenFor(model => model.APMCEModel.StaffDetails.Id)
+                                    @Html.DropDownListFor(model => model.APMCEModel.StaffDetails.StaffDesignation,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Doctors", Value = "Doctors" },
+                                    new SelectListItem {Text = "Nursing Staff", Value = "Nursing Staff" },
+                                    new SelectListItem {Text = "Para Capstone Staff", Value = "Para Capstone Staff" },
+                                    new SelectListItem {Text = "Supporting Staff", Value = "Supporting Staff" },
+                                    new SelectListItem {Text = "Specialists", Value = "Specialists" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.APMCEModel.StaffDetails.StaffDesignation, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="nonsupportingstaff supportingstaff specialists">
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.APMCEModel.StaffDetails.Name, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.APMCEModel.StaffDetails.Name, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.APMCEModel.StaffDetails.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="nonsupportingstaff specialists">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.APMCEModel.StaffDetails.RegistrationNumber, new { @class = "control-label", @id = "lblStaffRegiNumber" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.APMCEModel.StaffDetails.RegistrationNumber, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.APMCEModel.StaffDetails.RegistrationNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="supportingstaff">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.APMCEModel.StaffDetails.PhoneNumber, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.APMCEModel.StaffDetails.PhoneNumber, new { htmlAttributes = new { @class = "form-control numeric" } })
+                                        @Html.ValidationMessageFor(model => model.APMCEModel.StaffDetails.PhoneNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="specialists">
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.APMCEModel.StaffDetails.Speciality, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.DropDownListFor(model => model.APMCEModel.StaffDetails.Speciality,//SpecialtyId,
+                                                                                                                // new List<SelectListItem>() { new SelectListItem() { Text = "Select Speciality", Value = "", Selected = true } },
+                               new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select Speciality", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Cardiologist", Value = "Cardiologist" },
+                                    new SelectListItem {Text = "Dermatologist", Value = "Dermatologist" },
+                                    new SelectListItem {Text = "Gastroenterologist", Value = "Gastroenterologist" },
+                                    new SelectListItem {Text = "Gynecologist", Value = "Gynecologist" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                        @Html.ValidationMessageFor(model => model.APMCEModel.StaffDetails.Speciality, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="supportingstaff">
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.APMCEModel.StaffDetails.Email, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.APMCEModel.StaffDetails.Email, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.APMCEModel.StaffDetails.Email, "", new { @class = "text-danger" })
+                                        
+                                    </div>
+                                    @*<div class="col-md-1 text-right " id="btnhide" >
+                                        <input type="button" value="Add" id="btnAddStaffDetails" class="btn btn-default" />
+                                    </div>*@
+                                </div>
+                                
+
+                            </div>
+
+                            <div class="row nonsupportingstaff specialists">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.APMCEModel.StaffDetails.UploadedFilePath, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.APMCEModel.StaffDetails.UploadedFilePath, new { @type = "file" })
+
+                                    @if (!string.IsNullOrEmpty(Model.APMCEModel.StaffDetails.UploadedFilePath))
+                                    {
+                                        var addressindex = Model.APMCEModel.StaffDetails.UploadedFilePath.LastIndexOf("/");
+                                        var addressfileName = Model.APMCEModel.StaffDetails.UploadedFilePath.Substring(addressindex + 1);
+                                        @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.APMCEModel.StaffDetails.UploadedFilePath, downloadName = addressfileName },
+                            null
+                            );
+                                    }
+
+                                    @Html.ValidationMessageFor(model => model.APMCEModel.StaffDetails.UploadedFilePath, "", new { @class = "text-danger" })
+
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-1  nonsupportingstaff supportingstaff specialists">
+                                <input type="button" value="Add" id="btnAddStaffDetails" class="btn btn-default" />
+                            </div>
+                        </form>
+
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Items List</legend>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <div class="box-body table-responsive no-padding">
+                                            <table id="tblStaffdetails" class="table table-hover">
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Designation</th>
+                                                    <th>Name</th>
+                                                    <th>RegistrationNo</th>
+                                                    <th>Uploaded File</th>
+                                                    <th>Email</th>
+                                                    <th>Mobile</th>
+                                                    <th>Speciality</th>
+                                                    <th>Status</th>
+                                                    <th></th>
+                                                </tr>
+                                                @if (Model.APMCEModel.StaffDetailsList != null)
+                                                {
+                                                    for (int i = 0; i < Model.APMCEModel.StaffDetailsList.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td> @Convert.ToInt32(@i + 1)</td>
+                                                            <td>@Model.APMCEModel.StaffDetailsList[i].StaffDesignation</td>
+                                                            <td>@Model.APMCEModel.StaffDetailsList[i].Name</td>
+                                                            <td>@Model.APMCEModel.StaffDetailsList[i].RegistrationNumber</td>
+                                                            <td>
+                                                                @if (Model.APMCEModel.StaffDetailsList[i].UploadedFilePath != null)
+                                                                {
+                                                                    var addressindex = Model.APMCEModel.StaffDetailsList[i].UploadedFilePath.LastIndexOf("/");
+                                                                    var addressfileName = Model.APMCEModel.StaffDetailsList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.APMCEModel.StaffDetailsList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                                }
+                                                            </td>
+                                                            <td>@Model.APMCEModel.StaffDetailsList[i].Email</td>
+                                                            <td>@Model.APMCEModel.StaffDetailsList[i].PhoneNumber</td>
+                                                            <td>@Model.APMCEModel.StaffDetailsList[i].Speciality</td>
+                                                           
+
+
+                                                            @if (@Model.APMCEModel.StaffDetailsList[i].Id != 0)
+                                                            {
+                                                                <td>Existing</td>
+                                                                <td><input type='button' value='Delete' onclick='DeleteStaffDetails(@i);' /></td>
+                                                            }
+                                                            else if (@Model.APMCEModel.StaffDetailsList[i].Id == 0)
+                                                            {
+                                                                <td>New</td>
+                                                                <td><input type='button' value='Delete' onclick='DeleteStaffDetails(@i);' /></td>
+                                                            }
+                                                            else if (@Model.APMCEModel.StaffDetailsList[i].Id != 0 && @Model.APMCEModel.StaffDetailsList[i].IsDeleted == true)
+                                                            {
+                                                                <td>Deleted</td>
+
+                                                            }
+                                                        </tr>
+                                                    }
+                                                }
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" id="btnStaffDetailsClear" value="Clear" class="btn btn-default" />
+                                <input type="button" id="btnStaffDetailsSave" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    }
+                    else if (Model.EmployeeAemndment == false)
+                    {
+                        /*
+                        <form id="formStaffDetails">
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-3">
+                                    @Html.LabelFor(model => model.APMCEModel.StaffDetails.StaffDesignation, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.HiddenFor(model => model.APMCEModel.StaffDetails.StaffDesignation)
+                                    @Html.DisplayFor(model => model.APMCEModel.StaffDetails.StaffDesignation, new { htmlAttributes = new { @class = "form-control"} })
+
+                                </div>
+                            </div>
+                            <div class="row" id="supportingstaffName" >
+                                <div class="col-md-offset-2 col-md-3">
+                                    @Html.LabelFor(model => model.APMCEModel.StaffDetails.Name, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.StaffDetails.Name, new { htmlAttributes = new { @class = "form-control " } })
+
+                                </div>
+                            </div>
+                            <div class="row" id="supportingstaffRegistrationNumber" >
+                                <div class="col-md-offset-2 col-md-3">
+                                    @Html.LabelFor(model => model.APMCEModel.StaffDetails.RegistrationNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.StaffDetails.RegistrationNumber, new { htmlAttributes = new { @class = "form-control " } })
+
+                                </div>
+                            </div>
+                            <div class="row" id="supportingstaffPhoneNumber" >
+                                <div class="col-md-offset-2 col-md-3">
+                                    @Html.LabelFor(model => model.APMCEModel.StaffDetails.PhoneNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.StaffDetails.PhoneNumber, new { htmlAttributes = new { @class = "form-control numeric" } })
+
+                                </div>
+                            </div>
+                            <div class="row" id="supportingstaffEmail" >
+                                <div class="col-md-offset-2 col-md-3">
+                                    @Html.LabelFor(model => model.APMCEModel.StaffDetails.Email, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.StaffDetails.Email, new { htmlAttributes = new { @class = "form-control numeric" } })
+
+                                </div>
+                            </div>
+                            <div class="row" id="specialists" >
+                                <div class="col-md-offset-2 col-md-3">
+                                    @Html.LabelFor(model => model.APMCEModel.StaffDetails.Speciality, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.StaffDetails.Speciality, new { htmlAttributes = new { @class = "form-control numeric" } })
+
+                                </div>
+                            </div>
+                            <div class="row" id="nonsupportingstaffUploadedFilePath" >
+                                <div class="col-md-offset-2 col-md-3">
+                                    @Html.LabelFor(model => model.APMCEModel.StaffDetails.UploadedFilePath, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-7">
+                                    @if (Model.APMCEModel.StaffDetails.UploadedFilePath != null)
+                                    {
+                                        var addressindex = Model.APMCEModel.StaffDetails.UploadedFilePath.LastIndexOf("/");
+                                        var addressfileName = Model.APMCEModel.StaffDetails.UploadedFilePath.Substring(addressindex + 1);
+                                        @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                         new { Area = "", path = Model.APMCEModel.StaffDetails.UploadedFilePath, downloadName = addressfileName }, null);
+                                    }
+                                    @*@Html.DisplayFor(model => model.StaffDetails.UploadedFilePath, new { @type = "file" })*@
+                                </div>
+                            </div>
+
+                        </form>
+                        */
+
+
+                        <form id="formStaffDetails"></form>
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Items List</legend>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <div class="box-body table-responsive no-padding">
+                                            <table id="tblStaffdetails" class="table table-hover">
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Designation</th>
+                                                    <th>Name</th>
+                                                    <th>RegistrationNo</th>
+                                                    <th>Uploaded File</th>
+                                                    <th>Email</th>
+                                                    <th>Mobile</th>
+                                                    <th>Speciality</th>
+                                                    <th></th>
+                                                </tr>
+                                                @if (Model.APMCEModel.StaffDetailsList != null)
+                                                {
+                                                    for (int i = 0; i < Model.APMCEModel.StaffDetailsList.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td> @Convert.ToInt32(@i + 1)</td>
+                                                            <td>@Model.APMCEModel.StaffDetailsList[i].StaffDesignation</td>
+                                                            <td>@Model.APMCEModel.StaffDetailsList[i].Name</td>
+                                                            <td>@Model.APMCEModel.StaffDetailsList[i].RegistrationNumber</td>
+                                                            <td>
+                                                                @if (Model.APMCEModel.StaffDetailsList[i].UploadedFilePath != null)
+                                                                {
+                                                                    var addressindex = Model.APMCEModel.StaffDetailsList[i].UploadedFilePath.LastIndexOf("/");
+                                                                    var addressfileName = Model.APMCEModel.StaffDetailsList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.APMCEModel.StaffDetailsList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                                }
+                                                            </td>
+                                                            <td>@Model.APMCEModel.StaffDetailsList[i].Email</td>
+                                                            <td>@Model.APMCEModel.StaffDetailsList[i].PhoneNumber</td>
+                                                            <td>@Model.APMCEModel.StaffDetailsList[i].Speciality</td>
+
+                                                            @if (@Model.APMCEModel.StaffDetailsList[i].Id != 0)
+                                                            {
+                                                                <td>Existing</td>
+                                                                    <td><input type='button' value='Delete' onclick='DeleteInfraStructure(@i);' /></td>
+                                                            }
+                                                            else if (@Model.APMCEModel.StaffDetailsList[i].Id == 0)
+                                                            {
+                                                                <td>New</td>
+                                                                    <td><input type='button' value='Delete' onclick='DeleteInfraStructure(@i);' /></td>
+                                                            }
+                                                            else if (@Model.APMCEModel.StaffDetailsList[i].Id != 0 && @Model.APMCEModel.StaffDetailsList[i].IsDeleted == true)
+                                                            {
+                                                                <td>Deleted</td>
+                                                            }
+
+                                                            @*<td><input type='button' value='Delete' onclick='DeleteStaffDetails(@i);'/></td>*@
+                                                        </tr>
+
+                                                    }
+                                                }
+
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+                            </div>
+                        </fieldset>
+
+                    }
+                </div>
+
+                <div id="tabFacilitiesAvailable" class="tab-pane">
+                    @if (Model.SpecialtiesAvailableAmendment == true)
+                    {
+                        <form id="formFacilitiesAvailable">
+                            <div class="row">
+                                <div class="col-md-6 text-right">
+                                    @Html.LabelFor(model => model.APMCEModel.FacilitiesAvailableModel.HasLaborRoom, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.RadioButtonFor(model => model.APMCEModel.FacilitiesAvailableModel.HasLaborRoom, "1") Yes
+                                    @Html.RadioButtonFor(model => model.APMCEModel.FacilitiesAvailableModel.HasLaborRoom, "0") No
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 text-right" ">
+                                    @Html.LabelFor(model => model.APMCEModel.FacilitiesAvailableModel.HasOperationTheater, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+
+                                    @Html.RadioButtonFor(model => model.APMCEModel.FacilitiesAvailableModel.HasOperationTheater, "1") Yes
+                                    @Html.RadioButtonFor(model => model.APMCEModel.FacilitiesAvailableModel.HasOperationTheater, "0") No
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 text-right" ">
+                                    @Html.LabelFor(model => model.APMCEModel.FacilitiesAvailableModel.HasDiagnosticFacility, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.RadioButtonFor(model => model.APMCEModel.FacilitiesAvailableModel.HasDiagnosticFacility, "1") Yes
+                                    @Html.RadioButtonFor(model => model.APMCEModel.FacilitiesAvailableModel.HasDiagnosticFacility, "0") No
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1 text-right">
+                                    @Html.CheckBoxFor(model => model.APMCEModel.FacilitiesAvailableModel.HasDeclarationStamp)
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.LabelFor(model => model.APMCEModel.FacilitiesAvailableModel.HasDeclarationStamp, new { @class = "control-label" })
+                                </div>
+                            </div>
+                            <div class="row" id="divDeclarationStampDetails" hidden>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath, new { @class = "", type = "file" })
+                                    @if (!string.IsNullOrEmpty(Model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath))
+                                    {
+                                        var index = Model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath.LastIndexOf("/");
+                                        var fileName = Model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath.Substring(index + 1);
+                                        @Html.ActionLink(fileName, "DownloadFile", "Generic",
+                                                    new { Area = "", path = Model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath, downloadName = fileName },
+                                                    null
+                                                    );
+                                    }
+                                    @Html.ValidationMessageFor(model => model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.APMCEModel.FacilitiesAvailableModel.OtherInformationDescription, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.APMCEModel.FacilitiesAvailableModel.OtherInformationDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.APMCEModel.FacilitiesAvailableModel.OtherInformationDescription, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.APMCEModel.FacilitiesAvailableModel.OtherInformationDocumentPath, new { @class = "", type = "file" })
+                                    @if (!string.IsNullOrEmpty(Model.APMCEModel.FacilitiesAvailableModel.OtherInformationDocumentPath))
+                                    {
+                                        var index = Model.APMCEModel.FacilitiesAvailableModel.OtherInformationDocumentPath.LastIndexOf("/");
+                                        var fileName = Model.APMCEModel.FacilitiesAvailableModel.OtherInformationDocumentPath.Substring(index + 1);
+                                        @Html.ActionLink(fileName, "DownloadFile", "Generic",
+                                                    new { Area = "", path = Model.APMCEModel.FacilitiesAvailableModel.OtherInformationDocumentPath, downloadName = fileName },
+                                                    null
+                                                    );
+                                    }
+                                    @Html.ValidationMessageFor(model => model.APMCEModel.FacilitiesAvailableModel.OtherInformationDocumentPath, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <input type="button" id="btnFacilitiesAvailableClear" value="Clear" class="btn btn-default" />
+                                    <input type="button" id="btnFacilitiesAvailableSave" value="Save" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    else if (Model.SpecialtiesAvailableAmendment == false)
+                    {
+                        <form id="formFacilitiesAvailable">
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-4">
+                                    @Html.LabelFor(model => model.APMCEModel.FacilitiesAvailableModel.HasLaborRoom, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @if (Model.APMCEModel.FacilitiesAvailableModel.HasLaborRoom)
+                                    {<text>Yes</text>}
+                                    else
+                                    {<text>No</text>}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-4">
+                                    @Html.LabelFor(model => model.APMCEModel.FacilitiesAvailableModel.HasOperationTheater, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @if (Model.APMCEModel.FacilitiesAvailableModel.HasOperationTheater)
+                                    {<text>Yes</text>}
+                                    else
+                                    {<text>No</text>}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-4">
+                                    @Html.LabelFor(model => model.APMCEModel.FacilitiesAvailableModel.HasDiagnosticFacility, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1">
+                                    @if (Model.APMCEModel.FacilitiesAvailableModel.HasDiagnosticFacility)
+                                    {<text>Yes</text>}
+                                    else
+                                    {<text>No</text>}
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="row" id="divDeclarationStampDetails">
+
+                                @if (Model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath != null && Model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath != "" && Model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath != string.Empty)
+                                {
+                                    <div class="col-md-5">
+                                        @Html.LabelFor(model => model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath))
+                                        {
+                                            var index = Model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath.LastIndexOf("/");
+                                            var fileName = Model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath.Substring(index + 1);
+                                            @Html.ActionLink(fileName, "DownloadFile", "Generic",
+                                                    new { Area = "", path = Model.APMCEModel.FacilitiesAvailableModel.DeclarationStampFilePath, downloadName = fileName },
+                                                    null
+                                                    );
+                                        }
+
+                                    </div>
+                                }
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.APMCEModel.FacilitiesAvailableModel.OtherInformationDescription, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.FacilitiesAvailableModel.OtherInformationDescription, new { htmlAttributes = new { @class = "form-control" } })
+
+                                </div>
+                                <div class="col-md-6">
+                                    @if (!string.IsNullOrEmpty(Model.APMCEModel.FacilitiesAvailableModel.OtherInformationDocumentPath))
+                                    {
+                                        var index = Model.APMCEModel.FacilitiesAvailableModel.OtherInformationDocumentPath.LastIndexOf("/");
+                                        var fileName = Model.APMCEModel.FacilitiesAvailableModel.OtherInformationDocumentPath.Substring(index + 1);
+                                        @Html.ActionLink(fileName, "DownloadFile", "Generic",
+                                                    new { Area = "", path = Model.APMCEModel.FacilitiesAvailableModel.OtherInformationDocumentPath, downloadName = fileName },
+                                                    null
+                                                    );
+                                    }
+
+                                </div>
+                            </div>
+                        </form>
+                    }
+                </div>
+
+                <div id="tabLicenseCancel" class="tab-pane">
+                    @if (Model.LicenseCancellation == true)
+                    {
+                        {
+                            Html.RenderPartial("_APMCEPermanentCertificate", Model.APMCEModel.APMCECertificateModel);
+
+                        }
+                        <div class="row">
+                            <div class="col-md-offset-9 col-md-3 text-right">
+
+                                <input type="button" value="Cancel My License" id="btnLicenseCancel" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        @*<form id="formLicenseCancel">
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-1">
+                                    @Html.LabelFor(model => model.APMCEModel.cancelLiceseModel.LicenseNo, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.APMCEModel.cancelLiceseModel.LicenseNo, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-1 ">
+                                    <input type="button" value="Search" id="btnLicenseSearch" class="btn btn-default" />
+                                </div>
+                            </div>
+                            @*<div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.PCPNDTModel.cancelLiceseModel.ApplicantName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.PCPNDTModel.cancelLiceseModel.ApplicantName)
+                                </div>
+                                </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-2">
+                                    @Html.LabelFor(model => model.APMCEModel.cancelLiceseModel.LicenseNo, "License No", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+
+                                    @Html.LabelFor(model => model.APMCEModel.cancelLiceseModel.LicenseNo, new { @class = "control-label", @id = "lblLicenseNo" })
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-2">
+                                    @Html.LabelFor(model => model.APMCEModel.cancelLiceseModel.IsseuDate, "Issue Date", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.APMCEModel.cancelLiceseModel.IsseuDate, new { @class = "control-label", @id = "lblIsseuDate" })
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-2">
+                                    @Html.LabelFor(model => model.APMCEModel.cancelLiceseModel.ExpireDate, "Expire Date", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.APMCEModel.cancelLiceseModel.ExpireDate, new { @class = "control-label", @id = "lblExpireDate" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-3 text-right">
+
+                                    <input type="button" value="Cancel My License" id="btnLicenseCancel" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>*@
+                    }
+                    else if (Model.LicenseCancellation == false)
+                    {
+                        <form id="formLicenseCancel">
+
+
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-2">
+                                    @Html.LabelFor(model => model.APMCEModel.cancelLiceseModel.LicenseNo, "License No", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+
+                                    @Html.DisplayFor(model => model.APMCEModel.cancelLiceseModel.LicenseNo, new { @class = "control-label", @id = "lblLicenseNo" })
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-2">
+                                    @Html.LabelFor(model => model.APMCEModel.cancelLiceseModel.IsseuDate, "Issue Date", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.cancelLiceseModel.IsseuDate, "{0:yyyy-MM-dd}", new { @class = "control-label", @id = "lblIsseuDate" })
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-2">
+                                    @Html.LabelFor(model => model.APMCEModel.cancelLiceseModel.ExpireDate, "Expire Date", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.APMCEModel.cancelLiceseModel.ExpireDate, "{0:yyyy-MM-dd}", new { @class = "control-label", @id = "lblExpireDate" })
+                                </div>
+                            </div>
+
+                        </form>
+                    }
+                </div>
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>
+
+
+<script>
+    $(function () {
+        debugger;
+        $('.nonsupportingstaff').hide();
+        $('.supportingstaff').hide();
+        $('.specialists').hide();
+
+        $("#lblLicenseNo").text('');
+        $('#lblIsseuDate').text('');
+        $('#lblExpireDate').text('');
+
+        //  $('#supportingstaffName').hide();
+        //  $('#supportingstaffRegistrationNumber').hide();
+        //  $('#nonsupportingstaffUploadedFilePath').hide();
+        //  $('#supportingstaffPhoneNumber').hide();
+        //  $('#supportingstaffEmail').hide();
+        // $('#specialists').hide();
+        // $('#nonsupportingstaffUploadedFilePath').hide();
+
+
+            BindCorreespondingAddressData();
+            BindOfferedByServices();
+            BindAccomdationData();
+            BindStaffData();
+            BindFurnitureData();
+            BindFacilitiesAvailableData();
+
+        // Radio Buttons Binding with previous data
+        var HasLaborRoom = $('#APMCEModel_FacilitiesAvailableModel_HasLaborRoom').val();
+        if(HasLaborRoom==1)
+        {
+            $('input[name="APMCEModel.FacilitiesAvailableModel.HasLaborRoom"][value="' + 1 + '"]').iCheck('check');
+        }
+        else
+        {
+            $('input[name="APMCEModel.FacilitiesAvailableModel.HasLaborRoom"][value="' + 0 + '"]').iCheck('check');
+        }
+        var HasOperationTheater = $('#APMCEModel_FacilitiesAvailableModel_HasOperationTheater').val();
+        if(HasOperationTheater==1)
+        {
+            $('input[name="APMCEModel.FacilitiesAvailableModel.HasOperationTheater"][value="' + 1 + '"]').iCheck('check');
+        }
+        else{
+            $('input[name="APMCEModel.FacilitiesAvailableModel.HasOperationTheater"][value="' + 0 + '"]').iCheck('check');
+        }
+        var HasDiagnosticFacility = $('#APMCEModel_FacilitiesAvailableModel_HasDiagnosticFacility').val();
+        if(HasDiagnosticFacility==1)
+        {
+            $('input[name="APMCEModel.FacilitiesAvailableModel.HasDiagnosticFacility"][value="' + 1 + '"]').iCheck('check');
+        }
+        else{
+            $('input[name="APMCEModel.FacilitiesAvailableModel.HasDiagnosticFacility"][value="' + 0 + '"]').iCheck('check');
+        }
+        //end radio buttons
+
+        // Staff Details view based on dropdown value  ParaCapstoneStaff
+        var StaffDetails  = $('#APMCEModel_StaffDetails_StaffDesignation').val();
+        if(StaffDetails=='Para Capstone Staff' )
+        {
+            $('#supportingstaffName').show();
+            $('#supportingstaffRegistrationNumber').show();
+            $('#nonsupportingstaffUploadedFilePath').show();
+        }
+        if(StaffDetails=='Doctors' )
+        {
+            $('#supportingstaffName').show();
+            $('#supportingstaffRegistrationNumber').show();
+            $('#nonsupportingstaffUploadedFilePath').show();
+        }
+        if(StaffDetails=='Nursing Staff' )
+        {
+            $('#supportingstaffName').show();
+            $('#supportingstaffRegistrationNumber').show();
+            $('#nonsupportingstaffUploadedFilePath').show();
+        }
+        if(StaffDetails=='Supporting Staff' )
+        {
+            $('#supportingstaffName').show();
+            $('#supportingstaffPhoneNumber').show();
+            $('#supportingstaffEmail').show();
+
+        }
+        if(StaffDetails=='Specialists' )
+        {
+            $('#supportingstaffName').show();
+            $('#supportingstaffRegistrationNumber').show();
+            $('#specialists').show();
+            $('#nonsupportingstaffUploadedFilePath').show();
+        }
+    });
+    $('#APMCEModel_Accommadation_EstablishementType').on('change', function (e) {
+        if (this.value != '') {
+            $('#divAccommodationUpload').show();
+            switch (this.value) {
+                case 'Own': {
+                    $('#lblAccommodationLabel').text('Own Premises - Tax Receipt/Telephone Bill');
+                }
+                    break;
+                case 'Rent': {
+                    $('#lblAccommodationLabel').text('Rent - Lease Agreement Document');
+                }
+                    break;
+                case 'Lease': {
+                    $('#lblAccommodationLabel').text('Lease - Lease Agreement Document');
+                }
+                    break;
+                default:
+
+            }
+
+        }
+        else {
+            $('#divAccommodationUpload').hide();
+        }
+    });
+
+    $('#APMCEModel_FacilitiesAvailableModel_HasDeclarationStamp').on('ifToggled', function (e) {
+
+        if (this.checked) {
+            $('#divDeclarationStampDetails').show();
+        }
+        else {
+            $('#divDeclarationStampDetails').hide();
+        }
+    });
+
+    $('#APMCEModel_StaffDetails_StaffDesignation').on('change', function () {
+        debugger;
+        if (this.value != '') {
+            $('#divStaffDetails').show();
+            switch (this.value) {
+                case 'Doctors': {
+                    $('.supportingstaff').hide();
+                    $('.specialists').hide();
+                    $('.nonsupportingstaff').show();
+                    $('#lblStaffRegiNumber').text('Registration Number Allotted by MCI/APMC');
+                }
+                    break;
+                case 'Nursing Staff': {
+                    $('.supportingstaff').hide();
+                    $('.specialists').hide();
+                    $('.nonsupportingstaff').show();
+                    $('#lblStaffRegiNumber').text('Registration Number Allotted by NCI/Any Other Board');
+                }
+                    break;
+                case 'Para Capstone Staff': {
+                    $('.supportingstaff').hide();
+                    $('.specialists').hide();
+                    $('.nonsupportingstaff').show();
+                    $('#lblStaffRegiNumber').text('Registration Number');
+                }
+                    break;
+                case 'Supporting Staff': {
+                    $('.nonsupportingstaff').hide();
+                    $('.specialists').hide();
+                    $('.supportingstaff').show();
+                }
+                    break;
+                case 'Specialists': {
+                    $('.nonsupportingstaff').hide();
+                    $('.supportingstaff').hide();
+                    $('.specialists').show();
+                    $('#lblStaffRegiNumber').text('Registration Number');
+                }
+                    break;
+                default:
+            }
+        }
+        else {
+            $('.nonsupportingstaff').hide();
+            $('.supportingstaff').hide();
+            $('.specialists').hide();
+        }
+    });
+
+
+
+    //$('#TrustModel_DistrictId').on('change', function () {
+    //    BindMandals('TrustModel_', this.value);
+    //});
+
+    //$('#TrustModel_MandalId').on('change', function () {
+    //    BindVillages('TrustModel_', this.value);
+    //});
+
+    $('#APMCEModel_CorrespondingAddress_DistrictId').on('change', function () {
+        debugger;
+        BindMandals('APMCEModel_CorrespondingAddress_', this.value);
+    });
+
+    $('#APMCEModel_CorrespondingAddress_MandalId').on('change', function () {
+
+        BindVillages('APMCEModel_CorrespondingAddress_', this.value);
+    });
+
+    $('#btnTrustSave').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formTrust').valid()) {
+            var url = '@Url.Action("SaveTrustDetails","License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#TrustModel_Id').val() == '' ? 0 : $('#TrustModel_Id').val(),
+                    Name: $('#TrustModel_Name').val(),
+                    DistrictId: $('#TrustModel_DistrictId').val(),
+                    MandalId: $('#TrustModel_MandalId').val(),
+                    VillageId: $('#TrustModel_VillageId').val(),
+                    HouseNumber: $('#TrustModel_HouseNumber').val(),
+                    StreetName: $('#TrustModel_StreetName').val(),
+                    PINCode: $('#TrustModel_PINCode').val(),
+                    EstablishedDate: $('#TrustModel_EstablishedDate').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $('#TrustModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                $('#btnTrustSave').val('Update');
+                $('#btnTrustSave').removeClass('btn-success');
+                $('#btnTrustSave').addClass('btn-primary');
+            }
+            else if (response.ReturnData.split(',')[1] == 'Completed') {
+                $('#btnTrustSave').val('Update');
+                $('#btnTrustSave').removeClass('btn-primary');
+                $('#btnTrustSave').addClass('btn-success');
+            }
+            else if (response.ReturnData.split(',')[1] == 'Empty') {
+                $('#btnTrustSave').val('Save');
+                $('#btnTrustSave').removeClass('btn-success');
+                $('#btnTrustSave').addClass('btn-primary');
+            }
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Trust Request Failed: " + err);
+    });
+
+        }
+    });
+
+    $('#btnAccommodationSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var fromdate= $('#APMCEModel_Accommadation_FromDate').val();
+        var todate=  $('#APMCEModel_Accommadation_ToDate').val();
+        var returnvalue= ValidateFromDateToDate(fromdate,todate);
+       
+        if(returnvalue==false)
+            alert('From date should be less than to date');
+        else
+        {
+            if (true) {
+                var url = '@Url.Action("SaveAccommodationDetails", "Amendment", new { Area = "User" })';
+
+                if (window.FormData !== undefined) {
+                    var uploadedFile = $("#APMCEModel_Accommadation_UploadedFilePath").get(0).files[0];
+
+                    // Create FormData object
+                    var fileData = new FormData();
+
+                    fileData.append('Id', $('#APMCEModel_Accommadation_Id').val() == '' ? 0 : $('#APMCEModel_Accommadation_Id').val());
+                    fileData.append('EstablishementType', $('#APMCEModel_Accommadation_EstablishementType').val());
+                    fileData.append('FromDate', $('#APMCEModel_Accommadation_FromDate').val());
+                    fileData.append('ToDate', $('#APMCEModel_Accommadation_ToDate').val());
+                    fileData.append('uploadedFile', uploadedFile);
+
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: fileData,
+                        contentType: false,
+                        processData: false,
+                        async: true,
+                        success: function (response) {
+                            var json;
+                            if (response instanceof Object)
+                                json = response;
+                            else
+                                json = $.parseJSON(response);
+
+                            //  $('#Accommadation_Id').val(response.ReturnData.split(',')[0]);
+                            ShowModal(response);
+
+                        },
+                        failure: function (response) {
+                            alert('failure: ' + response.d);
+                        },
+                        error: function (response) {
+                            alert('error: ' + response.d);
+                        }
+                    });
+                }
+                else {
+                    alert('Invalid FormData');
+                }
+            }
+        }
+    });
+
+    $('#btnCorrespondingSave').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formCorrespondingAddress').valid()) {
+            var url = '@Url.Action("SaveCorrespondingAddressDetails", "Amendment", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#APMCEModel_CorrespondingAddress_Id').val() == '' ? 0 : $('#APMCEModel_CorrespondingAddress_Id').val(),
+                    Name: $('#APMCEModel_CorrespondingAddress_Name').val(),
+                    DistrictId: $('#APMCEModel_CorrespondingAddress_DistrictId').val(),
+                    MandalId: $('#APMCEModel_CorrespondingAddress_MandalId').val(),
+                    VillageId: $('#APMCEModel_CorrespondingAddress_VillageId').val(),
+                    HouseNumber: $('#APMCEModel_CorrespondingAddress_HouseNumber').val(),
+                    StreetName: $('#APMCEModel_CorrespondingAddress_StreetName').val(),
+                    PINCode: $('#APMCEModel_CorrespondingAddress_PINCode').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+            ShowModal(response);
+
+
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save CorrespondantAddress Request Failed: " + err);
+    });
+        }
+    });
+
+
+    $('#btnAddInfraStructure').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        if ($('#formInfraStructure').valid()) {
+            var url = '@Url.Action("AddInfraStructure","Amendment", new { Area = "User" })';
+
+            if (window.FormData !== undefined) {
+                var uploadedFile = $("#APMCEModel_InfraStructure_UploadedFilePath").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('Id', $('#APMCEModel_InfraStructure_Id').val() == '' ? 0 : $('#APMCEModel_InfraStructure_Id').val());
+                fileData.append('Name', $('#APMCEModel_InfraStructure_Name').val());
+                fileData.append('Quantity', $('#APMCEModel_InfraStructure_Quantity').val());
+                fileData.append('ItemModel', $('#APMCEModel_InfraStructure_ItemModel').val());
+                fileData.append('Remarks', $('#APMCEModel_InfraStructure_Remarks').val());
+                fileData.append('UploadedFilePath', uploadedFile.name);
+                fileData.append('UploadedFile', uploadedFile);
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        // Clear controls
+                        $('#APMCEModel_InfraStructure_Name').val('');
+                        $('#APMCEModel_InfraStructure_Quantity').val('');
+                        $('#APMCEModel_InfraStructure_ItemModel').val('');
+                        $('#APMCEModel_InfraStructure_Remarks').val('');
+                        $('#APMCEModel_InfraStructure_UploadedFilePath').val('');
+
+                        $('#tblInfraStructure tr').not(function () { return !!$(this).has('th').length; }).remove();
+
+                        var json = response;
+
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Name + "</td>");
+                            tr.append("<td>" + json[i].Quantity + "</td>");
+                            tr.append("<td>" + json[i].ItemModel + "</td>");
+                            tr.append("<td>" + json[i].Remarks + "</td>");
+
+                            var path = json[i].UploadedFilePath;
+                            var index = path.indexOf("/");
+                            var displayFileName = path.substring(index + 1, path.length);
+                            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                            fileLink = fileLink.replace("displaytext", displayFileName);
+                            fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                            fileLink = fileLink.replace("downloadfilename", displayFileName);
+                            tr.append("<td>" + fileLink + "</td>");
+                            //tr.append("<td><input type='button' value='Delete' onclick='DeleteInfraStructure(" + i + ");'/></td>");
+
+                            if(json[i].Id!=0 && json[i].IsDeleted==false)
+                            {
+                                tr.append("<td>Existing</td>");
+                                tr.append("<td><input type='button' value='Delete' onclick='DeleteInfraStructure(" + i + ");'/></td>");
+                            }
+                            if (json[i].Id==0 && json[i].IsDeleted==false)
+                            {
+                                tr.append("<td>New</td>");
+                                tr.append("<td><input type='button' value='Delete' onclick='DeleteInfraStructure(" + i + ");'/></td>");
+                            }
+                            if(json[i].Id!=0 && json[i].IsDeleted==true)
+                            {
+                                tr.append("<td>Deleted</td>");
+                            }
+
+                            $('#tblInfraStructure').append(tr);
+                        }
+
+                        CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+    function DeleteInfraStructure(id) {
+        debugger;
+
+
+        // if (confirm('Do you really want to delete this equipment?')) {
+        var url = '@Url.Action("DeleteInfraStructureAmendment", "Amendment", new { Area = "User" })';
+        var data = { index: id };
+        var jqxhr = $.post(url, data, function () { })
+.done(function (response) {
+    var json;
+    if (response instanceof Object)
+        json = response;
+    else
+        json = $.parseJSON(response);
+
+    $('#tblInfraStructure tr').not(function () { return !!$(this).has('th').length; }).remove();
+    if (json != undefined) {
+        var tr;
+        //Append each row to html table
+        for (var i = 0; i < json.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + (i + 1) + "</td>");
+            tr.append("<td>" + json[i].Name + "</td>");
+            tr.append("<td>" + json[i].Quantity + "</td>");
+            tr.append("<td>" + json[i].ItemModel + "</td>");
+            tr.append("<td>" + json[i].Remarks + "</td>");
+
+            var path = json[i].UploadedFilePath;
+            var index = path.indexOf("/");
+            var displayFileName = path.substring(index + 1, path.length);
+            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+            fileLink = fileLink.replace("displaytext", displayFileName);
+            fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+            fileLink = fileLink.replace("downloadfilename", displayFileName);
+            tr.append("<td>" + fileLink + "</td>");
+
+            if(json[i].Id !=0 && json[i].IsDeleted==false)
+            {
+                tr.append("<td>Existing</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteInfraStructure(" + i + ");'/></td>");
+            }
+            else  if (json[i].Id==0 && json[i].IsDeleted==false)
+            {
+                tr.append("<td>New</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteInfraStructure(" + i + ");'/></td>");
+            }
+            else if (json[i].Id !=0 && json[i].IsDeleted==true)
+            {
+                tr.append("<td>Deleted</td>");
+            }
+
+
+
+            $('#tblInfraStructure').append(tr);
+        }
+    }
+
+})
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("Delete Equipment Request Failed: " + err);
+});
+        // }
+    }
+
+
+
+
+    $('#btnInfraStructureSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var url = '@Url.Action("SaveInfraStructures", "Amendment", new { Area = "User" })';
+        var jqxhr = $.post(url, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        ShowModal(response);
+        var transactionId = response.ReturnData.split(',')[0];
+        BindInfraStructureOnSave(transactionId);
+
+        CheckforEnableSubmit();
+    })
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("SaveInfraStructure Request Failed: " + err);
+});
+    });
+
+    function BindInfraStructureOnSave(transactionId) {
+        var url = '@Url.Action("GetInfraStructures", "License", new { Area = "User" })';
+        var data = { transactionId: transactionId };
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblInfraStructure tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].Quantity + "</td>");
+                tr.append("<td>" + json[i].ItemModel + "</td>");
+                tr.append("<td>" + json[i].Remarks + "</td>");
+
+                var path = json[i].UploadedFilePath;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                tr.append("<td>" + fileLink + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteInfraStructure(" + i + ");'/></td>");
+
+                $('#tblInfraStructure').append(tr);
+            }
+
+            $('#btnInfraStructureSave').val('Update');
+            $('#btnInfraStructureSave').removeClass('btn-primary');
+            $('#btnInfraStructureSave').addClass('btn-success');
+        }
+        else if (json == undefined || json.length == 0) {
+            $('#btnInfraStructureSave').val('Save');
+            $('#btnInfraStructureSave').removeClass('btn-success');
+            $('#btnInfraStructureSave').addClass('btn-primary');
+        }
+    })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetEquipments Request Failed: " + err);
+        });
+
+    }
+
+
+
+    $('#btnOfferedServicesSave').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formServices').valid()) {
+            var url = '@Url.Action("SaveServicesOfferedDetails", "Amendment", new { Area = "User" })';
+
+
+            var data = {
+                model: {
+                    Id: $('#APMCEModel_OfferedServices_Id').val() == '' ? 0 : $('#APMCEModel_OfferedServices_Id').val(),
+                    BedStrength: $('#APMCEModel_OfferedServices_BedStrength').val(),
+                    OfferedServices: $("#APMCEModel_OfferedServices_OfferedServices").val().join(', ')
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            ShowModal(response);
+
+
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Offered Services Failed: " + err);
+    });
+
+        }
+    });
+
+
+    // Saving Facilities Available
+
+
+    $('#btnFacilitiesAvailableSave').on('click', function (e) {
+        e.preventDefault();
+        if (true) {
+            //  if ($('#formFacilitiesAvailable').valid()) {
+            var url = '@Url.Action("SaveFacilitiesAvailable", "Amendment", new { Area = "User" })';
+            debugger;
+            if (window.FormData !== undefined) {
+                var uploadedFile = $("#APMCEModel_FacilitiesAvailableModel_DeclarationStampFilePath").get(0).files[0];
+
+                var uploadedFile1 = $("#APMCEModel_FacilitiesAvailableModel_OtherInformationDocumentPath").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('Id', $('#APMCEModel_FacilitiesAvailableModel_Id').val() == '' ? 0 : $('#APMCEModel_FacilitiesAvailableModel_Id').val());
+                fileData.append('HasLaborRoom', $("#APMCEModel_FacilitiesAvailableModel_HasLaborRoom:checked").val());
+                fileData.append('HasOperationTheater', $("#APMCEModel_FacilitiesAvailableModel_HasOperationTheater:checked").val());
+                fileData.append('HasDiagnosticFacility', $("#APMCEModel_FacilitiesAvailableModel_HasDiagnosticFacility:checked").val());
+                // fileData.append('HasDeclarationStamp', $("#FacilitiesAvailableModel_HasDeclarationStamp:checked").val());
+                fileData.append('HasDeclarationStamp', $('#APMCEModel_FacilitiesAvailableModel_HasDeclarationStamp:checked').val() == '' ? 0 : $('#APMCEModel_FacilitiesAvailableModel_HasDeclarationStamp:checked').val());
+                if (uploadedFile != null ) {
+                    fileData.append('DeclarationStampFilePath', uploadedFile.name);
+                    fileData.append('DeclarationStampFile', uploadedFile);
+                }
+
+                if (uploadedFile1 != null) {
+                    fileData.append('OtherInformationDescription', $('#APMCEModel_FacilitiesAvailableModel_OtherInformationDescription').val());
+                    fileData.append('OtherInformationDocumentPath', uploadedFile1.name);
+                    fileData.append('OtherInformationDocument', uploadedFile1);
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        var json;
+                        if (response instanceof Object)
+                            json = response;
+                        else
+                            json = $.parseJSON(response);
+
+                        ShowModal(response);
+
+
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+    // END Saving Facilities Avaialble
+
+    $('#btnAddStaffDetails').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        if ($('#formStaffDetails').valid()) {
+            var url = '@Url.Action("AddStaffDetails", "Amendment", new { Area = "User" })';
+
+            if (window.FormData !== undefined) {
+                var uploadedFile = $("#APMCEModel_StaffDetails_UploadedFilePath").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('Id', $('#APMCEModel_StaffDetails_Id').val() == '' ? 0 : $('#APMCEModel_StaffDetails_Id').val());
+                fileData.append('StaffDesignation', $("#APMCEModel_StaffDetails_StaffDesignation").val());
+                fileData.append('Name', $('#APMCEModel_StaffDetails_Name').val());
+                fileData.append('RegistrationNumber', $('#APMCEModel_StaffDetails_RegistrationNumber').val());
+                fileData.append('PhoneNumber', $("#APMCEModel_StaffDetails_PhoneNumber").val());
+                fileData.append('Email', $("#APMCEModel_StaffDetails_Email").val());
+                fileData.append('Speciality',$("#APMCEModel_StaffDetails_Speciality").val());
+                fileData.append('UploadedFilePath', uploadedFile.name);
+                fileData.append('UploadedFile', uploadedFile);
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        // Clear controls
+
+                        $("#APMCEModel_StaffDetails_StaffDesignation").val('');
+                        $('#APMCEModel_StaffDetails_Name').val('');
+                        $('#APMCEModel_StaffDetails_RegistrationNumber').val('');
+                        $("#APMCEModel_StaffDetails_PhoneNumber").val('');
+                        $("#APMCEModel_StaffDetails_Email").val('');
+                        $("#APMCEModel_StaffDetails_Speciality").val('');
+
+                        $('#tblStaffdetails tr').not(function () { return !!$(this).has('th').length; }).remove();
+
+                        var json = response;
+                        var tr;
+
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].StaffDesignation + "</td>");
+                            tr.append("<td>" + json[i].Name + "</td>");
+                            tr.append("<td>" + json[i].RegistrationNumber + "</td>");
+
+                            var path = json[i].UploadedFilePath;
+                            var index = path.indexOf("/");
+                            var displayFileName = path.substring(index + 1, path.length);
+                            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                            fileLink = fileLink.replace("displaytext", displayFileName);
+                            fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                            fileLink = fileLink.replace("downloadfilename", displayFileName);
+                            tr.append("<td>" + fileLink + "</td>");
+                            tr.append("<td>" + json[i].Email + "</td>");
+                            tr.append("<td>" + json[i].PhoneNumber + "</td>");
+                            tr.append("<td>" + json[i].Speciality + "</td>");
+
+                            if(json[i].Id!=0 && json[i].IsDeleted==false)
+                            {
+                                tr.append("<td>Existing</td>");
+                                tr.append("<td><input type='button' value='Delete' onclick='DeleteStaffDetails(" + i + ");'/></td>");
+                            }
+                            if (json[i].Id==0 && json[i].IsDeleted==false)
+                            {
+                                tr.append("<td>New</td>");
+                                tr.append("<td><input type='button' value='Delete' onclick='DeleteStaffDetails(" + i + ");'/></td>");
+                            }
+                            if(json[i].Id!=0 && json[i].IsDeleted==true)
+                            {
+                                tr.append("<td>Deleted</td>");
+                            }
+
+                            $('#tblStaffdetails').append(tr);
+                        }
+
+                        CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+
+    function DeleteStaffDetails(id) {
+        debugger;
+
+
+        // if (confirm('Do you really want to delete this equipment?')) {
+        var url = '@Url.Action("DeleteStaffDetailsAmendment", "Amendment", new { Area = "User" })';
+        var data = { index: id };
+        var jqxhr = $.post(url, data, function () { })
+.done(function (response) {
+    var json;
+    if (response instanceof Object)
+        json = response;
+    else
+        json = $.parseJSON(response);
+
+    $('#tblStaffdetails tr').not(function () { return !!$(this).has('th').length; }).remove();
+    if (json != undefined) {
+        var tr;
+        //Append each row to html table
+        for (var i = 0; i < json.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + (i + 1) + "</td>");
+            tr.append("<td>" + json[i].StaffDesignation + "</td>");
+            tr.append("<td>" + json[i].Name + "</td>");
+            tr.append("<td>" + json[i].RegistrationNumber + "</td>");
+
+            var path = json[i].UploadedFilePath;
+            var index = path.indexOf("/");
+            var displayFileName = path.substring(index + 1, path.length);
+            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+            fileLink = fileLink.replace("displaytext", displayFileName);
+            fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+            fileLink = fileLink.replace("downloadfilename", displayFileName);
+            tr.append("<td>" + fileLink + "</td>");
+            tr.append("<td>" + json[i].Email + "</td>");
+            tr.append("<td>" + json[i].PhoneNumber + "</td>");
+            tr.append("<td>" + json[i].Speciality + "</td>");
+
+            if(json[i].Id !=0 && json[i].IsDeleted==false)
+            {
+                tr.append("<td>Existing</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteStaffDetails(" + i + ");'/></td>");
+            }
+            else  if (json[i].Id==0 && json[i].IsDeleted==false)
+            {
+                tr.append("<td>New</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteStaffDetails(" + i + ");'/></td>");
+            }
+            else if (json[i].Id !=0 && json[i].IsDeleted==true)
+            {
+                tr.append("<td>Deleted</td>");
+            }
+
+            $('#tblStaffdetails').append(tr);
+        }
+    }
+
+})
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("Delete Equipment Request Failed: " + err);
+});
+        // }
+    }
+
+
+
+    $('#btnStaffDetailsSave').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formServices').valid()) {
+            var url = '@Url.Action("SaveStaffDetails", "Amendment", new { Area = "User" })';
+
+            if (window.FormData !== undefined) {
+                var uploadedFile = $("#APMCEModel_StaffDetails_UploadedFilePath").get(0).files[0];
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('Id', $('#APMCEModel_StaffDetails_Id').val() == '' ? 0 : $('#APMCEModel_StaffDetails_Id').val());
+                fileData.append('StaffDesignation', $("#APMCEModel_StaffDetails_StaffDesignation").val());
+                fileData.append('Name', $('#APMCEModel_StaffDetails_Name').val());
+                fileData.append('RegistrationNumber', $('#APMCEModel_StaffDetails_RegistrationNumber').val());
+                fileData.append('PhoneNumber', $("#APMCEModel_StaffDetails_PhoneNumber").val());
+                fileData.append('Email', $("#APMCEModel_StaffDetails_Email").val());
+                fileData.append('SpecialtyId', $("#APMCEModel_StaffDetails_SpecialtyId").val());
+                // fileData.append('UploadedFilePath', uploadedFile.name);
+                // fileData.append('uploadedFile', uploadedFile);
+
+                if (uploadedFile != null) {
+                    fileData.append('UploadedFilePath', uploadedFile.name);
+                    fileData.append('uploadedFile', uploadedFile);
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        // Clear controls
+
+                        var json;
+                        if (response instanceof Object)
+                            json = response;
+                        else
+                            json = $.parseJSON(response);
+
+                        ShowModal(response);
+
+
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+
+        }
+    });
+
+    $('#btnLicenseSearch').click(function (e){
+        debugger;
+        e.preventDefault();
+        var uri = '@Url.Action("SearchAPMCELicenseByLicenseNo", "Amendment", new { Area = "User" })';
+        var data = {
+            model: {
+                LicenseNo: $('#APMCEModel_cancelLiceseModel_LicenseNo').val(),
+            }
+        }
+        var jqxhr = $.post(uri, data, function () { }, 'json')
+        .done(function (response) {
+            console.log(response);
+            if(response.NotificationType==undefined)
+            {
+                // Bind controls
+                $("#lblLicenseNo").text(response.LicenseNo);
+                $("#lblIsseuDate").text(ToJavaScriptDate(response.IsseuDate));
+                $("#lblExpireDate").text(ToJavaScriptDate(response.ExpireDate));
+            }
+            else
+            {
+                // Clear controls
+                $('#lblLicenseNo').text('');
+                $('#lblIsseuDate').text('');
+                $('#lblExpireDate').text('');
+                ShowModal(response);  //error Message Display
+            }
+
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.log("License Details Request Failed: " + err);
+        });
+
+    });
+
+    //Amendament License Cancel
+    $('#btnLicenseCancel').click(function (e){
+        debugger;
+        e.preventDefault();
+        var uri = '@Url.Action("APMCELicenseCancelAmendment", "Amendment", new { Area = "User" })';
+        var data = {
+            model: {
+                LicenseNo: $('#APMCEModel_cancelLiceseModel_LicenseNo').val(),
+                IsseuDate: $('#lblIsseuDate').html(),
+                ExpireDate: $('#lblExpireDate').html(),
+            }
+        }
+        var jqxhr = $.post(uri, data, function () { }, 'json')
+        .done(function (response) {
+            ShowModal(response);
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.log("License Details Request Failed: " + err);
+        });
+
+    });
+
+    // Script for Edit form Begin
+
+    function BindCorreespondingAddressData(){
+        debugger;
+        var CorreespondingAddressModel = @Html.Raw(Json.Encode(Model.APMCEModel.CorrespondingAddress));
+        console.log(CorreespondingAddressModel);
+        if(CorreespondingAddressModel.DistrictId > 0)
+        {
+            $('#btnCorrespondingSave').val('Update');
+            $('#btnCorrespondingSave').removeClass('btn-primary');
+            $('#btnCorrespondingSave').addClass('btn-success');
+
+            BindMandals('APMCEModel_CorrespondingAddress_', CorreespondingAddressModel.DistrictId);
+            setTimeout(
+               function(){
+                   if(CorreespondingAddressModel.MandalId > 0){
+                       debugger;
+                       $('#APMCEModel_CorrespondingAddress_MandalId').val(CorreespondingAddressModel.MandalId).trigger('change');
+                       BindVillages('APMCEModel_CorrespondingAddress_', CorreespondingAddressModel.MandalId);
+                       setTimeout(function(){
+                           if(CorreespondingAddressModel.VillageId > 0){
+                               $('#APMCEModel_CorrespondingAddress_VillageId').val(CorreespondingAddressModel.VillageId).trigger('change');
+                           }
+                       }, 500);
+                   }
+               }
+                , 500);
+        }
+
+    }
+    function BindOfferedByServices()
+    {
+        debugger;
+        var offeredservicesModel = @Html.Raw(Json.Encode(Model.APMCEModel.OfferedServices));
+        console.log('Service values'+offeredservicesModel)
+        if(offeredservicesModel != 0)
+        {
+            $('#btnOfferedServicesSave').val('Update');
+            $('#btnOfferedServicesSave').removeClass('btn-primary');
+            $('#btnOfferedServicesSave').addClass('btn-success');
+            //var arr = offeredservicesModel.OfferedServiceIDs.split(',');
+            //console.log('list :' + arr);
+
+            //$("#OfferedServices_OfferedServices").val(arr).trigger("change");
+
+            var arr = offeredservicesModel.OfferedServiceIDs.split(',');
+            console.log('list :' + arr);
+            $("#APMCEModel_OfferedServices_OfferedServices").val(arr).trigger("change");
+
+
+        }
+    }
+    function BindAccomdationData()
+    {
+        debugger;
+        var accommadationModel = @Html.Raw(Json.Encode(Model.APMCEModel.Accommadation));
+        if(accommadationModel != 0)
+        {
+            $('#btnAccommodationSave').val('Update');
+            $('#btnAccommodationSave').removeClass('btn-primary');
+            $('#btnAccommodationSave').addClass('btn-success');
+            $('#APMCEModel_Accommadation_EstablishementType').val(accommadationModel.EstablishmentTypeName).trigger("change");
+        }
+    }
+
+    function BindStaffData(){
+        debugger;
+        var StaffModel = @Html.Raw(Json.Encode(Model.APMCEModel.StaffDetails));
+        if(StaffModel.FormStatus != 0){
+            $('#btnStaffDetailsSave').val('Update');
+            $('#btnStaffDetailsSave').removeClass('btn-primary');
+            $('#btnStaffDetailsSave').addClass('btn-success');
+        }
+    }
+    function BindFurnitureData(){
+        debugger;
+        var infraStructureModel = @Html.Raw(Json.Encode(Model.APMCEModel.InfraStructure));
+        if(infraStructureModel.FormStatus != 0){
+            $('#btnInfraStructureSave').val('Update');
+            $('#btnInfraStructureSave').removeClass('btn-primary');
+            $('#btnInfraStructureSave').addClass('btn-success');
+        }
+    }
+
+    function BindFacilitiesAvailableData()
+    {
+        debugger;
+        var facilitiesavailableModel = @Html.Raw(Json.Encode(Model.APMCEModel.FacilitiesAvailableModel));
+        if(facilitiesavailableModel != 0)
+        {
+            $('#btnFacilitiesAvailableSave').val('Update');
+            $('#btnFacilitiesAvailableSave').removeClass('btn-primary');
+            $('#btnFacilitiesAvailableSave').addClass('btn-success');
+            
+        }
+    }
+</script>

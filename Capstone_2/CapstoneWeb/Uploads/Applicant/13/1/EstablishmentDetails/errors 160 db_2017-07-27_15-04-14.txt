@@ -1,0 +1,78 @@
+The module 'GetAcknowledges' depends on the missing object 'GetAPMCEAck'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'GetAcknowledges' depends on the missing object 'GetPCPNDTAck'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'GetDeptUserDashboadCounts' depends on the missing object 'GetTodayApplications'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'GetDeptUserDashboadCounts' depends on the missing object 'GetQueriesCount'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'GetDeptUserDashboadCounts' depends on the missing object 'GetForwardedCounts'. The module will still be created; however, it cannot run successfully until the object exists.
+Msg 207, Level 16, State 1, Procedure GetFacilitiesDetails, Line 15 [Batch Start Line 37937]
+Invalid column name 'FormStatus'.
+The module 'GetOwnershipMasterData' depends on the missing object 'GetOwnershipTypes'. The module will still be created; however, it cannot run successfully until the object exists.
+Msg 207, Level 16, State 1, Procedure GetPCPNDTTests, Line 15 [Batch Start Line 39930]
+Invalid column name 'FormStatus'.
+The module 'InsertEmployeeBulk' depends on the missing object 'dbo.SaveApplication'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'InsertEmployeeBulk' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'InsertEquipmentBulk' depends on the missing object 'dbo.SaveApplication'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'InsertEquipmentBulk' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'InsertInfrastructureBulk' depends on the missing object 'dbo.SaveApplication'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'InsertInfrastructureBulk' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveAccommodationDetails' depends on the missing object 'dbo.SaveApplication'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveAccommodationDetails' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveApplicantDetails' depends on the missing object 'dbo.SaveApplication'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveApplicantDetails' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveApproval' depends on the missing object 'SaveInspectionFacilityQuestions'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveCorrespondingAddress' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveDeclarationDetails' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveEstablishmentDetails' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveFacilities' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveFacilitiesAvailable' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+Msg 207, Level 16, State 1, Procedure SaveFacilityAmendmentsNew, Line 39 [Batch Start Line 42600]
+Invalid column name 'ReferenceTable'.
+Msg 207, Level 16, State 1, Procedure SaveFacilityAmendmentsNew, Line 39 [Batch Start Line 42600]
+Invalid column name 'Status'.
+Msg 207, Level 16, State 1, Procedure SaveFacilityAmendmentsNew, Line 52 [Batch Start Line 42600]
+Invalid column name 'ReferenceTable'.
+Msg 207, Level 16, State 1, Procedure SaveFacilityAmendmentsNew, Line 52 [Batch Start Line 42600]
+Invalid column name 'Status'.
+The module 'SaveFacilityDetails' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveInstitutionDetails' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveOfferedServicesDetails' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveRegistrationDetails' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveStaffDetails' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+The module 'SaveTests' depends on the missing object 'dbo.SaveTransaction'. The module will still be created; however, it cannot run successfully until the object exists.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 41 [Batch Start Line 44210]
+Invalid column name 'Name'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 41 [Batch Start Line 44210]
+Invalid column name 'DistrictId'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 41 [Batch Start Line 44210]
+Invalid column name 'MandalId'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 41 [Batch Start Line 44210]
+Invalid column name 'VillageId'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 42 [Batch Start Line 44210]
+Invalid column name 'HouseNumber'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 42 [Batch Start Line 44210]
+Invalid column name 'StreetName'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 42 [Batch Start Line 44210]
+Invalid column name 'PINCode'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 42 [Batch Start Line 44210]
+Invalid column name 'AddressProofDocPath'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 42 [Batch Start Line 44210]
+Invalid column name 'BuildingLayoutDocPath'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 43 [Batch Start Line 44210]
+Invalid column name 'CreatedUserId'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 51 [Batch Start Line 44210]
+Invalid column name 'Name'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 51 [Batch Start Line 44210]
+Invalid column name 'DistrictId'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 51 [Batch Start Line 44210]
+Invalid column name 'MandalId'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 51 [Batch Start Line 44210]
+Invalid column name 'VillageId'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 52 [Batch Start Line 44210]
+Invalid column name 'HouseNumber'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 52 [Batch Start Line 44210]
+Invalid column name 'StreetName'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 52 [Batch Start Line 44210]
+Invalid column name 'PINCode'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 52 [Batch Start Line 44210]
+Invalid column name 'AddressProofDocPath'.
+Msg 207, Level 16, State 1, Procedure Unused_SaveEstablishmentDetails, Line 53 [Batch Start Line 44210]
+Invalid column name 'BuildingLayoutDocPath'.

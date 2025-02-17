@@ -1,0 +1,151 @@
+﻿@*@model Capstone.Models.APMCEAckModel*@
+@model Capstone.Models.AcknowledgeModel
+    @*//APMCECertificate*@
+
+<style>
+    .reportheadertext {
+        text-align: center;
+        font-size: larger;
+    }
+
+    .textunderline {
+        text-decoration: underline;
+    }
+
+    .parabody {
+        text-indent: 50px;
+        text-align: justify;
+    }
+
+    p {
+        text-align: justify;
+    }
+</style>
+
+<fieldset class="scheduler-border">
+    <div style="text-align:center">
+        <img src="~/Content/images/logogovts.png" />
+    </div>
+    <div class="col-md-12" style="text-align:center;">
+        <span style="font-size:x-large; color:red;">Government of Telangana</span>
+        <br />
+        <i>Capstone, Health and Family Welfare Department</i>
+        <br />
+        <i>TAMCE</i>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large;">Form-II</span>
+            <br />
+            <i>[See rule 4 (d)]</i>
+            <br />
+            <span style="font-size:x-large;"><u>Acknowledgement</u></span>
+            <hr style="border: 1px solid #9f9fb1;" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+
+            <p>
+                The application in Form 1 in duplicate for <b style="font-size:medium;">
+    @Model.APMCEAckModel.ApplicationType
+</b> of registration of Allopathic Private Capstone Care Establishment submitted by
+    <b style="font-size:medium;"> @Model.APMCEAckModel.ApplicantNameAddress </b>
+    has been received by the Registration Authority
+    <b style="font-size:medium;">@Model.APMCEAckModel.IssuingAuthority </b>  On  <b style="font-size:medium;">@Model.APMCEAckModel.ReceivedDate.ToShortDateString()</b>.
+</p>
+            <ol>
+                @if (Model.HasMissingDocuments == false)
+                {
+                    <li>
+                        <p>
+                            The list of enclosures attached to the application in Form I has been verified with the enclosures submitted and found to be correct.
+                        </p>
+                    </li>
+                }
+                else
+                {
+                <li>
+                    <p>
+                        On verification it is found that the following documents mentioned in the list of enclosures are not actually enclosed
+                    </p>
+                    <ol type="A">
+                        @foreach (string item in Model.ServiceDetails)
+                        {
+                            <li>
+                                <b>@item</b>
+                            </li>
+                        }
+                    </ol>
+                </li>
+                }
+            </ol>
+            <br />
+            <p><b>This Acknowledgement does not confer any rights on the applicant for grant or renewal of registration.</b></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-12 text-center">
+            <table>
+                <tr>
+                    <td style="text-align:left;">Place : @Model.APMCEAckModel.ReceivedPlace</td>
+                    <td style="width:53%;"></td>
+                    <td style="text-align:center;">
+                        <img src='@Url.Content("~/Content/signatures/" + Model.APMCEAckModel.ReceivedPlace + ".jpg")' width="190" height="60" />
+                    </td>
+                </tr>
+                <tr></tr>
+                @{
+                    if (Model.APMCEAckModel.AppropriateAuthority != null)
+                    {
+                        <tr>
+                            <td style="text-align:left;">Dated : @Model.APMCEAckModel.ReceivedDate.ToShortDateString()</td>                            
+                        </tr>
+                        var x = Model.APMCEAckModel.AppropriateAuthority.Split(';');
+                        foreach (var item in x)
+                        {
+                            <tr>
+                                <td style="text-align:left;"></td>
+                                <td style="width:53%"></td>
+                                <td style="text-align:center;">
+                                    @item
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                }
+            </table>
+        </div>
+
+        
+    </div>
+</fieldset>
+
+<div class="row">
+    <div class="col-md-12" style="text-align:center;">
+        <input type="button" id="btnClosePreview" value="Close" data-dismiss="modal" class="btn btn-default" />
+        <input type="button" id="btnPrintAPMCELicense" value="Print" class="btn btn-primary" />
+    </div>
+</div>
+
+<script>
+    $('#btnPrintAPMCELicense').on('click', function (e) {
+        printDiv();
+    });
+    function printDiv() {
+
+        var divToPrint = document.getElementById('divModalBody');
+
+        var newWin = window.open('', 'Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function () { newWin.close(); }, 10);
+    }
+</script>
+

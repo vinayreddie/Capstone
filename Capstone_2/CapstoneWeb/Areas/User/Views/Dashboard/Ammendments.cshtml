@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewBag.Title = "Ammendments";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Approved Ammendments
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("index","Dashboard","User")"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        @*<li><a href="#">Licenses</a></li>
+        <li class="active">Ammendments</li>*@
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Amendments</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblAmmendments" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Registration Number</th>
+                                <th>Service </th>
+                                <th>Applied Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                                
+                                <th>Document NOC</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(function () {
+        $("#tblNOC").DataTable();
+        GetAmmendments();
+    });
+
+    function GetAmmendments() {
+        debugger;
+        var url = '@Url.Action("GetAmmendments", "Amendment", new { Area = "User" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                BindAmmendments(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get Ammendments list in Amendment, Request Failed: " + err);
+            });
+    }
+
+    function BindAmmendments(json) {
+        var table = $('#tblAmmendments').DataTable();
+
+        // Clear all existing rows
+        table.clear().draw();
+
+
+
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+
+
+            var NOCLink = '';
+            if (json[i].Status == 'Approved' && json[i].ServiceId==38)
+                NOCLink = '<input type="button" value="Download" onclick="GETNOC(' + json[i].Id + ')"/>';
+            else
+                NOCLink = '';
+
+            table.row.add([
+        (i + 1),
+        json[i].LicenseNumber,
+        json[i].ServiceName,
+        json[i].AppliedDate,
+        json[i].Status,
+        '<input type="button" value="View" onclick="ViewApplication('+ json[i].TransactionId +', \'Transaction\')" />',
+    // '<input type="button" value="View" onclick="ViewAmendment(' + json[i].Id + ',' + json[i].ServiceId + ',' + json[i].TransactionId + ')"/>',
+        NOCLink
+        //'<input type="button" value="Reject" onclick="RejectLicense(' + json[i].Id + ')"/>',
+            ]);
+        }
+        table.draw();
+    }
+
+    function ViewApplication(TransactionId, TransactionType) {
+        var viewlink = '@Url.Action("ApplicationView", "DepartmentUser", new { Area = "Department", TransactionId = "_transactionId", TransactionType = "_transactionType" })';
+        viewlink = viewlink.replace("_transactionId", TransactionId).replace("&amp;", "&").replace("_transactionType", TransactionType);
+        window.location.href = viewlink;
+    }
+
+    function ViewAmendment(AId, SId,TId) {       
+    var url = '@Url.Action("GetAmendment", "DepartmentUser", new { Area = "Department" })';
+    // var url = 'Url.Action("GetAmendmentDetails", "DepartmentUser", new { Area = "Department" })';
+        var data = {
+                TId : TId, 
+                SId : SId,
+                AId : AId,
+                TSId : 1
+            //AmendmentId: AId,
+            //ServiceId: SId,
+            //TransactionId:TId
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            //debugger;
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "Amendment";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+          
+            var err = status + ", " + error;
+            console.log("GetAmendment Request Failed: " + err);
+        });
+    }
+    function GETNOC(Id) {
+
+        var url = '@Url.Action("GetNOCCertificate", "Amendment", new { Area = "User" })';
+        var data = {
+            AmendmentId: Id
+
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "License";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetPCPNDTLicense Request Failed: " + err);
+        });
+    }
+
+</script>
+

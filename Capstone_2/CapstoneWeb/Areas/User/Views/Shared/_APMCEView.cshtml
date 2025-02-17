@@ -1,0 +1,729 @@
+﻿@model Medical.Models.APMCEViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <span style="font-size:large">TAMCE</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabRegistration" data-toggle="tab">Registration</a></li>
+                <li><a href="#tabCorreespondingAddress" data-toggle="tab">Address</a></li>
+                <li><a href="#tabTrust" data-toggle="tab">Trust Details</a></li>
+                <li><a href="#tabAccommodation" data-toggle="tab">Accommodation Details</a></li>
+                <li><a href="#tabEstablishment" data-toggle="tab">Establishment Details</a></li>
+                <li><a href="#tabServices" data-toggle="tab">Services Offered</a></li>
+                <li><a href="#tabStaffDetails" data-toggle="tab">Staff Details </a></li>
+                <li><a href="#tabInfraStructure" data-toggle="tab">Equipment &nbsp; Furniture Details</a></li>
+                <li><a href="#tabFacilitiesAvailable" data-toggle="tab">Facilities Available</a></li>
+                <li id="liAdditionalDocumentsTab"><a href="#tabUploadAdditionalDocuments" data-toggle="tab">Additional Documents</a></li>
+                <li id="liPaymentDetailsTab"><a href="#tabPaymentDetails" data-toggle="tab">Payment Details</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabRegistration">
+                    <form id="formRegistration">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                                Whether Registration is sought for Main Facility or branches also, if so details (separate application shall be submitted for each branch)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2" style="font-size: larger;">
+                                @Html.LabelFor(model => model.RegistrationModel.FacilityType, new { @class = "control-label"} )
+                            </div>
+                            <div class="col-md-3" style="font-size: large;">
+                                <b> @Html.DisplayFor(model => model.RegistrationModel.FacilityType)</b>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.RegistrationModel.Name)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.RegistrationModel.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.RegistrationModel.MandalName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.RegistrationModel.VillageName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.RegistrationModel.HouseNumber)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.RegistrationModel.StreetName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.RegistrationModel.PINCode)
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabCorreespondingAddress">
+                    <form id="formCorrespondingAddress">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.Name)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.MandalName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.VillageName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.HouseNumber)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.StreetName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.PINCode)
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabTrust">
+                    <form id="formTrust">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.Name)
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.TrustModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.TrustModel.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.MandalName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.VillageName)
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.TrustModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.TrustModel.HouseNumber)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.StreetName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.PINCode)
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.TrustModel.EstablishedDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Model.TrustModel.EstablishedDate.ToString("dd-MM-yyyy")
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabInfraStructure">
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Equipment Furniture List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblInfraStructure" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Quantity</th>
+                                                <th>Model</th>
+                                                <th>Remarks</th>
+                                                <th>Uploaded File</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.InfraStructureList != null)
+                                            {
+                                            for (int i = 0; i < Model.InfraStructureList.Count; i++)
+                                            {
+                                            <tr>
+                                                <td> @Convert.ToInt32(@i + 1)</td>
+                                                <td>@Model.InfraStructureList[i].Name</td>
+                                                <td>@Model.InfraStructureList[i].Quantity</td>
+                                                <td>@Model.InfraStructureList[i].ItemModel</td>
+                                                <td>@Model.InfraStructureList[i].Remarks</td>
+                                                <td>
+                                                    @if (Model.InfraStructureList[i].UploadedFilePath != null)
+                                                    {
+                                                    var addressindex = Model.InfraStructureList[i].UploadedFilePath.LastIndexOf("/");
+                                                    var addressfileName = Model.InfraStructureList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                                    new { Area = "", path = Model.InfraStructureList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                    }
+                                                </td>
+                                            </tr>
+                                            }
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabAccommodation" class="tab-pane">
+                    <form id="formAccommodation">
+                        <div class="row">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.Accommadation.EstablishmentTypeName, "Establishment Owned by", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.HiddenFor(model => model.Accommadation.Id)
+                                @Html.DisplayFor(model => model.Accommadation.EstablishmentTypeName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Accommadation.FromDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Model.Accommadation.FromDate.ToString("dd-MM-yyyy")
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.Accommadation.ToDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Model.Accommadation.ToDate.ToString("dd-MM-yyyy")
+
+                            </div>
+                        </div>
+                        <div class="row" id="divAccommodationUpload" hidden>
+                            <div class="col-md-5">
+                                @Html.LabelFor(model => model.Accommadation.UploadedFilePath, new { @class = "control-label", @id = "lblAccommodationLabel" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.Accommadation.UploadedFilePath, new { @class = "", type = "file" })
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabEstablishment" class="tab-pane">
+                    <form id="formEstablishment">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-2">
+                                @Html.LabelFor(model => model.EstablishmentModel.EstablishmentDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Model.EstablishmentModel.EstablishmentDate.ToString("dd-MM-yyyy")
+                                @*@Html.HiddenFor(model => model.EstablishmentModel.Id)
+                                @Html.DisplayFor(model => model.EstablishmentModel.EstablishmentDate, new { htmlAttributes = new { @class = "form-control datepicker" } })*@
+
+                            </div>
+                        </div>
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Total Area of Establishment</legend>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.EstablishmentModel.OpenArea, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @*@Model.EstablishmentModel.EstablishmentDate.ToString("dd-MM-yyyy")*@
+                                    @Html.DisplayFor(model => model.EstablishmentModel.OpenArea, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.EstablishmentModel.OpenAreaFilePath, new { @class = "", type = "file" })
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.EstablishmentModel.ConstructionArea, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.EstablishmentModel.ConstructionArea, new { htmlAttributes = new { @class = "form-control" } })
+
+                                </div>
+                                <div class="col-md-7">
+                                    @*@Html.DisplayFor(model => model.EstablishmentModel.ConstructionAreaFilePath, new { @class = "", type = "file" })*@
+                                    @if (!String.IsNullOrWhiteSpace(Model.EstablishmentModel.ConstructionAreaFilePath))
+                                    {
+                                    var addressindex = Model.EstablishmentModel.ConstructionAreaFilePath.LastIndexOf("/");
+                                    var addressfileName = Model.EstablishmentModel.ConstructionAreaFilePath.Substring(addressindex + 1);
+                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                    new { Area = "", path = Model.EstablishmentModel.ConstructionAreaFilePath, downloadName = addressfileName }, null);
+                                    }
+                                </div>
+                            </div>
+                        </fieldset>
+
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabServices" class="tab-pane">
+                    <form id="formServices">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.OfferedServices.BedStrength, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.HiddenFor(model => model.OfferedServices.Id)
+                                @Html.DisplayFor(model => model.OfferedServices.BedStrength, new { htmlAttributes = new { @class = "form-control numeric" } })
+
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.OfferedServices.OfferedServices, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-6">
+
+                                @Html.DisplayFor(model => model.OfferedServices.OfferedServices, new { htmlAttributes = new { @class = "form-control numeric" } })
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabStaffDetails" class="tab-pane">
+
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Staff List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblStaffdetails" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Designation</th>
+                                                <th>Name</th>
+                                                <th>RegistrationNo</th>
+                                                <th>Uploaded File</th>
+                                                <th>Email</th>
+                                                <th>Mobile</th>
+                                                <th>Speciality</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.StaffDetailsList != null)
+                                            {
+                                            for (int i = 0; i < Model.StaffDetailsList.Count; i++)
+                                            {
+                                            <tr>
+                                                <td> @Convert.ToInt32(@i + 1)</td>
+                                                <td>@Model.StaffDetailsList[i].StaffDesignation</td>
+                                                <td>@Model.StaffDetailsList[i].Name</td>
+                                                <td>@Model.StaffDetailsList[i].RegistrationNumber</td>
+                                                <td>
+                                                    @if (Model.StaffDetailsList[i].UploadedFilePath != null)
+                                                    {
+                                                    var addressindex = Model.StaffDetailsList[i].UploadedFilePath.LastIndexOf("/");
+                                                    var addressfileName = Model.StaffDetailsList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                                    new { Area = "", path = Model.StaffDetailsList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                    }
+                                                </td>
+                                                <td>@Model.StaffDetailsList[i].Email</td>
+                                                <td>@Model.StaffDetailsList[i].PhoneNumber</td>
+                                                <td>@Model.StaffDetailsList[i].Speciality</td>
+                                            </tr>
+
+                                            }
+                                            }
+
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabFacilitiesAvailable" class="tab-pane">
+                    <form id="formFacilitiesAvailable">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-4">
+                                @Html.LabelFor(model => model.FacilitiesAvailableModel.HasLaborRoom, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-1">
+                                @if (Model.FacilitiesAvailableModel.HasLaborRoom)
+                                {<text>Yes</text>}
+                                else
+                                {<text>No</text>}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-4">
+                                @Html.LabelFor(model => model.FacilitiesAvailableModel.HasOperationTheater, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-1">
+                                @if (Model.FacilitiesAvailableModel.HasOperationTheater)
+                                {<text>Yes</text>}
+                                else
+                                {<text>No</text>}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-4">
+                                @Html.LabelFor(model => model.FacilitiesAvailableModel.HasDiagnosticFacility, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-1">
+                                @if (Model.FacilitiesAvailableModel.HasDiagnosticFacility)
+                                {<text>Yes</text>}
+                                else
+                                {<text>No</text>}
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="row" id="divDeclarationStampDetails">
+
+                            @if (Model.FacilitiesAvailableModel.DeclarationStampFilePath != null && Model.FacilitiesAvailableModel.DeclarationStampFilePath != "" && Model.FacilitiesAvailableModel.DeclarationStampFilePath != string.Empty)
+                            {
+                            <div class="col-md-5">
+                                @Html.LabelFor(model => model.FacilitiesAvailableModel.DeclarationStampFilePath, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-6">
+                                @if (Model.FacilitiesAvailableModel.DeclarationStampFilePath != null && Model.FacilitiesAvailableModel.DeclarationStampFilePath != "" && Model.FacilitiesAvailableModel.DeclarationStampFilePath != string.Empty)
+                                {
+                                var addressindex = Model.FacilitiesAvailableModel.DeclarationStampFilePath.LastIndexOf("/");
+                                var addressfileName = Model.FacilitiesAvailableModel.DeclarationStampFilePath.Substring(addressindex + 1);
+                                @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                new { Area = "", path = Model.FacilitiesAvailableModel.DeclarationStampFilePath, downloadName = addressfileName }, null);
+                                }
+                            </div>
+                            }
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.FacilitiesAvailableModel.OtherInformationDescription, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilitiesAvailableModel.OtherInformationDescription, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                            <div class="col-md-6">
+                                @if (Model.FacilitiesAvailableModel.OtherInformationDocumentPath != null && Model.FacilitiesAvailableModel.OtherInformationDocumentPath != "")
+                                {
+                                var addressindex = Model.FacilitiesAvailableModel.OtherInformationDocumentPath.LastIndexOf("/");
+                                var addressfileName = Model.FacilitiesAvailableModel.OtherInformationDocumentPath.Substring(addressindex + 1);
+                                @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                new { Area = "", path = Model.FacilitiesAvailableModel.OtherInformationDocumentPath, downloadName = addressfileName }, null);
+                                }
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div id="tabUploadAdditionalDocuments" class="tab-pane">
+                    <form id="formUploadAdditionalDocuments">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border"><b>Additional Documents</b></legend>
+                            @Html.HiddenFor(model => model.AdditionalDocumentsModel.Id)
+                            <span id="errMsgAdditionalDocuments" class="error" style="display: initial;color:red;">(Upload pdf/doc/Image files & Files Size must below 3.8 MB)</span>
+                            <div class="row" id="divUploadBioMedicalWastageClearanceFrom">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.AdditionalDocumentsModel.BioMedicalWastageClearanceFromFilePath, new { @class = "control-label", @id = "lblBioMedicalClearanceForm" })
+                                </div>
+                                <div class="col-md-6">
+                                    @if (!string.IsNullOrEmpty(Model.AdditionalDocumentsModel.BioMedicalWastageClearanceFromFilePath))
+                                    {
+                                    var layoutindex = Model.AdditionalDocumentsModel.BioMedicalWastageClearanceFromFilePath.LastIndexOf("/");
+                                    var layoutfileName = Model.AdditionalDocumentsModel.BioMedicalWastageClearanceFromFilePath.Substring(layoutindex + 1);
+                                    @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                    new { Area = "", path = Model.AdditionalDocumentsModel.BioMedicalWastageClearanceFromFilePath, downloadName = layoutfileName }, null);
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="row" id="divUploadPollutionAuthorityLetterByPCB">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.AdditionalDocumentsModel.PollutionAuthorityLetterByPCBFilePath, new { @class = "control-label", @id = "lblPollutionAuthorityLetterByPC" })
+                                </div>
+                                <div class="col-md-6">
+                                    @if (!string.IsNullOrEmpty(Model.AdditionalDocumentsModel.PollutionAuthorityLetterByPCBFilePath))
+                                    {
+                                    var layoutindex = Model.AdditionalDocumentsModel.PollutionAuthorityLetterByPCBFilePath.LastIndexOf("/");
+                                    var layoutfileName = Model.AdditionalDocumentsModel.PollutionAuthorityLetterByPCBFilePath.Substring(layoutindex + 1);
+                                    @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                    new { Area = "", path = Model.AdditionalDocumentsModel.PollutionAuthorityLetterByPCBFilePath, downloadName = layoutfileName }, null);
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="row" id="divUploaFireNOCCopy">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.AdditionalDocumentsModel.FEReportFilePath, "FE Report(FireNOC-Above 15 Meters needs to upload)", new { @class = "control-label", @id = "lblFEReportFilePath" })
+                                </div>
+                                <div class="col-md-6">
+                                    @if (!string.IsNullOrEmpty(Model.AdditionalDocumentsModel.FEReportFilePath))
+                                    {
+                                    var layoutindex = Model.AdditionalDocumentsModel.FEReportFilePath.LastIndexOf("/");
+                                    var layoutfileName = Model.AdditionalDocumentsModel.FEReportFilePath.Substring(layoutindex + 1);
+                                    @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                    new { Area = "", path = Model.AdditionalDocumentsModel.FEReportFilePath, downloadName = layoutfileName }, null);
+                                    }
+                                </div>
+                            </div>
+
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border"><b>For above 25 beds,Upload CFO,STP Documents</b> </legend>
+                                <div class="row" id="divUploadCFO">
+                                    <div class="col-md-6 text-center">
+                                        @Html.LabelFor(model => model.AdditionalDocumentsModel.CFOFilePath, "CFO(Consent for operation)", new { @class = "control-label", @id = "lblCFO" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.AdditionalDocumentsModel.CFOFilePath))
+                                        {
+                                        var layoutindex = Model.AdditionalDocumentsModel.CFOFilePath.LastIndexOf("/");
+                                        var layoutfileName = Model.AdditionalDocumentsModel.CFOFilePath.Substring(layoutindex + 1);
+                                        @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                        new { Area = "", path = Model.AdditionalDocumentsModel.CFOFilePath, downloadName = layoutfileName }, null);
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row" id="divUploadSTP">
+                                    <div class="col-md-6 text-center">
+                                        @Html.LabelFor(model => model.AdditionalDocumentsModel.STPFilePath, "STP Document", new { @class = "control-label", @id = "lblSTP" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.AdditionalDocumentsModel.STPFilePath))
+                                        {
+                                        var layoutindex = Model.AdditionalDocumentsModel.STPFilePath.LastIndexOf("/");
+                                        var layoutfileName = Model.AdditionalDocumentsModel.STPFilePath.Substring(layoutindex + 1);
+                                        @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                        new { Area = "", path = Model.AdditionalDocumentsModel.STPFilePath, downloadName = layoutfileName }, null);
+                                        }
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border"><b>Tariff List & Establishment Details </b></legend>
+                                <div class="row" id="divUploadTarifList">
+                                    <div class="col-md-6 text-center">
+                                        @Html.LabelFor(model => model.AdditionalDocumentsModel.TarifListFilePath, new { @class = "control-label", @id = "lblTarifList" })
+                                        <span style="color:red">*</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.AdditionalDocumentsModel.TarifListFilePath))
+                                        {
+                                        var layoutindex = Model.AdditionalDocumentsModel.TarifListFilePath.LastIndexOf("/");
+                                        var layoutfileName = Model.AdditionalDocumentsModel.TarifListFilePath.Substring(layoutindex + 1);
+                                        @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                        new { Area = "", path = Model.AdditionalDocumentsModel.TarifListFilePath, downloadName = layoutfileName }, null);
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row" id="divUploadEstablishment">
+                                    <div class="col-md-6 text-center">
+                                        @Html.LabelFor(model => model.AdditionalDocumentsModel.Establishment_BuildingPlanFilepath, "Height of the Building & Building plan", new { @class = "control-label", @id = "lblBuildingPlan" })
+                                        <span style="color:red">*</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.AdditionalDocumentsModel.Establishment_BuildingPlanFilepath))
+                                        {
+                                        var layoutindex = Model.AdditionalDocumentsModel.Establishment_BuildingPlanFilepath.LastIndexOf("/");
+                                        var layoutfileName = Model.AdditionalDocumentsModel.Establishment_BuildingPlanFilepath.Substring(layoutindex + 1);
+                                        @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                        new { Area = "", path = Model.AdditionalDocumentsModel.Establishment_BuildingPlanFilepath, downloadName = layoutfileName }, null);
+                                        }
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border"><b>Hospital Photographs Details </b></legend>
+                                <div class="row" id="divUploadOutSideNamePlateBuilding">
+                                    <div class="col-md-6 text-center">
+                                        @Html.LabelFor(model => model.AdditionalDocumentsModel.HospitalOutSideNamePlateBuildingFilePath, "OutSide : Name Plate Building", new { @class = "control-label", @id = "lblHospitalOutSideNamePlateBuilding" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.AdditionalDocumentsModel.HospitalOutSideNamePlateBuildingFilePath))
+                                        {
+                                        var layoutindex = Model.AdditionalDocumentsModel.HospitalOutSideNamePlateBuildingFilePath.LastIndexOf("/");
+                                        var layoutfileName = Model.AdditionalDocumentsModel.HospitalOutSideNamePlateBuildingFilePath.Substring(layoutindex + 1);
+                                        @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                        new { Area = "", path = Model.AdditionalDocumentsModel.HospitalOutSideNamePlateBuildingFilePath, downloadName = layoutfileName }, null);
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row" id="divUploadTariffBoard">
+                                    <div class="col-md-6 text-center">
+                                        @Html.LabelFor(model => model.AdditionalDocumentsModel.TariffBoardFilePath, "Tariff Board", new { @class = "control-label", @id = "lblTariffBoard" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.AdditionalDocumentsModel.TariffBoardFilePath))
+                                        {
+                                        var layoutindex = Model.AdditionalDocumentsModel.TariffBoardFilePath.LastIndexOf("/");
+                                        var layoutfileName = Model.AdditionalDocumentsModel.TariffBoardFilePath.Substring(layoutindex + 1);
+                                        @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                        new { Area = "", path = Model.AdditionalDocumentsModel.TariffBoardFilePath, downloadName = layoutfileName }, null);
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row" id="divUploadFireExhaustive">
+                                    <div class="col-md-6 text-center">
+                                        @Html.LabelFor(model => model.AdditionalDocumentsModel.FireExhaustiveFilePath, "Fire Exhaustive", new { @class = "control-label", @id = "lblFireExhaustive" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.AdditionalDocumentsModel.FireExhaustiveFilePath))
+                                        {
+                                        var layoutindex = Model.AdditionalDocumentsModel.FireExhaustiveFilePath.LastIndexOf("/");
+                                        var layoutfileName = Model.AdditionalDocumentsModel.FireExhaustiveFilePath.Substring(layoutindex + 1);
+                                        @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                        new { Area = "", path = Model.AdditionalDocumentsModel.FireExhaustiveFilePath, downloadName = layoutfileName }, null);
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row" id="divUploadHospitalLabOperationTheater">
+                                    <div class="col-md-6 text-center">
+                                        @Html.LabelFor(model => model.AdditionalDocumentsModel.HospitalLabOperationTheaterFilePath, new { @class = "control-label", @id = "lblHospitalLabOperationTheater" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.AdditionalDocumentsModel.HospitalLabOperationTheaterFilePath))
+                                        {
+                                        var layoutindex = Model.AdditionalDocumentsModel.HospitalLabOperationTheaterFilePath.LastIndexOf("/");
+                                        var layoutfileName = Model.AdditionalDocumentsModel.HospitalLabOperationTheaterFilePath.Substring(layoutindex + 1);
+                                        @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                        new { Area = "", path = Model.AdditionalDocumentsModel.HospitalLabOperationTheaterFilePath, downloadName = layoutfileName }, null);
+                                        }
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </fieldset>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabPaymentDetails" class="tab-pane">
+                    <form id="formPaymentDetails">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border"><b>Payment Details</b></legend>
+                            <div class="row" id="divPayments">
+                                <div class="row payment">
+                                    <div class="col-md-1 text-right">
+                                        <label>Order Id</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span id="spanOrderId" />
+                                    </div>
+                                    <div class="col-md-2 text-right">
+                                        <label>Payment Id</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span id="spanPaymentId" />
+                                    </div>
+                                    <div class="col-md-1 text-right">
+                                        <label>Amount</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <span id="spanAmount" />
+                                    </div>
+                                    <div class="col-md-1 text-right">
+                                        <label>Paid On</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span id="spanPaidOn" />
+                                    </div>
+                                </div>
+
+                                <div class="row nopayment" hidden>
+                                    <div class="col-md-12 text-center">
+                                        <span style="color:red;">Payment details not found</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>

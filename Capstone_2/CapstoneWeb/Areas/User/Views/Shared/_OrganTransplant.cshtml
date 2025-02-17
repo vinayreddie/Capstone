@@ -1,0 +1,1930 @@
+﻿
+@model Capstone.Models.OrganTransplantViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <span style="font-size:large">The Transplantation of Human Organs Rules, 1995</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabHospital" data-toggle="tab">Hospital</a></li>
+                <li><a href="#tabSurgicalTeam" data-toggle="tab">Surgical Team</a></li>
+                <li><a href="#tabCapstoneTeam" data-toggle="tab">Capstone Team</a></li>
+                <li><a href="#tabAnaesthesiology" data-toggle="tab">Anaesthesiology</a></li>
+                <li><a href="#tabICUHDUFacilities" data-toggle="tab">I.C.U / H.D.U. Facilities</a></li>
+                <li><a href="#tabLaboratoryFacilities" data-toggle="tab">Laboratory Facilities</a></li>
+                <li><a href="#tabImagingServices" data-toggle="tab">Imaging Services</a></li>
+                <li><a href="#tabHaematologyServices" data-toggle="tab">Haematology Services</a></li>
+                <li><a href="#tabAvailableFacilities" data-toggle="tab">Available Facilities</a></li>
+                <li><a href="#tabOTDeclaration" data-toggle="tab">Declaration</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabHospital">
+                    <form id="formHospital">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.HiddenFor(model => model.HospitalModel.Id,new { @Id="hiddenHospitalId"})
+                                @Html.LabelFor(model => model.HospitalModel.HospitalName, "Hospital Name", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HospitalModel.HospitalName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.HospitalName, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.HospitalModel.DistrictId, new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                   new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.DistrictId, "", new { @Class = "text-danger" })
+
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.HospitalModel.MandalId, new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                   new { @Class = "form-control select2", @style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.MandalId, "", new { @Class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.VillageId, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.HospitalModel.VillageId, new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+                                   new { @Class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.VillageId, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.StreetName, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HospitalModel.StreetName, new { HtmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.StreetName, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.HouseNo, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HospitalModel.HouseNo, new { HtmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.HouseNo, "", new { @Class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.Pincode, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HospitalModel.Pincode, new { HtmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.Pincode, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.PhoneNo, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HospitalModel.PhoneNo, new { HtmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.PhoneNo, "", new { @Class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.TeacherNonTeach, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.HospitalModel.TeacherNonTeach, new List<SelectListItem>() {
+                                   new SelectListItem() {Text="Select" ,Value="",Selected=true } ,
+                                   new SelectListItem() {Text="Teaching",Value="Teaching" },
+                                    new SelectListItem() {Text="Non-Teaching",Value="Non-Teaching" } }, new { @Class = "form-control", @Style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.TeacherNonTeach, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.Govtorpvt, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.HospitalModel.Govtorpvt, new List<SelectListItem>()
+                               { new SelectListItem() {Text="Select",Value="",Selected=true},
+                                 new SelectListItem() { Text="Government",Value="Government"},
+                                 new SelectListItem() {Text="Private",Value="Private" } }, new { @Class = "form-control", @Style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.Govtorpvt, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.AnnualBudjet, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HospitalModel.AnnualBudjet, new { HtmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.AnnualBudjet, "", new { @Class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.TotalBedStrength, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HospitalModel.TotalBedStrength, new { HtmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.TotalBedStrength, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.Nameofdisciplines, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HospitalModel.Nameofdisciplines, new { HtmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.Nameofdisciplines, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.PatientTurnoverPerYear, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HospitalModel.PatientTurnoverPerYear, new { HtmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HospitalModel.PatientTurnoverPerYear, "", new { @Class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Approached by
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.ByRoad, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.RadioButtonFor(model => model.HospitalModel.ByRoad, "Yes")Yes
+                                @Html.RadioButtonFor(model => model.HospitalModel.ByRoad, "No")No
+                                @Html.ValidationMessageFor(model => model.HospitalModel.ByRoad, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.ByRail, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.RadioButtonFor(model => model.HospitalModel.ByRail, "Yes")Yes
+                                @Html.RadioButtonFor(model => model.HospitalModel.ByRail, "No")No
+                                @Html.ValidationMessageFor(model => model.HospitalModel.ByRail, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.HospitalModel.ByAir, new { @Class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.RadioButtonFor(model => model.HospitalModel.ByAir, "Yes")Yes
+                                @Html.RadioButtonFor(model => model.HospitalModel.ByAir, "No")No
+                                @Html.ValidationMessageFor(model => model.HospitalModel.ByAir, "", new { @Class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnHospitalClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnHospitalSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="tabSurgicalTeam">
+                    <form id="frmSurgicalInput">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.HiddenFor(model => model.Surgical.Id, new { @Id="hiddenOTID"})
+                                @Html.LabelFor(model => model.Surgical.NumberofBeds, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Surgical.NumberofBeds, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Surgical.NumberofBeds, "", new { @Class = "text-danger" })
+
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Surgical.NoofOperationsPerYear, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Surgical.NoofOperationsPerYear, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Surgical.NoofOperationsPerYear, "", new { @Class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </form>
+                    <form id="frmSurgical">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Surgical.StaffDetails.StaffType, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.Surgical.StaffDetails.StaffType, new List<SelectListItem>() {
+                                   new SelectListItem() {Text="Select",Value="",Selected=true },
+                                   new SelectListItem() {Text="Permanent Staff",Value="Permanent Staff" },
+                                   new SelectListItem() {Text="Temporary Staff",Value="Temporary Staff" },
+                                   new SelectListItem() {Text="Trained Persons for Transplantation",Value="Trained Persons" }
+                               }, new { @Class = "form-control", @style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.Surgical.StaffDetails.StaffType, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Surgical.StaffDetails.Designation, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Surgical.StaffDetails.Designation, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Surgical.StaffDetails.Designation, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.Surgical.StaffDetails.NoOfMembers, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Surgical.StaffDetails.NoOfMembers, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Surgical.StaffDetails.NoOfMembers, "", new { @Class = "text-danger" })
+
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" value="Add" id="btnSurgicalAdd" />
+                            </div>
+                        </div>
+                        <div class="row" id="divOrgan" hidden>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Surgical.StaffDetails.Organ, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Surgical.StaffDetails.Organ, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Surgical.StaffDetails.Organ, "", new { @Class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table table-hover" id="tblSurgical">
+                                        <tr>
+                                            <th>S.NO.</th>
+                                            <th>Staff Type</th>
+                                            <th>Designation</th>
+                                            <th>No. of Members</th>
+                                            <th>Organ</th>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="button" value="Clear" id="btnSurgicalInputClear" class="btn btn-default" />
+                            <input type="button" value="Save" id="btnSurgicalInputSave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tabCapstoneTeam">
+                    <form id="frmCapstoneInput">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.CapstoneTeam.NoofBeds, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.CapstoneTeam.NoofBeds, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CapstoneTeam.NoofBeds, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.CapstoneTeam.PatientTurnover, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.CapstoneTeam.PatientTurnover, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CapstoneTeam.PatientTurnover, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.CapstoneTeam.TransplantPatients, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.CapstoneTeam.TransplantPatients, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CapstoneTeam.TransplantPatients, "", new { @Class = "text-danger" })
+                            </div>
+                        </div>
+                    </form>
+                    <form id="frmCapstone">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.CapstoneTeam.StaffDetails.StaffType, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.CapstoneTeam.StaffDetails.StaffType, new List<SelectListItem>() {
+                                   new SelectListItem() {Text="Select",Value="",Selected=true },
+                                   new SelectListItem() {Text="Permanent Staff",Value="Permanent Staff" },
+                                   new SelectListItem() {Text="Temporary Staff",Value="Temporary Staff" },
+                               }, new { @Class = "form-control", @style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.CapstoneTeam.StaffDetails.StaffType, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.CapstoneTeam.StaffDetails.Designation, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.CapstoneTeam.StaffDetails.Designation, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CapstoneTeam.StaffDetails.Designation, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CapstoneTeam.StaffDetails.NoOfMembers, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.CapstoneTeam.StaffDetails.NoOfMembers, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CapstoneTeam.StaffDetails.NoOfMembers, "", new { @Class = "text-danger" })
+
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" value="Add" id="btnCapstoneStaff" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table table-hover" id="tblCapstoneStaff">
+                                        <tr>
+                                            <th>S.NO.</th>
+                                            <th>Staff Type</th>
+                                            <th>Designation</th>
+                                            <th>No. of Members</th>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="button" value="Clear" id="btnCapstoneTeamClear" class="btn btn-default" />
+                            <input type="button" value="Save" id="btnCapstoneTeamSave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tabAnaesthesiology">
+                    <form id="frmAnaesthesiologyInput">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Anaesthesiology.OperationTheatres, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Anaesthesiology.OperationTheatres, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Anaesthesiology.OperationTheatres, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Anaesthesiology.EmergencyOperationTheatres, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Anaesthesiology.EmergencyOperationTheatres, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Anaesthesiology.EmergencyOperationTheatres, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Anaesthesiology.TransplantOperationTheatres, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Anaesthesiology.TransplantOperationTheatres, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Anaesthesiology.TransplantOperationTheatres, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </form>
+                    <form id="frmAnaesthesiology">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Anaesthesiology.StaffDetails.StaffType, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.Anaesthesiology.StaffDetails.StaffType, new List<SelectListItem>() {
+                                   new SelectListItem() {Text="Select",Value="",Selected=true },
+                                   new SelectListItem() {Text="Permanent Staff",Value="Permanent Staff" },
+                                   new SelectListItem() {Text="Temporary Staff",Value="Temporary Staff" },
+                               }, new { @Class = "form-control", @style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.Anaesthesiology.StaffDetails.StaffType, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Anaesthesiology.StaffDetails.Designation, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Anaesthesiology.StaffDetails.Designation, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Anaesthesiology.StaffDetails.Designation, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.Anaesthesiology.StaffDetails.NoOfMembers, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Anaesthesiology.StaffDetails.NoOfMembers, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Anaesthesiology.StaffDetails.NoOfMembers, "", new { @Class = "text-danger" })
+
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" value="Add" id="btnAnaesthesiologyStaff" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table table-hover" id="tblAnaesthesiology">
+                                        <tr>
+                                            <th>S.NO.</th>
+                                            <th>Staff Type</th>
+                                            <th>Designation</th>
+                                            <th>No. of Members</th>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Anaesthesiology.Operation.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Anaesthesiology.Operation.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Anaesthesiology.Operation.Name, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Anaesthesiology.Operation.OperationsPerformed, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Anaesthesiology.Operation.OperationsPerformed, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Anaesthesiology.Operation.OperationsPerformed, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                <input type="button" value="add" id="btnOperation" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table table-hover" id="tblOperation">
+                                        <tr>
+                                            <th>S.NO.</th>
+                                            <th>Name of the Operation</th>
+                                            <th>No. of Operations Performed</th>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Anaesthesiology.Equipments.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Anaesthesiology.Equipments.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Anaesthesiology.Equipments.Name, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Anaesthesiology.Equipments.NoofEquipments, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Anaesthesiology.Equipments.NoofEquipments, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Anaesthesiology.Equipments.NoofEquipments, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                <input type="button" value="add" id="btnEquipments" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table table-hover" id="tblEquipment">
+                                        <tr>
+                                            <th>S.NO.</th>
+                                            <th>Name of the Equipment</th>
+                                            <th>Name of Equipments</th>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="button" value="Clear" id="btnAnaesthesiologyClear" class="btn btn-default" />
+                            <input type="button" value="Save" id="btnAnaesthesiologySave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tabICUHDUFacilities">
+                    <form id="frmFacilitiesInput">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.ICUHDUFacilities.ICUBeds, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ICUHDUFacilities.ICUBeds, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ICUHDUFacilities.ICUBeds, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.ICUHDUFacilities.Trained, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ICUHDUFacilities.Trained, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ICUHDUFacilities.Trained, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.ICUHDUFacilities.Nurses, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ICUHDUFacilities.Nurses, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ICUHDUFacilities.Nurses, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.ICUHDUFacilities.Technicians, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ICUHDUFacilities.Technicians, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ICUHDUFacilities.Technicians, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </form>
+                    <form id="frmFacilites">
+                        <div class="row">
+                            <div class="col-md-12">
+                                Name and No. of Equipments in ICU
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.ICUHDUFacilities.Equipments.Name, "Euipment Name", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ICUHDUFacilities.Equipments.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ICUHDUFacilities.Equipments.Name, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.ICUHDUFacilities.Equipments.NoofEquipments, "No. of Equipments", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ICUHDUFacilities.Equipments.NoofEquipments, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ICUHDUFacilities.Equipments.NoofEquipments, "", new { @Class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                <input type="button" value="add" id="btnICUHDUEquipments" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table table-hover" id="tblICUHDUEquipment">
+                                        <tr>
+                                            <th>S.NO.</th>
+                                            <th>Name of the Equipment</th>
+                                            <th>Name of Equipments</th>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                Other Supportive Facilities
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.ICUHDUFacilities.OtherSupportiveFacilities, "Data about facilities availabel in hospital", new { @Class = "control-label" })
+
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ICUHDUFacilities.OtherSupportiveFacilities, new { HtmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ICUHDUFacilities.OtherSupportiveFacilities, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="button" value="Clear" id="btnICUHDUFacilitiesClear" class="btn btn-default" />
+                            <input type="button" value="Save" id="btnICUHDUFacilitiesSave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tabLaboratoryFacilities">
+                    <form id="formLaboratoryFacilities">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.LaboratoryFacilities.StaffDetailsModel.StaffType, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.LaboratoryFacilities.StaffDetailsModel.StaffType,
+                               new List<SelectListItem>
+                               {
+                                   new SelectListItem() { Text = "Select", Value = "", Selected = true },
+                                   new SelectListItem() { Text= "Permanent Staff", Value = "Permanent Staff" },
+                                   new SelectListItem() {Text = "Temporary Staff", Value = "Temporary Staff" }
+                               }, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LaboratoryFacilities.StaffDetailsModel.StaffType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.LaboratoryFacilities.StaffDetailsModel.Designation, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.LaboratoryFacilities.StaffDetailsModel.Designation,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LaboratoryFacilities.StaffDetailsModel.Designation, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.LaboratoryFacilities.StaffDetailsModel.NoOfMembers, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.LaboratoryFacilities.StaffDetailsModel.NoOfMembers,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LaboratoryFacilities.StaffDetailsModel.NoOfMembers, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="btnAddLaboratoryFacilityStaffDetails" value="Add" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-8">
+                                <table class="table table-bordered" id="tblLaboratoryFacilityStaffDetails">
+                                    <tr>
+                                        <th style="width: 10px">S.No</th>
+                                        <th>Staff Type</th>
+                                        <th>Designation</th>
+                                        <th>No of Members</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.LaboratoryFacilities.Investigations, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.LaboratoryFacilities.Investigations,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LaboratoryFacilities.Investigations, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.LaboratoryFacilities.EquipmentModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.LaboratoryFacilities.EquipmentModel.Name,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LaboratoryFacilities.EquipmentModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.LaboratoryFacilities.EquipmentModel.NoofEquipments, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.LaboratoryFacilities.EquipmentModel.NoofEquipments,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LaboratoryFacilities.EquipmentModel.NoofEquipments, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="btnAddLaboratoryEquipment" value="Add" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-8">
+                                <table class="table table-bordered" id="tblLaboratoryEquipments">
+                                    <tr>
+                                        <th style="width: 10px">S.No</th>
+                                        <th>Equipment Name</th>
+                                        <th>No of Equipments</th>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnLaboratoryFacilitiesClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnLaboratoryFacilitiesSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="tabImagingServices">
+                    <form id="formImagingServices">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ImagingServices.StaffDetailsModel.StaffType, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.ImagingServices.StaffDetailsModel.StaffType,
+                               new List<SelectListItem>
+                               {
+                                   new SelectListItem() { Text = "Select", Value = "", Selected = true },
+                                   new SelectListItem() { Text= "Permanent Staff", Value = "Permanent Staff" },
+                                   new SelectListItem() {Text = "Temporary Staff", Value = "Temporary Staff" }
+                               }, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ImagingServices.StaffDetailsModel.StaffType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ImagingServices.StaffDetailsModel.Designation, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ImagingServices.StaffDetailsModel.Designation,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ImagingServices.StaffDetailsModel.Designation, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ImagingServices.StaffDetailsModel.NoOfMembers, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ImagingServices.StaffDetailsModel.NoOfMembers,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ImagingServices.StaffDetailsModel.NoOfMembers, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="btnAddImagingServicesStaffDetails" value="Add" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-8">
+                                <table class="table table-bordered" id="tblImagingServicesStaffDetails">
+                                    <tr>
+                                        <th style="width: 10px">S.No</th>
+                                        <th>Staff Type</th>
+                                        <th>Designation</th>
+                                        <th>No of Members</th>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ImagingServices.Investigations, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ImagingServices.Investigations,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ImagingServices.Investigations, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ImagingServices.EquipmentModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ImagingServices.EquipmentModel.Name,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ImagingServices.EquipmentModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ImagingServices.EquipmentModel.NoofEquipments, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ImagingServices.EquipmentModel.NoofEquipments,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ImagingServices.EquipmentModel.NoofEquipments, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="btnAddImagingServicesEquipment" value="Add" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-8">
+                                <table class="table table-bordered" id="tblImagingServicesEquipments">
+                                    <tr>
+                                        <th style="width: 10px">S.No</th>
+                                        <th>Equipment Name</th>
+                                        <th>No of Equipments</th>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnImagingServicesClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnImagingServicesSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="tab-pane" id="tabHaematologyServices">
+                    <form id="formHaematologyServices">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HaematologyServices.StaffDetailsModel.StaffType, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.HaematologyServices.StaffDetailsModel.StaffType,
+                               new List<SelectListItem>
+                               {
+                                   new SelectListItem() { Text = "Select", Value = "", Selected = true },
+                                   new SelectListItem() { Text= "Permanent Staff", Value = "Permanent Staff" },
+                                   new SelectListItem() {Text = "Temporary Staff", Value = "Temporary Staff" }
+                               }, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.HaematologyServices.StaffDetailsModel.StaffType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HaematologyServices.StaffDetailsModel.Designation, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HaematologyServices.StaffDetailsModel.Designation,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HaematologyServices.StaffDetailsModel.Designation, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HaematologyServices.StaffDetailsModel.NoOfMembers, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HaematologyServices.StaffDetailsModel.NoOfMembers,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HaematologyServices.StaffDetailsModel.NoOfMembers, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="btnAddHaematologyServiceStaffDetails" value="Add" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-8">
+                                <table class="table table-bordered" id="tblHaematologyService">
+                                    <tr>
+                                        <th style="width: 10px">S.No</th>
+                                        <th>Staff Type</th>
+                                        <th>Designation</th>
+                                        <th>No of Members</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HaematologyServices.Investigations, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HaematologyServices.Investigations,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HaematologyServices.Investigations, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HaematologyServices.EquipmentModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HaematologyServices.EquipmentModel.Name,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HaematologyServices.EquipmentModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HaematologyServices.EquipmentModel.NoofEquipments, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HaematologyServices.EquipmentModel.NoofEquipments,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HaematologyServices.EquipmentModel.NoofEquipments, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="btnAddHaematologyEquipment" value="Add" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-8">
+                                <table class="table table-bordered" id="tblHaematologyEquipment">
+                                    <tr>
+                                        <th style="width: 10px">S.No</th>
+                                        <th>Equipment Name</th>
+                                        <th>No of Equipments</th>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnHaematologyClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnHaematologySave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="tabAvailableFacilities">
+                    <form id="formAvailableFacilities">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.BloodBankFacilities, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.BloodBankFacilities, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.BloodBankFacilities, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.BloodBankFacilities, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.DialysisFacilities, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.DialysisFacilities, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.DialysisFacilities, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.DialysisFacilities, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Nephrologist, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Nephrologist, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Nephrologist, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Nephrologist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Neurologist, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Neurologist, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Neurologist, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Neurologist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.NeuroSurgeon, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.NeuroSurgeon, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.NeuroSurgeon, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.NeuroSurgeon, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Urologist, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Urologist, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Urologist, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Urologist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.GISurgeon, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.GISurgeon, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.GISurgeon, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.GISurgeon, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Paediatrician, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Paediatrician, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Paediatrician, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Paediatrician, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Physicotherapist, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Physicotherapist, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Physicotherapist, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Physicotherapist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.SocialWorker, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.SocialWorker, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.SocialWorker, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.SocialWorker, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Immunologist, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Immunologist, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Immunologist, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Immunologist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.LabelFor(model => model.Facilities.Cardiologist, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.Facilities.Cardiologist, "Yes") Yes
+                                @Html.RadioButtonFor(model => model.Facilities.Cardiologist, "No") No
+                                @Html.ValidationMessageFor(model => model.Facilities.Cardiologist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnOTAvailableFacilitieisClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnOTAvailableFacilitiesSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="tabOTDeclaration">
+                    <form id="formOTDeclaration">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                <input type="checkbox" value="Yes" id="chbDeclaration" /> Declaration
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-11">
+                                <p style="text-indent: 50px; text-align:justify;line-height: 30px;">
+                                    The above said information is true to the best of my knowledge and I have no objection
+                                    to any scrutiny of our facility by athorised personnel.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-8 col-md-4" style="text-align:center">
+                                <b>Signature</b>
+                                <br />
+                                Head of the Insitution<br />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-8 col-md-4">
+                                @Html.EditorFor(model => model.Declaration.Signature,
+                               new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Declaration.Signature, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnOTDeclarationClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnOTDeclarationSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+</div>
+
+
+<script>
+    $('#HospitalModel_DistrictId').on('change', function () {
+        BindMandals('HospitalModel_', this.value);
+    });
+
+    $('#HospitalModel_MandalId').on('change', function () {
+        BindVillages('HospitalModel_', this.value);
+    });
+    $('#btnSurgicalAdd').click(function (e) {
+        e.preventDefault();
+        var ValidateStaffDetails = $('#frmSurgical').validate();
+        console.log(ValidateStaffDetails);
+        var IsStaffTypeValid = ValidateStaffDetails.element('#Surgical_StaffDetails_StaffType');
+        var IsDesignationValid = ValidateStaffDetails.element('#Surgical_StaffDetails_Designation');
+        var IsNoOfMembersValid = ValidateStaffDetails.element('#Surgical_StaffDetails_NoOfMembers');
+        if (IsStaffTypeValid && IsDesignationValid && IsNoOfMembersValid) {
+            var data = {
+                StaffDetails: {
+                    StaffType: $('#Surgical_StaffDetails_StaffType').val(),
+                    Designation: $('#Surgical_StaffDetails_Designation').val(),
+                    NoOfMembers: $('#Surgical_StaffDetails_NoOfMembers').val(),
+                    Organ: $('#Surgical_StaffDetails_Organ').val()
+                },
+                StaffType: 'surgical'
+            }
+            var jqxhr = $.post("SurgicalStaffList", data, function () { }, 'json').
+            done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                console.log(json);
+                BindStaffDetails(json, 'tblSurgical')
+                ClearStaffDetails('Surgical_StaffDetails_StaffType', 'Surgical_StaffDetails_Designation', 'Surgical_StaffDetails_NoOfMembers')
+                $('#Surgical_StaffDetails_Organ').val('');
+                $('#divOrgan').hide();
+            });
+
+
+        }
+    });
+    $('#btnCapstoneStaff').click(function (e) {
+        e.preventDefault();
+        var ValidateStaffDetails = $('#frmCapstone').validate();
+        console.log(ValidateStaffDetails);
+        var IsStaffTypeValid = ValidateStaffDetails.element('#CapstoneTeam_StaffDetails_StaffType');
+        var IsDesignationValid = ValidateStaffDetails.element('#CapstoneTeam_StaffDetails_Designation');
+        var IsNoOfMembersValid = ValidateStaffDetails.element('#CapstoneTeam_StaffDetails_NoOfMembers');
+        if (IsStaffTypeValid && IsDesignationValid && IsNoOfMembersValid) {
+            var data = {
+                StaffDetails: {
+                    StaffType: $('#CapstoneTeam_StaffDetails_StaffType').val(),
+                    Designation: $('#CapstoneTeam_StaffDetails_Designation').val(),
+                    NoOfMembers: $('#CapstoneTeam_StaffDetails_NoOfMembers').val()
+                },
+                StaffType: 'Capstone'
+            }
+            var jqxhr = $.post("SurgicalStaffList", data, function () { }, 'json').
+            done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                console.log(json);
+                BindStaffDetails(json, 'tblCapstoneStaff');
+                ClearStaffDetails('CapstoneTeam_StaffDetails_StaffType', 'CapstoneTeam_StaffDetails_Designation', 'CapstoneTeam_StaffDetails_NoOfMembers');
+            });
+
+        }
+    });
+    $('#btnAnaesthesiologyStaff').click(function (e) {
+        e.preventDefault();
+        var ValidateStaffDetails = $('#frmAnaesthesiology').validate();
+        console.log(ValidateStaffDetails);
+        var IsStaffTypeValid = ValidateStaffDetails.element('#Anaesthesiology_StaffDetails_StaffType');
+        var IsDesignationValid = ValidateStaffDetails.element('#Anaesthesiology_StaffDetails_Designation');
+        var IsNoOfMembersValid = ValidateStaffDetails.element('#Anaesthesiology_StaffDetails_NoOfMembers');
+        if (IsStaffTypeValid && IsDesignationValid && IsNoOfMembersValid) {
+            var data = {
+                StaffDetails: {
+                    StaffType: $('#Anaesthesiology_StaffDetails_StaffType').val(),
+                    Designation: $('#Anaesthesiology_StaffDetails_Designation').val(),
+                    NoOfMembers: $('#Anaesthesiology_StaffDetails_NoOfMembers').val()
+                },
+                StaffType: 'anaesthesiology'
+            }
+            var jqxhr = $.post("SurgicalStaffList", data, function () { }, 'json').
+            done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                console.log(json);
+                BindStaffDetails(json, 'tblAnaesthesiology');
+                ClearStaffDetails('Anaesthesiology_StaffDetails_StaffType', 'Anaesthesiology_StaffDetails_Designation', 'Anaesthesiology_StaffDetails_NoOfMembers');
+            });
+
+
+        }
+    });
+    $('#btnAddLaboratoryFacilityStaffDetails').click(function (e) {
+        e.preventDefault();
+        var ValidateStaffDetails = $('#frmLaboratory').validate();
+        console.log(ValidateStaffDetails);
+        var IsStaffTypeValid = ValidateStaffDetails.element('#LaboratoryFacilities_StaffDetailsModel_StaffType');
+        var IsDesignationValid = ValidateStaffDetails.element('#LaboratoryFacilities_StaffDetailsModel_Designation');
+        var IsNoOfMembersValid = ValidateStaffDetails.element('#LaboratoryFacilities_StaffDetailsModel_NoOfMembers');
+        if (IsStaffTypeValid && IsDesignationValid && IsNoOfMembersValid) {
+            var data = {
+                StaffDetails: {
+                    StaffType: $('#LaboratoryFacilities_StaffDetailsModel_StaffType').val(),
+                    Designation: $('#LaboratoryFacilities_StaffDetailsModel_Designation').val(),
+                    NoOfMembers: $('#LaboratoryFacilities_StaffDetailsModel_NoOfMembers').val()
+                },
+                StaffType: 'Laboratory'
+            }
+            var jqxhr = $.post("SurgicalStaffList", data, function () { }, 'json').
+            done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                console.log(json);
+                BindStaffDetails(json, 'tblLaboratoryFacilityStaffDetails');
+                ClearStaffDetails('LaboratoryFacilities_StaffDetailsModel_StaffType', 'LaboratoryFacilities_StaffDetailsModel_Designation', 'LaboratoryFacilities_StaffDetailsModel_NoOfMembers');
+            });
+
+
+        }
+    });
+    $('#btnAddImagingServicesStaffDetails').click(function (e) {
+        e.preventDefault();
+        var ValidateStaffDetails = $('#frmImaging').validate();
+        console.log(ValidateStaffDetails);
+        var IsStaffTypeValid = ValidateStaffDetails.element('#ImagingServices_StaffDetailsModel_StaffType');
+        var IsDesignationValid = ValidateStaffDetails.element('#ImagingServices_StaffDetailsModel_Designation');
+        var IsNoOfMembersValid = ValidateStaffDetails.element('#ImagingServices_StaffDetailsModel_NoOfMembers');
+        if (IsStaffTypeValid && IsDesignationValid && IsNoOfMembersValid) {
+            var data = {
+                StaffDetails: {
+                    StaffType: $('#ImagingServices_StaffDetailsModel_StaffType').val(),
+                    Designation: $('#ImagingServices_StaffDetailsModel_Designation').val(),
+                    NoOfMembers: $('#ImagingServices_StaffDetailsModel_NoOfMembers').val()
+                },
+                StaffType: 'Imaging'
+            }
+            var jqxhr = $.post("SurgicalStaffList", data, function () { }, 'json').
+            done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                console.log(json);
+                BindStaffDetails(json, 'tblImagingServicesStaffDetails');
+                ClearStaffDetails('ImagingServices_StaffDetailsModel_StaffType', 'ImagingServices_StaffDetailsModel_Designation', 'ImagingServices_StaffDetailsModel_NoOfMembers');
+            });
+
+
+        }
+    });
+    $('#btnAddHaematologyServiceStaffDetails').click(function (e) {
+        e.preventDefault();
+        var ValidateStaffDetails = $('#frmHaematology').validate();
+        console.log(ValidateStaffDetails);
+        var IsStaffTypeValid = ValidateStaffDetails.element('#HaematologyServices_StaffDetailsModel_StaffType');
+        var IsDesignationValid = ValidateStaffDetails.element('#HaematologyServices_StaffDetailsModel_Designation');
+        var IsNoOfMembersValid = ValidateStaffDetails.element('#HaematologyServices_StaffDetailsModel_NoOfMembers');
+        if (IsStaffTypeValid && IsDesignationValid && IsNoOfMembersValid) {
+            var data = {
+                StaffDetails: {
+                    StaffType: $('#HaematologyServices_StaffDetailsModel_StaffType').val(),
+                    Designation: $('#HaematologyServices_StaffDetailsModel_Designation').val(),
+                    NoOfMembers: $('#HaematologyServices_StaffDetailsModel_NoOfMembers').val()
+                },
+                StaffType: 'Haematology'
+            }
+            var jqxhr = $.post("SurgicalStaffList", data, function () { }, 'json').
+            done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                console.log(json);
+                BindStaffDetails(json, 'tblHaematologyService');
+                ClearStaffDetails('HaematologyServices_StaffDetailsModel_StaffType', 'HaematologyServices_StaffDetailsModel_Designation', 'HaematologyServices_StaffDetailsModel_NoOfMembers');
+            });
+
+
+        }
+    });
+
+    //Equipment
+    $('#btnEquipments').click(function (e) {
+        e.preventDefault();
+        var ValidateStaffDetails = $('#frmAnaesthesiology').validate();
+        console.log(ValidateStaffDetails);
+        var IsEquipNameValid = ValidateStaffDetails.element('#Anaesthesiology_Equipments_Name');
+        var IsNoOfEquipValid = ValidateStaffDetails.element('#Anaesthesiology_Equipments_NoofEquipments');
+        if (IsEquipNameValid && IsNoOfEquipValid) {
+            var data = {
+                Equipments: {
+                    Name: $('#Anaesthesiology_Equipments_Name').val(),
+                    NoofEquipments: $('#Anaesthesiology_Equipments_NoofEquipments').val(),
+                },
+                EquipmentType: 'anaesthesiology'
+            }
+            var jqxhr = $.post("EquipmentList", data, function () { }, 'json').
+            done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                console.log(json);
+                BindEquipments(json, 'tblEquipment');
+                ClearEquimentDetails('Anaesthesiology_Equipments_Name', 'Anaesthesiology_Equipments_NoofEquipments');
+            });
+
+
+        }
+    });
+
+    $('#btnICUHDUEquipments').click(function (e) {
+        e.preventDefault();
+        var ValidateStaffDetails = $('#frmFacilites').validate();
+        console.log(ValidateStaffDetails);
+        var IsEquipNameValid = ValidateStaffDetails.element('#ICUHDUFacilities_Equipments_Name');
+        var IsNoOfEquipValid = ValidateStaffDetails.element('#ICUHDUFacilities_Equipments_NoofEquipments');
+        if (IsEquipNameValid && IsNoOfEquipValid) {
+            var data = {
+                Equipments: {
+                    Name: $('#ICUHDUFacilities_Equipments_Name').val(),
+                    NoofEquipments: $('#ICUHDUFacilities_Equipments_NoofEquipments').val(),
+                },
+                EquipmentType: 'Facilities'
+            }
+            var jqxhr = $.post("EquipmentList", data, function () { }, 'json').
+            done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                console.log(json);
+                BindEquipments(json, 'tblICUHDUEquipment');
+                ClearEquimentDetails('ICUHDUFacilities_Equipments_Name', 'ICUHDUFacilities_Equipments_NoofEquipments');
+            });
+
+
+        }
+    });
+    $('#btnAddLaboratoryEquipment').click(function (e) {
+        e.preventDefault();
+        var ValidateStaffDetails = $('#frmLaboratory').validate();
+        console.log(ValidateStaffDetails);
+        var IsEquipNameValid = ValidateStaffDetails.element('#LaboratoryFacilities_EquipmentModel_Name');
+        var IsNoOfEquipValid = ValidateStaffDetails.element('#LaboratoryFacilities_EquipmentModel_NoofEquipments');
+        if (IsEquipNameValid && IsNoOfEquipValid) {
+            var data = {
+                Equipments: {
+                    Name: $('#LaboratoryFacilities_EquipmentModel_Name').val(),
+                    NoofEquipments: $('#LaboratoryFacilities_EquipmentModel_NoofEquipments').val(),
+                },
+                EquipmentType: 'Laboratory'
+            }
+            var jqxhr = $.post("EquipmentList", data, function () { }, 'json').
+            done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                console.log(json);
+                BindEquipments(json, 'tblLaboratoryEquipments');
+                ClearEquimentDetails('LaboratoryFacilities_EquipmentModel_Name', 'LaboratoryFacilities_EquipmentModel_NoofEquipments');
+            });
+
+
+        }
+    });
+    $('#btnAddImagingServicesEquipment').click(function (e) {
+        e.preventDefault();
+        var ValidateStaffDetails = $('#frmImaging').validate();
+        console.log(ValidateStaffDetails);
+        var IsEquipNameValid = ValidateStaffDetails.element('#ImagingServices_EquipmentModel_Name');
+        var IsNoOfEquipValid = ValidateStaffDetails.element('#ImagingServices_EquipmentModel_NoofEquipments');
+        if (IsEquipNameValid && IsNoOfEquipValid) {
+            var data = {
+                Equipments: {
+                    Name: $('#ImagingServices_EquipmentModel_Name').val(),
+                    NoofEquipments: $('#ImagingServices_EquipmentModel_NoofEquipments').val(),
+                },
+                EquipmentType: 'Imaging'
+            }
+            var jqxhr = $.post("EquipmentList", data, function () { }, 'json').
+            done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                console.log(json);
+                BindEquipments(json, 'tblImagingServicesEquipments');
+                ClearEquimentDetails('ImagingServices_EquipmentModel_Name', 'ImagingServices_EquipmentModel_NoofEquipments');
+            });
+        }
+    });
+
+    $('#btnAddHaematologyEquipment').click(function (e) {
+        e.preventDefault();
+        var ValidateStaffDetails = $('#frmHaematology').validate();
+        console.log(ValidateStaffDetails);
+        var IsEquipNameValid = ValidateStaffDetails.element('#HaematologyServices_EquipmentModel_Name');
+        var IsNoOfEquipValid = ValidateStaffDetails.element('#HaematologyServices_EquipmentModel_NoofEquipments');
+        if (IsEquipNameValid && IsNoOfEquipValid) {
+            var data = {
+                Equipments: {
+                    Name: $('#HaematologyServices_EquipmentModel_Name').val(),
+                    NoofEquipments: $('#HaematologyServices_EquipmentModel_NoofEquipments').val(),
+                },
+                EquipmentType: 'Haematology'
+            }
+            var jqxhr = $.post("EquipmentList", data, function () { }, 'json').
+            done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                console.log(json);
+                BindEquipments(json, 'tblHaematologyEquipment');
+                ClearEquimentDetails('HaematologyServices_EquipmentModel_Name', 'HaematologyServices_EquipmentModel_NoofEquipments');
+            });
+        }
+    });
+
+    //Operation
+    $('#btnOperation').click(function (e) {
+        e.preventDefault();
+        var ValidateStaffDetails = $('#frmAnaesthesiology').validate();
+        console.log(ValidateStaffDetails);
+        var IsEquipNameValid = ValidateStaffDetails.element('#Anaesthesiology_Operation_Name');
+        var IsNoOfEquipValid = ValidateStaffDetails.element('#Anaesthesiology_Operation_OperationsPerformed');
+        if (IsEquipNameValid && IsNoOfEquipValid) {
+            var data = {
+                Operation: {
+                    Name: $('#Anaesthesiology_Operation_Name').val(),
+                    OperationsPerformed: $('#Anaesthesiology_Operation_OperationsPerformed').val(),
+                }
+            }
+            var jqxhr = $.post("OperationList", data, function () { }, 'json').
+            done(function (response) {
+                if (response instanceof Object)
+                    var json = response;
+                else
+                    var json = $.parseJSON(response);
+                console.log(json);
+                BindOperations(json, 'tblOperation');
+                $('#Anaesthesiology_Operation_Name').val('');
+                $('#Anaesthesiology_Operation_OperationsPerformed').val('');
+            });
+        }
+    });
+
+    $('#btnSubmit').click(function (e) {
+        debugger;
+        var Validations = [];
+        if ($('#frmHospital').valid() && $('#frmSurgicalInput').valid() && $('#frmCapstoneInput').valid() &&
+           $('#frmAnaesthesiologyInput').valid() && $('#frmFacilitiesInput').valid() &&
+            $('#frmFacilites').validate().element('#ICUHDUFacilities_OtherSupportiveFacilities') &&
+            $('#frmLaboratory').validate().element('#LaboratoryFacilities_Investigations') &&
+            $('#frmImaging').validate().element('#ImagingServices_Investigations') &&
+            $('#frmHaematology').validate().element('#HaematologyServices_Investigations') &&
+            $('#frmAvailableFacilities').valid() && $('#frmDeclaration').valid()) {
+
+        }
+        else
+            Validations.push("Please enter all fields");
+        //Surgical team staff details
+        x = IsAllListsValid('tblSurgical', 'Please enter atleast 1 staff detail in Surgical Team');
+        if (x.length > 0)
+            Validations.push(x);
+        //Capstone team staff details
+        x = IsAllListsValid('tblCapstoneStaff', 'Please enter atleast 1 staff detail in Capstone Team');
+        if (x.length > 0)
+            Validations.push(x);
+        //Anaesthesiology staff details
+        x = IsAllListsValid('tblOperation', 'Please enter atleast 1 staff detail in Anaesthesiology');
+        if (x.length > 0)
+            Validations.push(x);
+        //Anaesthesiology operations performed
+        x = IsAllListsValid('tblOperation', 'Please enter atleast 1 Operation Detail in Anaesthesiology');
+        if (x.length > 0)
+            Validations.push(x);
+
+        //Anaesthesiology Equipment details
+        x = IsAllListsValid('tblEquipment', 'Please enter atleast 1 Equipment detail in Anaesthesiology');
+        if (x.length > 0)
+            Validations.push(x);
+        //ICUHDU Equipment details
+        x = IsAllListsValid('tblICUHDUEquipment', 'Please enter atleast 1 Equipment detail in I.C.U/H.D.U. Faclities');
+        if (x.length > 0)
+            Validations.push(x);
+
+        //Laboratory Facilities staff details
+        x = IsAllListsValid('tblLaboratoryFacilityStaffDetails', 'Please enter atleast 1 staff detail in Laboratory Facilities');
+        if (x.length > 0)
+            Validations.push(x);
+        //Laboratory Facilities Euipments
+        x = IsAllListsValid('tblLaboratoryEquipments', 'Please enter atleast 1 equipment Detail in Laboratory Facilities');
+        if (x.length > 0)
+            Validations.push(x);
+
+        //ImagingServices StaffDetails
+        x = IsAllListsValid('tblImagingServicesStaffDetails', 'Please enter atleast 1 Staff detail in ImagingServices');
+        if (x.length > 0)
+            Validations.push(x);
+
+        //ImagingServices Equipment
+        x = IsAllListsValid('tblImagingServicesEquipments', 'Please enter atleast 1 Equipment detail in ImagingServices');
+        if (x.length > 0)
+            Validations.push(x);
+
+        //Haematology staff details
+        x = IsAllListsValid('tblHaematologyService', 'Please enter atleast 1 staff detail in Haematology');
+        if (x.length > 0)
+            Validations.push(x);
+        //Haematology Euipments
+        x = IsAllListsValid('tblHaematologyEquipment', 'Please enter atleast 1 equipment Detail in Haematology');
+        if (x.length > 0)
+            Validations.push(x);
+
+
+        if (Validations.length == 0) {
+
+            //Hospita Parameters
+            var HospitalModel = {
+                HospitalName: $('#HospitalModel_HospitalName').val(),
+                DistrictId: $('#HospitalModel_DistrictId').val(),
+                MandalId: $('#HospitalModel_MandalId').val(),
+                VillageId: $('#HospitalModel_VillageId').val(),
+                StreetName: $('#HospitalModel_StreetName').val(),
+                HouseNo: $('#HospitalModel_HouseNo').val(),
+                Pincode: $('#HospitalModel_Pincode').val(),
+                PhoneNo: $('#HospitalModel_PhoneNo').val(),
+                TotalBedStrength: $('#HospitalModel_TotalBedStrength').val(),
+                AnnualBudjet: $('#HospitalModel_AnnualBudjet').val(),
+                Nameofdisciplines: $('#HospitalModel_Nameofdisciplines').val(),
+                PatientTurnoverPerYear: $('#HospitalModel_PatientTurnoverPerYear').val(),
+                Govtorpvt: $('#HospitalModel_Govtorpvt').val(),
+                TeacherNonTeach: $('#HospitalModel_TeacherNonTeach').val(),
+                ByRoad: $("input[name='HospitalModel.ByRoad']:checked").val(),
+                ByRail: $("input[name='HospitalModel.ByRail']:checked").val(),
+                ByAir: $("input[name='HospitalModel.ByAir']:checked").val()
+            }
+            //Surgical Parameters
+            var Surgical = {
+                NumberofBeds: $('#Surgical_NumberofBeds').val(),
+                NoofOperationsPerYear: $('#Surgical_NoofOperationsPerYear').val()
+            }
+            //Capstone Parameters
+            var CapstoneTeam = {
+                NoofBeds: $('#CapstoneTeam_NoofBeds').val(),
+                PatientTurnover: $('#CapstoneTeam_PatientTurnover').val(),
+                TransplantPatients: $('#CapstoneTeam_TransplantPatients').val(),
+            }
+            //Anaesthesiology Parameters
+            var Anaesthesiology = {
+                OperationTheatres: $('#Anaesthesiology_OperationTheatres').val(),
+                EmegencyOperationTheatres: $('#Anaesthesiology_EmegencyOperationTheatres').val(),
+                TransplantOperationTheatres: $('#Anaesthesiology_TransplantOperationTheatres').val()
+            }
+            //I.C.U / H.D.U. Facilities Parameters
+            var ICUHDUFacilities = {
+                ICUBeds: $('#ICUHDUFacilities_ICUBeds').val(),
+                Trained: $('#ICUHDUFacilities_Trained').val(),
+                Nurses: $('#ICUHDUFacilities_Nurses').val(),
+                Technicians: $('#ICUHDUFacilities_Technicians').val(),
+                OtherSupportiveFacilities: $('ICUHDUFacilities_OtherSupportiveFacilities').val()
+            }
+            //Laboratory Facilities Parameters
+            var LaboratoryFacilities = {
+                Investigations: $('#LaboratoryFacilities_Investigations').val()
+            }
+            //Imaging Services Parameters
+            var ImagingServices = {
+                Investigations: $('#ImagingServices_Investigations').val()
+            }
+            //Haematology Services Parameters
+            var HaematologyServices = {
+                Investigations: $('#HaematologyServices_Investigations').val()
+            }
+            //Available Facilities
+            var Facilities = {
+                BloodBankFacilities: $("input[name='Facilities.BloodBankFacilities']:checked").val(),
+                DialysisFacilities: $("input[name='Facilities.DialysisFacilities']:checked").val(),
+                Nephrologist: $("input[name='Facilities.Nephrologist']:checked").val(),
+                Neurologist: $("input[name='Facilities.Neurologist']:checked").val(),
+                NeuroSurgeon: $("input[name='Facilities.NeuroSurgeon']:checked").val(),
+                Urologist: $("input[name='Facilities.Urologist']:checked").val(),
+                GISurgeon: $("input[name='Facilities.GISurgeon']:checked").val(),
+                Paediatrician: $("input[name='Facilities.Paediatrician']:checked").val(),
+                Physicotherapist: $("input[name='Facilities.Physicotherapist']:checked").val(),
+                SocialWorker: $("input[name='Facilities.SocialWorker']:checked").val(),
+                Immunologist: $("input[name='Facilities.Immunologist']:checked").val(),
+                Cardiologist: $("input[name='Facilities.Cardiologist']:checked").val()
+            }
+            var Declaration = {
+                Signature: $('#Declaration_Signature').val()
+            }
+            var data = {
+                OrganTransplant: {
+                    HospitalModel: HospitalModel,
+                    Surgical: Surgical,
+                    CapstoneTeam: CapstoneTeam,
+                    Anaesthesiology: Anaesthesiology,
+                    ICUHDUFacilities: ICUHDUFacilities,
+                    LaboratoryFacilities: LaboratoryFacilities,
+                    ImagingServices: ImagingServices,
+                    HaematologyServices: HaematologyServices,
+                    Facilities: Facilities,
+                    Declaration: Declaration
+
+                }
+            }
+            var jqxhr = $.post("SubmitOrganTransplant", data, function () { }, '').
+               done(function (response) {
+                   if (response instanceof Object)
+                       var json = response;
+                   else
+                       var json = $.parseJSON(response);
+                   ShowModal(response);
+                   CheckforEnableSubmit()
+               });
+        }
+        else {
+            var Model = GetModalJSON();
+            Model.ShowListItems = true;
+            Model.ListItems = Validations;
+            Model.NotificationTypeClass = 'Warning';
+            Model.Title = "Warning";
+            Model.NotificationMessage = "Please clear all validations";
+            Model.ShowNonActionButton = true;
+            Model.NonActionButtonText = "Okay";
+            Model.NonActionButtonClass = "Warning";
+            ShowModal(Model);
+        }
+    });
+
+    $('#Surgical_StaffDetails_StaffType').change(function () {
+        if (this.value == "Trained Persons")
+            $('#divOrgan').show();
+        else
+            $('#divOrgan').hide();
+    });
+
+    function BindStaffDetails(json, TableName) {
+        //Remove all rows except headers
+        $('#' + TableName).find("tr:gt(0)").remove();
+        for (var i = 0; i < json.length; i++) {
+            var tr;
+            tr = $('<tr/>');
+            tr.append('<td>' + (i + 1) + '</td>');
+            tr.append('<td>' + json[i].StaffType + '</td>')
+            tr.append('<td>' + json[i].Designation + '</td>')
+            tr.append('<td>' + json[i].NoOfMembers + '</td>')
+            if (TableName == "tblSurgical")
+                tr.append('<td>' + json[i].Organ + '</td>')
+            $('[id$=' + TableName + ']').append(tr)
+        }
+    }
+    function BindEquipments(json, TableName) {
+        $('#' + TableName).find("tr:gt(0)").remove();
+        for (var i = 0; i < json.length; i++) {
+            var tr;
+            tr = $('<tr/>');
+            tr.append('<td>' + (i + 1) + '</td>');
+            tr.append('<td>' + json[i].Name + '</td>')
+            tr.append('<td>' + json[i].NoofEquipments + '</td>')
+            $('[id$=' + TableName + ']').append(tr)
+        }
+    }
+
+    function BindOperations(json, TableName) {
+        $('#' + TableName).find("tr:gt(0)").remove();
+        for (var i = 0; i < json.length; i++) {
+            var tr;
+            tr = $('<tr/>');
+            tr.append('<td>' + (i + 1) + '</td>');
+            tr.append('<td>' + json[i].Name + '</td>')
+            tr.append('<td>' + json[i].OperationsPerformed + '</td>')
+            $('[id$=' + TableName + ']').append(tr)
+        }
+    }
+
+    function ClearStaffDetails(StaffType, Designation, NoOfMembers) {
+        $('#' + StaffType).val('');
+        $('#' + Designation).val('');
+        $('#' + NoOfMembers).val('');
+    }
+
+    function ClearEquimentDetails(Name, NoOfEquipment) {
+        $('#' + Name).val('');
+        $('#' + NoOfEquipment).val('');
+    }
+
+    function IsAllListsValid(TableID, errormsg) {
+        var rowCount = $('#' + TableID + ' tr').length;
+        if (rowCount > 1) {
+            return '';
+        }
+        else
+            return errormsg;
+    }
+    //Tabs Wise Code
+
+    $('#btnHospitalSave').click(function (e) {
+        e.preventDefault();
+        if ($('#formHospital').valid()) {
+            var url='@Url.Action("SaveHospitalDetails","License",new { Area="User"})'
+            var data = {
+                 Surgical : {
+                    Id:$('#hiddenHospitalId').val()==''?0:$('#hiddenHospitalId').val(),
+                    NumberofBeds: $('#Surgical_NumberofBeds').val(),
+                    NoofOperationsPerYear: $('#Surgical_NoofOperationsPerYear').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $('#hiddenHospitalId').val(response.ReturnData.split(',')[0]);
+                    ShowModal(response);
+                    if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                        $('#btnHospitalSave').val('Update');
+                        $('#btnHospitalSave').removeClass('btn-success');
+                        $('#btnHospitalSave').addClass('btn-primary');
+                    }
+                    else if (response.ReturnData.split(',')[1] == 'Completed') {
+                        $('#btnHospitalSave').val('Update');
+                        $('#btnHospitalSave').removeClass('btn-primary');
+                        $('#btnHospitalSave').addClass('btn-success');
+                    }
+                    else if (response.ReturnData.split(',')[1] == 'Empty') {
+                        $('#btnHospitalSave').val('Save');
+                        $('#btnHospitalSave').removeClass('btn-success');
+                        $('#btnHospitalSave').addClass('btn-primary');
+                    }
+
+                })
+             .fail(function (jqxhr, status, error) {
+                 var err = status + ", " + error;
+                 console.log("Save Hospital Details Request Failed: " + err);
+             });
+        }
+    });
+    $('#btnSurgicalInputSave').click(function (e) {
+        e.preventDefault();
+        if($('#frmSurgicalInput').valid()){
+            var url = '@Url.Action("SaveSurgicalDetails", "License",new { Area="User"})'
+            var data = {
+                 surgicalModel :{
+                    Id: $('#hiddenOTID').val() == '' ? 0 : $('#hiddenHospitalId').val(),
+                    NumberofBeds: $('#Surgical_NumberofBeds').val(),
+                    NoofOperationsPerYear: $('#Surgical_NoofOperationsPerYear').val()
+                }
+
+            };
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $('#hiddenHospitalId').val(response.ReturnData.split(',')[0]);
+                    ShowModal(response);
+                    BindSurgicalStaffDetails();
+                    if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                        $('#btnSurgicalInputSave').val('Update');
+                        $('#btnSurgicalInputSave').removeClass('btn-success');
+                        $('#btnSurgicalInputSave').addClass('btn-primary');
+                    }
+                    else if (response.ReturnData.split(',')[1] == 'Completed') {
+                        $('#btnSurgicalInputSave').val('Update');
+                        $('#btnSurgicalInputSave').removeClass('btn-primary');
+                        $('#btnSurgicalInputSave').addClass('btn-success');
+                    }
+                    else if (response.ReturnData.split(',')[1] == 'Empty') {
+                        $('#btnSurgicalInputSave').val('Save');
+                        $('#btnSurgicalInputSave').removeClass('btn-success');
+                        $('#btnSurgicalInputSave').addClass('btn-primary');
+                    }
+
+                })
+             .fail(function (jqxhr, status, error) {
+                 var err = status + ", " + error;
+                 console.log("Save Surgical Details Request Failed: " + err);
+             });
+        }
+    });
+
+    function BindSurgicalStaffDetails(){
+        var url = '@Url.Action("GetOTStaffDetails", "License", new { Area = "User" })';
+        var data = {SectionName:'Surgical'};
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblSurgical tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].StaffType + "</td>");
+                tr.append("<td>" + json[i].Designation + "</td>");
+                tr.append("<td>" + json[i].NoOfMembers + "</td>");
+                tr.append("<td>" + json[i].Organ + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteStaffDetail(" + i + ");'/></td>");
+                $('#tblSurgical').append(tr);
+            }
+
+            $('#btnSurgicalInputSave').val('Update');
+            $('#btnSurgicalInputSave').removeClass('btn-primary');
+            $('#btnSurgicalInputSave').addClass('btn-success');
+        }
+    })
+    }
+
+    $('#btnCapstoneTeamSave').click(function (e) {
+        e.preventDefault();
+        if ($('#frmSurgicalInput').valid()) {
+            var url = '@Url.Action("SaveCapstoneDetails", "License",new { Area="User"})'
+            var data = {
+                CapstoneModel: {
+                    NoofBeds: $('#CapstoneTeam_NoofBeds').val(),
+                    PatientTurnover: $('#CapstoneTeam_PatientTurnover').val(),
+                    TransplantPatients: $('#CapstoneTeam_TransplantPatients').val(),
+                }
+
+            };
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $('#hiddenHospitalId').val(response.ReturnData.split(',')[0]);
+                    ShowModal(response);
+                    BindOTStaffDetail('tblCapstoneStaff');
+                    if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                        $('#btnSurgicalInputSave').val('Update');
+                        $('#btnSurgicalInputSave').removeClass('btn-success');
+                        $('#btnSurgicalInputSave').addClass('btn-primary');
+                    }
+                    else if (response.ReturnData.split(',')[1] == 'Completed') {
+                        $('#btnSurgicalInputSave').val('Update');
+                        $('#btnSurgicalInputSave').removeClass('btn-primary');
+                        $('#btnSurgicalInputSave').addClass('btn-success');
+                    }
+                    else if (response.ReturnData.split(',')[1] == 'Empty') {
+                        $('#btnSurgicalInputSave').val('Save');
+                        $('#btnSurgicalInputSave').removeClass('btn-success');
+                        $('#btnSurgicalInputSave').addClass('btn-primary');
+                    }
+
+                })
+             .fail(function (jqxhr, status, error) {
+                 var err = status + ", " + error;
+                 console.log("Save Surgical Details Request Failed: " + err);
+             });
+        }
+    });
+
+
+    $('#btnAnaesthesiologySave').click(function (e) {
+        e.preventDefault();
+        if ($('#frmAnaesthesiologyInput').valid()) {
+            var url = '@Url.Action("SaveCapstoneDetails", "License",new { Area="User"})'
+            var data = {
+                CapstoneModel: {
+                    NoofBeds: $('#CapstoneTeam_NoofBeds').val(),
+                    PatientTurnover: $('#CapstoneTeam_PatientTurnover').val(),
+                    TransplantPatients: $('#CapstoneTeam_TransplantPatients').val(),
+                }
+
+            };
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $('#hiddenHospitalId').val(response.ReturnData.split(',')[0]);
+                    ShowModal(response);
+                    BindOTStaffDetail('tblCapstoneStaff');
+                    if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                        $('#btnSurgicalInputSave').val('Update');
+                        $('#btnSurgicalInputSave').removeClass('btn-success');
+                        $('#btnSurgicalInputSave').addClass('btn-primary');
+                    }
+                    else if (response.ReturnData.split(',')[1] == 'Completed') {
+                        $('#btnSurgicalInputSave').val('Update');
+                        $('#btnSurgicalInputSave').removeClass('btn-primary');
+                        $('#btnSurgicalInputSave').addClass('btn-success');
+                    }
+                    else if (response.ReturnData.split(',')[1] == 'Empty') {
+                        $('#btnSurgicalInputSave').val('Save');
+                        $('#btnSurgicalInputSave').removeClass('btn-success');
+                        $('#btnSurgicalInputSave').addClass('btn-primary');
+                    }
+
+                })
+             .fail(function (jqxhr, status, error) {
+                 var err = status + ", " + error;
+                 console.log("Save Surgical Details Request Failed: " + err);
+             });
+        }
+    });
+
+
+    function BindOTStaffDetails(TableName) {
+        var url = '@Url.Action("GetOTStaffDetails", "License", new { Area = "User" })';
+        var data = { SectionName: 'Surgical' };
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#'+TableName+' tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].StaffType + "</td>");
+                tr.append("<td>" + json[i].Designation + "</td>");
+                tr.append("<td>" + json[i].NoOfMembers + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteStaffDetail(" + i + ");'/></td>");
+                $('#'+TableName).append(tr);
+            }
+        }
+    })
+    }
+
+</script>

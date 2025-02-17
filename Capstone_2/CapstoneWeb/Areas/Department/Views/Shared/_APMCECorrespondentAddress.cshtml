@@ -1,0 +1,55 @@
+﻿@model Capstone.Models.APMCEViewModel
+
+
+    <div id="divCorreespondingAddress">
+    <form id="formCorrespondingAddress">
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.CorrespondingAddressLog.Name, new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.CorrespondingAddressLog.Name)
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.CorrespondingAddressLog.DistrictId, new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.CorrespondingAddressLog.DistrictName)
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.CorrespondingAddressLog.MandalId, new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.CorrespondingAddressLog.MandalName)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.CorrespondingAddressLog.VillageId, new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.CorrespondingAddressLog.VillageName)
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.CorrespondingAddressLog.HouseNumber, new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.CorrespondingAddressLog.HouseNumber)
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.CorrespondingAddressLog.StreetName, new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.CorrespondingAddressLog.StreetName)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.CorrespondingAddressLog.PINCode, new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.CorrespondingAddressLog.PINCode)
+            </div>
+        </div>
+    </form>
+</div>

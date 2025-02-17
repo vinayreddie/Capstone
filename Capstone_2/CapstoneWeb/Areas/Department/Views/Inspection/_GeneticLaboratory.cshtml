@@ -1,0 +1,580 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h4>
+        <b>Check list for verification of GENETIC LABORATORY Fresh/Renewal </b>
+    </h4>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-body">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">GENETIC LABORATORY</legend>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>1. Name,Address,Contact Number and Email-ID of the Hospital/Nursing Home/Clinic/Diagnostic Centre </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q1" value="" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q1" value="" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>2. Name,Qualification,Address,Contact Number and Email-ID of the Owner </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q2" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q2" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label> Whether a Medical Geneticist and a Laboratory technician having a B.SC. degree in Boological Science or a degree or a Diploma in Medical Laboratory course with at least one year experience in conducting appropriate pre-natal diagnostic test </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q3" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q3" />No
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <label><u style="font-style: oblique;"> Xerox certificates copies </u></label>
+                            </div>
+                            <div class="col-md-3"></div>
+                            @*@Html.Editor("Upload", new { htmlAttributes = new { @class = "", @type = "file" } })*@
+                            <input type="file" id="fileUpload" />
+                        </div>
+                        <h4>A. Place: </h4>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label> A Room with adequate space for carrying out test </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q4" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q4" />No
+                            </div>
+                            @*@Html.LabelFor(model => model.ImagingCentre.Place, "A Room with an Area Of 7sq. meter ?", new { @class = "col-md-9" })
+                                @Html.RadioButtonFor(model => model.ImagingCentre.Place, 1, new { id = "Place", @class = "radio" }) Yes  &nbsp;&nbsp;&nbsp;
+                                @Html.RadioButtonFor(model => model.ImagingCentre.Place, 2, new { id = "Place", @class = "radio" }) No*@
+                        </div>
+                        <h4>B. Equipment:</h4>
+                        <h5><b>Chromosomal Studies:</b></h5>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>1) Laminar flow-hood with ultraviolet and fluorescent light or orther suitable cluture hood </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q5" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q5" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>2) Photo Microscope with fluorescent source of flight </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q6" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q6" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>3) Inverted microscope </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q11" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q11" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>4) Incubator and oven </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q12" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q12" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>5) Carbon-di-oxide incubator or closed system with 5% CO2 </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q13" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q13" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>6) Autoclave </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q14" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q14" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>7) Refrigerator </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q11" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q11" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>8) Water Bath </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q12" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q12" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>9) Centrifuge </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q13" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q13" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>10) Vortex Mixer </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q14" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q14" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>11) Magnetic Stirrer </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>12) pH Meter </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>13) A sensitive blance with sensitivity of 0.1 mgs </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>14) Double distillation apparatus </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <h5><b>Bio-chemicals Studies:</b></h5>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>1) Laminar flow-hood with ultraviolet and fluorescent light or orther suitable cluture hood </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q5" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q5" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>2) Inverted microscope </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q6" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q6" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>3) Incubator and oven </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q11" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q11" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>4) Carbon-di-oxide incubator or closed system with 5% CO2 atmosphere </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q12" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q12" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>5) Autoclave </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q13" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q13" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>6) Refrigerator </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q14" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q14" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>7) Water-bath </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q11" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q11" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>8) Centrifuge </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q12" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q12" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>9) Electrophorosis Apparatus and Power supply </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q13" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q13" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>10) Chromatography chamber </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q14" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q14" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>11) Spectro photometer and Elisa reader </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>12) Vortex Mixer </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>13) Magnetic StirrerA sensitive blance with sensitivity of 0.1 mgs </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>14) pH MeterDouble distillation apparatus </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>15) A sensitive blance with sensitivity of 0.1 mgs </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>16) Double distillation apparatus </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>17) Liquid nitrogen tank </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <h5><b>Molecular Studies:</b></h5>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>1) Inverted microscope </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q5" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q5" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>2) Incubator </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q6" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q6" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>3) Oven </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q11" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q11" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>4)  Autoclave </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q12" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q12" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>5) Refrigerators(4 degree and minus 20 degree Centigrade) </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q13" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q13" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>6) Water-bath </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q14" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q14" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>7) Refrigerator </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q11" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q11" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>8) Electrophorosis Apparatus and Power supply </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q12" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q12" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>9) Vortex Mixer </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q13" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q13" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>10) Magnetic Stirrer </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q14" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q14" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>11) pH Meter </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>12) A sensitive blance with sensitivity of 0.1 miliigrams </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>13) Double distillation apparatus </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>14) PCR machine </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>15) Refrigerated Centrifuge </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>16) U.V Illuminator with photographic attachment or orther documentation system</label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>17) Precision micropipettes </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q15" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q15" />No
+                            </div>
+                        </div>
+                        <h4>C. Employees: </h4>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>1) A Medical Geneticist </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q3" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q3" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>2) A Laboratory technician having a B.SC. degree in Boological Science or a degree or a Diploma in Medical Laboratory course with at least one year experience in conducting appropriate pre-natal diagnostic test </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q3" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q3" />No
+                            </div>
+                        </div>
+                        <h4>D</h4>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>a) Maintenance of form F </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q11" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q11" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>b) PC&PNDT Record maintenance Register </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q12" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q12" />No
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label>c) Filing of IT Returns  </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q13" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q13" />No
+                            </div>
+                        </div>
+                        <h4>E</h4>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label> In View of Inspection obtained in the check-list it is recommended/not recommended that the registration/Renewal to the facility of the applicant be granted </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="radio" name="Q14" />Yes &nbsp;&nbsp;
+                                <input type="radio" name="Q14" />No
+                            </div>
+                        </div>
+                        <h4>F</h4>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-9">
+                                <label> If not recommended,state the reasons for same </label>
+                            </div>
+                            <div class="col-md-3">
+                                <textarea id="q12" style="width: 200px;"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="box-footer pull-right">
+                        <button type="button" id="btnSave" class="btn btn-info">Save</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+
+        </div>
+    </div>
+</section>

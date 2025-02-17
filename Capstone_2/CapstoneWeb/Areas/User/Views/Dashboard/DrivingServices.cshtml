@@ -1,0 +1,262 @@
+﻿@model Capstone.Models.OtherServiceModel
+@{
+    ViewBag.Title = "Other service";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<script src="~/Content/plugins/datepicker/js/bootstrap-datepicker.js"></script>
+<link href="~/Content/plugins/datepicker/css/datepicker3.css" rel="stylesheet" />
+<!-- Validate -->
+<script src="~/Content/plugins/jQuery/jquery.validate.1.16.0.js"></script>
+<script src="~/Content/plugins/jQuery/jquery.validate.unobtrusive.js"></script>
+<script>
+    $(function () {
+        //Date picker
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            endDate: '0d', // accept only upto today date
+            autoclose: true
+        });
+        $('input').iCheck({ checkboxClass: 'icheckbox_minimal-blue', radioClass: 'iradio_minimal-blue' });
+        $(".select2").select2();
+        $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
+            checkboxClass: 'icheckbox_flat-blue',
+            radioClass: 'iradio_flat-blue'
+        });
+    });
+</script>
+
+
+
+@using (Ajax.BeginForm("SaveDrivingServices", "Dashboard", new { Area = "User" },
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "onSuccess",
+        OnFailure = "ShowFailure"
+    }))
+{
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Driving License Services
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="@Url.Action("Index","Dashboard",new { Area = "User" })">Back to Dashboard</a></li>
+            @*
+        <li class="active">General Elements</li>*@
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Service</legend>
+                            <form id="formProfile">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                @Html.HiddenFor(model => model.Id, new { @id = "hfId", @value = "0" })
+
+                                                @Html.LabelFor(model => model.DropingAddress, new { @class = "control-label" })
+                                            </div>
+                                            <div class="col-md-3">
+                                                @Html.EditorFor(model => model.DropingAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.DropingAddress, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="col-md-1">
+                                                @Html.LabelFor(model => model.PostalCode, new { @class = "control-label" })
+                                            </div>
+                                            <div class="col-md-3">
+                                                @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                @Html.HiddenFor(model => model.Id)
+                                                @Html.LabelFor(model => model.PNR, new { @class = "control-label" })
+                                            </div>
+                                            <div class="col-md-3">
+                                                @Html.EditorFor(model => model.PNR, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.PNR, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                @Html.LabelFor(model => model.PickupDate, new { @class = "control-label" })
+                                            </div>
+                                            <div class="col-md-3" id="TxtUserName">
+                                                @Html.EditorFor(model => model.PickupDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                @Html.ValidationMessageFor(model => model.PickupDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-1">
+                                                @Html.LabelFor(model => model.Timeslot, "Timeslot", new { @class = "control-label" })
+                                            </div>
+                                            <div class="col-md-3">
+                                                @Html.RadioButton("Timeslot", "9AMto12PM", new { @checked = "checked" }) 9 AM to 12 PM
+                                                @Html.RadioButton("Timeslot", "1PMto4PM") 1 PM to 4 PM
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </fieldset>
+                        <div class="box-footer">
+                            <input type="button" id="btnClear" class="btn btn-default" value="Clear" onclick="ClearControls()" />
+                            <input type="submit" id="btnSubmit" class="btn btn-success" value="Save" />
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Data</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="tblDesignations" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Sl.No</th>
+                                    <th>Address</th>
+                                    <th>PostalCode</th>
+                                    <th>PNR</th>
+                                    <th>Date</th>
+                                    <th>Time Slot</th>
+
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+
+
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script>
+    $(function () {
+        GetData();
+    });
+    function GetData() {
+        var url = '@Url.Action("GetDrivingServices", "Dashboard", new { Area = "User" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindDetails(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetDesignations in Department Admin, Request Failed: " + err);
+            });
+    }
+
+    var jsonItems = [];
+    function BindDetails(json) {
+        jsonItems = json;
+        console.log(json);
+        //Remove all table rows except headers
+        $('#tblDesignations').find("tr:gt(0)").remove();
+        for (var i = 0; i < json.length; i++) {
+            var tr;
+            tr = $('<tr/>');
+            tr.append("<td>" + (i + 1) + "</td>")
+            tr.append("<td>" + json[i].DropingAddress + "</td>")
+            tr.append("<td>" + json[i].PostalCode + "</td>")
+            tr.append("<td>" + json[i].PNR + "</td>")
+            tr.append("<td>" + json[i].PickupDate + "</td>")
+            tr.append("<td>" + json[i].Timeslot + "</td>")
+
+
+            tr.append("<td><a class='glyphicon glyphicon-pencil actionlink-button' href=javascript:Edit(" + i + ")></a></td>")
+            //tr.append("<td><a class='glyphicon glyphicon-pencil actionlink-button' href=javascript:EditDesignation('" + json[i].Id+"','"+ json[i].Name+"','"+json[i].IsActive + "') ></a></td>")
+            //tr.append("<td> <button type='button' id='btnDelete' class='btn btn-default btn-sm'><i class='glyphicon glyphicon-remove'></i></button></td>")
+            $("[id$=tblDesignations]").append(tr)
+        }
+        ClearControls();
+
+    }
+    function Edit(index) {
+        var selectedItem = jsonItems[index];
+        $('#hfId').val(selectedItem.Id);
+        $('#DropingAddress').val(selectedItem.DropingAddress);
+                $('#PostalCode').val(selectedItem.PostalCode);
+        $('#PNR').val(selectedItem.PNR);
+        $('#PickupDate').val(selectedItem.PickupDate);
+
+         $('#Timeslot').val(selectedItem.Timeslot).iCheck('check');
+
+
+
+        //if (selectedItem.Timeslot == '9AMto12PM')
+        //    $('#chkIsActive').iCheck('check');
+        //else
+        //    $('#chkIsActive').iCheck('uncheck');
+        $('#btnSubmit').val('Update')
+    }
+    function ClearControls() {
+
+        $('#hfId').val('');
+      $('#DropingAddress').val('');
+       $('#PostalCode').val('');
+        $('#PNR').val('');
+        $('#PickupDate').val('');
+
+        $('#btnSubmit').val('Save')
+    }
+    function onSuccess(json) {
+        ShowModal(json.Notification);
+
+        BindDetails(json.OthererviceList);
+    }
+
+
+
+        function ToJavaScriptDate(value) {
+            var pattern = /Date\(([^)]+)\)/;
+            var results = pattern.exec(value);
+            var dt = new Date(parseFloat(results[1]));
+            var date = dt.getDate().toString().length == 2 ? dt.getDate().toString() : '0' + dt.getDate().toString();
+            var month = (dt.getMonth() + 1).toString().length == 2 ? (dt.getMonth() + 1).toString() : '0' + (dt.getMonth() + 1).toString();
+            return date + "-" + month + "-" + dt.getFullYear();
+        }
+        function StringtoDate(value) {
+            var d = new Date(value);
+            var x = ("00" + d.getDate()).slice(-2) + '-' + ("00" + (d.getMonth() + 1)).slice(-2) + '-' + d.getFullYear();
+            return x;
+        }
+    $('#btnClear').on('click', function (e) {
+         ClearControls();
+         });
+</script>
+

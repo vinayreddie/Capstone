@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Other service";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+@using (Ajax.BeginForm("Saveotherservice", "Dashboard", new { Area = "User" },
+   new AjaxOptions
+   {
+       HttpMethod = "POST",
+       OnSuccess = "onSuccess",
+       OnFailure = "ShowFailure"
+   }))
+{
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Offers
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="@Url.Action("Index","Dashboard",new { Area = "User" })">Back to Dashboard</a></li>
+            @*
+        <li class="active">General Elements</li>*@
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">offers</legend>
+
+                            <div class="ltn__feature-area section-bg-1 pt-120 pb-90 mb-120---">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="section-title-area ltn__section-title-2--- text-center">
+                                                <h6 class="section-subtitle section-subtitle-2 ltn__secondary-color">Our Services</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row ltn__custom-gutter--- justify-content-center">
+                                        <div class="col-lg-4 col-sm-6 col-12">
+                                            <div class="ltn__feature-item ltn__feature-item-6 text-center bg-white  box-shadow-1">
+                                                <div class="ltn__feature-icon">
+                                                    <!-- <span><i class="flaticon-house"></i></span> -->
+                                                     <img src="~/Content/images/frame.png" />
+                                                </div>
+                                                <div class="ltn__feature-info">
+                                                    <h3><a href="service-details.html">offer 10% flipcart</a></h3>
+                                                    <p>Scan above code.</p>
+                                                    <a class="ltn__service-btn" href="service-details.html"> <i class="flaticon-right-arrow"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-6 col-12">
+                                            <div class="ltn__feature-item ltn__feature-item-6 text-center bg-white  box-shadow-1 active">
+                                                <div class="ltn__feature-icon">
+                                                    <!-- <span><i class="flaticon-house-3"></i></span> -->
+                                                    <img src="~/Content/images/frame.png" />
+                                                </div>
+                                                <div class="ltn__feature-info">
+                                                    <h3><a href="service-details.html">offer 50% Amazon</a></h3>
+                                                    <p>Scan above code.</p>
+                                                    <a class="ltn__service-btn" href="service-details.html"> <i class="flaticon-right-arrow"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        @*<div class="box-footer">
+                                <input type="button" id="btnClear" class="btn btn-default" value="Clear" onclick="ClearControls()" />
+                                <input type="submit" id="btnSubmit" class="btn btn-success" value="Save" />
+                            </div>*@
+                    </div>
+                </div>
+                <!-- /.box -->
+
+            </div>
+        </div>
+
+
+    </section>
+}

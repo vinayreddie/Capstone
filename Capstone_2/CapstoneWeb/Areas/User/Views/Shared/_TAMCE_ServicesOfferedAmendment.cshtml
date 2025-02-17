@@ -1,0 +1,79 @@
+﻿@model Medical.Models.OfferedServicesModel
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li  class="active"><a href="#tabServices" data-toggle="tab">Amendment - @Model.AmendmentSNo (Services Offered)</a></li>
+                @*<li><a href="#tabRegistration" data-toggle="tab">Amendment - @Model.AmendmentSNo</a></li>*@
+            </ul>
+            <div class="tab-content">
+
+                <div id="tabServices" class="tab-pane active">
+                    <form id="formServices">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BedStrength, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.HiddenFor(model => model.Id)
+                                    @Html.EditorFor(model => model.BedStrength, new { htmlAttributes = new { @class = "form-control numeric" } })
+                                    @Html.ValidationMessageFor(model => model.BedStrength, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.OfferedServices, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-6">
+
+                                    @Html.DropDownListFor(model => model.OfferedServices,
+                                    new SelectList(ViewBag.OfferedServices, "Id", "Name"),
+                                    new { @class = "form-control select2", @multiple = "multiple", @style = "width:100%;", data_placeholder = "Select a Service" })
+                                    @Html.ValidationMessageFor(model => model.OfferedServices, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <input type="button" id="btnOfferedServicesClear" value="Clear" class="btn btn-default" />
+                                    <input type="button" id="btnOfferedServicesSave" value="Save" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>
+
+<script>
+     $(function () {
+        BindOfferedByServices();
+    });
+    function BindOfferedByServices()
+    {
+        debugger;
+        var offeredservicesModel = @Html.Raw(Json.Encode(Model.OfferedServices));
+        console.log('Service values'+offeredservicesModel)
+        if(offeredservicesModel != 0)
+        {
+            $('#btnOfferedServicesSave').val('Update');
+            $('#btnOfferedServicesSave').removeClass('btn-primary');
+            $('#btnOfferedServicesSave').addClass('btn-success');
+            //var arr = offeredservicesModel.OfferedServiceIDs.split(',');
+            //console.log('list :' + arr);
+
+            //$("#OfferedServices_OfferedServices").val(arr).trigger("change");
+
+            var arr = offeredservicesModel.OfferedServiceIDs.split(',');
+            console.log('list :' + arr);
+            $("#OfferedServices").val(arr).trigger("change");
+
+
+        }
+    }
+</script>

@@ -1,0 +1,177 @@
+﻿@model Capstone.Models.APMCECertificate
+
+<style>
+    .reportheadertext {
+        text-align: center;
+        font-size: larger;
+    }
+
+    .textunderline {
+        text-decoration: underline;
+    }
+
+    .parabody {
+        text-indent: 50px;
+        text-align: justify;
+    }
+
+    p {
+        text-align: justify;
+    }
+</style>
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">APMCE Temporary Certificate</legend>
+    @*<div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large;">FORM-III</span>
+            <br />
+            <i>[See rule 4 (f)]</i>
+            <br />
+            <span style="font-size:x-large;">Government of Andhra Pradesh Health Capstone & Family Welfare Department District Registering Authority</span>
+            <br />
+            <span style="font-size:x-large;">Certificate of Temporary Registration of Allopathic Private Capstone Care Establishments</span>
+            <br />
+            <i>(Valid for 90 days from the date of issue)</i>
+        </div>
+    </div>*@
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10 reportheadertext">
+            FORM-III
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10 reportheadertext">
+            <b>Government of Telangana </b>
+        </div>
+        <div class="col-md-offset-1 col-md-10 reportheadertext">
+            <b> Health Capstone & Family Welfare Department District Registering Authority</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10 reportheadertext">
+            Certificate of <b>Temporary</b> Registration of Allopathic Private Capstone Care Establishments
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10 reportheadertext">
+            <b>(Valid for 90 days from the date of issue)</b>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <ol>
+                <li>
+                    <p>
+                        Application No. and Date: <b>@Model.ApplicationNumber</b> && <b>@Model.ApplicationDate.ToString("dd-MM-yyyy")</b>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        File number of Registration Authority: <b> @Model.IssuingAuthority</b>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Date of Issue: <b>@Model.IssuedDate.ToString("dd-MM-yyyy")</b>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Valid till: <b>@Model.ExpiryDate.ToString("dd-MM-yyyy")</b>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This is to Certify that M/s  is hereby registered temporarily under the provisions of A.P
+                        Allopathic Private Capstone Care Establishments(Registration and Regulation) Act, 2002, to
+                        provide following Capstone care services:
+                    </p>
+                    <ol type="A">
+                        @foreach (string item in Model.ServiceDetails)
+                        {
+                            <li>
+                                <b>@item</b>
+                            </li>
+                        }
+                    </ol>
+                </li>
+                <li>
+                    <p>
+                        This temporary registration shall be in force for a period  of ninety(90) days from the
+                        date of issue and after which date it cease to valid.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This Certificate of temporary Registration is subject to the conditions and provisions of
+                        the A.P. Allopathic Private Capstone Care Establishments(Registration and Regulation) Act, 2002.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This Establishment shall comply with the provisions of A.P. Allopathic Private Capstone Care
+                        Establishments (Registration and Regulation) Act, 2002 as amended from time time and the
+                        rules made there under.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This Establishment shall be surrendered to the above Registering Authority on the following
+                        date of expiry of (90) days.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This Establishment shall not rent,fend,sell,transfer or otherwise close down the registered
+                        CapstoneCare establishment without obtaining prior permission of the regulatory authority.
+                    </p>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-3 col-md-12">
+            <div style="text-align:center;">
+                @{
+                    var x = Model.AppropriateAuthority.Split(';');
+                    foreach (var item in x)
+                    {
+                        <div>
+                            @item
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<div class="row">
+    <div class="col-md-12" style="text-align:center;">
+        <input type="button" id="btnClosePreview" value="Close" data-dismiss="modal" class="btn btn-default" />
+        <input type="button" id="btnPrintAPMCELicense" value="Print" class="btn btn-primary" />
+    </div>
+</div>
+
+<script>
+    $('#btnPrintAPMCELicense').on('click', function (e) {
+        // alert('this will coming soon');
+        printDiv();
+    });
+    function printDiv() {
+
+        var divToPrint = document.getElementById('divModalBody');
+
+        var newWin = window.open('', 'Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function () { newWin.close(); }, 10);
+    }
+</script>

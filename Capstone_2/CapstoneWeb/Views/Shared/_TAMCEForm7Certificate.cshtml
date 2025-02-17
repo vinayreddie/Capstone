@@ -1,0 +1,196 @@
+﻿@model Capstone.Models.APMCECertificate
+
+
+<style>
+    .reportheadertext {
+        text-align: center;
+        font-size: larger;
+    }
+
+    .textunderline {
+        text-decoration: underline;
+    }
+
+    .parabody {
+        text-indent: 50px;
+        text-align: justify;
+    }
+
+    p {
+        text-align: justify;
+    }
+</style>
+
+<fieldset class="scheduler-border">
+    <div style="text-align:center">
+        <img src="~/Content/images/logogovts.png" />
+    </div>
+    <div class="col-md-12" style="text-align:center;">
+        <span style="font-size:x-large; color:red;">Government of Telangana</span>
+        <br />
+        <i>Capstone, Health and Family Welfare Department</i>
+        <br />
+        <i>TAMCE</i>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large;">Form-VII</span>
+            <br />
+            <i>[See Rule 6]</i>
+            <br />
+            <span style="font-size:x-large;">Certificate of Renewal of Registration of Allopathic Private Capstone Care Establishments</span>
+            <hr style="border: 1px solid #9f9fb1;" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <ol>
+                <li>
+                    <p>
+                        Application No. and Date :  <b style="font-size:medium;"> @Model.ApplicationNumber &  @Model.ApplicationDate </b>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Inspection Report No. and Date :  <b style="font-size:medium;"> @Model.ApplicationNumber &  @Model.ApplicationDate </b>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Original File number of Registration Authority :  -
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Date of issue of the Certificate of Registration : <b style="font-size:medium;">@Model.IssuedDate.ToShortDateString()</b>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Date of expiry of the Certificate of Registration : <b style="font-size:medium;">@Model.ExpiryDate.ToShortDateString()</b>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Date of Renewal of the Certificate of Registration : <b style="font-size:medium;">@Model.ExpiryDate.ToShortDateString()</b>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Renewal of Certificate of Registration valid up to : <b style="font-size:medium;">@Model.ExpiryDate.ToShortDateString()</b>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This is to Certify that the Certificate of Registration issued to M/s <b style="font-size:medium;"> @Model.ApplicantNameAddress </b> 
+                         is hereby registered temporarily under the provisions of
+                        Telangana Allopathic Private Capstone Care Establishments Registration and Regulation) Act, 2002, to provide following Capstone care services:
+                    </p>
+                    <ol type="A">
+                        @foreach (string item in Model.ServiceDetails)
+                        {
+                            <li>
+                                <b>@item</b>
+                            </li>
+                        }
+                    </ol>
+                </li>
+                <li>
+                    <p>
+                        This Renewal oi Certificate of Registration shall be in force for a period of 5 (Five) years from the date of issue.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This Certificate shall be produced whenever it is required to the officer authorised by the Registration authority,
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        The Establishment shall not rent, lend, sell, transfer or otherwise close down the without obtaining prior permission of the registration authority.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Any unauthorized change in personnel, equipment or working conditions as mentioned in the application by the Establishment shall constitute a breach of registration.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        The Establishment shall not violate the provisions of Telangana Allopathic Private Capstone Care Establishments Registration and Regulation) Act. 2002) as amended
+                        from time to time and the rules made there under.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This certificate is subject to the conditions and the provisions of the Telangana Allopathic Private Capstone Care Establishments Registration and Regulation) Act. 2002.
+                    </p>
+                </li>
+            </ol>
+            <br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-12 text-center">
+            <table>
+                <tr>
+                    <td style="text-align:left;">Place : @Model.District</td>
+                </tr>
+                <tr></tr>
+                @{
+                    if (Model.AppropriateAuthority != null)
+                    {
+                        var x = Model.AppropriateAuthority.Split(';');
+                        foreach (var item in x)
+                        {
+                            <tr>
+                                <td style="text-align:left;"></td>
+                                <td style="width:54%"></td>
+                                <td style="text-align:center;">
+                                    @item
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td style="text-align:left;">Dated : @Model.IssuedDate.ToShortDateString()</td>
+                            <td style="width:54%;"></td>
+                            <td style="text-align:center;">
+                                <img src='@Url.Content("~/Content/signatures/" + Model.District + ".jpg")' width="190" height="60" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<div class="row">
+    <div class="col-md-12" style="text-align:center;">
+        <input type="button" id="btnClosePreview" value="Close" data-dismiss="modal" class="btn btn-default" />
+        <input type="button" id="btnPrintAPMCELicense" value="Print" class="btn btn-primary" />
+    </div>
+</div>
+
+<script>
+    $('#btnPrintAPMCELicense').on('click', function (e) {
+        printDiv();
+    });
+    function printDiv() {
+
+        var divToPrint = document.getElementById('divModalBody');
+
+        var newWin = window.open('', 'Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function () { newWin.close(); }, 10);
+    }
+</script>
+
+
+

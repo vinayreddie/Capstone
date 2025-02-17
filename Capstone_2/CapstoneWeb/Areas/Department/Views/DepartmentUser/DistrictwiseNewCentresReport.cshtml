@@ -1,0 +1,221 @@
+﻿@using Medical.Models;
+@{
+    ViewBag.Title = "DistrictwiseNewCentresReport";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        District-wise New Centres | Index
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">District-wise New CentresDetails</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-right">
+                        <label>From Date</label>
+                    </div>
+                    <div class="col-md-2">
+                        @Html.Editor("FromDate", new { htmlAttributes = new { @class = "form-control datepicker", @Value = "" } })
+                    </div>
+                    <div class="col-md-1 text-right">
+                        <label>To Date</label>
+                    </div>
+                    <div class="col-md-2">
+                        @Html.Editor("ToDate", new { htmlAttributes = new { @class = "form-control datepicker", @Value = "" } })
+                    </div>
+                    <div class="col-md-1  text-right">
+                        @Html.Label("District", new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownList("DistrictID",
+                    new SelectList(ViewBag.DistrictList, "Id", "Name"), "All",
+                    new { @class = "form-control select2", @style = "width:100%;" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <input type="button" class="btn btn-primary" value="Search" id="btnSearchData" />
+                        &nbsp;&nbsp;<input type="button" class="btn btn-default" value="Clear" id="btnClearData" />
+                    </div>
+                    <br />
+                </div>
+
+                <!-- /.box-header -->
+                @using (Html.BeginForm("ExportNewCentres", "DepartmentUser", FormMethod.Post))
+                {
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="submit" name="btnExportLicensing" style="width: 140px;margin-left:930px;"
+                                   value="Export" id="exportLicensing" class="form-control btn-success" />
+                        </div>
+                    </div>
+
+                    <div class="box-body">
+                        <table class="table table-bordered" id="tblDistrictwiseNewCentresList">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>#</th>
+                                    <th>Received</th>
+                                    <th>Applns within SLA</th>
+                                    <th>Applns Exceed SLA</th>
+                                    <th>Query Raised</th>
+                                    <th>Query Responded</th>
+                                    <th>Forward</th>
+                                    <th>Return Forward</th>
+                                    <th>Approved</th>
+                                    <th>Rejected</th>
+                                    <th>Returned</th>
+                                    <th>Cancelled</th>
+                                    <th>Suspended</th>
+                                    <th>No. of Certificates Issued</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+
+                }
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</section>
+
+<script>
+    var user;
+    $(function () {
+        user = @Html.Raw(Json.Encode(Session["User"] as UserModel));
+        //$("#tblDistrictwiseNewCentresList").DataTable();
+        if(user.RoleId == 4)
+        {
+            BindDistrictwiseNewCentresListIndex('0001-01-01','0001-01-01',user.DistrictId);
+            $('#DistrictID').val(user.DistrictId).change();
+            $("#DistrictID").prop("disabled", true);
+        }
+        else
+            BindDistrictwiseNewCentresListIndex('0001-01-01','0001-01-01',0);
+    });
+
+
+      function BindDistrictwiseNewCentresListIndex(fromDate,toDate,districtId) {
+        var url = '@Url.Action("GetDistrictwiseNewCentresReport", "DepartmentUser", new { Area = "Department" })';
+        var data = {
+                    FromDate : fromDate,
+                    ToDate : toDate,
+                    DistrictId : districtId
+                };
+        var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            var table = $('#tblDistrictwiseNewCentresList').DataTable();
+            table.clear().draw();
+
+
+            $("#tblDistrictwiseNewCentresList tbody").empty();
+            var trans = json;
+            var tr;
+            for (var i = 0; i < json.length; i++) {
+    table.row.add([
+                    (i + 1),
+                    //json[i].District,
+                    json[i].Received,
+                    json[i].WithinSLA,
+                    json[i].BeyondSLA,
+                    json[i].QueryRaised,
+                    json[i].QueryResponded,
+                    json[i].Forward,
+                    json[i].ReturnForward,
+                    json[i].Approved,
+                    json[i].Rejected,
+                    json[i].Return,
+                    json[i].Cancelled,
+                    json[i].Suspended,
+                    json[i].Approved
+                ]);
+            }
+
+            table.draw();
+
+            // TODO : Bind data to table
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.log("BindDistrictwiseNewCentresListIndex Request Failed: " + err);
+        });
+    }
+
+</script>
+
+<script>
+    var gFromDate=null,gToDate=null;
+     $('#btnSearchData').click(function(){
+    gFromDate= $('#FromDate').val();
+    gToDate= $('#ToDate').val();
+    //console.log('from Date : '+ gFromDate + " and To Date :"+ gToDate);
+    var strDate = null;var fdate = null;
+    if($('#FromDate').val() != "")
+    {
+        strDate = $('#FromDate').val().split('-');
+        fdate = new Date(parseInt(strDate[2]), parseInt(strDate[1])-1,parseInt(strDate[0]));
+    }
+    else
+    {
+        gFromDate='0001-01-01';
+    }
+    var endDate = null;var edate = null;
+    if($('#ToDate').val() != "")
+    {
+        endDate =  $('#ToDate').val().split('-');
+        edate = new Date(parseInt(endDate[2]), parseInt(endDate[1])-1,parseInt(endDate[0]));
+    }
+    else
+    {
+        gToDate='0001-01-01';
+    }   
+
+    console.log('from Date : '+ fdate + " and To Date :"+ edate);
+
+    var distId=$('#DistrictID').val();
+
+    BindDistrictwiseNewCentresListIndex(gFromDate,gToDate,distId);
+    //if(gFromDate == null || gFromDate == "" || gToDate == null || gToDate == "")
+    //{
+    //    alert('Please Enter From/To date Fields!');
+    //    return;
+    //}
+    //else if (Date.parse(gFromDate) > Date.parse(gToDate)) {
+    //    alert("Invalid Date Range!\nStart Date cannot be after End Date!")
+    //    return false;
+    //}
+    //else if(Date.parse(fdate) > Date.parse(edate))
+    //{
+    //    alert("Invalid Date Range!\nStart Date cannot be after End Date!")
+    //    return false;
+    //}
+    //else
+    //    BindDistrictwiseNewCentresListIndex(gFromDate,gToDate,distId)
+    });
+
+    $('#btnClearData').click(function(){
+        $('#FromDate').val('');
+        $('#ToDate').val('');
+    });
+
+</script>
+

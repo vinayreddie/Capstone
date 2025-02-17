@@ -1,0 +1,23 @@
+﻿@model Capstone.Models.APMCEViewModel
+
+<div id="divServices">
+    <form id="formServices">
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.OfferedServicesLog.BedStrength, new { @class = "control-label" })
+            </div>
+            <div class="col-md-2">
+                @Html.HiddenFor(model => model.OfferedServicesLog.Id)
+                @Html.DisplayFor(model => model.OfferedServicesLog.BedStrength, new { htmlAttributes = new { @class = "form-control numeric" } })
+
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.OfferedServicesLog.OfferedServices, new { @class = "control-label" })
+            </div>
+            <div class="col-md-6">
+
+                @Html.DisplayFor(model => model.OfferedServicesLog.OfferedServices, new { htmlAttributes = new { @class = "form-control numeric" } })
+            </div>
+        </div>
+    </form>
+</div>

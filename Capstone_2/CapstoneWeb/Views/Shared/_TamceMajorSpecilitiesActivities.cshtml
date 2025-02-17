@@ -1,0 +1,243 @@
+﻿@model Capstone.Models.TAMCEFacilityModel
+
+<div class="row">    
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large;"><u>Details of the Major Specialities offered in the CapstoneCare Establishment with Beds allotted</span></u>
+            <br />
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-body table-responsive no-padding">
+                <table id="tblInfraStructure" class="table table-hover">
+                    <tr>
+                        <td>General</td>
+                        <td>Emergency</td>
+                        <td>Speciality-wise Beds</td>
+                        <td>Total</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">ACTIVITY DETAILS </legend>
+                <div class="row">
+                    <div class="col-md-2 text-right">
+                        <label>Activity: </label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(model => model.ServiceId,
+
+                               new List<SelectListItem>
+                            {
+                            new SelectListItem {Text = "Select Activity", Value = "", Selected = true },
+                            new SelectListItem {Text = "Total Out Patients (Old + New)", Value = "Total Out Patients (Old + New)" },
+                            new SelectListItem {Text = "Total Inpatients", Value = "Total Inpatients" },
+                            new SelectListItem {Text = "Total No. of Major Operations", Value = "Total No. of Major Operations" },
+                            new SelectListItem {Text = "Total No. of Deatds", Value = "Total No. of Deatds" },
+                            new SelectListItem {Text = "Deatds after 48 hours of admission", Value = "Deatds after 48 hours of admission" },
+                            new SelectListItem {Text = "Bed Occupancy Rate", Value = "Bed Occupancy Rate" }
+                        },
+                                new { @class = "form-control select2", @style = "widtd:100%;" })
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <label>Financial Year: </label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(model => model.ServiceId,
+
+                               new List<SelectListItem>
+                            {
+                            new SelectListItem {Text = "Select FinYear", Value = "", Selected = true },
+                            new SelectListItem {Text = "2018", Value = "2018" },
+                            new SelectListItem {Text = "2019", Value = "2019" },
+                            new SelectListItem {Text = "2020", Value = "2020" },
+                            new SelectListItem {Text = "2021", Value = "2021" }
+                        },
+                                new { @class = "form-control select2", @style = "widtd:100%;" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-right">
+                        @Html.Label("Data / Count", new { @class = "control-label" })
+                        <span style="color:red">*</span>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.ServiceId, new { htmlAttributes = new { @class = "form-control numeric" } })
+                        @Html.ValidationMessageFor(model => model.ServiceId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-1 text-right nonsupportingstaff supportingstaff specialists Adminstaff">
+                        <input type="button" value="Add" id="btnAddActivityDetails" class="btn btn-default" />
+                    </div>
+                </div>
+                <div class="row" id="divActivityDetails" style="display:none;">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-body table-responsive no-padding">
+                                <table id="tblInfraStructure" class="table table-hover">
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Activity</th>
+                                        <th>Financial Year</th>
+                                        <th>Count/Rate</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Total Out Patients (Old + New)</td>
+                                        <td>2020</td>
+                                        <td>20</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Total Inpatients</td>
+                                        <td>2020</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Total No. of Major Operations</td>
+                                        <td>2020</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Total No. of Deatds</td>
+                                        <td>2020</td>
+                                        <td>12</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Deatds after 48 hours of admission</td>
+                                        <td>2020</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Bed Occupancy Rate</td>
+                                        <td>2020</td>
+                                        <td>40</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">FINANCIAL ACTIVITIES </legend>
+                <div class="row">
+                    <div class="col-md-2 text-right">
+                        <label>Activity: </label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(model => model.ServiceId,
+
+                               new List<SelectListItem>
+                            {
+                            new SelectListItem {Text = "Select Activity", Value = "", Selected = true },
+                            new SelectListItem {Text = "Total Hospital Fee Collection", Value = "Total Hospital Fee Collection" },
+                            new SelectListItem {Text = "Total Imbursement Collection", Value = "Total Imbursement Collection" },
+                            new SelectListItem {Text = "Flow of Funds", Value = "Flow of Funds" }
+                        },
+                                new { @class = "form-control select2", @style = "widtd:100%;" })
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <label>Financial Year: </label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(model => model.ServiceId,
+
+                               new List<SelectListItem>
+                            {
+                            new SelectListItem {Text = "Select FinYear", Value = "", Selected = true },
+                            new SelectListItem {Text = "2018", Value = "2018" },
+                            new SelectListItem {Text = "2019", Value = "2019" },
+                            new SelectListItem {Text = "2020", Value = "2020" },
+                            new SelectListItem {Text = "2021", Value = "2021" }
+                        },
+                                new { @class = "form-control select2", @style = "widtd:100%;" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-right">
+                        @Html.Label("Amount", new { @class = "control-label" })
+                        <span style="color:red">*</span>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.ServiceId, new { htmlAttributes = new { @class = "form-control numeric" } })
+                        @Html.ValidationMessageFor(model => model.ServiceId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-1 text-right nonsupportingstaff supportingstaff specialists Adminstaff">
+                        <input type="button" value="Add" id="btnAddFinancialActivityDetails" class="btn btn-default" />
+                    </div>
+                </div>
+                <div class="row" id="divFinancialActivityDetails" style="display:none;">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-body table-responsive no-padding">
+                                <table id="tblInfraStructure" class="table table-hover">
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Activity</th>
+                                        <th>Financial Year</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Total Hospital Fee Collection</td>
+                                        <td>2020</td>
+                                        <td>20000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Total Imbursement Collected</td>
+                                        <td>2020</td>
+                                        <td>25000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Flow of Funds</td>
+                                        <td>2020</td>
+                                        <td>10000.00</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+<hr/>
+<script>
+ 
+    $('#btnAddActivityDetails').click(function(){
+        $('#divActivityDetails').show();
+    });
+    $('#btnAddFinancialActivityDetails').click(function(){
+        $('#divFinancialActivityDetails').show();
+    });
+</script>

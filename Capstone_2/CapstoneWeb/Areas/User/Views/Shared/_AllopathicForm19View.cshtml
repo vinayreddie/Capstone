@@ -1,0 +1,427 @@
+﻿@model Capstone.Models.AllopathicDrugStoreViewModel
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Allopathic Drug Store - FORM 19</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <fieldset class="scheduler-border" id="fsApplicant">
+                        <legend class="scheduler-border">Applicant</legend>
+                        <form id="formAD19Applicant">
+                            <div class="row">
+                                <div class="col-md-1">
+
+                                    @Html.HiddenFor(model => model.ADApplicantModel.Id, new { @id = "AD19ApplicantId" })
+                                    @Html.LabelFor(model => model.ADApplicantModel.Name, "Owner Name", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.HiddenFor(model => model.ADApplicantModel.Id, new { @id = "AD_ApplicantID" })
+                                    @Html.DisplayFor(model => model.ADApplicantModel.Name, new { htmlAttributes = new { @class = "form-control alphabet", @id = "AD_ApplicantName" } })
+                                   
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADApplicantModel.OwnershipType, "Ownership Type", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADApplicantModel.OwnershipType)
+                                 
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADApplicantModel.Aadhar, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADApplicantModel.Aadhar, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD_ApplicantAadhar" } })
+                                   
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADApplicantModel.PAN, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADApplicantModel.PAN, new { htmlAttributes = new { @class = "form-control", @id = "AD_ApplicantPAN", @Style = "text-transform: uppercase;" } })
+                                    
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADApplicantModel.MobileNo, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADApplicantModel.MobileNo, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD_ApplicantMobile" } })
+                                    
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADApplicantModel.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADApplicantModel.DistrictName)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADApplicantModel.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADApplicantModel.MandalName)
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADApplicantModel.VillageId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADApplicantModel.VillageName)
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADApplicantModel.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADApplicantModel.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "AD_ApplicantHouseNo" } })
+                                   
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADApplicantModel.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADApplicantModel.StreetName, new { htmlAttributes = new { @class = "form-control", @id = "AD_ApplicantStreet" } })
+                                    
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADApplicantModel.PINCode, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADApplicantModel.PINCode, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD_ApplicantPINCode" } })
+                                   
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADApplicantModel.UploadDocument, "Document (AOA/MOA/Ownership)", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                   
+
+                                    @if (!string.IsNullOrEmpty(Model.ADApplicantModel.UploadDocument))
+                        {
+                            var documentindex = Model.ADApplicantModel.UploadDocument.LastIndexOf("/");
+                            var documentfileName = Model.ADApplicantModel.UploadDocument.Substring(documentindex + 1);
+                            @Html.ActionLink(documentfileName, "DownloadFile", "Generic",
+                    new { Area = "", path = Model.ADApplicantModel.UploadDocument, downloadName = documentfileName },
+                    null
+                    );
+                        }
+                                    
+                                </div>
+                            </div>
+                           
+                        </form>
+                    </fieldset>
+
+                    <fieldset class="scheduler-border" id="fsAD19Pharmacy">
+                        <legend class="scheduler-border">Pharmacy</legend>
+                        <form id="formAD19Pharmacy">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADPharmacyModel.Name, "Pharmacy Name", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.HiddenFor(model => model.ADPharmacyModel.Id, new { @id = "AD_PharmacyID" })
+                                    @Html.DisplayFor(model => model.ADPharmacyModel.Name, new { htmlAttributes = new { @class = "form-control", @id = "AD_PharmacyName" } })
+                                   
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADPharmacyModel.OwnedBy, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADPharmacyModel.OwnedBy)
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADPharmacyModel.Rent, "Rent/Lease", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            @Html.DisplayFor(model => model.ADPharmacyModel.Fromdate, new { @class = "form-control datepicker", @id = "AD_PharmacyFromDate", @Value = @System.DateTime.Today.ToString("dd/MM/yyyy"), @placeholder = "From Date" })
+                                            
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.DisplayFor(model => model.ADPharmacyModel.ToDate, new { @class = "form-control datepicker", @id = "AD_PharmacyToDate", @Value = @System.DateTime.Today.ToString("dd/MM/yyyy"), @placeholder = "To Date" })
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADPharmacyModel.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADPharmacyModel.DistrictName)                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADPharmacyModel.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADPharmacyModel.MandalName)</div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADPharmacyModel.VillageId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADPharmacyModel.VillageName)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADPharmacyModel.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADPharmacyModel.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "AD_PharmacyHouseNo" } })
+                                   
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADPharmacyModel.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADPharmacyModel.StreetName, new { htmlAttributes = new { @class = "form-control", @id = "AD_PharmacyStreet" } })
+                                   
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADPharmacyModel.PINCode, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADPharmacyModel.PINCode, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD_PharmacyPINCode" } })
+                                   
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+
+                    <fieldset class="scheduler-border" id="fsAD19Competent">
+                        <legend class="scheduler-border">Competent Person</legend>
+
+
+                        <form id="formAD19Competent">
+                            @Html.HiddenFor(model => model.ADCompetentPersonModel.Id, new { @id = "AD_CompetentID" })
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADCompetentPersonModel.Name, "Owner Name", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADCompetentPersonModel.Name, new { htmlAttributes = new { @class = "form-control", @id = "AD_CompetentName" } })
+                                   
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADCompetentPersonModel.Aadhar, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADCompetentPersonModel.Aadhar, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD_CompetentAadhar" } })
+                                    
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADCompetentPersonModel.MobileNo, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADCompetentPersonModel.MobileNo, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD_CompetentMobile" } })
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADCompetentPersonModel.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADCompetentPersonModel.DistrictName)
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADCompetentPersonModel.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADCompetentPersonModel.MandalName)
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADCompetentPersonModel.VillageId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADCompetentPersonModel.VillageName)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADCompetentPersonModel.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADCompetentPersonModel.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "AD_CompetentHouseNo" } })
+                                    
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADCompetentPersonModel.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADCompetentPersonModel.StreetName, new { htmlAttributes = new { @class = "form-control", @id = "AD_CompetentStreet" } })
+                                   
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADCompetentPersonModel.PINCode, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADCompetentPersonModel.PINCode, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD_CompetentPINCode" } })
+                                   
+                                </div>
+                            </div>
+                            
+                        </form>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblCompetentCertificate" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>File Type</th>
+                                                <th>Documents</th>
+                                                <th></th>
+                                            </tr>
+
+                                            @if (Model.ADCompetentPersonModel.uploadedDocuments != null)
+                                            {
+                                                for (int i = 0; i < Model.ADCompetentPersonModel.uploadedDocuments.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.ADCompetentPersonModel.uploadedDocuments[i].UploadType</td>
+                                                        <td>
+                                                            @if (Model.ADCompetentPersonModel.uploadedDocuments[i].DocumentPath != null)
+                                                            {
+                                                                var layoutindex = Model.ADCompetentPersonModel.uploadedDocuments[i].DocumentPath.LastIndexOf("/");
+                                                                var layoutfileName = Model.ADCompetentPersonModel.uploadedDocuments[i].DocumentPath.Substring(layoutindex + 1);
+                                                                @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                                      new { Area = "", path = Model.ADCompetentPersonModel.uploadedDocuments[i].DocumentPath, downloadName = layoutfileName }, null);
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="scheduler-border" id="fsDrugs">
+                        <legend class="scheduler-border">Drugs</legend>
+                        <form id="formAD19Drugs">
+                          
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <div class="box-body table-responsive no-padding">
+                                            <table id="tblDrugNames" class="table table-hover">
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Name</th>
+                                                    <th></th>
+                                                </tr>
+                                                @if (Model.AllopathicDrugList != null)
+                                                {
+                                                    for (int i = 0; i < Model.AllopathicDrugList.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td>@Convert.ToInt32(i + 1)</td>
+                                                            <td>@Model.AllopathicDrugList[i].Name</td>
+                                                            @*<td><input type='button' value='Delete' onclick='DeleteDrugNames(@i);' /></td>*@
+                                                        </tr>
+                                                    }
+                                                }
+
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+                            </div>
+
+                        </form>
+                    </fieldset>
+
+                    <fieldset class="scheduler-border" id="fstreatment">
+                        <legend class="scheduler-border">Declaration</legend>
+                        <form id="formA19Declaration">
+                            
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right; margin-top:-1%">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.ADDeclaration.HasAppliedSpecialStorage, new
+                               {
+                                   htmlAttributes = new
+                                   {
+                                       @class = "allopathic"
+                                   }
+                               })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.ADDeclaration.HasAppliedSpecialStorage, "Particulars of Special Storage accommodation", htmlAttributes: new { @class = "control-label" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-8" id="divDescription" hidden>
+                                    @Html.DisplayFor(model => model.ADDeclaration.TextArea, new { style = "width:100%" })
+                                  
+
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.ADDeclaration.Date, "Date", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.ADDeclaration.Date, new { @class = "form-control datepicker", @id = "ADDeclaration_Date", @Value = @System.DateTime.Today.ToString("dd/MM/yyyy") })
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    @Html.LabelFor(model => model.ADDeclaration.Sign, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.ADDeclaration.Sign, new { htmlAttributes = new { @class = "form-control", @id = "ADDeclaration_Sign" } })
+                                   
+                                </div>
+                            </div>
+                           
+                        </form>
+                    </fieldset>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function(){
+        BindDeclarationData();
+
+    })
+    
+    
+    
+    function BindDeclarationData(){
+    
+        var DeclarationModel = @Html.Raw(Json.Encode(Model.ADDeclaration));
+        if(DeclarationModel.FormStatus != 0){
+            if(DeclarationModel.TextArea!=null){
+                $("#ADDeclaration_HasAppliedSpecialStorage").iCheck('check') ;
+                $('#divDescription').show();  
+
+            }
+            $('#btnAD19DeclarationSave').val('Update');
+            $('#btnAD19DeclarationSave').removeClass('btn-primary');
+            $('#btnAD19DeclarationSave').addClass('btn-success');
+        }
+    }
+
+</script>

@@ -1,0 +1,19 @@
+﻿@model Medical.Models.AmendmentModel
+@{
+    ViewBag.Title = "Rennual";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<section class="content">
+
+    @*@if (Model.APMCEAmendments != null)
+    {
+        Html.RenderPartial("_APMCEAmendment", Model.APMCEAmendments);
+    }*@
+    @*if (Model.PCPNDTAmendments != null)*@
+    @{
+        Html.RenderPartial("_PCPNDTView", Model.PCPNDTAmendments);
+    }
+</section>
+
+

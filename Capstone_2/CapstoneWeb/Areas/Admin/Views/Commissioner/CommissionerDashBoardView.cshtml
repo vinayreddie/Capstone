@@ -1,0 +1,387 @@
+﻿
+@{
+    ViewBag.Title = "CommissionerDashBoardView";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<h2>Commissioner DashBoard View</h2>
+
+<section class="content-header">
+   
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("CommissionerDashboard","Commissioner","Admin")"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        @*<li><a href="#">Licenses</a></li>*@
+        <li class="active">Registrations</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content" id="tblApprovedApplications" hidden>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Registrations</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblLicenses" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Registration Number</th>
+                                <th>Issued Date</th>
+                                <th>Expiry Date</th>
+                                <th>District</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content" id="tblRejectedApplications" hidden>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Rejected Applications</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblRejected" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sl.No</th>
+                                <th>Application Number</th>
+                                <th>Application Type</th>
+                                <th>Submitted On</th>
+                                <th>Remarks</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section> 
+<section class="content" id="tblPendingApplications" hidden>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Pending Applications </h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblPending" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sl.No</th>
+                                <th>Application Number</th>
+                                <th>Application Type</th>
+                                <th>Created On</th>
+                                <th>Submitted On</th>
+                                <th>Ack</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content" id="tblAppealApplications" hidden>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Appeal Applications </h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblAppeal" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sl.No</th>
+                                <th>Application Type</th>
+                                <th>Appeal Reason</th>
+                                <th>Created On</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $(function () {
+        debugger;
+        GetLicenses();
+    });
+
+    function GetLicenses() {
+        debugger;
+       
+        var url = '@Url.Action("GetCommissionerDashboard", "Commissioner", new { Area = "Admin" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                
+                if (response instanceof Object)
+                {
+                    obj = response.data;
+                    var json = JSON.parse(obj);
+                }  
+                else
+                {
+                    obj = $.parseJSON(response.data);
+                    var json = JSON.parse(obj);
+                }
+                
+                console.log('test:' + json);
+                if (response.type == 'A')
+                {
+                    $('#tblApprovedApplications').show();
+                    BindDetails(json);
+                }
+                else if (response.type == 'R') {
+                     $('#tblRejectedApplications').show();
+                     BindRejectedDetails(json);
+                }
+                else if (response.type == 'P') {
+                    $('#tblPendingApplications').show();
+                    BindPendingApplications(json);
+                }
+                else if (response.type == 'AP') {
+                    $('#tblAppealApplications').show();
+                    BindAppealApplications(json);
+                }
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetLicenses in User, Request Failed: " + err);
+            });
+    }
+    //Approved Applications
+    function BindDetails(json) {
+        var table = $('#tblLicenses').DataTable();
+
+        // Clear all existing rows
+        table.clear().draw();
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+           
+            table.row.add([
+        (i + 1),
+        json[i].LicenseNumber,
+        json[i].LicenseIssuedDate,
+        json[i].LicenseExpiryDate,
+        json[i].District,
+        '<input type="button" value="View" onclick="ViewLicense(' + json[i].Id + ',\'' + json[i].TableName + '\')"/>',
+            ]);
+        }
+        table.draw();
+    }
+
+    function ViewLicense(Id, TableName) {
+        debugger;
+        var url = '@Url.Action("GetViewLicense", "License", new { Area = "User" })';
+        var data = {
+            TransactionId: Id,
+            TableName: TableName
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "License";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetPCPNDTLicense Request Failed: " + err);
+        });
+    }
+     
+    // Rejected Applications
+    function BindRejectedDetails(json) {
+        debugger;
+        var table = $('#tblRejected').DataTable();
+
+        var resubmitlink;
+        var appeallink;
+
+        // Clear all existing rows
+        table.clear().draw();
+
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+
+            
+
+            table.row.add([
+        (i + 1),
+        json[i].ApplicationNumber,
+        json[i].ServiceName,
+        json[i].SubmittedOn,
+        json[i].Remarks,
+        '<input type="button" value="View" onclick="ViewApplication(' + json[i].Id + ')"/>',
+         '<input type="button" value="FORMC" onclick="RejectionFORMC(' + json[i].Id + ')"/>',
+            ]);
+        }
+
+        table.draw();
+    }
+    function RejectionFORMC(id) {
+        debugger;
+        var url = '@Url.Action("GetRejectLicenseApplications", "License", new { Area = "User" })';
+        var data = {
+            ApplicationId: id
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "Reject";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetRejectionForm Request Failed: " + err);
+        });
+    }
+    function ViewApplication(id) {
+        var link = '@Url.Action("ApplicationView", "License", new { Area = "User", id = 1 })';
+        link = link.replace("1", id);
+        window.location.href = link;
+    }
+    //Pending Applications
+    function BindPendingApplications(json) {
+
+        var table = $('#tblPending').DataTable();
+
+        // Clear all existing rows
+        table.clear().draw();
+
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+
+            debugger;
+            var ACKLink;
+            if (json[i].HasACK != undefined && json[i].HasACK == 1)
+                ACKLink = '<input type="button" value="Print" onclick="GetPCPNDTAck(' + json[i].Id + ', \'' + json[i].TableName + '\' )" />';
+            else
+                ACKLink = 'Need approval';
+            //ACKLink = '<input type="button" value="Print" onclick="GetAPMCEAck(' + json[i].Id + ')" />';
+
+            table.row.add([
+        (i + 1),
+        json[i].ApplicationNumber,
+        json[i].ServiceName,
+        json[i].CreatedOn,
+        json[i].LastModifiedOn,
+        ACKLink,
+        '<input type="button" value="View" onclick="ViewApplication(' + json[i].Id + ')" />',
+        '<input type="button" value="Track" onclick="ViewTrackApplication(' + json[i].Id + ')" />'
+            ]);
+        }
+
+        table.draw();
+    }
+    function ViewApplication(id) {
+        var viewlink = '@Url.Action("ApplicationView", "License", new { Area = "User", id = 1 })';
+        viewlink = viewlink.replace("1", id);
+        window.location.href = viewlink;
+    }
+
+    function ViewTrackApplication(ApplicationId) {
+        var viewlink = '@Url.Action("TransactionTrackList", "Test", new { Area = "User", ApplicationId = 1 })';
+        viewlink = viewlink.replace("1", ApplicationId);
+        window.location.href = viewlink;
+    }
+
+
+    function GetPCPNDTAck(id, TableName) {
+        debugger;
+        var url = '@Url.Action("GetAcknowledge", "Application", new { Area = "User" })';
+        var data = {
+            applicationId: id,
+            TableName: TableName
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "Acknowledgment Certificate";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            //notificationModel.ShowNonActionButton = true;
+            //notificationModel.NonActionButtonText = 'Close';
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetAcknowledge Request Failed: " + err);
+        });
+    }
+
+
+    function GetAPMCEAck(id) {
+        var url = '@Url.Action("GetAcknowledge", "Application", new { Area = "User" })';
+        var data = {
+            applicationId: id
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "Acknowledgment Certificate";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            notificationModel.ShowNonActionButton = true;
+            notificationModel.NonActionButtonText = 'Close';
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetAcknowledge Request Failed: " + err);
+        });
+    }
+
+    //Appeal Applications
+    function BindAppealApplications(json) {
+
+        var table = $('#tblAppeal').DataTable();
+        // Clear all existing rows
+        table.clear().draw();
+
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+            table.row.add([
+        (i + 1),
+        json[i].ServiceName,
+        json[i].AppealReason,
+        json[i].CreatedOn
+            ]);
+        }
+
+        table.draw();
+    }
+</script>
+

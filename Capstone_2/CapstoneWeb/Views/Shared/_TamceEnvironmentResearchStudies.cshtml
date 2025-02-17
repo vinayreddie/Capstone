@@ -1,0 +1,304 @@
+﻿@model Capstone.Models.TAMCEFacilityModel
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">18. ENVIRONMENT SANITATION & WATER SUPPLY </legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th style="width:480px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th style="width:260px;">Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Condition of General sanitation of hospital premises and placement of Dust bins at various places etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMyhelpYou" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td style="width:528px;">
+                                        Efforts made to Prevent nuisance of stray animals like pigs, donkeys, cows, goats in the premises by providing compound
+                                        wall and cattle trap etc. at Entrance and exist.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td style="width:528px;">
+                                        Arrangements for regular lifting of garbage with the help of Muncipality/Corporation
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td style="width:528px;">
+                                        Arrangements made for the safe disposal of the BioCapstone waste generated in the hospital as per the BioCapstone waste management
+                                        and Handling RUles 2000.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td style="width:528px;">
+                                        Anti smoking, Splitting boards and other Health Education baords depicted at prominent places in Hospital campus.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td style="width:528px;">
+                                        Cleanliness inside and outside Canteen
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td style="width:528px;">
+                                        Arrangements of sufficient illumination arrangements in Hospital premises by Street light etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td style="width:528px;">
+                                        Provision of public latrines/toilets etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td style="width:528px;">
+                                        Source of water supply is adequate, if not, then efforts made to argument it by Borewell or dugwell etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td style="width:528px;">
+                                        Sanitation, Cleaning and general condition of overhead tank/sump well verify reports of OT test done by Sanitary Inspectors,
+                                        Cross check done by RMO(OR)
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">19. PATIENT ATTENDENT FACILITIES</legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th style="width:480px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th style="width:260px;">Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Availability of patient attendent facilities
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMyhelpYou" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td style="width:528px;">
+                                        If Available, Whether adequate rooms available with Kitchen plateform, condition of sanitory blocks satisfactory and electric tubes/bulbs,
+                                        fans are provided in all romms and halls.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">20. RESEARCH STUDIES</legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th style="width:480px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th  style="width:260px;">Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Operational Research study undertaken such as Exit interviews of discharged patients, study undertaken to reduce
+                                        patients waiting time efforts made to investigate sources of material, infant mortality in hospital and remedy ,
+                                        suggested based on the results etc. or Paper presentation in variuos State and National level conferences.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMyhelpYou" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

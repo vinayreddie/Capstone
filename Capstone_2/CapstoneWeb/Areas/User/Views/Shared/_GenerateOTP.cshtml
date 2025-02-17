@@ -1,0 +1,71 @@
+﻿
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <span style="color:darkgreen;">OTP sent to Mobile !!!</span>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <input type="hidden" value="@ViewBag.OTP" id="hdnOTP" />
+               
+                @*@Html.LabelFor(model => model.EmailId, new { @class = "control-label" })*@
+                @Html.Label("Enter OTP")
+            </div>
+            <div class="col-md-5">
+                @*@Html.HiddenFor(model => model.Password)*@
+                @*@Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.TextBox("OTP", "", new { @id = "txtOTP", @class = "form-control", @maxlength = 6 })
+               
+            </div>
+            <div class="col-md-3">
+                @*<input type="submit" id="btnForgotPassword" value="SendPassword" class="btn btn-primary" />*@
+
+                <img id="imgCorrect" src="~/Content/images/tickmark.png" height="30px" width="30px" hidden />
+                <img id="imgNotCorrect" src="~/Content/images/close.png" height="30px" width="30px" hidden />
+            </div>
+        </div>
+        <br />
+        <br />
+        <div id="divHidden" class="row" hidden>
+            <div class="row">
+                <div class="col-md-offset-3">
+                    @Html.ActionLink("Edit Application", "AddDraft", "License", new { area = "User", transactionId = Convert.ToInt32(ViewBag.TransactionId) }, null)
+                </div>
+                </div>
+             </div>
+    </div>
+</div>
+<script>
+    OTPvalue = $('#hdnOTP').val();
+
+    $('#txtOTP').keyup(function (e) {
+
+
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8) {
+            var reg = /[0-9]/;
+            if (this.value.length == 6) {
+                if (this.value == OTPvalue) {
+                    $('#txtOTP').css('border-color', '');
+                    $('#imgCorrect').show();
+                    $('#imgNotCorrect').hide();
+                    $('#divHidden').show();
+                }
+                else {
+                    $('#imgCorrect').hide();
+                    $('#imgNotCorrect').show();
+
+                    $('#txtOTP').css('border-color', 'red');
+                    $('#divResetPassword').hide();
+                }
+
+            }
+
+
+        }
+
+    });
+</script>

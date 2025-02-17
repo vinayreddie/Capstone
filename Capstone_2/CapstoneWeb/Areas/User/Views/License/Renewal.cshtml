@@ -1,0 +1,58 @@
+﻿@model Capstone.Models.RenewalModel
+@{
+    ViewBag.Title = "Renewal";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+@*  *@}
+
+<section class="content">
+  
+    @if (Model.APMCEModel != null)
+        {
+            Html.RenderPartial("_APMCEView", Model.APMCEModel);
+        }
+    @if (Model.PCPNDTModel != null)
+    {
+        Html.RenderPartial("_PCPNDTView", Model.PCPNDTModel);
+    }
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                @if (Model.PCPNDTLicenseModel != null)
+                {
+                    Html.RenderPartial("_PCPNDTLicense", Model.PCPNDTLicenseModel);
+                }
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(model => model.TransactionId);
+    @Html.HiddenFor(model => model.Type);
+    <div class="row">
+        <div class="col-md-12 text-right">
+
+            <input type="button" value="Renewal" id="btnRenewal" class="btn btn-primary" />
+        </div>
+    </div>
+</section>
+<script>
+    $("#btnPrintLicense").hide();
+    $("#btnClosePreview").hide();
+    $('#btnRenewal').click(function (e) {
+        debugger;
+        var id = $('#TransactionId').val();
+        e.preventDefault();
+        var uri = '@Url.Action("SaveRenewal", "License", new { Area = "User" })';
+        var data = {
+            transactionId: id
+        }
+            var jqxhr = $.post(uri, data, function () { }, 'json')
+            .done(function (response) {
+                    ShowModal(response);  //error Message Display
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                console.log("Rennual Request Failed: " + err);
+            });
+    });
+</script>
+
+

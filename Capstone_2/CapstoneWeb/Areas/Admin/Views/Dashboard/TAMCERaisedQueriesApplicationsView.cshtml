@@ -1,0 +1,226 @@
+﻿@{
+    ViewBag.Title = "RaisedQueries Applications";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<section class="content-header"></section>
+<br />
+<section class="content">
+    <div class="row" id="divDistricts">
+        <div class="col-md-1 text-right">
+            @Html.Label("District")
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownList("D",
+                                     new SelectList(string.Empty), "Select District",
+                                     new { id = "ddlDistrictId", @Class = "form-control select2", @data_placeholder = "Select District" })
+        </div>
+        <div class="col-md-1 text-right">
+            <label>From Date</label>
+        </div>
+        <div class="col-md-2">
+            @*@Value = @System.DateTime.Today.ToString("dd-MM-yyyy")*@
+            @Html.Editor("FromDate", new { htmlAttributes = new { @class = "form-control datepicker", @Value = "" } })
+        </div>
+        <div class="col-md-1 text-right">
+            <label>To Date</label>
+        </div>
+        <div class="col-md-2">
+            @Html.Editor("ToDate", new { htmlAttributes = new { @class = "form-control datepicker", @Value = "" } })
+        </div>
+
+        <div class="col-md-3">
+            <input type="button" class="btn btn-primary" value="Search" id="btnSearchData" />
+            &nbsp;&nbsp;<input type="button" class="btn btn-default" value="Clear" id="btnClearData" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of RaisedQueries Applications</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblRaisedQueriesApplications" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Application Number</th>
+                                <th>Service </th>
+                                <th>Applied Date</th>
+                                <th>Status</th>
+                                <th>Application</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var userDistrictId=0;
+    $(function () {
+
+        userDistrictId='@ViewBag.DistrictId';
+        GetDistricts();
+    $('#ddlDistrictId').attr("disabled", false);
+    $('#divDistricts').show();
+    $("#tblRaisedQueriesApplications").DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Excel',
+                        text:'Export to excel'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'PDF',
+                        text: 'Export to PDF'
+                    }
+                ]
+    });
+        GetRaisedQueriesTAMCEApplications();
+        if(userDistrictId > 0)
+        {
+            $('#ddlDistrictId').attr("disabled", true);
+            $('#ddlDistrictId').val(userDistrictId).change();
+        }
+    });
+
+    function GetDistricts() {
+        var Url = '@Url.Action("GetDistricts", "License", new { Area="User"})'
+        var jqxhr = $.post(Url, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+            BindDistricts(json);
+
+        }).fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Get Districts Request Failed: " + err);
+        });
+    }
+
+    function BindDistricts(json) {
+        $('#ddlDistrictId').html('');
+       $('#ddlDistrictId').append($('<option></option>').val('-1').html('All'));
+        $.each(json, function () {
+            $('#ddlDistrictId').append($('<option></option>').val(this.Id).html(this.Name));
+        });
+        $('#ddlDistrictId').val(userDistrictId).change();
+    }
+
+    function GetRaisedQueriesTAMCEApplications() {
+        var url = '@Url.Action("GetRaisedQueriesTAMCEApplications", "Dashboard", new { Area = "Admin" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                BindRaisedQueriesList(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get RaisedQueries list in TAMCE, Request Failed: " + err);
+            });
+    }
+
+    function BindRaisedQueriesList(json) {
+        var table = $('#tblRaisedQueriesApplications').DataTable();
+
+        // Clear all existing rows
+        table.clear().draw();
+
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+            var ViewLink ='<input type="button" value="View" onclick="ViewApplication(' + json[i].TransactionId + ', \'' + json[i].TransactionType + '\')" />';
+
+    table.row.add([
+        (i + 1),
+        json[i].ApplicationNumber,
+        json[i].ServiceName,
+        json[i].AppliedDate,
+        json[i].Status,
+        ViewLink
+            ]);
+        }
+        table.draw();
+
+    if(json.length <= 0)
+            $('.dt-buttons').hide();
+    }
+
+    function ViewApplication(TransactionId, TransactionType) {
+        if (TransactionType == 'Grant')
+            TransactionType = 'Transaction'
+        var viewlink = '@Url.Action("ApplicationView", "License", new { Area = "User", TransactionId = "_transactionId", TransactionType = "_transactionType" })';
+        viewlink = viewlink.replace("_transactionId", TransactionId).replace("&amp;", "&").replace("_transactionType", TransactionType);
+        window.location.href = viewlink;
+    }
+</script>
+
+<script>
+
+    var gFromDate=null,gToDate=null,districtId=0;
+     $('#btnSearchData').click(function(){
+            gFromDate= $('#FromDate').val();
+            gToDate= $('#ToDate').val();
+            districtId=$('#ddlDistrictId').val();
+    console.log('from Date : '+ gFromDate + " and To Date :"+ gToDate);
+   // if(gFromDate == null || gFromDate == "" || gToDate == null || gToDate == "")
+   // {
+   //     alert('Please Enter From/To date Fields!');
+   //     return;
+   // }
+    if (Date.parse(gFromDate) > Date.parse(gToDate)) {
+        alert("Invalid Date Range!\nStart Date cannot be after End Date!")
+        return false;
+    }
+    BindRaisedQueriesTAMCEApplications(districtId,gFromDate,gToDate);
+
+    });
+
+    $('#btnClearData').click(function(){
+        $('#FromDate').val('');
+        $('#ToDate').val('');
+    });
+
+    function BindRaisedQueriesTAMCEApplications(districtId,gFromDate,gToDate) {
+        var url = '@Url.Action("BindRaisedQueriesTAMCEApplications", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            StatusId: 4,
+            DistrictId: districtId,
+            MandalId : 0,
+            villageId : 0,
+            fromDate : gFromDate,
+            toDate : gToDate
+        };
+        var jqxhr = $.post(url, data,function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                BindRaisedQueriesList(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get RaisedQueries list in TAMCE, Request Failed: " + err);
+            });
+    }
+</script>

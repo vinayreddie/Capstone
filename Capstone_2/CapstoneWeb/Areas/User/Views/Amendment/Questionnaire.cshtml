@@ -1,0 +1,586 @@
+﻿@model Capstone.Models.AmendmentModel
+@{
+    ViewBag.Title = "AmendmentQuestionnaire";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+@using (Html.BeginForm("Amendment", "Amendment", FormMethod.Post))
+
+{
+    @Html.AntiForgeryToken()
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Amendments
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("index","Dashboard","User")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="@Url.Action("Licenses","Dashboard","User")">Licenses</a></li>
+            <li class="active">Amendments</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    @Html.HiddenFor(model => model.TransactionId)
+    @Html.HiddenFor(model=>model.Type)
+    if(Model.APMCEAmendments != null)
+    {
+    <section class="content" id="sectionAPMCE">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Amendments for TAMCE</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.APMCEAmendments.HospitalAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentapmce"
+
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.APMCEAmendments.HospitalAmendment, "Do you require to Change Hospital Name (TAMCE)?", htmlAttributes: new { @class = "control-label" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.APMCEAmendments.EmployeeAemndment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentapmce"
+
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.APMCEAmendments.EmployeeAemndment, "Do you require to Change Staff List(TAMCE)?", htmlAttributes: new { @class = "control-label" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.APMCEAmendments.ServicesAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentapmce"
+
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.APMCEAmendments.ServicesAmendment, "Do you require to Change Services List(TAMCE)?", htmlAttributes: new { @class = "control-label" })
+                                </div>
+                            </div>
+                            <div class="row" style="display:none;">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.APMCEAmendments.CorrespondentAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentapmce"
+
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.APMCEAmendments.CorrespondentAmendment, "Do you require a Correspondent Details (APMCE)?", htmlAttributes: new { @class = "control-label" })
+                                </div>
+                            </div>
+
+                            <div class="row" style="display:none;">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.APMCEAmendments.AccomodationAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentapmce"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.APMCEAmendments.AccomodationAmendment, "Do you require a Accomodation Details (APMCE)?", htmlAttributes: new { @class = "control-label" })
+                                </div>
+                            </div>
+
+                            <div class="row" style="display:none;">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.APMCEAmendments.ServicesAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentapmce"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.APMCEAmendments.ServicesAmendment, "Do you require a Types of Services (APMCE)?", htmlAttributes: new { @class = "control -label Amendment" })
+                                </div>
+                            </div>
+
+                            <div class="row" style="display:none;">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.APMCEAmendments.EmployeeAemndment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentapmce"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.APMCEAmendments.EmployeeAemndment, "Do you require a  Employee Details  (APMCE)?", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row" style="display:none;">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.APMCEAmendments.SpecialtiesAvailableAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentapmce"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.APMCEAmendments.SpecialtiesAvailableAmendment, "Do you require  a Specialties available  (APMCE)?", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row" style="display:none;">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.APMCEAmendments.EquipmentFurnitureAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentapmce"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.APMCEAmendments.EquipmentFurnitureAmendment, "Do you require a Equipment and Furniture details (APMCE)? ", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row" style="display:none;">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.APMCEAmendments.LicenseCancellation, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentapmce"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.APMCEAmendments.LicenseCancellation, "License Cancellation", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 pull-right">
+                <input type="submit" id="btnNext" value="Next" class="btn btn-primary" disabled />
+            </div>
+        </div>
+
+    </section>
+    }
+    else if(Model.PCPNDTAmendments != null)
+    {
+    <section class="content"  id="sectionPCPNDT">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Amendments for PCPNDT</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            
+
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.PCPNDTAmendments.FacilityAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt",
+                                           @Id="18"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.PCPNDTAmendments.FacilityAmendment, "Do you want to Add/Delete Facilities (PCPNDT)?", htmlAttributes: new { @class = "control-label" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.PCPNDTAmendments.OwnershipTypeAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt",
+                                           @Id = "19"
+                                       }
+                                   })
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.PCPNDTAmendments.OwnershipTypeAmendment, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.PCPNDTAmendments.InstitutionAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       { 
+                                           @class = "chkAmendmentpcpndt",
+                                          @Id = "20"
+                                        
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.PCPNDTAmendments.InstitutionAmendment, htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div> 
+
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.PCPNDTAmendments.TestsProceduresAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt",
+                                           @Id = "21"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.PCPNDTAmendments.TestsProceduresAmendment, htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div> 
+
+
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.PCPNDTAmendments.EquipmentAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt",
+                                            @Id = "22"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.PCPNDTAmendments.EquipmentAmendment, htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.PCPNDTAmendments.ApplyforNOCofEquipment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt",
+                                           @Id = "38"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.PCPNDTAmendments.ApplyforNOCofEquipment, htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+
+
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.PCPNDTAmendments.FacilitiesAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt",
+                                           @Id = "23"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.PCPNDTAmendments.FacilitiesAmendment, htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div> 
+
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.PCPNDTAmendments.EmployeesAmendment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt",
+                                           @Id = "24"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.PCPNDTAmendments.EmployeesAmendment, htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.PCPNDTAmendments.LicenseCancellation, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt",
+                                           @Id = "28"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.PCPNDTAmendments.LicenseCancellation, "License Cancellation", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    }
+    
+}
+<script>
+    
+    $('input:checkbox[name="APMCEAmendments.HospitalAmendment"]').on('ifChecked', function () {
+          var checked = $("#sectionAPMCE input:checked").length > 0;
+            if (!checked){
+                $(':input[type="submit"]').prop('disabled', true);
+                alert("Please check at least one checkbox");
+                return false;
+            }
+            else 
+            $(':input[type="submit"]').prop('disabled', false);
+      
+    });
+    $('input:checkbox[name="APMCEAmendments.HospitalAmendment"]').on('ifUnchecked', function () {
+         var checked = $("#sectionAPMCE input:checked").length > 0;
+            if (!checked){
+                $(':input[type="submit"]').prop('disabled', true);
+                alert("Please check at least one checkbox");
+                return false;
+            }
+            else 
+            $(':input[type="submit"]').prop('disabled', false);
+    });
+
+    $('input:checkbox[name="APMCEAmendments.EmployeeAemndment"]').on('ifChecked', function () {
+          var checked = $("#sectionAPMCE input:checked").length > 0;
+            if (!checked){
+                $(':input[type="submit"]').prop('disabled', true);
+                alert("Please check at least one checkbox");
+                return false;
+            }
+            else 
+            $(':input[type="submit"]').prop('disabled', false);
+      
+    });
+    $('input:checkbox[name="APMCEAmendments.EmployeeAemndment"]').on('ifUnchecked', function () {
+         var checked = $("#sectionAPMCE input:checked").length > 0;
+            if (!checked){
+                $(':input[type="submit"]').prop('disabled', true);
+                alert("Please check at least one checkbox");
+                return false;
+            }
+            else 
+            $(':input[type="submit"]').prop('disabled', false);
+    });
+
+    $('input:checkbox[name="APMCEAmendments.ServicesAmendment"]').on('ifChecked', function () {
+          var checked = $("#sectionAPMCE input:checked").length > 0;
+            if (!checked){
+                $(':input[type="submit"]').prop('disabled', true);
+                alert("Please check at least one checkbox");
+                return false;
+            }
+            else 
+            $(':input[type="submit"]').prop('disabled', false);
+      
+    });
+    $('input:checkbox[name="APMCEAmendments.ServicesAmendment"]').on('ifUnchecked', function () {
+         var checked = $("#sectionAPMCE input:checked").length > 0;
+            if (!checked){
+                $(':input[type="submit"]').prop('disabled', true);
+                alert("Please check at least one checkbox");
+                return false;
+            }
+            else 
+            $(':input[type="submit"]').prop('disabled', false);
+    });
+  
+
+    $('#PCPNDTAmendments_FacilityAmendment').on('ifToggled', function (event) {
+        if (this.checked) {
+            $('#PCPNDTAmendments_TestsProceduresAmendment').iCheck('check');
+            $('#PCPNDTAmendments_TestsProceduresAmendment').iCheck('disable');
+            $('#PCPNDTAmendments_FacilitiesAmendment').iCheck('check');
+            $('#PCPNDTAmendments_FacilitiesAmendment').iCheck('disable');
+        }
+        else {
+            $('#PCPNDTAmendments_TestsProceduresAmendment').iCheck('uncheck');
+            $('#PCPNDTAmendments_TestsProceduresAmendment').iCheck('enable');
+            $('#PCPNDTAmendments_FacilitiesAmendment').iCheck('uncheck');
+            $('#PCPNDTAmendments_FacilitiesAmendment').iCheck('enable');
+        }
+
+    });
+
+    $('#btnNext').on('click', function (e) {
+
+        debugger;
+        if('@Model.APMCEAmendments'==true)
+        {
+            var type = [];
+            $.each($("input.chkAmendmentapmce:checkbox"), function () {
+                if ($(this).parent('[class*="icheckbox"]').hasClass("checked"))
+                    type.push(this.value);
+            });
+            if (type.length == 0) {
+                alert('Please select at least one Facility');
+                return false;
+            }
+        }
+        else if ('@Model.PCPNDTAmendments' != '')@*@Model.PCPNDTAmendments'*@
+        {
+            debugger;
+
+            var type = [];
+            $.each($("input.chkAmendmentpcpndt:checkbox"), function () {
+
+                if ($(this).parent('[class*="icheckbox"]').hasClass("checked"))
+                    type.push(this.value);
+            });
+            if (type.length == 0) {
+                alert('Please select at least one Facility');
+                return false;
+            }
+        }
+    });
+</script>
+
+<script>
+    function GetUrlValues() {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+</script>
+
+
+<script>
+    $(function(){
+
+        var urlValues = GetUrlValues();
+
+       CheckForAmendments(urlValues.Tid);
+
+    });
+    function CheckForAmendments(transactionId) {
+      
+        var url = '@Url.Action("CheckForAmendment", "Amendment", new { Area = "User" })';
+        var data = {
+            TransactionId: transactionId
+        };
+        var jqxhr = $.post(url, data, function () { }, "json")
+        .done(function (response) {
+            debugger;
+            console.log(response);
+//            alert($('input[type="checkbox"]').length);
+            $('.chkAmendmentpcpndt').each(function () {
+               
+                var serviceId = this.id;               
+                $.each(response, function (i, item) {
+                    if (response[i] == serviceId) {
+                      
+                        $('#' + serviceId).iCheck('disable');
+                        //$(":checkbox[id=" + serviceId + "]").iCheck('disable');
+                        //$(":checkbox[Text=" + serviceId + "]").iCheck('disable');
+                      
+                    }
+                });
+                })
+            })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("CheckForAmendment Request Failed: " + err);
+        });
+
+    }
+
+
+</script>
+
+
+

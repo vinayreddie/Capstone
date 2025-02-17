@@ -1,0 +1,417 @@
+﻿@model Capstone.Models.BloodBankViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <span style="font-size:large">BloodBank - FORM 27 C</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-1 col-md-10">
+        Application for grant of license for the operation of a Blood Bank to processing of whole blood and/or<sup>*</sup> preparation of Blood Components
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabBloodApplicant" data-toggle="tab">Applicant</a></li>
+                <li><a href="#tabBloodEstablishment" data-toggle="tab">Establishment</a></li>
+                <li><a href="#tabItems" data-toggle="tab">List of Items</a></li>
+                <li><a href="#tabBloodEmployee" data-toggle="tab">Employee</a></li>
+                <li><a href="#tabBloodEquipment" data-toggle="tab">Equipment</a></li>
+                <li><a href="#tabAttachmnets" data-toggle="tab">Inspection & Attachmnets</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabBloodApplicant">
+                    <form id="formApplicant">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.Name, "Owner Name", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankApplicantModel.Name)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.OwnershipType, "Ownership Type", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankApplicantModel.OwnershipType)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.Aadhar, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankApplicantModel.Aadhar)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.PAN, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankApplicantModel.PAN)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankApplicantModel.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankApplicantModel.MandalName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankApplicantModel.VillageName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankApplicantModel.HouseNumber)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankApplicantModel.StreetName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.UploadDocument, "Document (MOA/Ownership)", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @if (Model.BloodBankApplicantModel.UploadDocument != null && Model.BloodBankApplicantModel.UploadDocument != "" && Model.BloodBankApplicantModel.UploadDocument != string.Empty)
+                                {
+                                    var addressindex = Model.BloodBankApplicantModel.UploadDocument.LastIndexOf("/");
+                                    var addressfileName = Model.BloodBankApplicantModel.UploadDocument.Substring(addressindex + 1);
+                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                         new { Area = "", path = Model.BloodBankApplicantModel.UploadDocument, downloadName = addressfileName }, null);
+                                }
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabBloodEstablishment">
+                    <form id="formEstablishment">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.Name, "BloodBank Name", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankEstablishmentModel.Name)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankEstablishmentModel.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankEstablishmentModel.MandalName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankEstablishmentModel.VillageName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankEstablishmentModel.HouseNumber)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankEstablishmentModel.StreetName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.AddressProofPath, "Address Proof", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @if (Model.BloodBankEstablishmentModel.AddressProofPath != null && Model.BloodBankEstablishmentModel.AddressProofPath != "" && Model.BloodBankEstablishmentModel.AddressProofPath != string.Empty)
+                                {
+                                    var addressindex = Model.BloodBankEstablishmentModel.AddressProofPath.LastIndexOf("/");
+                                    var addressfileName = Model.BloodBankEstablishmentModel.AddressProofPath.Substring(addressindex + 1);
+                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                         new { Area = "", path = Model.BloodBankEstablishmentModel.AddressProofPath, downloadName = addressfileName }, null);
+                                }
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabItems">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">List of Items</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblItems" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                            </tr>
+                                            @if (Model.BloodBankList != null)
+                                            {
+                                                for (int i = 0; i < Model.BloodBankList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.BloodBankList[i].Name</td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabBloodEmployee">
+                    <fieldset class="scheduler-border" hidden>
+                        <legend class="scheduler-border">Employee Certificates</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblEmployeeCertificate" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Type</th>
+                                                <th>Certificates</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.EmployeeModel.UploadDocuments != null)
+                                            {
+                                                for (int i = 0; i < Model.EmployeeModel.UploadDocuments.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td> @Convert.ToInt32(@i + 1)</td>
+                                                        <td> @Model.EmployeeModel.UploadDocuments[i].UploadType</td>
+                                                        <td>
+                                                            @if (Model.EmployeeModel.UploadDocuments[i].DocumentPath != null)
+                                                            {
+                                                                var addressindex = Model.EmployeeModel.UploadDocuments[i].DocumentPath.LastIndexOf("/");
+                                                                var addressfileName = Model.EmployeeModel.UploadDocuments[i].DocumentPath.Substring(addressindex + 1);
+                                                                @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.EmployeeModel.UploadDocuments[i].DocumentPath, downloadName = addressfileName }, null);
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Employee List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblBloodbankEmployee" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Qulification</th>
+                                                <th>Experience</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.EmployeeList != null)
+                                            {
+                                                for (int i = 0; i < Model.EmployeeList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td> @Convert.ToInt32(@i + 1)</td>
+                                                        <td> @Model.EmployeeList[i].Name</td>
+                                                        <td> @Model.EmployeeList[i].QualificationName</td>
+                                                        <td> @Model.EmployeeList[i].ExpYears Years, @Model.EmployeeList[i].ExpMonths Months, @Model.EmployeeList[i].ExpDays Days</td>
+                                                        @*<td>
+                                                                                    @if (Model.EmployeeList[i].DocumentUpload != null)
+                                                                                    {
+                                                                                        var addressindex = Model.EmployeeList[i].DocumentUpload.LastIndexOf("/");
+                                                                                        var addressfileName = Model.EmployeeList[i].DocumentUpload.Substring(addressindex + 1);
+                                                                                        @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                                    new { Area = "", path = Model.EmployeeList[i].DocumentUpload, downloadName = addressfileName }, null);
+                                                                                    }
+                                                                                </td>*@
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabBloodEquipment" class="tab-pane">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Equipment List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblBloodEquipment" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Model</th>
+                                                <th>Serial No.</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.EquipmentList != null)
+                                            {
+                                                for (int i = 0; i < Model.EquipmentList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.EquipmentList[i].Name</td>
+                                                        <td>@Model.EquipmentList[i].Type</td>
+                                                        <td>@Model.EquipmentList[i].MachineModel</td>
+                                                        <td>@Model.EquipmentList[i].SerialNumber</td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabAttachmnets" class="tab-pane">
+                    <form id="formAttachmnets">
+                        @Html.HiddenFor(model => model.BloodBankAttachments.Id)
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-6">
+                                The Premises and plant are ready for inspection/will be ready for inspection date:
+                            </div>
+                            <div class="col-md-3">
+                                @Model.BloodBankAttachments.InspectionDate.ToString("dd-MM-yyyy")
+                            </div>
+                        </div>
+                        <fieldset class="scheduler-border" id="fsTests">
+                            <legend class="scheduler-border">Attachmnets</legend>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.BloodBankAttachments.planPremisesPath, "Plan of the Premises", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-4">
+                                    @if (Model.BloodBankAttachments.planPremisesPath != null && Model.BloodBankAttachments.planPremisesPath != "" && Model.BloodBankAttachments.planPremisesPath != string.Empty)
+                                    {
+                                        var addressindex = Model.BloodBankAttachments.planPremisesPath.LastIndexOf("/");
+                                        var addressfileName = Model.BloodBankAttachments.planPremisesPath.Substring(addressindex + 1);
+                                        @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                         new { Area = "", path = Model.BloodBankAttachments.planPremisesPath, downloadName = addressfileName }, null);
+                                    }
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.BloodBankAttachments.OwnerPremisesPath, "Ownership or tenacy of the Premises", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-4">
+                                    @if (Model.BloodBankAttachments.OwnerPremisesPath != null && Model.BloodBankAttachments.OwnerPremisesPath != "" && Model.BloodBankAttachments.OwnerPremisesPath != string.Empty)
+                                    {
+                                        var addressindex = Model.BloodBankAttachments.OwnerPremisesPath.LastIndexOf("/");
+                                        var addressfileName = Model.BloodBankAttachments.OwnerPremisesPath.Substring(addressindex + 1);
+                                        @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                         new { Area = "", path = Model.BloodBankAttachments.OwnerPremisesPath, downloadName = addressfileName }, null);
+                                    }
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.BloodBankAttachments.IdProffPath, "Id Proff of Owner", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-4">
+                                    @if (Model.BloodBankAttachments.IdProffPath != null && Model.BloodBankAttachments.IdProffPath != "" && Model.BloodBankAttachments.IdProffPath != string.Empty)
+                                    {
+                                        var addressindex = Model.BloodBankAttachments.IdProffPath.LastIndexOf("/");
+                                        var addressfileName = Model.BloodBankAttachments.IdProffPath.Substring(addressindex + 1);
+                                        @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                         new { Area = "", path = Model.BloodBankAttachments.IdProffPath, downloadName = addressfileName }, null);
+                                    }
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankAttachments.DeclareDate, "Date", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Model.BloodBankAttachments.DeclareDate.ToString("dd-MM-yyyy")
+                            </div>
+                            <div class="col-md-6 text-right">
+                                @Html.LabelFor(model => model.BloodBankAttachments.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankAttachments.Name)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankAttachments.Place, "Place", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.BloodBankAttachments.Place)
+                            </div>
+                            <div class="col-md-6 text-right">
+                                @Html.LabelFor(model => model.BloodBankAttachments.Designation, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BloodBankAttachments.Designation)
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>

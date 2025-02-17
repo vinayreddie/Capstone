@@ -1,0 +1,650 @@
+﻿@model Capstone.Models.HomeopathyDrugStoreViewModel
+@{
+    ViewBag.Title = "HomeopathyTest";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="row">
+        <div class="col-md-12">
+            <span style="font-size:large">Homeopathy Drug Store - FORM 19 B</span>
+            <br />
+            <i>[See Rule 57(A)]</i>
+            <br />
+        </div>
+    </div>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-body">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Applicant</legend>
+                        <form id="formHDApplicant">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDApplicantModel.Name, "Owner Name", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.HiddenFor(model => model.HDApplicantModel.Id, new { @id = "HD_ApplicantID" })
+                                    @Html.EditorFor(model => model.HDApplicantModel.Name, new { htmlAttributes = new { @class = "form-control", @id = "HD_ApplicantName" } })
+                                    @Html.ValidationMessageFor(model => model.HDApplicantModel.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDApplicantModel.OwnershipType, "Ownership Type", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.HDApplicantModel.OwnershipType,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select Owner Type", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Individual", Value = "Individual" },
+                                    new SelectListItem {Text = "Partner", Value = "Partner" },
+                                    new SelectListItem {Text = "Company", Value = "Company" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "HD_ApplicantOwnerType" })
+                                    @Html.ValidationMessageFor(model => model.HDApplicantModel.OwnershipType, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDApplicantModel.Aadhar, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDApplicantModel.Aadhar, new { htmlAttributes = new { @class = "form-control numeric", @id = "HD_Aadhar" } })
+                                    @Html.ValidationMessageFor(model => model.HDApplicantModel.Aadhar, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDApplicantModel.PAN, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDApplicantModel.PAN, new { htmlAttributes = new { @class = "form-control", @id = "HD_ApplicantPAN", @Style = "text-transform: uppercase;" } })
+                                    @Html.ValidationMessageFor(model => model.HDApplicantModel.PAN, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDApplicantModel.MobileNo, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDApplicantModel.MobileNo, new { htmlAttributes = new { @class = "form-control numeric", @id = "HD_ApplicantMobile" } })
+                                    @Html.ValidationMessageFor(model => model.HDApplicantModel.MobileNo, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDApplicantModel.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.HDApplicantModel.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "HD_ApplicantDistrictId" })
+                                    @Html.ValidationMessageFor(model => model.HDApplicantModel.DistrictId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDApplicantModel.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.HDApplicantModel.MandalId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "HD_ApplicantMandalId" })
+                                    @Html.ValidationMessageFor(model => model.HDApplicantModel.MandalId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDApplicantModel.VillageId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.HDApplicantModel.VillageId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "HD_ApplicantVillageId" })
+                                    @Html.ValidationMessageFor(model => model.HDApplicantModel.VillageId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDApplicantModel.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDApplicantModel.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "HD_ApplicantHouseNo" } })
+                                    @Html.ValidationMessageFor(model => model.HDApplicantModel.HouseNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDApplicantModel.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDApplicantModel.StreetName, new { htmlAttributes = new { @class = "form-control", @id = "HD_ApplicantStreet" } })
+                                    @Html.ValidationMessageFor(model => model.HDApplicantModel.StreetName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDApplicantModel.PINCode, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDApplicantModel.PINCode, new { htmlAttributes = new { @class = "form-control numeric", @id = "HD_ApplicantPINCode" } })
+                                    @Html.ValidationMessageFor(model => model.HDApplicantModel.PINCode, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDApplicantModel.UploadDocument, "Document (AOA/MOA/Ownership)", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.HDApplicantModel.UploadDocument, new { @class = "", type = "file", @id = "HD_ApplicantUpload" })
+
+                                    @*@if (!string.IsNullOrEmpty(Model.HDApplicantModel.UploadDocument))
+                                            {
+                                                var documentindex = Model.HDApplicantModel.UploadDocument.LastIndexOf("/");
+                                                var documentfileName = Model.HDApplicantModel.UploadDocument.Substring(documentindex + 1);
+                                                @Html.ActionLink(documentfileName, "DownloadFile", "Generic",
+                                        new { Area = "", path = Model.HDApplicantModel.UploadDocument, downloadName = documentfileName },
+                                        null
+                                        );
+                                            }*@
+                                    @Html.ValidationMessageFor(model => model.HDApplicantModel.UploadDocument, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Establishment</legend>
+                        <form id="formHDEstablishment">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDEstablishment.Name, "Store Name", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.HiddenFor(model => model.HDEstablishment.Id, new { @id = "HD_EstablishmentID" })
+                                    @Html.EditorFor(model => model.HDEstablishment.Name, new { htmlAttributes = new { @class = "form-control", @id = "HD_EstablishmentName" } })
+                                    @Html.ValidationMessageFor(model => model.HDEstablishment.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDEstablishment.OwnedBy, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.HDEstablishment.OwnedBy,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select Owner Type", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Own", Value = "Own" },
+                                    new SelectListItem {Text = "Rent", Value = "Rent" },
+                                    new SelectListItem {Text = "Lease", Value = "Lease" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "HD_EstablishmentOwnerType" })
+                                    @Html.ValidationMessageFor(model => model.HDEstablishment.OwnedBy, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDEstablishment.Rent, "Rent/Lease", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(model => model.HDEstablishment.Fromdate, new { @class = "form-control datepicker", @id = "HD_EstablishmentFromDate", @Value = "", @placeholder = "From Date" })
+                                            @Html.ValidationMessageFor(model => model.HDEstablishment.Fromdate, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(model => model.HDEstablishment.ToDate, new { @class = "form-control datepicker", @id = "HD_EstablishmentToDate", @Value = "", @placeholder = "To Date" })
+                                            @Html.ValidationMessageFor(model => model.HDEstablishment.ToDate, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDEstablishment.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.HDEstablishment.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "HD_EstablishmentDistrictId" })
+                                    @Html.ValidationMessageFor(model => model.HDEstablishment.DistrictId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDEstablishment.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.HDEstablishment.MandalId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "HD_EstablishmentMandalId" })
+                                    @Html.ValidationMessageFor(model => model.HDEstablishment.MandalId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDEstablishment.VillageId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.HDEstablishment.VillageId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "HD_EstablishmentVillageId" })
+                                    @Html.ValidationMessageFor(model => model.HDEstablishment.VillageId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDEstablishment.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDEstablishment.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "HD_EstablishmentHouseNo" } })
+                                    @Html.ValidationMessageFor(model => model.HDEstablishment.HouseNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDEstablishment.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDEstablishment.StreetName, new { htmlAttributes = new { @class = "form-control", @id = "HD_EstablishmentStreet" } })
+                                    @Html.ValidationMessageFor(model => model.HDEstablishment.StreetName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDEstablishment.PINCode, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDEstablishment.PINCode, new { htmlAttributes = new { @class = "form-control numeric", @id = "HD_EstablishmentPINCode" } })
+                                    @Html.ValidationMessageFor(model => model.HDEstablishment.PINCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.HDEstablishment.RentalDocument, "Document (Rent deed/Taxes)", new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.TextBoxFor(model => model.HDEstablishment.RentalDocument, new { @class = "", type = "file", @id = "HD_EstablishmentRental" })
+
+                                        @*@if (!string.IsNullOrEmpty(Model.HDEstablishment.RentalDocument))
+                                        {
+                                            var taxesindex = Model.HDEstablishment.RentalDocument.LastIndexOf("/");
+                                            var taxdocumentName = Model.HDEstablishment.RentalDocument.Substring(taxesindex + 1);
+                                            @Html.ActionLink(taxdocumentName, "DownloadFile", "Generic",
+                                    new { Area = "", path = Model.HDEstablishment.RentalDocument, downloadName = taxdocumentName },
+                                    null
+                                    );
+                                        }*@
+                                        @Html.ValidationMessageFor(model => model.HDApplicantModel.UploadDocument, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.HDEstablishment.PlanPremisesDocument, "Document (Plan of the Premises)", new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.TextBoxFor(model => model.HDEstablishment.PlanPremisesDocument, new { @class = "", type = "file", @id = "HD_EstablishmentPlanPremises" })
+
+                                        @*@if (!string.IsNullOrEmpty(Model.HDEstablishment.PlanPremisesDocument))
+                                        {
+                                            var premisesindex = Model.HDEstablishment.PlanPremisesDocument.LastIndexOf("/");
+                                            var premisesfileName = Model.HDEstablishment.PlanPremisesDocument.Substring(premisesindex + 1);
+                                            @Html.ActionLink(premisesfileName, "DownloadFile", "Generic",
+                                    new { Area = "", path = Model.HDEstablishment.PlanPremisesDocument, downloadName = premisesfileName },
+                                    null
+                                    );
+                                        }*@
+                                        @Html.ValidationMessageFor(model => model.HDEstablishment.PlanPremisesDocument, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-1">
+                                        @Html.LabelFor(model => model.HDEstablishment.AddressProff, "Address Proof", new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.TextBoxFor(model => model.HDEstablishment.AddressProff, new { @class = "", type = "file", @id = "HD_EstablishmentAddressProof" })
+
+                                        @*@if (!string.IsNullOrEmpty(Model.HDEstablishment.AddressProff))
+                                        {
+                                            var addressindex = Model.HDEstablishment.AddressProff.LastIndexOf("/");
+                                            var addressfileName = Model.HDEstablishment.AddressProff.Substring(addressindex + 1);
+                                            @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                    new { Area = "", path = Model.HDEstablishment.AddressProff , downloadName = addressfileName },
+                                    null
+                                    );
+                                        }*@
+                                        @Html.ValidationMessageFor(model => model.HDEstablishment.AddressProff, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                        </form>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Competent Person Incharge Details</legend>
+                        <form id="formHDCompetentPerson">
+                            @Html.HiddenFor(model => model.HDCompetentModel.Id, new { @id = "HD_CompetentID" })
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDCompetentModel.Name, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDCompetentModel.Name, new { htmlAttributes = new { @class = "form-control", @id = "HD_CompetentName" } })
+                                    @Html.ValidationMessageFor(model => model.HDCompetentModel.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDCompetentModel.Aadhar, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDCompetentModel.Aadhar, new { htmlAttributes = new { @class = "form-control numeric", @id = "HD_CompetentAadhar" } })
+                                    @Html.ValidationMessageFor(model => model.HDCompetentModel.Aadhar, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDCompetentModel.MobileNo, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDCompetentModel.MobileNo, new { htmlAttributes = new { @class = "form-control numeric", @id = "HD_CompetentMobile" } })
+                                    @Html.ValidationMessageFor(model => model.HDCompetentModel.MobileNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDCompetentModel.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.HDCompetentModel.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "HD_CompetentDistrictId" })
+                                    @Html.ValidationMessageFor(model => model.HDCompetentModel.DistrictId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDCompetentModel.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.HDCompetentModel.MandalId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "HD_CompetentMandalId" })
+                                    @Html.ValidationMessageFor(model => model.HDCompetentModel.MandalId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDCompetentModel.VillageId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.HDCompetentModel.VillageId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "HD_CompetentVillageId" })
+                                    @Html.ValidationMessageFor(model => model.HDCompetentModel.VillageId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDCompetentModel.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDCompetentModel.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "HD_CompetentHouseNo" } })
+                                    @Html.ValidationMessageFor(model => model.HDCompetentModel.HouseNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDCompetentModel.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDCompetentModel.StreetName, new { htmlAttributes = new { @class = "form-control", @id = "HD_CompetentStreet" } })
+                                    @Html.ValidationMessageFor(model => model.HDCompetentModel.StreetName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDCompetentModel.PINCode, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDCompetentModel.PINCode, new { htmlAttributes = new { @class = "form-control numeric", @id = "HD_CompetentPINCode" } })
+                                    @Html.ValidationMessageFor(model => model.HDCompetentModel.PINCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Declaration</legend>
+                        <form id="formHDDeclaration">
+                            @Html.HiddenFor(model => model.HDDeclaration.Id, new { @id = "HDDeclarationId" })
+                            <br />
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-2">
+                                    @Html.LabelFor(model => model.HDDeclaration.CoveringLetter, "Covering Letter", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.HDDeclaration.CoveringLetter, new { @class = "", type = "file", @id = "HDDeclarationLetter" })
+
+                                    @*@if (!string.IsNullOrEmpty(Model.HDDeclaration.CoveringLetter))
+                                            {
+                                                var letterindex = Model.HDDeclaration.CoveringLetter.LastIndexOf("/");
+                                                var letterName = Model.HDDeclaration.CoveringLetter.Substring(letterindex + 1);
+                                                @Html.ActionLink(letterName, "DownloadFile", "Generic",
+                                        new { Area = "", path = Model.HDDeclaration.CoveringLetter, downloadName = letterName },
+                                        null
+                                        );
+                                            }*@
+                                    @Html.ValidationMessageFor(model => model.HDDeclaration.CoveringLetter, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HDDeclaration.Date, "Date", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.HDDeclaration.Date, new { @class = "form-control datepicker", @id = "HDDeclarationDate", @Value = @System.DateTime.Today.ToString("dd/MM/yyyy") })
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    @Html.LabelFor(model => model.HDDeclaration.Signature, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.HDDeclaration.Signature, new { htmlAttributes = new { @class = "form-control", @id = "HDDeclarationSign" } })
+                                    @Html.ValidationMessageFor(model => model.HDDeclaration.Signature, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="button" value="Clear" id="btnHomeopathyClear" class="btn btn-default" />
+                            <input type="button" value="Save" id="btnHomeopathySave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+</section>
+
+<script>
+    $('#HD_ApplicantDistrictId').on('change', function () {
+        debugger;
+        BindMandals('HD_Applicant', this.value);
+    });
+
+    $('#HD_ApplicantMandalId').on('change', function () {
+        BindVillages('HD_Applicant', this.value);
+    });
+    $('#HD_EstablishmentDistrictId').on('change', function () {
+        BindMandals('HD_Establishment', this.value);
+    });
+
+    $('#HD_EstablishmentMandalId').on('change', function () {
+        BindVillages('HD_Establishment', this.value);
+    });
+    $('#HD_CompetentDistrictId').on('change', function () {
+        BindMandals('HD_Competent', this.value);
+    });
+
+    $('#HD_CompetentMandalId').on('change', function () {
+        BindVillages('HD_Competent', this.value);
+    });
+</script>
+@*<script>
+    $('#btnHomeopathySave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var applicationtype = $('#ApplicationModel_ApplicationType').val() == undefined ? 'Grant' : $('#ApplicationModel_ApplicationType').val();
+        //var isFormValid = $('#formHDApplicant').valid();
+        //var isFormValid = $('#formHDEstablishment').valid();
+        //var isFormValid = $('#formHDCompetentPerson').valid();
+        //var isFormValid = $('#formHDDeclaration').valid();
+       // if (isFormValid) {
+            var uri = '@Url.Action("SaveHomeopathyDetails", "License", new { Area = "User" })';
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+                var documentProof = $("#HD_ApplicantUpload").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('UploadDocument', model.HDApplicantModel.documentProof);
+                fileData.append('Id', $('#HD_ApplicantID').val() == '' ? 0 : $('#HD_ApplicantID').val());
+                fileData.append('Name', $('#HD_ApplicantName').val());
+                fileData.append('OwnershipType', $('#HD_ApplicantOwnerType').val());
+                fileData.append('Aadhar', $('#HD_Aadhar').val());
+                fileData.append('PAN', $('#HD_ApplicantPAN').val());
+                fileData.append('DistrictId', $('#HD_ApplicantDistrictId').val());
+                fileData.append('MandalId', $('#HD_ApplicantMandalId').val());
+                fileData.append('VillageId', $('#HD_ApplicantVillageId').val());
+                fileData.append('HouseNumber', $('#HD_ApplicantHouseNo').val());
+                fileData.append('StreetName', $('#HD_ApplicantStreet').val());
+                fileData.append('PINCode', $('#HD_ApplicantPINCode').val());
+                if (documentProof != undefined)
+                    fileData.append('UploadDocumentPath', documentProof.name);
+                fileData.append('Name', $('#HD_EstablishmentName').val());
+                fileData.append('ApplicationType', applicationtype);
+
+                $.ajax({
+                    type: "POST",
+                    url: uri,
+                    cache: false,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#HD_ApplicantID').val(response.ReturnData.split(',')[0]);
+                        ShowModal(response);
+
+                        if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                            $('#btnHomeopathySave').val('Update');
+                            $('#btnHomeopathySave').removeClass('btn-success');
+                            $('#btnHomeopathySave').addClass('btn-primary');
+                        }
+                        else if (response.ReturnData.split(',')[1] == 'Completed') {
+                            $('#btnHomeopathySave').val('Update');
+                            $('#btnHomeopathySave').removeClass('btn-primary');
+                            $('#btnHomeopathySave').addClass('btn-success');
+                        }
+                        else if (response.ReturnData.split(',')[1] == 'Empty') {
+                            $('#btnHomeopathySave').val('Save');
+                            $('#btnHomeopathySave').removeClass('btn-success');
+                            $('#btnHomeopathySave').addClass('btn-primary');
+                        }
+
+                        CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+       // }
+    });
+</script>*@
+<script>
+            $('#btnHomeopathySave').on('click', function (e) {
+                debugger;
+                e.preventDefault();
+                var applicationtype = $('#ApplicantModel_ApplicationType').val() == undefined ? 'Grant' : $('#ApplicantModel_ApplicationType').val();
+                //$('#formHDApplicant').valid()
+                if (true) {
+                    var url = '@Url.Action("SaveHomeopathyDetails", "License", new { Area = "User" })';
+                    if (window.FormData !== undefined) {
+                        var uploaddocument = $("#HD_ApplicantUpload").get(0).files[0];
+                        var rentdocument = $("#HD_EstablishmentRental").get(0).files[0];
+                        var plandocument = $("#HD_EstablishmentPlanPremises").get(0).files[0];
+                        var addressdocument = $("#HD_EstablishmentAddressProof").get(0).files[0];
+                        var letterdocument = $("#HDDeclarationLetter").get(0).files[0];
+
+                        var fileData = new FormData();
+
+                        fileData.append('UploadDocument', uploaddocument);
+                        fileData.append('RentalDocument', rentdocument);
+                        fileData.append('PlanPremisesDocument', plandocument);
+                        fileData.append('AddressProff', addressdocument);
+                        fileData.append('CoveringLetter', letterdocument);
+                        if (uploaddocument != undefined)
+                            fileData.append('UploadDocumentPath', uploaddocument.name);
+                        if (rentdocument != undefined)
+                            fileData.append('RentalDocumentPath', rentdocument.name);
+                        if (plandocument != undefined)
+                            fileData.append('PlanPremisesDocumentPath', plandocument.name);
+                        if (addressdocument != undefined)
+                            fileData.append('AddressProffPath', addressdocument.name);
+                        if (letterdocument != undefined)
+                            fileData.append('CoveringLetterPath', letterdocument.name);
+                        fileData.append('HDApplicantModel.ApplicationType', applicationtype);
+                        //  HDApplicantModel
+                        fileData.append('HDApplicantModel.Name', $('#HD_ApplicantName').val());
+                        fileData.append('HDApplicantModel.OwnershipType', $('#HD_ApplicantOwnerType').val());
+                        fileData.append('HDApplicantModel.Aadhar', $('#HD_Aadhar').val());
+                        fileData.append('HDApplicantModel.PAN', $('#HD_ApplicantPAN').val());
+                        fileData.append('HDApplicantModel.MobileNo', $('#HD_ApplicantMobile').val());
+                        fileData.append('HDApplicantModel.DistrictId', $('#HD_ApplicantDistrictId').val());
+                        fileData.append('HDApplicantModel.MandalId', $('#HD_ApplicantMandalId').val());
+                        fileData.append('HDApplicantModel.VillageId', $('#HD_ApplicantVillageId').val());
+                        fileData.append('HDApplicantModel.HouseNumber', $('#HD_ApplicantHouseNo').val());
+                        fileData.append('HDApplicantModel.StreetName', $('#HD_ApplicantStreet').val());
+                        fileData.append('HDApplicantModel.PINCode', $('#HD_ApplicantPINCode').val());
+                        // HDEstablishment
+                        fileData.append('HDEstablishment.Name', $('#HD_EstablishmentName').val());
+                        fileData.append('HDEstablishment.OwnedBy', $('#HD_EstablishmentOwnerType').val());
+                        fileData.append('HDEstablishment.Fromdate', $('#HD_EstablishmentFromDate').val());
+                        fileData.append('HDEstablishment.ToDate', $('#HD_EstablishmentToDate').val());
+                        fileData.append('HDEstablishment.DistrictId', $('#HD_EstablishmentDistrictId').val());
+                        fileData.append('HDEstablishment.MandalId', $('#HD_EstablishmentMandalId').val());
+                        fileData.append('HDEstablishment.VillageId', $('#HD_EstablishmentVillageId').val());
+                        fileData.append('HDEstablishment.HouseNumber', $('#HD_EstablishmentHouseNo').val());
+                        fileData.append('HDEstablishment.StreetName', $('#HD_EstablishmentStreet').val());
+                        fileData.append('HDEstablishment.PINCode', $('#HD_EstablishmentPINCode').val());
+                        // HDCompetentModel
+                        fileData.append('HDCompetentModel.Name', $('#HD_CompetentName').val());
+                        fileData.append('HDCompetentModel.Aadhar', $('#HD_CompetentAadhar').val());
+                        fileData.append('HDCompetentModel.MobileNo', $('#HD_CompetentMobile').val());
+                        fileData.append('HDCompetentModel.DistrictId', $('#HD_CompetentDistrictId').val());
+                        fileData.append('HDCompetentModel.MandalId', $('#HD_CompetentMandalId').val());
+                        fileData.append('HDCompetentModel.VillageId', $('#HD_CompetentVillageId').val());
+                        fileData.append('HDCompetentModel.HouseNumber', $('#HD_CompetentHouseNo').val());
+                        fileData.append('HDCompetentModel.StreetName', $('#HD_CompetentStreet').val());
+                        fileData.append('HDCompetentModel.PINCode', $('#HD_CompetentPINCode').val());
+                        // HDDeclaration
+                        fileData.append('HDDeclaration.Date', $('#HDDeclarationDate').val());
+                        fileData.append('HDDeclaration.Signature', $('#HDDeclarationSign').val());                        
+
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            cache: false,
+                            data: fileData,
+                            contentType: false,
+                            processData: false,
+                            async: true,
+                            success: function (response) {
+                                debugger;
+                                $('#HD_ApplicantID').val(response.ReturnData.split(',')[0]);
+                                ShowModal(response);
+
+                                if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                                    $('#btnHomeopathySave').val('Update');
+                                    $('#btnHomeopathySave').removeClass('btn-success');
+                                    $('#btnHomeopathySave').addClass('btn-primary');
+                                }
+                                else if (response.ReturnData.split(',')[1] == 'Completed') {
+                                    $('#btnHomeopathySave').val('Update');
+                                    $('#btnHomeopathySave').removeClass('btn-primary');
+                                    $('#btnHomeopathySave').addClass('btn-success');
+                                }
+                                else if (response.ReturnData.split(',')[1] == 'Empty') {
+                                    $('#btnHomeopathySave').val('Save');
+                                    $('#btnHomeopathySave').removeClass('btn-success');
+                                    $('#btnHomeopathySave').addClass('btn-primary');
+                                }
+
+                                CheckforEnableSubmit();
+                            },
+                            failure: function (response) {
+                                alert('failure: ' + response.d);
+                            },
+                            error: function (response) {
+                                alert('error: ' + response.d);
+                            }
+                        });
+
+                    }
+                    else {
+                        alert("FormData is not supported.");
+                    }
+                }
+
+            });
+</script>

@@ -1,0 +1,40 @@
+﻿
+@model Capstone.Models.AmendmentModel
+@{
+    ViewBag.Title = "Amendment";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<section class="content-header">
+   
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("index","Dashboard","User")"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="@Url.Action("Licenses","Dashboard","User")">Licenses</a></li>
+        <li class="active">Amendments</li>
+    </ol>
+</section>
+<section class="content">
+
+    @if (Model.APMCEAmendments != null)
+    {
+        <h3>TAMCE Amendment</h3>
+        //Html.RenderPartial("_APMCEAmendment", Model.APMCEAmendments);
+        Html.RenderPartial("_TAMCEAmendment", Model.APMCEAmendments); 
+    }
+    else if (Model.PCPNDTAmendments != null)
+    {
+        <h3>PCPNDT Amendment</h3>
+        Html.RenderPartial("_PCPNDTAmendment", Model.PCPNDTAmendments);
+    }
+
+</section>
+
+<script>
+    $('#btnPrintLicense').hide();
+    $('#btnClosePreview').hide(); 
+    $('#btnPrintAPMCELicense').hide();
+</script>
+
+   <script>
+       $('#selectID option:not(:selected)').attr('disabled', true);
+   </script>

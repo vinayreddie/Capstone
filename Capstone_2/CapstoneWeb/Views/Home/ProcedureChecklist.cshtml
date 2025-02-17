@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "ProcedureChecklist";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+<br />
+<br/>
+<div class="row">
+    <div class="col-md-offset-3 col-md-4">
+        <h2>Procedure & Checklist</h2>
+        <br/>
+        <table>
+            <tr>
+                <th>Sl.No</th>
+                <th>Title</th>
+                <th>Documents</th>
+            </tr>
+            <tr><td>1</td>
+                <td>New Application</td>
+                <td>@Html.ActionLink("New Application","Download","Home",new{name="NewApplication" },new {target="_blank" })</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Renewal</td>
+                <td>@Html.ActionLink("Renewal", "Download", "Home", new { name = "Renewal" }, new { target = "_blank" })</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Amendment</td>
+                <td>@Html.ActionLink("Amendment", "Download", "Home", new { name = "Amendments" }, new { target = "_blank" })</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Resubmit</td>
+                <td>@Html.ActionLink("Resubmit", "Download", "Home", new { name = "Resubmit" }, new { target = "_blank" })</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Cancellation</td>
+                <td>@Html.ActionLink("Cancellation", "Download", "Home", new { name = "Cancellation" }, new { target = "_blank" })</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Appeal</td>
+                <td>@Html.ActionLink("Appeal", "Download", "Home", new { name = "Appeal" }, new { target = "_blank" })</td>
+            </tr>
+
+        </table>
+
+
+    </div>
+</div>
+

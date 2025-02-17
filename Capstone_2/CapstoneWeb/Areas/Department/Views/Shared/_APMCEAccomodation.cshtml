@@ -1,0 +1,41 @@
+﻿@model Capstone.Models.APMCEViewModel
+
+
+    <div id="divAccommodation">
+    <form id="formAccommodation">
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.AccommadationLog.EstablishmentTypeName, "Establishment Owned by", new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.HiddenFor(model => model.AccommadationLog.Id)
+                @Html.DisplayFor(model => model.AccommadationLog.EstablishmentTypeName, new { htmlAttributes = new { @class = "form-control datepicker" } })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.AccommadationLog.FromDate, new { @class = "control-label" })
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.AccommadationLog.FromDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.AccommadationLog.ToDate, new { @class = "control-label" })
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.AccommadationLog.ToDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+
+            </div>
+        </div>
+        <div class="row" id="divAccommodationUpload" hidden>
+            <div class="col-md-5">
+                @Html.LabelFor(model => model.AccommadationLog.UploadedFilePath, new { @class = "control-label", @id = "lblAccommodationLabel" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.AccommadationLog.UploadedFilePath, new { @class = "", type = "file" })
+
+            </div>
+        </div>
+
+    </form>
+</div>
+

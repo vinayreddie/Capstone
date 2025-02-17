@@ -1,0 +1,480 @@
+﻿
+@model Capstone.Models.BioCapstoneViewModel
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Bio Capstone Waste (Management and Handling) Rules, 1998</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <fieldset class="scheduler-border" id="fsParticulars">
+                        <legend class="scheduler-border">Particulars of applicant</legend>
+                        <form id="frmBioCapstoneApplicant">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.Name, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.BioCapstoneApplicantModel.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                  
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.InstitutionName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DisplayFor(model => model.BioCapstoneApplicantModel.InstitutionName, new { htmlAttributes = new { @class = "form-control" } })
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.DistrictName, "District", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.BioCapstoneApplicantModel.DistrictName, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.MandalName, "Mandal", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.BioCapstoneApplicantModel.MandalName, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.VillageName, "Village", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.BioCapstoneApplicantModel.VillageName, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.BioCapstoneApplicantModel.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.BioCapstoneApplicantModel.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.Fax, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.BioCapstoneApplicantModel.Fax, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.Telegraph, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.BioCapstoneApplicantModel.Telegraph, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.Telex, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.BioCapstoneApplicantModel.Telex, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.PINCode, new { @class = "control-label " })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.BioCapstoneApplicantModel.PINCode, new { @class = "form-control numeric" })
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+
+                    <fieldset class="scheduler-border" id="fsAuthorisation">
+                        <legend class="scheduler-border">Authorisation of activity</legend>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.CheckBox("authorasation", new { @value = "1" }) Generation
+                            </div>
+                            <div class="col-md-3">
+                                @Html.CheckBox("authorasation", new { @value = "2" }) Transportation
+                            </div>
+                            <div class="col-md-4">
+                                @Html.CheckBox("authorasation", new { @value = "3" }) Collection
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.CheckBox("authorasation", new { @value = "4" }) Treatment
+                            </div>
+                            <div class="col-md-3">
+                                @Html.CheckBox("authorasation", new { @value = "5" }) Reception
+                            </div>
+                            <div class="col-md-4">
+                                @Html.CheckBox("authorasation", new { @value = "6" }) Disposal
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.CheckBox("authorasation", new { @value = "7" }) Storage
+                            </div>
+                            <div class="col-md-3">
+                                @Html.CheckBox("authorasation", new { @value = "8" }) Other form
+                            </div>
+                            <div class="col-md-3" id="hidtextbox" hidden>
+                                @Html.DisplayFor(model => model.AuthorisationModel.Others, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="scheduler-border" id="fsTreatmentfacility">
+                        <legend class="scheduler-border">Address of Treatment Facility</legend>
+
+                       
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.DistrictName, "District ", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressTreatementFacilityModel.DistrictName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.MandalName, "Mandal ", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressTreatementFacilityModel.MandalName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.VillageName, "Village ", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressTreatementFacilityModel.VillageName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressTreatementFacilityModel.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressTreatementFacilityModel.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.Fax, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressTreatementFacilityModel.Fax, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.Telegraph, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressTreatementFacilityModel.Telegraph, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.Telex, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressTreatementFacilityModel.Telex, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressTreatementFacilityModel.PINCode, new { @class = "form-control numeric" })
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="scheduler-border" id="fsDisposalofwaste">
+                        <legend class="scheduler-border">Address of Disposal waste</legend>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.DistrictName, "District", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressDisposalWasteModel.DistrictName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.MandalName, "Mandal", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressDisposalWasteModel.MandalName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.VillageName, "Village", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressDisposalWasteModel.VillageName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressDisposalWasteModel.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressDisposalWasteModel.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.Fax, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressDisposalWasteModel.Fax, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.Telegraph, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressDisposalWasteModel.Telegraph, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.Telex, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressDisposalWasteModel.Telex, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.BioCapstoneAddressDisposalWasteModel.PINCode, new { @class = "form-control numeric" })
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="scheduler-border" id="fstreatment">
+                        <legend class="scheduler-border">Mode of treatment</legend>
+                        <form id="frmTreatment">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <div class="box-body table-responsive no-padding">
+                                            <table id="tblAddressUploads" class="table table-hover">
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Description</th>
+                                                    <th>Attachment</th>
+                                                    <th></th>
+                                                </tr>
+                                                @if (Model.TreatmentList != null)
+                                                {
+                                                    for (int i = 0; i < Model.TreatmentList.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td>@Convert.ToInt32(i + 1)</td>
+                                                            <td>@Model.TreatmentList[i].Description</td>
+                                                            <td>
+                                                                @if (Model.TreatmentList[i].Attachment != null)
+                                                                {
+                                                                    var layoutindex = Model.TreatmentList[i].Attachment.LastIndexOf("/");
+                                                                    var layoutfileName = Model.TreatmentList[i].Attachment.Substring(layoutindex + 1);
+                                                                    @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                                             new { Area = "", path = Model.TreatmentList[i].Attachment, downloadName = layoutfileName }, null);
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+
+                   <fieldset class="scheduler-border" id="fsdisposal">
+        <legend class="scheduler-border">Mode of treatment and disposal</legend>
+        <form id="frmTreatmentDisposal">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblDisposalUploads" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Description</th>
+                                    <th>Attachment</th>
+                                    <th></th>
+                                </tr>
+                                @if (Model.TreatmentDisposalList != null)
+                                {
+                                    for (int i = 0; i < Model.TreatmentDisposalList.Count; i++)
+                                    {
+                                        <tr>
+                                            <td>@Convert.ToInt32(i + 1)</td>
+                                            <td>@Model.TreatmentDisposalList[i].Description</td>
+                                            <td>
+                                                @if (Model.TreatmentDisposalList[i].Attachment != null)
+                                                {
+                                                    var layoutindex = Model.TreatmentDisposalList[i].Attachment.LastIndexOf("/");
+                                                    var layoutfileName = Model.TreatmentDisposalList[i].Attachment.Substring(layoutindex + 1);
+                                                    @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                                             new { Area = "", path = Model.TreatmentDisposalList[i].Attachment, downloadName = layoutfileName }, null);
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </form>
+    </fieldset>
+
+                <fieldset class="scheduler-border" id="fsWaste">
+                    <legend class="scheduler-border">Category an Quantity of Waste</legend>
+                    <form id="frmQuantityofWaste">
+         
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblWasteUploads" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Category</th>
+                                                <th>Quantity</th>
+                                                <th>Units</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.QuantityWasteList != null)
+                                            {
+                                                for (int i = 0; i < Model.QuantityWasteList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.QuantityWasteList[i].CategoryName</td>
+                                                        <td>@Model.QuantityWasteList[i].Quantity</td>
+
+                                                       @if (@Model.QuantityWasteList[i].UnitName == "Others")
+                                                       {
+                                                        <td>@Model.QuantityWasteList[i].QuantityOthers</td>
+                                                       }
+                                                       else
+                                                       {
+                                                        <td>@Model.QuantityWasteList[i].UnitName</td>
+                                                       }
+                                           
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </form>
+                </fieldset>
+
+                <fieldset class="scheduler-border" id="fsDeclaration">
+                    <legend class="scheduler-border">Declaration</legend>
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-11">
+                            I do hereby declare that the statements mode and informationgiven above  are true to  the best of my
+                            knowledge and belife and that I have not concealed any information.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-11">
+                            I do also hereby under taken to provide any further information  sought by the prescribed
+                            authority in relation to these rules and to fulfill any condition stipulated by the prescribed authority.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            Date
+                        </div>
+                        <div class="col-md-2">
+                            @Html.DisplayFor(model => model.DeclarationModel.Date)
+                        </div>
+                        <div class="col-md-offset-5 col-md-1">
+                            Designation
+                        </div>
+                        <div class="col-md-2" style="text-align:center">
+                            @Html.DisplayFor(model => model.DeclarationModel.Designation, new { @class = "form-control", placeholder = " Designation of the applicant" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            Place
+                        </div>
+                        <div class="col-md-2">
+                            @Html.DisplayFor(model => model.DeclarationModel.Place, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-offset-5 col-md-1">
+                            Signature
+                        </div>
+
+                        <div class="col-md-2">
+                            @Html.DisplayFor(model => model.DeclarationModel.Signature, new { @class = "", type = "form-control" })
+                        </div>
+                    </div>
+                </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $(function () {
+        debugger;
+        BindAuthorisationData();
+        DisableCheckboxes();
+    });
+    function BindAuthorisationData(){
+        debugger;
+        var authorisation = @Html.Raw(Json.Encode(Model.AuthorisationModel.Authorasation));
+        if (authorisation != undefined && authorisation.length > 0) {
+            var arrAuthorisation = authorisation.split(',');
+                for (var i = 0; i < arrAuthorisation.length; i++) {
+                    $('input:checkbox[name="authorasation"][value="' + arrAuthorisation[i] + '"]').iCheck('check');
+                    
+                }
+                for (var i = 0; i < arrAuthorisation.length; i++) {
+                    if(arrAuthorisation[i]==8)
+                    {
+                        $('#hidtextbox').show();
+                    }
+                    else{
+                        $('#hidtextbox').hide();
+                    }
+                }
+
+            }
+    }
+    function DisableCheckboxes(){
+        $.each($("input[name='authorasation']"), function () {
+            $(this).parent('[class*="icheckbox"]').iCheck('disable');
+        });
+    }
+
+</script>
+
+ 
+

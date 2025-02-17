@@ -1,0 +1,31 @@
+perm_id	clm_id_icn_sam	clm_id_line_item_num_sam	clm_type_sam	sampling_level_sam	date_of_payment_sam	amt_paid_for_sampling	orig_state_icn	state	prog_code	fyear	qtr	prov_type_sam	service_code_sam	source_location	payment_status_sam	coverage_period_from	coverage_period_to	prov_id	stratum	type	recipient_id	recipient_name_full	recipient_dob	recipient_gender	recipient_county	recip_elig_type	recipient_service_area	samplingweight	recipient_elig_cat	recipient_death_date	mr_ind	dp_ind	elig_ind	ele_ind	KICK_recipient_type	user_field1	user_field2	user_field3	user_field4	user_field5	user_field6	user_field7	user_field8	user_field9	user_field10
+TXC2001M100	100000031			L	10/3/2019	2827.53		TX	C	21	01				P	3/24/2020	3/24/2021	643220793	A	M	54698	"Gerrard, Stephen G"	5/30/2010	M				0.36			Y	Y	N	N	N										
+TXC2001M101	100000032			L	10/25/2019	5124.92		TX	C	21	01				P	8/11/2019	8/10/2020	401608136	05	M	51130	"Curran, Alexandra J"	9/23/2000	F				0.63			N	Y	Y	N	M										
+TXC2001M102	100000033			L	12/19/2019	5225.06		TX	C	21	01				P	1/7/2020	1/6/2021	377853903	04	M	54499	"Klopp, Jurgen N"	6/16/2001	M				0.45			Y	Y	Y	N	N										
+TXM2001M100	100000034			L	12/10/2019	1413.33		TX	M	21	01				P	7/29/2019	7/28/2020	184572730	03	M	80974	"Carragher, James Lee D"	1/28/1978	M				0.54			N	N	N	Y	N										
+TXM2001M101	100000035			L	12/6/2019	18.56		TX	M	21	01				D	1/7/2020	1/6/2021	838161695	02	M	Denied	"Hart, Nicole H"	4/15/1982	F				0.52			Y	Y	N	N	M										
+TXM2001M102	100000036			L	10/8/2019	146.45		TX	M	21	01				P	9/20/2019	9/19/2020	700741475	01	M	53745	"Rush, Ian J"	10/20/1961	M				0.6			N	Y	Y	N	N										
+MEC2001M100	100000037			L	12/28/2019	8713.41		ME	C	21	01				P	5/5/2020	5/5/2021	490482229	A	M	79809	"Daglish, Kenneth M"	3/4/2002	M				0.73			Y	Y	Y	N	N										
+MEC2001M101	100000038			H	1/7/2020	2495.99		ME	C	21	01				P	11/12/2019	11/11/2020	100506520	00	M	74180	"Daglish, Marina F"	7/15/2003	F				0.68			N	N	N	Y	M										
+MEC2001M102	100000039			L	12/26/2019	8935.00		ME	C	21	01				P	1/3/2020	1/2/2021	131134947	01	M	65615	"Alexander-Arnold, Trent"	10/7/2004	M				0.39			Y	Y	N	N	N										
+MEM2001M100	100000040			L	11/24/2019	4551.04		ME	M	21	01				D	11/17/2019	11/16/2020	397489673	02	M	Denied	"Henderson, Jordan B"	6/17/1990	M				0.74			N	Y	Y	N	N										
+MEM2001M101	100000041			L	10/7/2019	5981.85		ME	M	21	01				P	1/19/2020	1/18/2021	835222569	03	M	62327	"Burnett, Rebecca"	10/5/1992	F				0.72			Y	Y	Y	N	N										
+MEM2001M102	100000042			L	11/10/2019	3937.14		ME	M	21	01				P	1/31/2020	1/30/2021	550300060	04	M	31680	"Salah, Mohamed"	6/15/1992	M				0.53			N	N	N	Y	N										
+ORC2001M100	100000043			L	11/16/2019	363.01		OR	C	21	01				P	12/4/2019	12/3/2020	854212987	A	M	18047	"Mane, Sadio "	4/10/2005	M				0.53			Y	Y	N	N	N										
+ORC2001M101	100000044			L	1/4/2020	3684.00		OR	C	21	01				P	12/12/2019	12/11/2020	462471477	05	M	93048	"van Dijk, Virgil"	7/8/2006	M				0.27			N	Y	Y	N	N										
+ORC2001M102	100000045			L	1/4/2020	5642.92		OR	C	21	01				D	7/27/2019	7/26/2020	624376533	06	M	Denied	"Henry, John W"	9/13/2007	M				0.72			Y	Y	Y	N	N										
+ORM2001M100	100000046			H	12/8/2019	6881.06		OR	M	21	01				P	11/25/2019	11/24/2020	252488921	07	M	45227	"Pizzuti, Linda"	11/5/1961	F				0.46			N	N	N	Y	N										
+ORM2001M101	100000047			L	12/26/2019	9612.68		OR	M	21	01				P	7/5/2019	7/4/2020	403750782	08	M	322	"Gomez, Joseph D"	5/23/1997	M				0.61			Y	Y	N	N	N										
+ORM2001M102	100000048			L	1/1/2020	3391.15		OR	M	21	01				P	1/24/2020	1/23/2021	468708287	09	M	37730	"Wijnaldum, Georginio G"	11/11/1990	M				0.53			N	Y	Y	N	N										
+LAC2001M100	100000049			L	10/13/2019	2920.16		LA	C	21	01				P	11/13/2019	11/12/2020	744493216	A	M	32178	"Firmino, Roberto B"	10/2/2008	M				0.74			Y	Y	Y	N	N										
+LAC2001M101	100000050			L	10/31/2019	9041.51		LA	C	21	01				D	4/23/2020	4/23/2021	500152651	10	M	Denied	"Pereira, Larissa"	4/24/2009	F				0.32			N	N	N	Y	N										
+LAC2001M102	100000051			L	12/27/2019	7775.65		LA	C	21	01				P	4/22/2020	4/22/2021	596662434	11	M	75961	"Origi, Divock O"	4/18/2010	M				0.34			Y	Y	N	N	N										
+LAM2001M100	100000052			L	11/21/2019	2268.77		LA	M	21	01				P	7/6/2019	7/5/2020	973352554	12	M	39250	"Wilson, Harry"	3/22/1997	M				0.41			N	Y	Y	N	N										
+LAM2001M101	100000053			L	12/23/2019	8037.83		LA	M	21	01				P	6/27/2019	6/26/2020	490606691	13	M	63454	"Shaqiri, Xherdan"	10/10/1991	M				0.7			Y	Y	Y	N	N										
+LAM2001M102	100000054			H	10/19/2019	5019.29		LA	M	21	01				P	4/20/2020	4/20/2021	585977054	14	M	58926	"Tavares, Fabio H"	10/23/1993	M				0.4			N	N	N	Y	N										
+HIC2001M100	100000055			L	10/24/2019	3445.49		HI	C	21	01				D	5/27/2020	5/27/2021	682334702	A	M	Denied	"Brewster, Rhian J"	4/1/2000	M				0.68			Y	Y	N	N	N										
+HIC2001M101	100000056			L	10/6/2019	9069.57		HI	C	21	01				P	11/5/2019	11/4/2020	853314965	15	M	28451	"Elliott, Harvey D"	4/4/2003	M				0.42			N	Y	Y	N	N										
+HIC2001M102	100000057			L	11/23/2019	2514.07		HI	C	21	01				P	10/23/2019	10/22/2020	760852189	16	M	20350	"Becker, Alisson R"	10/2/2011	M				0.53			Y	Y	Y	N	N										
+HIM2001M100	100000058			L	12/12/2019	8638.11		HI	M	21	01				P	11/25/2019	11/24/2020	914194737	17	M	60102	"Loewe, Natalia"	2/15/1995	F				0.47			N	N	N	Y	N										
+HIM2001M101	100000059			L	12/29/2019	9020.68		HI	M	21	01				P	2/3/2020	2/2/2021	654129159	18	M	12271	"Minamino, Takumi"	1/16/1995	M				0.45			Y	Y	N	N	N										
+HIM2001M102	100000060			L	10/20/2019	2700.09		HI	M	21	01				D	6/23/2019	6/22/2020	619334479	19	M	Denied	"Milner, James P"	1/4/1986	M				0.49			N	Y	Y	N	N										

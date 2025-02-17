@@ -1,0 +1,2233 @@
+﻿@model Capstone.Models.BioCapstoneViewModel
+<div class="row">
+    <div class="col-md-12">
+        <span style="font-size:large">Bio Capstone Waste (Management and Handling) Rules, 1998</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active" id="liBioApplicant"><a href="#tabBioApplicant" data-toggle="tab">Particulars of applicant</a></li>
+                <li id="liBioAuthorisation"><a href="#tabAuthorisation" data-toggle="tab">Authorisation of activity</a></li>
+                <li id="liBioAddress"><a href="#tabTreatment" data-toggle="tab">Address of Treatment Facility</a></li>
+                <li id="liBioDisposalwaste"><a href="#tabDisposal" data-toggle="tab">Address of Disposal waste</a></li>
+                <li id="liBioModeoftreatment"><a href="#tabModeoftreatment" data-toggle="tab">Mode of treatment</a></li>
+                <li id="liBiotreatmentdisposal"><a href="#tabtreatmentdisposal" data-toggle="tab">Mode of treatment and disposal</a></li>
+                <li id="liBioQuantityWaste"><a href="#tabQuantity" data-toggle="tab">Category an Quantity of Waste</a></li>
+                <li id="liBioDeclaration"><a href="#tabBioDeclaration" data-toggle="tab">Declaration</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabBioApplicant">
+                    <form id="formApplicant">
+                        <fieldset class="scheduler-border" id="fsParticulars">
+                            <legend class="scheduler-border">Particulars of applicant</legend>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.Name, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.HiddenFor(model => model.BioCapstoneApplicantModel.Id)
+                                    @Html.EditorFor(model => model.BioCapstoneApplicantModel.Name, new { htmlAttributes = new { @class = "form-control alphabet" } })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneApplicantModel.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.InstitutionName, "Institution", new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.BioCapstoneApplicantModel.InstitutionName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneApplicantModel.InstitutionName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.DistrictId,"District", new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.BioCapstoneApplicantModel.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneApplicantModel.DistrictId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.MandalId, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.BioCapstoneApplicantModel.MandalId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneApplicantModel.MandalId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.VillageId, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.BioCapstoneApplicantModel.VillageId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneApplicantModel.VillageId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.HouseNumber, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.BioCapstoneApplicantModel.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneApplicantModel.HouseNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.StreetName, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.BioCapstoneApplicantModel.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneApplicantModel.StreetName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.Fax, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BioCapstoneApplicantModel.Fax, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneApplicantModel.Fax, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.Telegraph, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BioCapstoneApplicantModel.Telegraph, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneApplicantModel.Telegraph, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.Telex, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BioCapstoneApplicantModel.Telex, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneApplicantModel.Telex, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneApplicantModel.PINCode, new { @class = "control-label ",@style = "padding - left: 0px;padding - right: 0px;margin-bottom: 0px;" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BioCapstoneApplicantModel.PINCode, new { @class = "form-control numeric" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneApplicantModel.PINCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <input type="button" value="Clear" id="btnFacilitiesClear" class="btn btn-default" />
+                                    <input type="button" value="Save" id="btnBioApplicantSave" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="tabAuthorisation">
+                    <form id="formAuthorisation">
+                        <fieldset class="scheduler-border" id="fsAuthorisation">
+                            <legend class="scheduler-border">Authorisation of activity</legend>
+                            <div class="row">
+                                @Html.HiddenFor(model => model.AuthorisationModel.Id)
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("authorasation", new { @value = "1" }) Generation
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.CheckBox("authorasation", new { @value = "2" }) Transportation
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.CheckBox("authorasation", new { @value = "3" }) Collection
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("authorasation", new { @value = "4" }) Treatment
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.CheckBox("authorasation", new { @value = "5" }) Reception
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.CheckBox("authorasation", new { @value = "6" }) Disposal
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("authorasation", new { @value = "7" }) Storage
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.CheckBox("authorasation", new { @value = "8" }) Other form
+                                </div>
+                                <div class="col-md-3" id="hidtextbox" hidden>
+                                    @Html.EditorFor(model => model.AuthorisationModel.Others, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnAuthorisation Clear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnAuthorisationSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tabTreatment" class="tab-pane">
+                    <form id="formTreatment">
+                        <fieldset class="scheduler-border" id="fsTreatmentfacility">
+                            <legend class="scheduler-border">Address of Treatment Facility</legend>
+
+                            @*<div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.BioCapstoneAddressModel.TypeId, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+
+                    @Html.DropDownListFor(model => model.BioCapstoneAddressModel.TypeId,
+                    new List<SelectListItem> {
+                        new SelectListItem {Text = "Select", Value = "", Selected = true },
+                        new SelectListItem {Text = "Place of treatment facility", Value = "1" },
+                        new SelectListItem {Text = "Place of disposal of waste", Value = "2" }
+                    },
+                    new { @class = "form-control select2", @style = "width:100%;" })
+                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressModel.TypeId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.HiddenFor(model => model.BioCapstoneAddressTreatementFacilityModel.Id)
+                                    @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.HiddenFor(model => model.BioCapstoneAddressTreatementFacilityModel.Id)
+                                    @Html.DropDownListFor(model => model.BioCapstoneAddressTreatementFacilityModel.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressTreatementFacilityModel.DistrictId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.BioCapstoneAddressTreatementFacilityModel.MandalId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressTreatementFacilityModel.MandalId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.VillageId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.BioCapstoneAddressTreatementFacilityModel.VillageId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressTreatementFacilityModel.VillageId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.BioCapstoneAddressTreatementFacilityModel.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressTreatementFacilityModel.HouseNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.BioCapstoneAddressTreatementFacilityModel.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressTreatementFacilityModel.StreetName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.Fax, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BioCapstoneAddressTreatementFacilityModel.Fax, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressTreatementFacilityModel.Fax, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.Telegraph, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BioCapstoneAddressTreatementFacilityModel.Telegraph, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressTreatementFacilityModel.Telegraph, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.Telex, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BioCapstoneAddressTreatementFacilityModel.Telex, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressTreatementFacilityModel.Telex, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressTreatementFacilityModel.PINCode, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BioCapstoneAddressTreatementFacilityModel.PINCode, new { @class = "form-control numeric" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressTreatementFacilityModel.PINCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnTreatmentClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnTreatmentSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabDisposal">
+                    <form id="formDisposal">
+                        <fieldset class="scheduler-border" id="fsDisposalofwaste">
+                            <legend class="scheduler-border">Address of Disposal waste</legend>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.HiddenFor(model => model.BioCapstoneAddressDisposalWasteModel.Id)
+                                    @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.BioCapstoneAddressDisposalWasteModel.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressDisposalWasteModel.DistrictId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.BioCapstoneAddressDisposalWasteModel.MandalId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressDisposalWasteModel.MandalId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.VillageId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.BioCapstoneAddressDisposalWasteModel.VillageId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressDisposalWasteModel.VillageId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.BioCapstoneAddressDisposalWasteModel.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressDisposalWasteModel.HouseNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.BioCapstoneAddressDisposalWasteModel.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressDisposalWasteModel.StreetName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.Fax, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BioCapstoneAddressDisposalWasteModel.Fax, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressDisposalWasteModel.Fax, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.Telegraph, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BioCapstoneAddressDisposalWasteModel.Telegraph, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressDisposalWasteModel.Telegraph, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.Telex, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BioCapstoneAddressDisposalWasteModel.Telex, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressDisposalWasteModel.Telex, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.BioCapstoneAddressDisposalWasteModel.PINCode, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BioCapstoneAddressDisposalWasteModel.PINCode, new { @class = "form-control numeric" })
+                                    @Html.ValidationMessageFor(model => model.BioCapstoneAddressDisposalWasteModel.PINCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnDisposalClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnDisposalSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabModeoftreatment" class="tab-pane">
+                    <form id="formTreatmentMode">
+                        <fieldset class="scheduler-border" id="fstreatment">
+                            <legend class="scheduler-border">Mode of treatment</legend>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.TreatmentModle.Description, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.HiddenFor(model => model.TreatmentModle.Id)
+                                    @Html.TextAreaFor(model => model.TreatmentModle.Description, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TreatmentModle.Description, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.TreatmentModle.Attachment, "Attachments", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.TreatmentModle.Attachment, new { @class = "", type = "file" })
+                                    @Html.ValidationMessageFor(model => model.TreatmentModle.Attachment, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-12 text-right">
+                                    <input type="button" value="+Add" id="btnTreatmentAdd" class="btn btn-primary" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <div class="box-body table-responsive no-padding">
+                                            <table id="tblAddressUploads" class="table table-hover">
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Description</th>
+                                                    <th>Attachment</th>
+                                                    <th></th>
+                                                </tr>
+                                                @if (Model.TreatmentList != null)
+                                                {
+                                                    for (int i = 0; i < Model.TreatmentList.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td>@Convert.ToInt32(i + 1)</td>
+                                                            <td>@Model.TreatmentList[i].Description</td>
+                                                            <td>
+                                                                @if (Model.TreatmentList[i].Attachment != null)
+                                                                {
+                                                                    var layoutindex = Model.TreatmentList[i].Attachment.LastIndexOf("/");
+                                                                    var layoutfileName = Model.TreatmentList[i].Attachment.Substring(layoutindex + 1);
+                                                                    @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                                      new { Area = "", path = Model.TreatmentList[i].Attachment, downloadName = layoutfileName }, null);
+                                                                }
+                                                            </td>
+                                                            <td><input type='button' value='Delete' onclick='DeleteBioCapstoneAddress(@i);' /></td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+
+                       
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnTreatmentModeClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnTreatmentModeSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tabtreatmentdisposal" class="tab-pane">
+                    <form id="formTreatmentDisposalMode">
+                        <fieldset class="scheduler-border" id="fsdisposal">
+                            <legend class="scheduler-border">Mode of treatment and disposal</legend>
+
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.HiddenFor(model => model.TreatmentDisposalModle.Id)
+                                    @Html.LabelFor(model => model.TreatmentDisposalModle.Description, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextAreaFor(model => model.TreatmentDisposalModle.Description, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TreatmentDisposalModle.Description, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.TreatmentDisposalModle.Attachment, "Attachments", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.TreatmentDisposalModle.Attachment, new { @class = "", type = "file" })
+                                    @Html.ValidationMessageFor(model => model.TreatmentDisposalModle.Attachment, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-12 text-right">
+                                    <input type="button" value="+Add" id="btnTreatmentDisposalAdd" class="btn btn-primary" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <div class="box-body table-responsive no-padding">
+                                            <table id="tblDisposalUploads" class="table table-hover">
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Description</th>
+                                                    <th>Attachment</th>
+                                                    <th></th>
+                                                </tr>
+                                                @if (Model.TreatmentDisposalList != null)
+                                                {
+                                                    for (int i = 0; i < Model.TreatmentDisposalList.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td>@Convert.ToInt32(i + 1)</td>
+                                                            <td>@Model.TreatmentDisposalList[i].Description</td>
+                                                            <td>
+                                                                @if (Model.TreatmentDisposalList[i].Attachment != null)
+                                                                {
+                                                                    var layoutindex = Model.TreatmentDisposalList[i].Attachment.LastIndexOf("/");
+                                                                    var layoutfileName = Model.TreatmentDisposalList[i].Attachment.Substring(layoutindex + 1);
+                                                                    @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                                      new { Area = "", path = Model.TreatmentDisposalList[i].Attachment, downloadName = layoutfileName }, null);
+                                                                }
+                                                            </td>
+                                                            <td><input type='button' value='Delete' onclick='DeleteBioCapstoneDisposal(@i);' /></td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnDisposalClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btntreatmentDisposalSave" class="btn btn-primary" />
+                            </div>
+                        </div> 
+                        </form>
+</div>
+
+                <div id="tabQuantity" class="tab-pane">
+                    <form id="formQuantity">
+                        <fieldset class="scheduler-border" id="fsWaste">
+                            <legend class="scheduler-border">Category an Quantity of Waste</legend>
+
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.HiddenFor(model => model.QuantityWasteModel.Id)
+                                    @Html.LabelFor(model => model.QuantityWasteModel.CategoryId, "Category", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.QuantityWasteModel.CategoryId,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Animal Waste", Value = "1" },
+                                    new SelectListItem {Text = "Microbiology & Biotechnology Waste", Value = "2" },
+                                      new SelectListItem {Text = "Waste Sharps", Value = "3" },
+                                    new SelectListItem {Text = "Discarded Medicians & Cytotoxic", Value = "4" },
+                                      new SelectListItem {Text = "Soiled Waste", Value = "5" },
+                                    new SelectListItem {Text = "Solid Waste", Value = "6" },
+                                     new SelectListItem {Text = "Liquid Waste", Value = "7" },
+                                     new SelectListItem {Text = "Incineration Ash", Value = "8" },
+                                    new SelectListItem {Text = "Chemical Waste", Value = "9" },
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.QuantityWasteModel.CategoryId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.QuantityWasteModel.Quantity, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.QuantityWasteModel.Quantity, new { @class = "form-control numeric" })
+                                    @Html.ValidationMessageFor(model => model.QuantityWasteModel.Quantity, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.QuantityWasteModel.UnitsId, "Units", new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.QuantityWasteModel.UnitsId,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Pieces", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Kgs", Value = "1" },
+                                    new SelectListItem {Text = "Litres", Value = "2" },
+                                      new SelectListItem {Text = "Others", Value = "3" },
+
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.QuantityWasteModel.UnitsId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row" id="QuantityOthers1" hidden>
+                                <div class="col-md-offset-9 col-md-3 text-right">
+                                    @Html.TextBoxFor(model => model.QuantityWasteModel.QuantityOthers, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-10 col-md-2 text-right">
+                                    <input type="button" value="+Add" id="btnAddWaste" class="btn btn-primary" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <div class="box-body table-responsive no-padding">
+                                            <table id="tblWasteUploads" class="table table-hover">
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Category</th>
+                                                    <th>Quantity</th>
+                                                    <th>Units</th>
+                                                    <th></th>
+                                                </tr>
+                                                @if (Model.QuantityWasteList != null)
+                                                {
+                                                    for (int i = 0; i < Model.QuantityWasteList.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td>@Convert.ToInt32(i + 1)</td>
+                                                            <td>@Model.QuantityWasteList[i].CategoryName</td>
+                                                            <td>@Model.QuantityWasteList[i].Quantity</td>
+                                                            @if (@Model.QuantityWasteList[i].UnitName == "Others")
+                                                            {
+                                                                <td>@Model.QuantityWasteList[i].QuantityOthers</td>
+                                                            }
+                                                            else
+                                                            {
+                                                            <td>@Model.QuantityWasteList[i].UnitName</td>
+                                                            }
+                                                           
+                                                            <td><input type='button' value='Delete' onclick='DeleteBioCapstoneWaste(@i);' /></td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnInstitutionClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnQuantityWasteSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tabBioDeclaration" class="tab-pane">
+                    <form id="formBioDeclaration">
+                        <fieldset class="scheduler-border" id="fsDeclaration">
+                            <legend class="scheduler-border">Declaration</legend>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-11">
+                                    I do hereby declare that the statements mode and informationgiven above  are true to  the best of my
+                                    knowledge and belife and that I have not concealed any information.
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    I do also hereby under taken to provide any further information  sought by the prescribed
+                                    authority in relation to these rules and to fulfill any condition stipulated by the prescribed authority.
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.HiddenFor(model => model.DeclarationModel.Id)
+                                    Date
+                                </div>
+                                @if (Model.DeclarationModel.Id == 0)
+                                {
+                                    <div class="col-md-2">
+                                        @Html.TextBoxFor(model => model.DeclarationModel.Date, new { @class = "form-control datepicker", @Value = @System.DateTime.Today.ToString("dd/MM/yyyy") })
+                                        @Html.ValidationMessageFor(model => model.DeclarationModel.Date, "", new { @class = "text-danger" })
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-md-2">
+                                        @Html.TextBoxFor(model => model.DeclarationModel.Date, new { @class = "form-control datepicker", @Value = Model.DeclarationModel.Date.ToString("dd/MM/yyyy") })
+                                        @Html.ValidationMessageFor(model => model.DeclarationModel.Date, "", new { @class = "text-danger" })
+                                    </div>
+                                }
+
+                                <div class="col-md-offset-5 col-md-1">
+                                    Designation
+                                </div>
+                                <div class="col-md-3" style="text-align:center">
+                                    @Html.TextBoxFor(model => model.DeclarationModel.Designation, new { @class = "form-control", placeholder = " Designation of the applicant" })
+                                    @Html.ValidationMessageFor(model=>model.DeclarationModel.Designation,"",new {@class= "text-danger" } )
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    Place
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.DeclarationModel.Place, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DeclarationModel.Place, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-offset-5 col-md-1">
+                                    Signature
+                                </div>
+
+                                <div class="col-md-3">
+                                    @*@Html.TextBoxFor(model => model.TreatmentDisposalModle.Attachment, new { @class = "", type = "file" })*@
+                                    @Html.TextBoxFor(model => model.DeclarationModel.Signature, new { @class = "form-control", placeholder = "  Signature of the applicant" })
+                                    @Html.ValidationMessageFor(model => model.DeclarationModel.Signature, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-12  text-right">
+                                <input type="button" value="Clear" id="btnBioDeclarationClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnBioDeclarationSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>
+
+
+<script>
+    $(function () {
+        debugger;
+        BindApplicantData();
+        BindTreatmentFacilityData();
+        BindDisposalwasteData();
+        BindAuthorisationData();
+        BindBioTreatmentData();
+        BindBioTreatmentDisposalData();
+        BindBioQuantityofWasteData();
+        BindBioDeclarationData();
+       // CheckforEnableSubmit();
+    });
+
+
+    function BindApplicantData(){
+        var applicantModel = @Html.Raw(Json.Encode(Model.BioCapstoneApplicantModel));
+        if(applicantModel.FormStatus != 0){ 
+
+            if(applicantModel.FormStatus ==2)
+            {
+                $('#btnBioApplicantSave').val('Update');
+                $('#btnBioApplicantSave').removeClass('btn-primary');
+                $('#btnBioApplicantSave').addClass('btn-success');
+            }
+            else if(applicantModel.FormStatus ==1)
+            {
+                $('#btnBioApplicantSave').val('Update');
+                $('#btnBioApplicantSave').removeClass('btn-success'); 
+                $('#btnBioApplicantSave').addClass('btn-primary');
+            }
+
+            if(applicantModel.DistrictId > 0)
+            {
+                //$('#btnBioApplicantSave').val('Update');
+                //$('#btnBioApplicantSave').removeClass('btn-primary');
+                //$('#btnBioApplicantSave').addClass('btn-success');
+                BindMandals('BioCapstoneApplicantModel_', applicantModel.DistrictId);
+                setTimeout(
+                   function(){
+                       if(applicantModel.MandalId > 0){
+                           $('#BioCapstoneApplicantModel_MandalId').val(applicantModel.MandalId).trigger('change');
+                           BindVillages('BioCapstoneApplicantModel_', applicantModel.MandalId);
+                           setTimeout(function(){
+                               if(applicantModel.VillageId > 0){
+                                   $('#BioCapstoneApplicantModel_VillageId').val(applicantModel.VillageId).trigger('change');
+                               }
+                           }, 2000);
+                       }
+                   }
+                    , 2000);
+            }
+        }
+    }
+    function BindTreatmentFacilityData(){
+        var treatmentModel = @Html.Raw(Json.Encode(Model.BioCapstoneAddressTreatementFacilityModel));
+        if(treatmentModel.FormStatus != 0){
+            if(treatmentModel.FormStatus ==2)
+            {
+                $('#btnTreatmentSave').val('Update');
+                $('#btnTreatmentSave').removeClass('btn-primary');
+                $('#btnTreatmentSave').addClass('btn-success');
+            }
+            else if(treatmentModel.FormStatus ==1)
+            {
+                $('#btnTreatmentSave').val('Update');
+                $('#btnTreatmentSave').removeClass('btn-success'); 
+                $('#btnTreatmentSave').addClass('btn-primary');
+            }
+            if(treatmentModel.DistrictId > 0)
+            {
+                //$('#btnTreatmentSave').val('Update');
+                //$('#btnTreatmentSave').removeClass('btn-primary');
+                //$('#btnTreatmentSave').addClass('btn-success');
+                BindMandals('BioCapstoneAddressTreatementFacilityModel_', treatmentModel.DistrictId);
+                setTimeout(
+                   function(){
+                       if(treatmentModel.MandalId > 0){
+                           $('#BioCapstoneAddressTreatementFacilityModel_MandalId').val(treatmentModel.MandalId).trigger('change');
+                           BindVillages('BioCapstoneAddressTreatementFacilityModel_', treatmentModel.MandalId);
+                           setTimeout(function(){
+                               if(treatmentModel.VillageId > 0){
+                                   $('#BioCapstoneAddressTreatementFacilityModel_VillageId').val(treatmentModel.VillageId).trigger('change');
+                               }
+                           }, 2000);
+                       }
+                   }
+                    , 2000);
+            }
+        }
+    }
+    function BindDisposalwasteData(){
+        var disposalWasteModel = @Html.Raw(Json.Encode(Model.BioCapstoneAddressDisposalWasteModel));
+        if(disposalWasteModel.FormStatus != 0){
+            if(disposalWasteModel.FormStatus ==2)
+            {
+                $('#btnDisposalSave').val('Update');
+                $('#btnDisposalSave').removeClass('btn-primary');
+                $('#btnDisposalSave').addClass('btn-success');
+            }
+            else if(disposalWasteModel.FormStatus ==1)
+            {
+                $('#btnDisposalSave').val('Update');
+                $('#btnDisposalSave').removeClass('btn-success');  
+                $('#btnDisposalSave').addClass('btn-primary');
+            }
+            if(disposalWasteModel.DistrictId > 0)
+            {
+                //$('#btnDisposalSave').val('Update');
+                //$('#btnDisposalSave').removeClass('btn-primary');
+                //$('#btnDisposalSave').addClass('btn-success');
+                BindMandals('BioCapstoneAddressDisposalWasteModel_', disposalWasteModel.DistrictId);
+                setTimeout(
+                   function(){
+                       if(disposalWasteModel.MandalId > 0){
+                           $('#BioCapstoneAddressDisposalWasteModel_MandalId').val(disposalWasteModel.MandalId).trigger('change');
+                           BindVillages('BioCapstoneAddressDisposalWasteModel_', disposalWasteModel.MandalId);
+                           setTimeout(function(){
+                               if(disposalWasteModel.VillageId > 0){
+                                   $('#BioCapstoneAddressDisposalWasteModel_VillageId').val(disposalWasteModel.VillageId).trigger('change');
+                               }
+                           }, 2000);
+                       }
+                   }
+                    , 2000);
+            }
+        }
+    }
+   
+
+    function BindAuthorisationData(){
+        debugger;
+            var AuthorisationModel = @Html.Raw(Json.Encode(Model.AuthorisationModel));
+        if(AuthorisationModel.FormStatus != 0){
+            if(AuthorisationModel.FormStatus ==2)
+            {
+                $('#btnAuthorisationSave').val('Update');
+                $('#btnAuthorisationSave').removeClass('btn-primary');
+                $('#btnAuthorisationSave').addClass('btn-success');
+            }
+            else if(AuthorisationModel.FormStatus ==1)
+            {
+                $('#btnAuthorisationSave').val('Update');
+                $('#btnAuthorisationSave').removeClass('btn-success'); 
+                $('#btnAuthorisationSave').addClass('btn-primary');
+            }
+                //$('#btnAuthorisationSave').val('Update');
+                //$('#btnAuthorisationSave').removeClass('btn-primary');
+                //$('#btnAuthorisationSave').addClass('btn-success');
+
+                // Bind Authorisation in Facilities tab
+                var authorisation = AuthorisationModel.Authorasation;
+                if (authorisation != undefined && authorisation.length > 0) {
+                    var arrAuthorisation = authorisation.split(',');
+                    for (var i = 0; i < arrAuthorisation.length; i++) {
+                        $('input:checkbox[name="authorasation"][value="' + arrAuthorisation[i] + '"]').iCheck('check');
+                    }
+                    for (var i = 0; i < arrAuthorisation.length; i++) {
+                        if(arrAuthorisation[i]==8)
+                        {
+                            $('#hidtextbox').show();
+                        }
+                        else{
+                            $('#hidtextbox').hide();
+                        }
+                    }
+                }
+
+            }
+    }
+   
+    function BindBioTreatmentData(){
+       
+        var TreatmentModle = @Html.Raw(Json.Encode(Model.TreatmentModle));
+        if(TreatmentModle.FormStatus != 0){
+            if(TreatmentModle.FormStatus ==2)
+            {
+                $('#btnTreatmentModeSave').val('Update');
+                $('#btnTreatmentModeSave').removeClass('btn-primary');
+                $('#btnTreatmentModeSave').addClass('btn-success');
+            }
+            else if(TreatmentModle.FormStatus ==1)
+            {
+                $('#btnTreatmentModeSave').val('Update');
+                $('#btnTreatmentModeSave').removeClass(' btn-success');
+                $('#btnTreatmentModeSave').addClass('btn-primary');
+            }
+            
+        }
+    }
+    function BindBioTreatmentDisposalData(){
+       
+        var TreatmentDisposalModle = @Html.Raw(Json.Encode(Model.TreatmentDisposalModle));
+        if(TreatmentDisposalModle.FormStatus != 0){
+            if(TreatmentDisposalModle.FormStatus ==2)
+            {
+                $('#btntreatmentDisposalSave').val('Update');
+                $('#btntreatmentDisposalSave').removeClass('btn-primary');
+                $('#btntreatmentDisposalSave').addClass('btn-success');
+            }
+            else if(TreatmentDisposalModle.FormStatus ==1)
+            {
+                $('#btntreatmentDisposalSave').val('Update');
+                $('#btntreatmentDisposalSave').removeClass(' btn-success');
+                $('#btntreatmentDisposalSave').addClass('btn-primary');
+            }
+          
+        }
+    }
+    function BindBioQuantityofWasteData(){
+        var QuantityWasteModel = @Html.Raw(Json.Encode(Model.QuantityWasteModel));
+        if(QuantityWasteModel.FormStatus != 0){
+            if(QuantityWasteModel.FormStatus ==2)
+            {
+                $('#btnQuantityWasteSave').val('Update');
+                $('#btnQuantityWasteSave').removeClass('btn-primary');
+                $('#btnQuantityWasteSave').addClass('btn-success');
+            }
+            else if(QuantityWasteModel.FormStatus ==1)
+            {
+                $('#btnQuantityWasteSave').val('Update');
+                $('#btnQuantityWasteSave').removeClass(' btn-success');
+                $('#btnQuantityWasteSave').addClass('btn-primary');
+            }
+            
+        }
+    }
+    function BindBioDeclarationData(){
+        debugger;
+        var DeclarationModel = @Html.Raw(Json.Encode(Model.DeclarationModel));
+        if(DeclarationModel.FormStatus != 0){
+            if(DeclarationModel.FormStatus ==2)
+            {
+                $('#btnBioDeclarationSave').val('Update');
+                $('#btnBioDeclarationSave').removeClass('btn-primary');
+                $('#btnBioDeclarationSave').addClass('btn-success');
+            }
+            else if(DeclarationModel.FormStatus ==1)
+            {
+                $('#btnBioDeclarationSave').val('Update');
+                $('#btnBioDeclarationSave').removeClass(' btn-success');
+                $('#btnBioDeclarationSave').addClass('btn-primary');
+            }
+        }
+    }
+
+    $('#BioCapstoneApplicantModel_DistrictId').on('change', function () {
+        BindMandals('BioCapstoneApplicantModel_', this.value);
+    });
+    $('#BioCapstoneApplicantModel_MandalId').on('change', function () {
+        BindVillages('BioCapstoneApplicantModel_', this.value);
+    });
+    $('#BioCapstoneAddressTreatementFacilityModel_DistrictId').on('change', function () {
+        BindMandals('BioCapstoneAddressTreatementFacilityModel_', this.value);
+    });
+    $('#BioCapstoneAddressTreatementFacilityModel_MandalId').on('change', function () {
+        BindVillages('BioCapstoneAddressTreatementFacilityModel_', this.value);
+    });
+    $('#BioCapstoneAddressDisposalWasteModel_DistrictId').on('change', function () {
+        BindMandals('BioCapstoneAddressDisposalWasteModel_', this.value);
+    });
+
+    $('#BioCapstoneAddressDisposalWasteModel_MandalId').on('change', function () {
+        BindVillages('BioCapstoneAddressDisposalWasteModel_', this.value);
+    });
+
+    $(function () {
+        debugger;
+        $("[id$='authorasation']").on('ifToggled', function (event) {
+            if (this.checked) {
+                    if(this.value==8){
+                        $('#hidtextbox').show();
+                    }
+                 }
+                else {
+                    $('#hidtextbox').hide();
+                }
+            
+        });
+    })
+
+    $('#QuantityWasteModel_UnitsId').on('change', function () {
+        debugger;
+        if (this.value == 3) {
+            $('#QuantityOthers1').show();
+        }
+        else
+        {
+            $('#QuantityOthers1').hide();
+        }
+    });
+   
+
+    $('#btnBioApplicantSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        if ($('#formApplicant').valid()) {
+            var url = '@Url.Action("SaveBioCapstoneApplicantDetails", "License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#BioCapstoneApplicantModel_Id').val() == '' ? 0 : $('#BioCapstoneApplicantModel_Id').val(),
+                    Name: $('#BioCapstoneApplicantModel_Name').val(),
+                    InstitutionName: $('#BioCapstoneApplicantModel_InstitutionName').val(),
+                    DistrictId: $('#BioCapstoneApplicantModel_DistrictId').val(),
+                    MandalId: $('#BioCapstoneApplicantModel_MandalId').val(),
+                    VillageId: $('#BioCapstoneApplicantModel_VillageId').val(),
+                    HouseNumber: $('#BioCapstoneApplicantModel_HouseNumber').val(),
+                    StreetName: $('#BioCapstoneApplicantModel_StreetName').val(),
+                    PINCode: $('#BioCapstoneApplicantModel_PINCode').val(),
+                    Fax: $('#BioCapstoneApplicantModel_Fax').val(),
+                    Telegraph: $('#BioCapstoneApplicantModel_Telegraph').val(),
+                    Telex: $('#BioCapstoneApplicantModel_Telex').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $('#BioCapstoneApplicantModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+            
+            if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                $('#btnBioApplicantSave').val('Update');
+                $('#btnBioApplicantSave').removeClass('btn-success');
+                $('#btnBioApplicantSave').addClass('btn-primary');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Completed'){
+                $('#btnBioApplicantSave').val('Update');
+                $('#btnBioApplicantSave').removeClass('btn-primary');
+                $('#btnBioApplicantSave').addClass('btn-success');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Empty'){
+                $('#btnBioApplicantSave').val('Save');
+                $('#btnBioApplicantSave').removeClass('btn-success');
+                $('#btnBioApplicantSave').addClass('btn-primary');
+            }
+
+           // CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Applicant Request Failed: " + err);
+    });
+        }
+    });
+
+    $('#btnAuthorisationSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var authorisation = [];
+        $.each($("input[name='authorasation']"), function () {
+            if ($(this).parent('[class*="icheckbox"]').hasClass("checked"))
+                authorisation.push(this.value);
+        });
+
+        if (authorisation.length == 0) {
+            alert('Please select at least one Authorisation of activity');
+            return false;
+        }
+        var applicationtype = $('#ApplicationModel_ApplicationType').val() == undefined ? 'Grant' : $('#ApplicationModel_ApplicationType').val();
+        if ($('#formAuthorisation').valid()) {
+
+            var url = '@Url.Action("SaveAuthorisationActivity", "License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#AuthorisationModel_Id').val() == '' ? 0 : $('#AuthorisationModel_Id').val(),
+                    Authorasation: authorisation.join(),
+                    Others: $('#AuthorisationModel_Others').val(),
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+            debugger;
+            $('#AuthorisationModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                $('#btnAuthorisationSave').val('Update');
+                $('#btnAuthorisationSave').removeClass('btn-success');
+                $('#btnAuthorisationSave').addClass('btn-primary');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Completed'){
+                $('#btnAuthorisationSave').val('Update');
+                $('#btnAuthorisationSave').removeClass('btn-primary');
+                $('#btnAuthorisationSave').addClass('btn-success');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Empty'){
+                $('#btnAuthorisationSave').val('Save');
+                $('#btnAuthorisationSave').removeClass('btn-success');
+                $('#btnAuthorisationSave').addClass('btn-primary');
+            }
+
+           // CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Authorisation Request Failed: " + err);
+    });
+        }
+    });
+
+
+    $('#btnTreatmentSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        if ($('#formTreatment').valid()) {
+            var url = '@Url.Action("SaveBioCapstoneTreatmentDetails", "License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#BioCapstoneAddressTreatementFacilityModel_Id').val() == '' ? 0 : $('#BioCapstoneAddressTreatementFacilityModel_Id').val(),
+                    TypeId: $('#BioCapstoneAddressTreatementFacilityModel_TypeId').val(),
+                    DistrictId: $('#BioCapstoneAddressTreatementFacilityModel_DistrictId').val(),
+                    MandalId: $('#BioCapstoneAddressTreatementFacilityModel_MandalId').val(),
+                    VillageId: $('#BioCapstoneAddressTreatementFacilityModel_VillageId').val(),
+                    HouseNumber: $('#BioCapstoneAddressTreatementFacilityModel_HouseNumber').val(),
+                    StreetName: $('#BioCapstoneAddressTreatementFacilityModel_StreetName').val(),
+                    PINCode: $('#BioCapstoneAddressTreatementFacilityModel_PINCode').val(),
+                    Fax: $('#BioCapstoneAddressTreatementFacilityModel_Fax').val(),
+                    Telegraph: $('#BioCapstoneAddressTreatementFacilityModel_Telegraph').val(),
+                    Telex: $('#BioCapstoneAddressTreatementFacilityModel_Telex').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $('#BioCapstoneAddressTreatementFacilityModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                $('#btnTreatmentSave').val('Update');
+                $('#btnTreatmentSave').removeClass('btn-success');
+                $('#btnTreatmentSave').addClass('btn-primary');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Completed'){
+                $('#btnTreatmentSave').val('Update');
+                $('#btnTreatmentSave').removeClass('btn-primary');
+                $('#btnTreatmentSave').addClass('btn-success');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Empty'){
+                $('#btnTreatmentSave').val('Save');
+                $('#btnTreatmentSave').removeClass('btn-success');
+                $('#btnTreatmentSave').addClass('btn-primary');
+            }
+
+            //CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Treatment Request Failed: " + err);
+    });
+        }
+    });
+
+    $('#btnDisposalSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        if ($('#formDisposal').valid()) {
+            var url = '@Url.Action("SaveBioCapstoneDisposalwaste", "License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#BioCapstoneAddressDisposalWasteModel_Id').val() == '' ? 0 : $('#BioCapstoneAddressDisposalWasteModel_Id').val(),
+                    TypeId: $('#BioCapstoneAddressDisposalWasteModel_TypeId').val(),
+                    DistrictId: $('#BioCapstoneAddressDisposalWasteModel_DistrictId').val(),
+                    MandalId: $('#BioCapstoneAddressDisposalWasteModel_MandalId').val(),
+                    VillageId: $('#BioCapstoneAddressDisposalWasteModel_VillageId').val(),
+                    HouseNumber: $('#BioCapstoneAddressDisposalWasteModel_HouseNumber').val(),
+                    StreetName: $('#BioCapstoneAddressDisposalWasteModel_StreetName').val(),
+                    PINCode: $('#BioCapstoneAddressDisposalWasteModel_PINCode').val(),
+                    Fax: $('#BioCapstoneAddressDisposalWasteModel_Fax').val(),
+                    Telegraph: $('#BioCapstoneAddressDisposalWasteModel_Telegraph').val(),
+                    Telex: $('#BioCapstoneAddressDisposalWasteModel_Telex').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $('#BioCapstoneAddressDisposalWasteModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                $('#btnDisposalSave').val('Update');
+                $('#btnDisposalSave').removeClass('btn-success');
+                $('#btnDisposalSave').addClass('btn-primary');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Completed'){
+                $('#btnDisposalSave').val('Update');
+                $('#btnDisposalSave').removeClass('btn-primary');
+                $('#btnDisposalSave').addClass('btn-success');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Empty'){
+                $('#btnDisposalSave').val('Save');
+                $('#btnDisposalSave').removeClass('btn-success');
+                $('#btnDisposalSave').addClass('btn-primary');
+            }
+
+            //CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Disposal Request Failed: " + err);
+    });
+        }
+    });
+
+    $('#btnTreatmentAdd').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formTreatmentMode').valid()) {
+            var url = '@Url.Action("BioCapstoneAdddressUploads", "License", new { Area = "User" })';
+            if (window.FormData !== undefined) {
+                // Create FormData object
+                var DocumentUpload = $("#TreatmentModle_Attachment").get(0).files[0];
+                var fileData = new FormData();
+                fileData.append('Description', $('#TreatmentModle_Description').val());
+                if (DocumentUpload != undefined)
+                    fileData.append('UploadedFilePath', DocumentUpload.name);
+                fileData.append('UploadedFile', DocumentUpload);
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#tblAddressUploads tr').not(function () { return !!$(this).has('th').length; }).remove();
+                        var json = response;
+                        console.log('response value' + File);
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Description + "</td>");
+                            var path = json[i].Attachment;
+                            var index = path.indexOf("/");
+                            var displayFileName = path.substring(index + 1, path.length);
+                            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                            fileLink = fileLink.replace("displaytext", displayFileName);
+                            fileLink = fileLink.replace("filepath", json[i].Attachment);
+                            fileLink = fileLink.replace("downloadfilename", displayFileName);
+                            tr.append("<td>" + fileLink + "</td>");
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteBioCapstoneAddress(" + i + ");'/></td>");
+                            $('#tblAddressUploads').append(tr);
+                        }
+
+                        // ClearControls();
+                        $('#TreatmentModle_Description').val('');
+                        $('#TreatmentModle_Attachment').val('');
+                    },
+
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            }
+        } else {
+            //  alert("FormData is not supported.");
+        }
+    });
+
+    function DeleteBioCapstoneAddress(index) {
+        if (confirm('Do you really want to delete?')) {
+            var url = '@Url.Action("DeleteAddressDocument", "License", new { Area = "User" })';
+            var data = { index: index };
+            var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblAddressUploads tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Description + "</td>");
+                var path = json[i].Attachment;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", json[i].Attachment);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                tr.append("<td>" + fileLink + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteBioCapstoneAddress(" + i + ");'/></td>");
+                $('#tblAddressUploads').append(tr);
+            }
+        }
+    }).fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Delete Address Request Failed: " + err);
+    });
+        }
+    }
+
+    $('#btnTreatmentModeSave').on('click', function (e) {
+        e.preventDefault();
+        debugger;
+        var rowCount = $('#tblAddressUploads tr').length;    
+        if(rowCount==1)
+            alert('Please add atleasat 1 Treatment Mode to the list');
+        else
+        {
+            // var existingApplicationId = $('#ApplicationModel_ExistingApplicationId').val() == undefined? 0 : $('#ApplicationModel_ExistingApplicationId').val();
+            var applicationtype = $('#ApplicationModel_ApplicationType').val() == undefined ? 'Grant' : $('#ApplicationModel_ApplicationType').val();
+            var data = {
+                ApplicationType : applicationtype
+                //ExistingApplicationId: existingApplicationId
+            };
+            var url = '@Url.Action("SaveModeoftreatment", "License", new { Area = "User" })';
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            ShowModal(response);
+            var transactionId = response.ReturnData.split(',')[0];
+            BindTreatmentModeOnSave(transactionId);
+
+            //CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("SaveTreatment Request Failed: " + err);
+    });
+        }
+    });
+
+    function BindTreatmentModeOnSave(transactionId){
+        var url = '@Url.Action("Gettreatment", "License", new { Area = "User" })';
+        var data = {transactionId : transactionId};
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblAddressUploads tr').not(function () { return !!$(this).has('th').length; }).remove();
+        debugger;
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Description + "</td>");
+                            var path = json[i].Attachment;
+                            var index = path.indexOf("/");
+                            var displayFileName = path.substring(index + 1, path.length);
+                            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                            fileLink = fileLink.replace("displaytext", displayFileName);
+                            fileLink = fileLink.replace("filepath", json[i].Attachment);
+                            fileLink = fileLink.replace("downloadfilename", displayFileName);
+                            tr.append("<td>" + fileLink + "</td>");
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteBioCapstoneAddress(" + i + ");'/></td>");
+                            $('#tblAddressUploads').append(tr);
+                        }
+
+            $('#btnTreatmentModeSave').val('Update');
+            $('#btnTreatmentModeSave').removeClass('btn-primary');
+            $('#btnTreatmentModeSave').addClass('btn-success');
+        }
+        else if(json == undefined || json.length == 0){
+            $('#btnTreatmentModeSave').val('Save');
+            $('#btnTreatmentModeSave').removeClass('btn-success');
+            $('#btnTreatmentModeSave').addClass('btn-primary');
+        }
+    })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Gettreatment Request Failed: " + err);
+        });
+
+    }
+
+    $('#btnTreatmentDisposalAdd').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formTreatmentDisposalMode').valid()) {
+            var url = '@Url.Action("BioCapstoneDisposalUploads", "License", new { Area = "User" })';
+            if (window.FormData !== undefined) {
+                // Create FormData object
+                var DocumentUpload = $("#TreatmentDisposalModle_Attachment").get(0).files[0];
+                var fileData = new FormData();
+                fileData.append('Description', $('#TreatmentDisposalModle_Description').val());
+                if (DocumentUpload != undefined)
+                    fileData.append('UploadedFilePath', DocumentUpload.name);
+                fileData.append('UploadedFile', DocumentUpload);
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#tblDisposalUploads tr').not(function () { return !!$(this).has('th').length; }).remove();
+                        var json = response;
+                        console.log('response value' + File);
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Description + "</td>");
+                            var path = json[i].Attachment;
+                            var index = path.indexOf("/");
+                            var displayFileName = path.substring(index + 1, path.length);
+                            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                            fileLink = fileLink.replace("displaytext", displayFileName);
+                            fileLink = fileLink.replace("filepath", json[i].Attachment);
+                            fileLink = fileLink.replace("downloadfilename", displayFileName);
+                            tr.append("<td>" + fileLink + "</td>");
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteBioCapstoneDisposal(" + i + ");'/></td>");
+                            $('#tblDisposalUploads').append(tr);
+                        }
+
+                        // ClearControls();
+                        $('#TreatmentDisposalModle_Description').val('');
+                        $('#TreatmentDisposalModle_Attachment').val('');
+                    },
+
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            }
+        } else {
+            // alert("FormData is not supported.");
+        }
+    });
+
+    function DeleteBioCapstoneDisposal(index) {
+        if (confirm('Do you really want to delete?')) {
+            var url = '@Url.Action("DeleteDisposalDocument", "License", new { Area = "User" })';
+            var data = { index: index };
+            var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblDisposalUploads tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Description + "</td>");
+                var path = json[i].Attachment;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", json[i].Attachment);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                tr.append("<td>" + fileLink + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteBioCapstoneAddress(" + i + ");'/></td>");
+                $('#tblDisposalUploads').append(tr);
+            }
+        }
+    }).fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Delete Disposal Request Failed: " + err);
+    });
+        }
+    }
+
+    $('#btntreatmentDisposalSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var rowCount = $('#tblDisposalUploads tr').length;    
+        if(rowCount==1)
+            alert('Please add atleasat 1 Treatment Disposal Mode to the list');
+        else
+        {
+        var applicationtype = $('#ApplicationModel_ApplicationType').val() == undefined ? 'Grant' : $('#ApplicationModel_ApplicationType').val();
+        var data = {
+            ApplicationType : applicationtype
+
+        };
+        var url = '@Url.Action("SaveModeofTreatmentDisposal", "License", new { Area = "User" })';
+        var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        ShowModal(response);
+        var transactionId = response.ReturnData.split(',')[0];
+        BindTreatmentDisposalModeOnSave(transactionId);
+
+       // CheckforEnableSubmit();
+    })
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("SaveTreatment Request Failed: " + err);
+});
+            }
+    });
+
+    function BindTreatmentDisposalModeOnSave(transactionId){
+        var url = '@Url.Action("GetTreatmentDisposal", "License", new { Area = "User" })';
+        var data = {transactionId : transactionId};
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblDisposalUploads tr').not(function () { return !!$(this).has('th').length; }).remove();
+        debugger;
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+             for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Description + "</td>");
+                            var path = json[i].Attachment;
+                            var index = path.indexOf("/");
+                            var displayFileName = path.substring(index + 1, path.length);
+                            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                            fileLink = fileLink.replace("displaytext", displayFileName);
+                            fileLink = fileLink.replace("filepath", json[i].Attachment);
+                            fileLink = fileLink.replace("downloadfilename", displayFileName);
+                            tr.append("<td>" + fileLink + "</td>");
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteBioCapstoneDisposal(" + i + ");'/></td>");
+                            $('#tblDisposalUploads').append(tr);
+                        }
+
+            $('#btntreatmentDisposalSave').val('Update');
+            $('#btntreatmentDisposalSave').removeClass('btn-primary');
+            $('#btntreatmentDisposalSave').addClass('btn-success');
+        }
+        else if(json == undefined || json.length == 0){
+            $('#btntreatmentDisposalSave').val('Save');
+            $('#btntreatmentDisposalSave').removeClass('btn-success');
+            $('#btntreatmentDisposalSave').addClass('btn-primary');
+        }
+    })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GettreatmentDisposal Request Failed: " + err);
+        });
+
+    }
+
+    $('#btnAddWaste').on('click', function (e) {
+        e.preventDefault();
+        debugger; 
+        if ($('#formQuantity').valid()) {
+            var url = '@Url.Action("BioCapstoneWaste", "License", new { Area = "User" })';
+            if (window.FormData !== undefined) {
+                // Create FormData object
+                var category = $("#QuantityWasteModel_CategoryId option:selected").text();
+                var unit = $("#QuantityWasteModel_UnitsId option:selected").text();
+                var fileData = new FormData();
+                fileData.append('CategoryName', category); //$('#QuantityWasteModel_CategoryId').val());
+                fileData.append('Quantity', $('#QuantityWasteModel_Quantity').val());
+                fileData.append('UnitName', unit);
+                fileData.append('QuantityOthers', $('#QuantityWasteModel_QuantityOthers').val());
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#tblWasteUploads tr').not(function () { return !!$(this).has('th').length; }).remove();
+                        var json = response;
+                        console.log('response value' + File);
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].CategoryName + "</td>");
+                            tr.append("<td>" + json[i].Quantity + "</td>");
+                            if(json[i].UnitName =='Others')
+                            {
+                                tr.append("<td>" + json[i].QuantityOthers + "</td>");
+                            }
+                            else
+                            {
+                                tr.append("<td>" + json[i].UnitName + "</td>");
+                            }
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteBioCapstoneWaste(" + i + ");'/></td>");
+                            $('#tblWasteUploads').append(tr);
+                        }
+
+                        // ClearControls();
+                      
+                        $('#QuantityWasteModel_CategoryId').val('').trigger('change');
+                        $('#QuantityWasteModel_Quantity').val('');
+                        $('#QuantityWasteModel_UnitsId').val('').trigger('change');
+                        $('#QuantityWasteModel_QuantityOthers').val('');
+                    },
+
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            }
+        } else {
+            //alert("FormData is not supported.");
+        }
+    });
+
+    function DeleteBioCapstoneWaste(index) {
+        if (confirm('Do you really want to delete?')) {
+            var url = '@Url.Action("DeleteWaste", "License", new { Area = "User" })';
+            var data = { index: index };
+            var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblWasteUploads tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].CategoryName + "</td>");
+                tr.append("<td>" + json[i].Quantity + "</td>");
+                tr.append("<td>" + json[i].UnitName + "</td>");
+
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteBioCapstoneWaste(" + i + ");'/></td>");
+                $('#tblWasteUploads').append(tr);
+            }
+        }
+    }).fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Delete Waste Request Failed: " + err);
+    });
+        }
+    }
+
+    $('#btnQuantityWasteSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var rowCount = $('#tblWasteUploads tr').length;    
+        if(rowCount==1)
+            alert('Please add atleasat 1 Quantity of Waste  to the list');
+        else
+        {
+            var applicationtype = $('#ApplicationModel_ApplicationType').val() == undefined ? 'Grant' : $('#ApplicationModel_ApplicationType').val();
+            var data = {
+                ApplicationType : applicationtype
+
+            };
+            var url = '@Url.Action("SaveQuantityofWaste", "License", new { Area = "User" })';
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            ShowModal(response);
+            var transactionId = response.ReturnData.split(',')[0];
+            BindQuantityWasteSaveOnSave(transactionId);
+            
+            // CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("SaveQuantityWaste Request Failed: " + err);
+    });
+        }
+    });
+
+    function BindQuantityWasteSaveOnSave(transactionId){
+        var url = '@Url.Action("GetQuantityWaste", "License", new { Area = "User" })';
+        var data = {transactionId : transactionId};
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblWasteUploads tr').not(function () { return !!$(this).has('th').length; }).remove();
+        debugger;
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+             for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].CategoryName + "</td>");
+                tr.append("<td>" + json[i].Quantity + "</td>");
+                tr.append("<td>" + json[i].UnitName + "</td>");
+
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteBioCapstoneWaste(" + i + ");'/></td>");
+                $('#tblWasteUploads').append(tr);
+            }
+
+            $('#btnQuantityWasteSave').val('Update');
+            $('#btnQuantityWasteSave').removeClass('btn-primary');
+            $('#btnQuantityWasteSave').addClass('btn-success');
+        }
+        else if(json == undefined || json.length == 0){
+            $('#btnQuantityWasteSave').val('Save');
+            $('#btnQuantityWasteSave').removeClass('btn-success');
+            $('#btnQuantityWasteSave').addClass('btn-primary');
+        }
+    })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetQuantityWaste Request Failed: " + err);
+        });
+
+    }
+
+    $('#btnBioDeclarationSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        if ($('#formBioDeclaration').valid()) {
+            var url = '@Url.Action("SaveBioDeclarationDetails", "License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#DeclarationModel_Id').val() == '' ? 0 : $('#DeclarationModel_Id').val(),
+                    Date: $('#DeclarationModel_Date').val(),
+                    Place: $('#DeclarationModel_Place').val(),
+                    Designation: $('#DeclarationModel_Designation').val(),
+                    Signature: $('#DeclarationModel_Signature').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $('#BioCapstoneApplicantModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                $('#btnBioDeclarationSave').val('Update');
+                $('#btnBioDeclarationSave').removeClass('btn-success');
+                $('#btnBioDeclarationSave').addClass('btn-primary');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Completed'){
+                $('#btnBioDeclarationSave').val('Update');
+                $('#btnBioDeclarationSave').removeClass('btn-primary');
+                $('#btnBioDeclarationSave').addClass('btn-success');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Empty'){
+                $('#btnBioDeclarationSave').val('Save');
+                $('#btnBioDeclarationSave').removeClass('btn-success');
+                $('#btnBioDeclarationSave').addClass('btn-primary');
+            }
+
+           // CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Declaration Request Failed: " + err);
+    });
+        }
+    });
+
+
+    $('#btnBioCapstoneSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();   //$('#frmBioCapstoneApplication').valid()
+        if (true) {
+            var url = '@Url.Action("SaveBioCapstoneDetails", "License", new { Area = "User" })';
+
+            var authorasation = [];
+            $.each($("input[name='authorasation']"), function () {
+                if ($(this).parent('[class*="icheckbox"]').hasClass("checked"))
+                    authorasation.push(this.value);
+            });
+            var data = {
+                model: {
+                    BioCapstoneApplicantModel: {
+
+                        Name: $('#BioCapstoneApplicantModel_Name').val(),
+                        InstitutionName: $('#BioCapstoneApplicantModel_InstitutionName').val(),
+                        DistrictId: $('#BioCapstoneApplicantModel_DistrictId').val(),
+                        MandalId: $('#BioCapstoneApplicantModel_MandalId').val(),
+                        VillageId: $('#BioCapstoneApplicantModel_VillageId').val(),
+                        HouseNumber: $('#BioCapstoneApplicantModel_HouseNumber').val(),
+                        StreetName: $('#BioCapstoneApplicantModel_StreetName').val(),
+                        PINCode: $('#BioCapstoneApplicantModel_PINCode').val(),
+                        Fax: $('#BioCapstoneApplicantModel_Fax').val(),
+                        Telegraph: $('#BioCapstoneApplicantModel_Telegraph').val(),
+                        Telex: $('#BioCapstoneApplicantModel_Telex').val()
+                    },
+                    BioCapstoneAddressTreatementFacilityModel: {
+                        TypeId: $('#BioCapstoneAddressTreatementFacilityModel_TypeId').val(),
+                        DistrictId: $('#BioCapstoneAddressTreatementFacilityModel_DistrictId').val(),
+                        MandalId: $('#BioCapstoneAddressTreatementFacilityModel_MandalId').val(),
+                        VillageId: $('#BioCapstoneAddressTreatementFacilityModel_VillageId').val(),
+                        HouseNumber: $('#BioCapstoneAddressTreatementFacilityModel_HouseNumber').val(),
+                        StreetName: $('#BioCapstoneAddressTreatementFacilityModel_StreetName').val(),
+                        PINCode: $('#BioCapstoneAddressTreatementFacilityModel_PINCode').val(),
+                        Fax: $('#BioCapstoneAddressTreatementFacilityModel_Fax').val(),
+                        Telegraph: $('#BioCapstoneAddressTreatementFacilityModel_Telegraph').val(),
+                        Telex: $('#BioCapstoneAddressTreatementFacilityModel_Telex').val()
+                    },
+                    BioCapstoneAddressDisposalWasteModel: {
+                        TypeId: $('#BioCapstoneAddressDisposalWasteModel_TypeId').val(),
+                        DistrictId: $('#BioCapstoneAddressDisposalWasteModel_DistrictId').val(),
+                        MandalId: $('#BioCapstoneAddressDisposalWasteModel_MandalId').val(),
+                        VillageId: $('#BioCapstoneAddressDisposalWasteModel_VillageId').val(),
+                        HouseNumber: $('#BioCapstoneAddressDisposalWasteModel_HouseNumber').val(),
+                        StreetName: $('#BioCapstoneAddressDisposalWasteModel_StreetName').val(),
+                        PINCode: $('#BioCapstoneAddressDisposalWasteModel_PINCode').val(),
+                        Fax: $('#BioCapstoneAddressDisposalWasteModel_Fax').val(),
+                        Telegraph: $('#BioCapstoneAddressDisposalWasteModel_Telegraph').val(),
+                        Telex: $('#BioCapstoneAddressDisposalWasteModel_Telex').val()
+                    },
+                    DeclarationModel: {
+
+                        Date: $('#DeclarationModel_Date').val(),
+                        Place: $('#DeclarationModel_Place').val(),
+                        Designation: $('#DeclarationModel_Designation').val(),
+                        Signature: $('#DeclarationModel_Signature').val()
+
+                    },
+                    AuthorisationModel: {
+                        authorasation: authorasation.join(),
+                        Others: $('#AuthorisationModel_Others').val(),
+
+                    }
+
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            if(json.ReturnData == 'PartiallySaved'){
+                $('#btnBioCapstoneSave').val('Update');
+                $('#btnBioCapstoneSave').removeClass('btn-success');
+                $('#btnBioCapstoneSave').addClass('btn-primary');
+            }
+            else if(json.ReturnData == 'Completed'){
+                $('#btnBioCapstoneSave').val('Update');
+                $('#btnBioCapstoneSave').removeClass('btn-primary');
+                $('#btnBioCapstoneSave').addClass('btn-success');
+            }
+            else if(json.ReturnData == 'Empty'){
+                $('#btnBioCapstoneSave').val('Save');
+                $('#btnBioCapstoneSave').removeClass('btn-success');
+                $('#btnBioCapstoneSave').addClass('btn-primary');
+            }
+            ShowModal(response);
+          //  CheckforEnableSubmit();
+
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Applicant Request Failed: " + err);
+    });
+        }
+    });
+
+    function CheckforBioCapstoneComplete(){
+        var result = false;
+        if($('#btnBioApplicantSave').hasClass('btn-success')
+            && $('#btnTreatmentSave').hasClass('btn-success') && $('#btnDisposalSave').hasClass('btn-success')
+            && $('#btnTreatmentModeSave').hasClass('btn-success') && $('#btntreatmentDisposalSave').hasClass('btn-success')
+        && $('#btnQuantityWasteSave').hasClass('btn-success') && $('#btnBioDeclarationSave').hasClass('btn-success')
+        && $('#btnAuthorisationSave').hasClass('btn-success')
+            ){
+            result = true;
+            //$('#btnPreview').removeAttr("disabled");
+        }
+        else
+        {
+            result = false;
+            //$('#btnPreview').attr('disabled', 'disabled');
+        }
+
+        return result;
+    }
+
+    function ValidateBioCapstoneCompleted(){
+        var result = false;
+        debugger;
+
+        if($('#btnBioApplicantSave').hasClass('btn-success'))
+        {
+            result= true;
+        }
+        else
+        {
+           
+            $('#liBioApplicant').removeClass('active'); 
+            $('#liBioAuthorisation').removeClass('active'); 
+            $('#liBioAddress').removeClass('active'); 
+            $('#liBioDisposalwaste').removeClass('active'); 
+            $('#liBioModeoftreatment').removeClass('active'); 
+            $('#liBiotreatmentdisposal').removeClass('active'); 
+            $('#liBioQuantityWaste').removeClass('active'); 
+            $('#liBioDeclaration').removeClass('active'); 
+
+            $('#tabBioApplicant').removeClass('active '); 
+            $('#tabAuthorisation').removeClass('active '); 
+            $('#tabTreatment').removeClass('active '); 
+            $('#tabDisposal').removeClass('active '); 
+            $('#tabModeoftreatment').removeClass('active '); 
+            $('#tabtreatmentdisposal').removeClass('active '); 
+            $('#tabQuantity').removeClass('active '); 
+            $('#tabBioDeclaration').removeClass('active '); 
+
+            $('#liBioApplicant').addClass('active');
+            $('#tabBioApplicant').addClass('active');
+
+            result= false;
+            
+    
+        }
+        if(result==true)
+        {
+            if($('#btnAuthorisationSave').hasClass('btn-success'))
+            {
+                result=true;
+            }
+            else
+            {
+                $('#liBioApplicant').removeClass('active'); 
+                $('#liBioAuthorisation').removeClass('active'); 
+                $('#liBioAddress').removeClass('active'); 
+                $('#liBioDisposalwaste').removeClass('active'); 
+                $('#liBioModeoftreatment').removeClass('active'); 
+                $('#liBiotreatmentdisposal').removeClass('active'); 
+                $('#liBioQuantityWaste').removeClass('active'); 
+                $('#liBioDeclaration').removeClass('active'); 
+
+                $('#tabBioApplicant').removeClass('active '); 
+                $('#tabAuthorisation').removeClass('active '); 
+                $('#tabTreatment').removeClass('active '); 
+                $('#tabDisposal').removeClass('active '); 
+                $('#tabModeoftreatment').removeClass('active '); 
+                $('#tabtreatmentdisposal').removeClass('active '); 
+                $('#tabQuantity').removeClass('active '); 
+                $('#tabBioDeclaration').removeClass('active '); 
+
+                $('#liBioAuthorisation').addClass('active');
+                $('#tabAuthorisation').addClass('active');
+                result= false;
+            }
+        }
+        if(result==true)
+        {
+            if($('#btnTreatmentSave').hasClass('btn-success'))
+            {
+                result=true;
+            }
+            else
+            {
+                $('#liBioApplicant').removeClass('active'); 
+                $('#liBioAuthorisation').removeClass('active'); 
+                $('#liBioAddress').removeClass('active'); 
+                $('#liBioDisposalwaste').removeClass('active'); 
+                $('#liBioModeoftreatment').removeClass('active'); 
+                $('#liBiotreatmentdisposal').removeClass('active'); 
+                $('#liBioQuantityWaste').removeClass('active'); 
+                $('#liBioDeclaration').removeClass('active'); 
+
+                $('#tabBioApplicant').removeClass('active '); 
+                $('#tabAuthorisation').removeClass('active '); 
+                $('#tabTreatment').removeClass('active '); 
+                $('#tabDisposal').removeClass('active '); 
+                $('#tabModeoftreatment').removeClass('active '); 
+                $('#tabtreatmentdisposal').removeClass('active '); 
+                $('#tabQuantity').removeClass('active '); 
+                $('#tabBioDeclaration').removeClass('active '); 
+
+                $('#liBioAddress').addClass('active');
+                $('#tabTreatment').addClass('active');
+                result= false;
+            }
+        }
+        if(result==true)
+        {
+            if($('#btnDisposalSave').hasClass('btn-success'))
+            {
+                result=true;
+            }
+            else
+            {
+                $('#liBioApplicant').removeClass('active'); 
+                $('#liBioAuthorisation').removeClass('active'); 
+                $('#liBioAddress').removeClass('active'); 
+                $('#liBioDisposalwaste').removeClass('active'); 
+                $('#liBioModeoftreatment').removeClass('active'); 
+                $('#liBiotreatmentdisposal').removeClass('active'); 
+                $('#liBioQuantityWaste').removeClass('active'); 
+                $('#liBioDeclaration').removeClass('active'); 
+
+                $('#tabBioApplicant').removeClass('active '); 
+                $('#tabAuthorisation').removeClass('active '); 
+                $('#tabTreatment').removeClass('active '); 
+                $('#tabDisposal').removeClass('active '); 
+                $('#tabModeoftreatment').removeClass('active '); 
+                $('#tabtreatmentdisposal').removeClass('active '); 
+                $('#tabQuantity').removeClass('active '); 
+                $('#tabBioDeclaration').removeClass('active '); 
+
+                $('#liBioDisposalwaste').addClass('active');
+                $('#tabDisposal').addClass('active');
+                result= false;
+            }
+        }
+        if(result==true)
+        {
+            if($('#btnTreatmentModeSave').hasClass('btn-success'))
+            {
+                result=true;
+            }
+            else
+            {
+                $('#liBioApplicant').removeClass('active'); 
+                $('#liBioAuthorisation').removeClass('active'); 
+                $('#liBioAddress').removeClass('active'); 
+                $('#liBioDisposalwaste').removeClass('active'); 
+                $('#liBioModeoftreatment').removeClass('active'); 
+                $('#liBiotreatmentdisposal').removeClass('active'); 
+                $('#liBioQuantityWaste').removeClass('active'); 
+                $('#liBioDeclaration').removeClass('active'); 
+
+                $('#tabBioApplicant').removeClass('active '); 
+                $('#tabAuthorisation').removeClass('active '); 
+                $('#tabTreatment').removeClass('active '); 
+                $('#tabDisposal').removeClass('active '); 
+                $('#tabModeoftreatment').removeClass('active '); 
+                $('#tabtreatmentdisposal').removeClass('active '); 
+                $('#tabQuantity').removeClass('active '); 
+                $('#tabBioDeclaration').removeClass('active '); 
+
+                $('#liBioModeoftreatment').addClass('active');
+                $('#tabModeoftreatment').addClass('active');
+                result= false;
+            }
+        }
+        if(result==true)
+        {
+            if($('#btntreatmentDisposalSave').hasClass('btn-success'))
+            {
+                result=true;
+            }
+            else
+            {
+                $('#liBioApplicant').removeClass('active'); 
+                $('#liBioAuthorisation').removeClass('active'); 
+                $('#liBioAddress').removeClass('active'); 
+                $('#liBioDisposalwaste').removeClass('active'); 
+                $('#liBioModeoftreatment').removeClass('active'); 
+                $('#liBiotreatmentdisposal').removeClass('active'); 
+                $('#liBioQuantityWaste').removeClass('active'); 
+                $('#liBioDeclaration').removeClass('active'); 
+
+                $('#tabBioApplicant').removeClass('active '); 
+                $('#tabAuthorisation').removeClass('active '); 
+                $('#tabTreatment').removeClass('active '); 
+                $('#tabDisposal').removeClass('active '); 
+                $('#tabModeoftreatment').removeClass('active '); 
+                $('#tabtreatmentdisposal').removeClass('active '); 
+                $('#tabQuantity').removeClass('active '); 
+                $('#tabBioDeclaration').removeClass('active '); 
+
+                $('#liBiotreatmentdisposal').addClass('active');
+                $('#tabtreatmentdisposal').addClass('active');
+                result= false;
+            }
+        }
+        if(result==true)
+        {
+            if($('#btnQuantityWasteSave').hasClass('btn-success'))
+            {
+                result=true;
+            }
+            else
+            {
+                $('#liBioApplicant').removeClass('active'); 
+                $('#liBioAuthorisation').removeClass('active'); 
+                $('#liBioAddress').removeClass('active'); 
+                $('#liBioDisposalwaste').removeClass('active'); 
+                $('#liBioModeoftreatment').removeClass('active'); 
+                $('#liBiotreatmentdisposal').removeClass('active'); 
+                $('#liBioQuantityWaste').removeClass('active'); 
+                $('#liBioDeclaration').removeClass('active'); 
+
+                $('#tabBioApplicant').removeClass('active '); 
+                $('#tabAuthorisation').removeClass('active '); 
+                $('#tabTreatment').removeClass('active '); 
+                $('#tabDisposal').removeClass('active '); 
+                $('#tabModeoftreatment').removeClass('active '); 
+                $('#tabtreatmentdisposal').removeClass('active '); 
+                $('#tabQuantity').removeClass('active '); 
+                $('#tabBioDeclaration').removeClass('active '); 
+
+                $('#liBioQuantityWaste').addClass('active');
+                $('#tabQuantity').addClass('active');
+                result= false;
+            }
+        }
+        if(result==true)
+        {
+            if($('#btnBioDeclarationSave').hasClass('btn-success'))
+            {
+                result=true;
+            }
+            else
+            {
+                $('#liBioApplicant').removeClass('active'); 
+                $('#liBioAuthorisation').removeClass('active'); 
+                $('#liBioAddress').removeClass('active'); 
+                $('#liBioDisposalwaste').removeClass('active'); 
+                $('#liBioModeoftreatment').removeClass('active'); 
+                $('#liBiotreatmentdisposal').removeClass('active'); 
+                $('#liBioQuantityWaste').removeClass('active'); 
+                $('#liBioDeclaration').removeClass('active'); 
+
+                $('#tabBioApplicant').removeClass('active '); 
+                $('#tabAuthorisation').removeClass('active '); 
+                $('#tabTreatment').removeClass('active '); 
+                $('#tabDisposal').removeClass('active '); 
+                $('#tabModeoftreatment').removeClass('active '); 
+                $('#tabtreatmentdisposal').removeClass('active '); 
+                $('#tabQuantity').removeClass('active '); 
+                $('#tabBioDeclaration').removeClass('active '); 
+
+                $('#liBioDeclaration').addClass('active');
+                $('#tabBioDeclaration').addClass('active');
+                result= false;
+            }
+        }
+        return result;
+
+    }
+</script>
+
+

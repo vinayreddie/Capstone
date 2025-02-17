@@ -1,0 +1,2013 @@
+﻿@model Capstone.Models.BloodBankViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <span style="font-size:large">Blood Bank - FORM 27 E</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-1 col-md-10">
+        Application for grant of license to manufacture Blood products for sale or distribution
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active" id="liApplicant27ETab"><a href="#tabBloodApplicantForm27E" data-toggle="tab">Applicant</a></li>
+                <li id="liEstablishment27ETab"><a href="#tabBloodEstablishmentForm27E" data-toggle="tab">Establishment</a></li>
+                <li id="lilistofitems27ETab"><a href="#tabForm27EItems" data-toggle="tab">List of Items</a></li>
+                <li id="liTechnicalStaff27eTab"><a href="#tabForm27EBloodTechnical" data-toggle="tab">Technical Staff</a></li>
+                <li id="liEquipment27ETab"><a href="#tabForm27EBloodEquipment" data-toggle="tab">Equipment</a></li>
+                <li id="liAttachment27ETab"><a href="#tabForm27EAttachmnets" data-toggle="tab">Inspection & Attachmnets</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabBloodApplicantForm27E">
+                    <form id="form27EApplicant">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.Name, "Owner Name", new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.BloodBankApplicantModel.Id,new { @id = "bbeApplicantID" })
+                                @Html.EditorFor(model => model.BloodBankApplicantModel.Name, new { htmlAttributes = new { @class = "form-control alphabet", @id="bbeApplicantName",@maxlength="50" } })
+                                @Html.ValidationMessageFor(model => model.BloodBankApplicantModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.OwnershipType, "Ownership Type", new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.BloodBankApplicantModel.OwnershipType,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select Owner Type", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Individual", Value = "Individual" },
+                                    new SelectListItem {Text = "Partner", Value = "Partner" },
+                                    new SelectListItem {Text = "Company", Value = "Company" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "bbeApplicantOwnerType" })
+                                @Html.ValidationMessageFor(model => model.BloodBankApplicantModel.OwnershipType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.Aadhar, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.BloodBankApplicantModel.Aadhar, new { htmlAttributes = new { @class = "form-control numeric", @id = "bbeAadhar", @maxlength = "12" } })
+                                @Html.ValidationMessageFor(model => model.BloodBankApplicantModel.Aadhar, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.PAN, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.BloodBankApplicantModel.PAN, new { htmlAttributes = new { @class = "form-control", @id = "bbeApplicantPAN", @Style = "text-transform: uppercase;", @maxlength = "10" } })
+                                @Html.ValidationMessageFor(model => model.BloodBankApplicantModel.PAN, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.DistrictId, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.BloodBankApplicantModel.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "bbeApplicantDistrictId" })
+                                @Html.ValidationMessageFor(model => model.BloodBankApplicantModel.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.MandalId, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.BloodBankApplicantModel.MandalId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "bbeApplicantMandalId" })
+                                @Html.ValidationMessageFor(model => model.BloodBankApplicantModel.MandalId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.VillageId, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.BloodBankApplicantModel.VillageId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "bbeApplicantVillageId" })
+                                @Html.ValidationMessageFor(model => model.BloodBankApplicantModel.VillageId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.HouseNumber, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.BloodBankApplicantModel.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "bbeApplicantHouseNo",@maxlength = "20" } })
+                                @Html.ValidationMessageFor(model => model.BloodBankApplicantModel.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.StreetName, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.BloodBankApplicantModel.StreetName, new { htmlAttributes = new { @class = "form-control alphabet", @id = "bbeApplicantStreet",@maxlength = "50" } })
+                                @Html.ValidationMessageFor(model => model.BloodBankApplicantModel.StreetName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.BloodBankApplicantModel.UploadDocument, "Document (MOA/Ownership)", new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.BloodBankApplicantModel.UploadDocument, new { @class = "", type = "file", @id = "bbeApplicantUpload" })
+
+                                @if (!string.IsNullOrEmpty(Model.BloodBankApplicantModel.UploadDocument))
+                                {
+                                    var documentindex = Model.BloodBankApplicantModel.UploadDocument.LastIndexOf("/");
+                                    var documentfileName = Model.BloodBankApplicantModel.UploadDocument.Substring(documentindex + 1);
+                                    @Html.ActionLink(documentfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.BloodBankApplicantModel.UploadDocument, downloadName = documentfileName },
+                            null
+                            );
+                                }
+                                @*@Html.ValidationMessageFor(model => model.BloodBankApplicantModel.UploadDocument, "", new { @class = "text-danger" })*@
+                            </div>
+                            <div class="col-md-8 text-right">
+                                @*<input type="button" value="Clear" id="btnForm27EApplicantClear" class="btn btn-default" />*@
+                                <input type="button" value="Save" id="btnForm27EApplicantSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabBloodEstablishmentForm27E">
+                    <form id="form27EEstablishment">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.Name, "BloodBank Name", new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.BloodBankEstablishmentModel.Id, new { @id = "bbeEstablishmentID" })
+                                @Html.EditorFor(model => model.BloodBankEstablishmentModel.Name, new { htmlAttributes = new { @class = "form-control alphabet", @id = "bbeEstablishmentName",@maxlength=50 } })
+                                @Html.ValidationMessageFor(model => model.BloodBankEstablishmentModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.DistrictId, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.BloodBankEstablishmentModel.DistrictId,
+    new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+     new { @class = "form-control select2", @style = "width:100%;", @id = "bbeEstablishmentDistrictId" })
+                                @Html.ValidationMessageFor(model => model.BloodBankEstablishmentModel.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.MandalId, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.BloodBankEstablishmentModel.MandalId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+     new { @class = "form-control select2", @style = "width:100%;", @id = "bbeEstablishmentMandalId" })
+                                @Html.ValidationMessageFor(model => model.BloodBankEstablishmentModel.MandalId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.VillageId, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.BloodBankEstablishmentModel.VillageId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+     new { @class = "form-control select2", @style = "width:100%;", @id = "bbeEstablishmentVillageId" })
+                                @Html.ValidationMessageFor(model => model.BloodBankEstablishmentModel.VillageId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.HouseNumber, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.BloodBankEstablishmentModel.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "bbeEstablishmentHouseNo", @maxlength = 20 } })
+                                @Html.ValidationMessageFor(model => model.BloodBankEstablishmentModel.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.StreetName, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.BloodBankEstablishmentModel.StreetName, new { htmlAttributes = new { @class = "form-control alphabet", @id = "bbeEstablishmentStreet", @maxlength = 50 } })
+                                @Html.ValidationMessageFor(model => model.BloodBankEstablishmentModel.StreetName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankEstablishmentModel.AddressProofPath, "Address Proof", new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.BloodBankEstablishmentModel.AddressProofPath, new { @class = "", type = "file", @id = "bbeEstablishmentAddressProof" })
+
+                                @if (!string.IsNullOrEmpty(Model.BloodBankEstablishmentModel.AddressProofPath))
+                                {
+                                    var addressindex = Model.BloodBankEstablishmentModel.AddressProofPath.LastIndexOf("/");
+                                    var addressfileName = Model.BloodBankEstablishmentModel.AddressProofPath.Substring(addressindex + 1);
+                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.BloodBankEstablishmentModel.AddressProofPath, downloadName = addressfileName },
+                            null
+                            );
+                                }
+                                @Html.ValidationMessageFor(model => model.BloodBankEstablishmentModel.AddressProofPath, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-8 text-right">
+                                @*<input type="button" value="Clear" id="btnForm27EEstablishmentClear" class="btn btn-default" />*@
+                                <input type="button" value="Save" id="btnForm27EEstablishmentSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabForm27EItems">
+                    <form id="form27EItems">
+                        @Html.HiddenFor(model => model.BloodBankListModel.Id, new { @id = "bbeListItemID" })
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-1">
+                                @Html.LabelFor(model => model.BloodBankListModel.Name, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.BloodBankListModel.Name, new { @class = "form-control alphabet", @id = "bbeListItemName",@maxlength="50" })
+                                @Html.ValidationMessageFor(model => model.BloodBankListModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <input type="button" value="Add" id="btnForm27EAddItems" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </form>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">List of Items</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblForm27EItems" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.BloodBankList != null)
+                                            {
+                                                for (int i = 0; i < Model.BloodBankList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.BloodBankList[i].Name</td>
+                                                        <td><input type='button' value='Delete' onclick='DeleteForm27EItems(@i);' /></td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            @*<input type="button" value="Clear" id="btnForm27EItemsClear" class="btn btn-default" />*@
+                            <input type="button" value="Save" id="btnForm27EItemsSave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabForm27EBloodTechnical" class="tab-pane">
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Technical Staff</legend>
+
+                        <form id="form27ETechnical">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.TechnicalModel.Name, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.HiddenFor(model => model.TechnicalModel.Id)
+                                    @Html.EditorFor(model => model.TechnicalModel.Name, new { htmlAttributes = new { @class = "form-control alphabet",@maxlength="50" } })
+                                    @Html.ValidationMessageFor(model => model.TechnicalModel.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.TechnicalModel.Experience, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(model => model.TechnicalModel.ExpYears, new { @class = "form-control numeric", @Value = "", @placeholder = "Years" })
+                                            @Html.ValidationMessageFor(model => model.TechnicalModel.ExpYears, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(model => model.TechnicalModel.ExpMonths, new { @class = "form-control numeric", @Value = "", @placeholder = "Months" })
+                                            @Html.ValidationMessageFor(model => model.TechnicalModel.ExpMonths, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(model => model.TechnicalModel.ExpDays, new { @class = "form-control numeric", @Value = "", @placeholder = "Days" })
+                                            @Html.ValidationMessageFor(model => model.TechnicalModel.ExpDays, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.TechnicalModel.Responsibility, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.TechnicalModel.Responsibility,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select Responsibility", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Manufacturing", Value = "Manufacturing" },
+                                    new SelectListItem {Text = "Testing", Value = "Testing" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.TechnicalModel.Responsibility, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.TechnicalModel.Qualification, "Qualification", new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @*@Html.DropDownListFor(model => model.TechnicalModel.QualificationId,
+                    new SelectList(ViewBag.QualificationList, "Id", "Name"), "Select Qualification",
+                     new { @class = "form-control select2", @style = "width:100%;" })*@
+                                    @Html.EditorFor(model => model.TechnicalModel.Qualification, new { htmlAttributes = new { @class = "form-control alphabet",@maxlength="20" } })
+                                    @Html.ValidationMessageFor(model => model.TechnicalModel.Qualification, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            </form>
+                            <form id="form27ETechnicaluploads">
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Multiple Uploads</legend>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            @Html.LabelFor(model => model.TechnicalModel.Type, "File Type", new { @class = "control-label" })
+                                            <span style="color:red">*</span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.DropDownListFor(model => model.TechnicalModel.Type,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select Type", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Education", Value = "Education" },
+                                    new SelectListItem {Text = "Experience", Value = "Experience" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                            @Html.ValidationMessageFor(model => model.TechnicalModel.Type, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-2">
+                                            @Html.LabelFor(model => model.TechnicalModel.UploadDocuments, "Certificate Upload ", new { @class = "control-label" })
+                                            <span style="color:red">*</span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(model => model.TechnicalModel.UploadDocuments, new { @type = "file" })
+                                            @Html.ValidationMessageFor(model => model.TechnicalModel.UploadDocuments, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-2 text-right">
+                                            <input type="button" value="Upload" id="btnAddTechnicalCertificate" class="btn btn-default" />
+                                        </div>
+                                    </div>
+                           
+
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <div class="box-body table-responsive no-padding">
+                                            <table id="tblTechnicalCertificate" class="table table-hover">
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Type</th>
+                                                    <th>Uploaded Files</th>
+                                                    <th></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+                            </div>
+                            </fieldset>
+                            </form>
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <input type="button" value="Add Technical" id="btnAddBloodbankTechnical" class="btn btn-default" />
+                                </div>
+                            </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Technical Details</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblBloodTechnicalList" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Qulification</th>
+                                                <th>Experience</th>
+                                                @*<th>Documents</th>*@
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.TechnicalList != null)
+                                            {
+                                                for (int i = 0; i < Model.TechnicalList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.TechnicalList[i].Name</td>
+                                                        <td>@Model.TechnicalList[i].Qualification</td>
+                                                        <td> @Model.TechnicalList[i].ExpYears Years, @Model.TechnicalList[i].ExpMonths Months, @Model.TechnicalList[i].ExpDays Days</td>
+                                                        <td><input type='button' value='Delete' onclick='DeleteBloodBankTechnical(@i);' /></td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                   
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            @*<input type="button" value="Clear" id="btnBloodBankTechnicalClear" class="btn btn-default" />*@
+                            <input type="button" value="Save" id="btnBloodBankTechnicalSave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabForm27EBloodEquipment" class="tab-pane">
+                    <form id="form27EEquipment">
+                        @Html.HiddenFor(model => model.EquipmentModel.Id, new { @id = "bbeEquipmentModelId" })
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Equipment</legend>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.EquipmentModel.Name, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.EquipmentModel.Name, new { @class = "form-control alphabet", @id = "bbeEquipmentModelName",@maxlength="50" })
+                                    @Html.ValidationMessageFor(model => model.EquipmentModel.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.EquipmentModel.Type, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.EquipmentModel.Type,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select Type", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Collection", Value = "Collection" },
+                                    new SelectListItem {Text = "Processing", Value = "Processing" },
+                                    new SelectListItem {Text = "Storage", Value = "Storage" },
+                                    new SelectListItem {Text = "Testing of whole blood and its components", Value = "Testing of whole blood and its components" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "bbeEquipmentModelType" })
+                                    @Html.ValidationMessageFor(model => model.EquipmentModel.Type, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.EquipmentModel.MachineModel, "Model No.", new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.EquipmentModel.MachineModel, new { @class = "form-control", @id = "bbeEquipmentModelNo" ,@maxlength="20" })
+                                    @Html.ValidationMessageFor(model => model.EquipmentModel.MachineModel, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.EquipmentModel.SerialNumber, new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.EquipmentModel.SerialNumber, new { @class = "form-control", @id = "bbeEquipmentSerialNumber",@maxlength="20" })
+                                    @Html.ValidationMessageFor(model => model.EquipmentModel.SerialNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-7 text-right">
+                                    <input type="button" value="Add" id="btnAddBloodEquipmentForm27E" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Equipment List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblForm27EBloodEquipment" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Model</th>
+                                                <th>Serial No.</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.EquipmentList != null)
+                                            {
+                                                for (int i = 0; i < Model.EquipmentList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.EquipmentList[i].Name</td>
+                                                        <td>@Model.EquipmentList[i].Type</td>
+                                                        <td>@Model.EquipmentList[i].MachineModel</td>
+                                                        <td>@Model.EquipmentList[i].SerialNumber</td>
+                                                        <td><input type='button' value='Delete' onclick='DeleteBloodEquipmentForm27E(@i);' /></td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            @*<input type="button" value="Clear" id="btnForm27EBloodEquipmentClear" class="btn btn-default" />*@
+                            <input type="button" value="Save" id="btnForm27EBloodEquipmentSave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabForm27EAttachmnets" class="tab-pane">
+                    <form id="form27EAttachmnets">
+                        @Html.HiddenFor(model => model.BloodBankAttachments.Id, new { @id = "Form27EAttachmentId" })
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-6">
+                                The Premises and plant are ready for inspection/will be ready for inspection date:
+                            </div>
+                            @if (Model.BloodBankAttachments.Id == 0) 
+                            {
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.BloodBankAttachments.InspectionDate, new { @class = "form-control datepicker", @Value = @System.DateTime.Today.ToString("dd/MM/yyyy") })  @*@id = "Form27EInspectionDate"*@
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.BloodBankAttachments.InspectionDate, new { @class = "form-control datepicker", @Value = Model.BloodBankAttachments.InspectionDate.ToString("dd/MM/yyyy") })
+                                </div>
+                            }
+
+                        </div>
+                        <fieldset class="scheduler-border" id="fsTests">
+                            <legend class="scheduler-border">Attachmnets</legend>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.BloodBankAttachments.planPremisesPath, "Plan of the Premises", new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BloodBankAttachments.planPremisesPath, new { @class = "", type = "file", @id = "Form27EplanPremises" })
+
+                                    @if (!string.IsNullOrEmpty(Model.BloodBankAttachments.planPremisesPath))
+                                    {
+                                        var addressindex = Model.BloodBankAttachments.planPremisesPath.LastIndexOf("/");
+                                        var addressfileName = Model.BloodBankAttachments.planPremisesPath.Substring(addressindex + 1);
+                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.BloodBankAttachments.planPremisesPath, downloadName = addressfileName },
+                            null
+                            );
+                                    }
+                                    @Html.ValidationMessageFor(model => model.BloodBankAttachments.planPremisesPath, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.BloodBankAttachments.OwnerPremisesPath, "Ownership or tenacy of the Premises", new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BloodBankAttachments.OwnerPremisesPath, new { @class = "", type = "file", @id = "Form27EownerPremises" })
+
+                                    @if (!string.IsNullOrEmpty(Model.BloodBankAttachments.OwnerPremisesPath))
+                                    {
+                                        var addressindex = Model.BloodBankAttachments.OwnerPremisesPath.LastIndexOf("/");
+                                        var addressfileName = Model.BloodBankAttachments.OwnerPremisesPath.Substring(addressindex + 1);
+                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.BloodBankAttachments.OwnerPremisesPath, downloadName = addressfileName },
+                            null
+                            );
+                                    }
+                                    @Html.ValidationMessageFor(model => model.BloodBankAttachments.OwnerPremisesPath, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.BloodBankAttachments.IdProffPath, "Id Proff of Owner", new { @class = "control-label" })
+                                    <span style="color:red">*</span>
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.BloodBankAttachments.IdProffPath, new { @class = "", type = "file", @id = "Form27EIdProff" })
+
+                                    @if (!string.IsNullOrEmpty(Model.BloodBankAttachments.IdProffPath))
+                                    {
+                                        var addressindex = Model.BloodBankAttachments.IdProffPath.LastIndexOf("/");
+                                        var addressfileName = Model.BloodBankAttachments.IdProffPath.Substring(addressindex + 1);
+                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.BloodBankAttachments.IdProffPath, downloadName = addressfileName },
+                            null
+                            );
+                                    }
+                                    @Html.ValidationMessageFor(model => model.BloodBankAttachments.IdProffPath, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankAttachments.DeclareDate, "Date", new { @class = "control-label" })
+
+                            </div>
+
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.BloodBankAttachments.DeclareDate, new { @class = "form-control datepicker", @id = "Form27EdeclareDate", @Value = @System.DateTime.Today.ToString("dd/MM/yyyy") })
+                            </div>
+                            <div class="col-md-6 text-right">
+                                @Html.LabelFor(model => model.BloodBankAttachments.Name, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.BloodBankAttachments.Name, new { htmlAttributes = new { @class = "form-control", @id = "Form27EinspectionName" } })
+                                @Html.ValidationMessageFor(model => model.BloodBankAttachments.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.BloodBankAttachments.Place, "Place", new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.BloodBankAttachments.Place, new { @class = "form-control alphabet", @id = "Form27EinspectionPlace",@maxlength="20" })
+                            </div>
+                            <div class="col-md-6 text-right">
+                                @Html.LabelFor(model => model.BloodBankAttachments.Designation, new { @class = "control-label" })
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.BloodBankAttachments.Designation, new { htmlAttributes = new { @class = "form-control alphabet", @id = "Form27EinspectionDesignation" ,@maxlength="20"} })
+                                @Html.ValidationMessageFor(model => model.BloodBankAttachments.Designation, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                Enclosures Count
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.BloodBankAttachments.EnclosureCnt, new { disabled = "true" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                @*<input type="button" value="Clear" id="btnForm27EAttachmnetsClear" class="btn btn-default" />*@
+                                <input type="button" value="Save" id="btnForm27EAttachmnetsSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>
+
+<script>
+    $('#bbeApplicantDistrictId').on('change', function () {
+        debugger;
+        BindMandals('bbeApplicant', this.value);
+    });
+
+    $('#bbeApplicantMandalId').on('change', function () {
+        BindVillages('bbeApplicant', this.value);
+    });
+    $('#bbeEstablishmentDistrictId').on('change', function () {
+        BindMandals('bbeEstablishment', this.value);
+    });
+
+    $('#bbeEstablishmentMandalId').on('change', function () {
+        BindVillages('bbeEstablishment', this.value);
+    });
+
+</script>
+<script>
+    $('#btnForm27EApplicantSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var applicationtype = $('#BloodBankApplicantModel_ApplicationType').val() == undefined ? 'Grant' : $('#BloodBankApplicantModel_ApplicationType').val();
+        var isFormValid = $('#form27EApplicant').valid();
+        if (isFormValid) {
+            var url = '@Url.Action("SaveBloodBankApplicantForm27E", "License", new { Area = "User" })';
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+                var uploaddocument = $("#bbeApplicantUpload").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+                //console.log($('#BloodBankApplicantModel_Name').val());
+                fileData.append('UploadDocument', uploaddocument);
+                fileData.append('Id', $('#bbeApplicantID').val() == '' ? 0 : $('#bbeApplicantID').val());
+                fileData.append('Name', $('#bbeApplicantName').val());
+                fileData.append('OwnershipType', $('#bbeApplicantOwnerType').val());
+                fileData.append('Aadhar', $('#bbeAadhar').val());
+                fileData.append('PAN', $('#bbeApplicantPAN').val());
+                fileData.append('DistrictId', $('#bbeApplicantDistrictId').val());
+                fileData.append('MandalId', $('#bbeApplicantMandalId').val());
+                fileData.append('VillageId', $('#bbeApplicantVillageId').val());
+                fileData.append('HouseNumber', $('#bbeApplicantHouseNo').val());
+                fileData.append('StreetName', $('#bbeApplicantStreet').val());
+                // fileData.append('PINCODE'),$('#')
+                if (uploaddocument != undefined)
+                    fileData.append('UploadDocument', uploaddocument.name);
+                fileData.append('ApplicationType',  applicationtype);
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    cache: false,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#bbeApplicantID').val(response.ReturnData.split(',')[0]);
+                        ShowModal(response);
+
+                        if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                            $('#btnForm27EApplicantSave').val('Update');
+                            $('#btnForm27EApplicantSave').removeClass('btn-success');
+                            $('#btnForm27EApplicantSave').addClass('btn-primary');
+                        }
+                        else if (response.ReturnData.split(',')[1] == 'Completed') {
+                            $('#btnForm27EApplicantSave').val('Update');
+                            $('#btnForm27EApplicantSave').removeClass('btn-primary');
+                            $('#btnForm27EApplicantSave').addClass('btn-success');
+                        }
+                        else if (response.ReturnData.split(',')[1] == 'Empty') {
+                            $('#btnForm27EApplicantSave').val('Save');
+                            $('#btnForm27EApplicantSave').removeClass('btn-success');
+                            $('#btnForm27EApplicantSave').addClass('btn-primary');
+                        }
+
+                        // Populate Applicant details in Declaration Tab
+                       
+                        $('#Form27EinspectionName').val($('#bbeApplicantName').val());
+                        BindEnclosuresCnt();
+                       // CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+    $('#btnForm27EEstablishmentSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var applicationtype = $('#BloodBankApplicantModel_ApplicationType').val() == undefined ? 'Grant' : $('#BloodBankApplicantModel_ApplicationType').val();
+        var isFormValid = $('#form27EEstablishment').valid();
+        if (isFormValid) {
+            var url = '@Url.Action("SaveBloodBankEstablishmentForm27E", "License", new { Area = "User" })';
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+                var addressdocument = $("#bbeEstablishmentAddressProof").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+                //console.log($('#BloodBankApplicantModel_Name').val());
+                fileData.append('AddressProofPath', addressdocument);
+                fileData.append('Id', $('#bbeEstablishmentID').val() == '' ? 0 : $('#bbeEstablishmentID').val());
+                fileData.append('Name', $('#bbeEstablishmentName').val());
+                fileData.append('DistrictId', $('#bbeEstablishmentDistrictId').val());
+                fileData.append('MandalId', $('#bbeEstablishmentMandalId').val());
+                fileData.append('VillageId', $('#bbeEstablishmentVillageId').val());
+                fileData.append('HouseNumber', $('#bbeEstablishmentHouseNo').val());
+                fileData.append('StreetName', $('#bbeEstablishmentStreet').val());
+                if (addressdocument != undefined)
+                    fileData.append('AddressProofPath', addressdocument.name);
+                fileData.append('ApplicationType',  applicationtype);
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    cache: false,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#bbeEstablishmentID').val(response.ReturnData.split(',')[0]);
+                        ShowModal(response);
+
+                        if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                            $('#btnForm27EEstablishmentSave').val('Update');
+                            $('#btnForm27EEstablishmentSave').removeClass('btn-success');
+                            $('#btnForm27EEstablishmentSave').addClass('btn-primary');
+                        }
+                        else if (response.ReturnData.split(',')[1] == 'Completed') {
+                            $('#btnForm27EEstablishmentSave').val('Update');
+                            $('#btnForm27EEstablishmentSave').removeClass('btn-primary');
+                            $('#btnForm27EEstablishmentSave').addClass('btn-success');
+                        }
+                        else if (response.ReturnData.split(',')[1] == 'Empty') {
+                            $('#btnForm27EEstablishmentSave').val('Save');
+                            $('#btnForm27EEstablishmentSave').removeClass('btn-success');
+                            $('#btnForm27EEstablishmentSave').addClass('btn-primary');
+                        }
+                        BindEnclosuresCnt();
+                       // CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+
+    $('#btnForm27EAddItems').on('click', function (e) {
+
+        e.preventDefault();
+        var applicationtype = $('#BloodBankApplicantModel_ApplicationType').val() == undefined ? 'Grant' : $('#BloodBankApplicantModel_ApplicationType').val();
+        if ($('#form27EItems').valid()) {  
+            var url = '@Url.Action("AddListofItemForm27E", "License", new { Area = "User" })';
+            // Create FormData object
+            var fileData = new FormData();
+            fileData.append('Id', $('#bbeListItemID').val() == '' ? 0 : $('#bbeListItemID').val());
+            fileData.append('Name', $('#bbeListItemName').val());
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: fileData,
+                contentType: false,
+                processData: false,
+                async: true,
+                success: function (response) {
+                    $('#tblForm27EItems tr').not(function () { return !!$(this).has('th').length; }).remove();
+                    var json = response;
+                    console.log('response value' + File);
+                    var tr;
+                    //Append each row to html table
+                    for (var i = 0; i < json.length; i++) {
+                        tr = $('<tr/>');
+                        tr.append("<td>" + (i + 1) + "</td>");
+                        tr.append("<td>" + json[i].Name + "</td>");
+                        tr.append("<td><input type='button' value='Delete' onclick='DeleteForm27EItems(" + i + ");'/></td>");
+                        $('#tblForm27EItems').append(tr);
+                    }
+
+                    // ClearControls();
+                    $('#bbeListItemName').val('');
+                },
+
+                failure: function (response) {
+                    alert('failure: ' + response.d);
+                },
+                error: function (response) {
+                    alert('error: ' + response.d);
+                }
+            });
+
+        } else {
+            //alert("FormData is not supported.");
+        }
+    });
+
+    function DeleteForm27EItems(index) {
+        if (confirm('Do you really want to delete?')) {
+            var url = '@Url.Action("DeleteListofItemForm27E", "License", new { Area = "User" })';
+            var data = { index: index };
+            var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblForm27EItems tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteForm27EItems(" + i + ");'/></td>");
+
+                $('#tblForm27EItems').append(tr);
+            }
+        }
+    }  ).fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Delete Item List Request Failed: " + err);
+    });
+        }
+    }
+
+    $('#btnForm27EItemsSave').on('click', function (e) {
+        e.preventDefault();
+        var rowCount = $('#tblForm27EItems tr').length;     
+        if(rowCount==1)
+            alert('Please add atleast 1 Item to the list');
+        else 
+        {
+            var applicationtype = $('#BloodBankApplicantModel_ApplicationType').val() == undefined ? 'Grant' : $('#BloodBankApplicantModel_ApplicationType').val();
+            var data = {
+                ApplicationType : applicationtype
+            };
+            var url = '@Url.Action("SaveBloodBankListofItemForm27E", "License", new { Area = "User" })';
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            ShowModal(response);
+            debugger;
+            var transactionId = response.ReturnData.split(',')[0];
+            BindListofItemsSave(transactionId);  //Get method after inserting
+
+            // CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("SaveListofItems Request Failed: " + err);
+    });
+        }
+    });
+
+    function BindListofItemsSave(transactionId){
+        var url = '@Url.Action("GetBloodBankListofItemForm27E", "License", new { Area = "User" })';
+        var data = {transactionId : transactionId};
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblForm27EItems tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteForm27EItems(" + i + ");'/></td>");
+
+                $('#tblForm27EItems').append(tr);
+            }
+
+            $('#btnForm27EItemsSave').val('Update');
+            $('#btnForm27EItemsSave').removeClass('btn-primary');
+            $('#btnForm27EItemsSave').addClass('btn-success');
+        }
+        else if(json == undefined || json.length == 0){
+            $('#btnForm27EItemsSave').val('Save');
+            $('#btnForm27EItemsSave').removeClass('btn-success');
+            $('#btnForm27EItemsSave ').addClass('btn-primary');
+        }
+    })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetItems Request Failed: " + err);
+        });
+
+    }
+
+    $('#btnAddTechnicalCertificate').on('click', function (e) {
+        e.preventDefault();
+        var applicationtype = $('#BloodBankApplicantModel_ApplicationType').val() == undefined ? 'Grant' : $('#BloodBankApplicantModel_ApplicationType').val();
+        if ($('#form27ETechnicaluploads').valid()) {
+            //var url = '@Url.Action("AddTechnicalUploads", "License", new { Area = "User" })';
+            var url = '@Url.Action("UploadTechnicalDocument", "License", new { Area = "User" })';
+            if (window.FormData !== undefined) {
+                // Create FormData object
+                var DocumentUpload = $("#TechnicalModel_UploadDocuments").get(0).files[0];
+
+                var fileData = new FormData();
+                //fileData.append('Id', $('#BloodBankListModel_Id').val() == '' ? 0 : $('#BloodBankListModel_Id').val());
+                fileData.append('UploadType', $('#TechnicalModel_Type').val());
+
+                if(DocumentUpload != undefined)
+                    fileData.append('UploadedFilePath', DocumentUpload.name);
+                fileData.append('UploadedFile', DocumentUpload);
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#tblTechnicalCertificate tr').not(function () { return !!$(this).has('th').length; }).remove();
+                        var json = response;
+                        console.log('response value' + File);
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].UploadType + "</td>");
+                            var path = json[i].DocumentPath;
+                            var index = path.indexOf("/");
+                            var displayFileName = path.substring(index + 1, path.length);
+                            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                            fileLink = fileLink.replace("displaytext", displayFileName);
+                            fileLink = fileLink.replace("filepath", json[i].DocumentPath);
+                            fileLink = fileLink.replace("downloadfilename", displayFileName);
+                            tr.append("<td>" + fileLink + "</td>");
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteTechnicalStaffCertificate(" + i + ");'/></td>");
+                            $('#tblTechnicalCertificate').append(tr);
+                        }
+
+                        // ClearControls();
+                        $('#TechnicalModel_Type').val('').trigger('change');
+                        $('#TechnicalModel_UploadDocuments').val('');
+                    },
+
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            }
+        }else {
+           // alert("FormData is not supported.");
+        }
+    });
+
+    function DeleteTechnicalStaffCertificate(index) {
+        if (confirm('Do you really want to delete?')) {
+            var url = '@Url.Action("DeleteTechnicalDocument", "License", new { Area = "User" })';
+            var data = { index: index };
+            var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblTechnicalCertificate tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].UploadType + "</td>");
+                var path = json[i].DocumentPath;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", json[i].DocumentPath);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                tr.append("<td>" + fileLink + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteTechnicalStaffCertificate(" + i + ");'/></td>");
+                $('#tblTechnicalCertificate').append(tr);
+            }
+        }
+    }  ).fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Delete Technical Certificates Request Failed: " + err);
+    });
+        }
+    }
+
+    $('#btnAddBloodbankTechnical').on('click', function (e) {
+        e.preventDefault();
+        debugger;
+        var applicationtype = $('#BloodBankApplicantModel_ApplicationType').val() == undefined ? 'Grant' : $('#BloodBankApplicantModel_ApplicationType').val();
+        if ($('#form27ETechnical').valid()) {
+            var uri = '@Url.Action("AddTechnicalStaff", "License", new { Area = "User" })';
+
+            if (window.FormData !== undefined) {
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('Id', $('#TechnicalModel_Id').val() == '' ? 0 : $('#TechnicalModel_Id').val());
+                fileData.append('Name', $('#TechnicalModel_Name').val());
+                fileData.append('Responsibility', $('#TechnicalModel_Responsibility').val());
+                fileData.append('ExpYears', $('#TechnicalModel_ExpYears').val());
+                fileData.append('ExpMonths', $('#TechnicalModel_ExpMonths').val());
+                fileData.append('ExpDays', $('#TechnicalModel_ExpDays').val());
+                fileData.append('Qualification', $("#TechnicalModel_Qualification").val());
+
+                fileData.append('ApplicationType',  applicationtype);
+                $.ajax({
+                    type: "POST",
+                    url: uri,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        // Clear controls
+                        $('#TechnicalModel_Name').val('');
+                        $('#TechnicalModel_ExpYears').val('');
+                        $('#TechnicalModel_ExpMonths').val('');
+                        $('#TechnicalModel_ExpDays').val('');
+                        $('#TechnicalModel_Qualification').val('');
+                        $('#TechnicalModel_Responsibility').val('').trigger('change');
+                        $('#tblBloodTechnicalList tr').not(function () { return !!$(this).has('th').length; }).remove();
+                        var json = response;
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Name + "</td>");
+                            tr.append("<td>" + json[i].Qualification + "</td>");
+                            tr.append("<td>" + json[i].ExpYears + " Years, " + json[i].ExpMonths + " Months, " + json[i].ExpDays + " Days</td>");
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteBloodbankTechnicalStaff(" + i + ");'/></td>");
+
+                            $('#tblBloodTechnicalList').append(tr);
+                        }
+
+                        //CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+    function DeleteBloodbankTechnicalStaff(index) {
+        if (confirm('Do you really want to delete?')) {
+            var url = '@Url.Action("DeleteBloodbankTechnicalStaff", "License", new { Area = "User" })';
+            var data = { index: index };
+            var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblBloodTechnicalList tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].DesignationId + "</td>");
+                tr.append("<td>" + json[i].ExpYears + " Years, " + json[i].ExpMonths + " Months, " + json[i].ExpDays + " Days</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteBloodbankTechnicalStaff(" + i + ");'/></td>");
+
+                $('#tblBloodTechnicalList').append(tr);
+            }
+        }
+    }  ).fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Delete Technical Staff Request Failed: " + err);
+    });
+        }
+    }
+
+
+    $('#btnBloodBankTechnicalSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var rowCount = $('#tblTechnicalCertificate tr').length;     
+        if(rowCount==1)
+            alert('Please add atleast 1 Technical Staff to the list');
+        else 
+        {
+            //var applicationtype = $('#ApplicationModel_ApplicationType').val() == undefined ? 'Grant' : $('#ApplicationModel_ApplicationType').val();
+            //var data = {
+            //    ApplicationType : applicationtype
+            //};
+            var url = '@Url.Action("SaveBloodBankTechnicalDetails", "License", new { Area = "User" })';
+            var jqxhr = $.post(url, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+            debugger;
+
+            ShowModal(response);
+
+            if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                $('#btnBloodBankTechnicalSave').val('Update');
+                $('#btnBloodBankTechnicalSave').removeClass('btn-success');
+                $('#btnBloodBankTechnicalSave').addClass('btn-primary');
+            }
+            else if (response.ReturnData.split(',')[1] == 'Completed') {
+                $('#btnBloodBankTechnicalSave').val('Update');
+                $('#btnBloodBankTechnicalSave').removeClass('btn-primary');
+                $('#btnBloodBankTechnicalSave').addClass('btn-success');
+            }
+            else if (response.ReturnData.split(',')[1] == 'Empty') {
+                $('#btnBloodBankTechnicalSave').val('Save');
+                $('#btnBloodBankTechnicalSave').removeClass('btn-success');
+                $('#btnBloodBankTechnicalSave').addClass('btn-primary');
+            }
+
+            console.log('Technical Return Data: ' + response.ReturnData);
+            var transactionId = response.ReturnData.split(',')[0];
+            BindTechnicalStaffOnSave(transactionId);  //Get method after inserting
+
+            BindEnclosuresCnt();
+            //CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Technical Request Failed: " + err);
+    });
+        }
+    });
+
+    function BindTechnicalStaffOnSave(transactionId){
+        var url = '@Url.Action("GetBloodBankTechnicalDetails", "License", new { Area = "User" })';
+        var data = {transactionId : transactionId};
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+
+        $('#tblBloodTechnicalList tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].QualificationName + "</td>");
+                tr.append("<td>" + json[i].ExpYears + " Years, " + json[i].ExpMonths + " Months, " + json[i].ExpDays + " Days</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteBloodbankTechnicalStaff(" + i + ");'/></td>");
+
+                $('#tblBloodTechnicalList').append(tr);
+            }
+
+            $('#btnBloodBankTechnicalSave').val('Update');
+            $('#btnBloodBankTechnicalSave').removeClass('btn-primary');
+            $('#btnBloodBankTechnicalSave').addClass('btn-success');
+        }
+        else if(json == undefined || json.length == 0){
+            $('#btnBloodBankTechnicalSave').val('Save');
+            $('#btnBloodBankTechnicalSave').removeClass('btn-success');
+            $('#btnBloodBankTechnicalSave').addClass('btn-primary');
+        }
+    })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Get Technical Request Failed: " + err);
+        });
+
+    }
+
+
+
+    $('#btnAddBloodEquipmentForm27E').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var applicationtype = $('#BloodBankApplicantModel_ApplicationType').val() == undefined ? 'Grant' : $('#BloodBankApplicantModel_ApplicationType').val();
+        var isFormValid = $('#form27EEquipment').valid();
+        if (isFormValid) {
+            var url = '@Url.Action("AddBloodBankEquipmenForm27E", "License", new { Area = "User" })';
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+
+
+                // Create FormData object
+                var fileData = new FormData();
+                fileData.append('Id', $('#bbeEquipmentModelId').val() == '' ? 0 : $('#bbeEquipmentModelId').val());
+                fileData.append('Name', $('#bbeEquipmentModelName').val());
+                fileData.append('Type', $('#bbeEquipmentModelType').val());
+                fileData.append('MachineModel', $('#bbeEquipmentModelNo').val());
+                fileData.append('SerialNumber', $('#bbeEquipmentSerialNumber').val());
+                fileData.append('ApplicationType',  applicationtype);
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#tblForm27EBloodEquipment tr').not(function () { return !!$(this).has('th').length; }).remove();
+                        var json = response;
+                        console.log('response value' + File);
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Name + "</td>");
+                            tr.append("<td>" + json[i].Type + "</td>");
+                            tr.append("<td>" + json[i].MachineModel + "</td>");
+                            tr.append("<td>" + json[i].SerialNumber + "</td>");
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteBloodEquipmentForm27E(" + i + ");'/></td>");
+                            $('#tblForm27EBloodEquipment').append(tr);
+                        }
+
+                        // ClearControls();
+                        $('#bbeEquipmentModelName').val('');
+                        $('#bbeEquipmentModelType').val('').trigger('change');
+                        $('#bbeEquipmentModelNo').val('');
+                        $('#bbeEquipmentSerialNumber').val('');
+                    },
+
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            }
+            else {
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+    
+
+    function DeleteBloodEquipmentForm27E(index) {
+        if (confirm('Do you really want to delete?')) {
+            var url = '@Url.Action("DeleteBloodBankEquipmentForm27E", "License", new { Area = "User" })';
+            var data = { index: index };
+            var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblForm27EBloodEquipment tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].Type + "</td>");
+                tr.append("<td>" + json[i].MachineModel + "</td>");
+                tr.append("<td>" + json[i].SerialNumber + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteBloodEquipmentForm27E(" + i + ");'/></td>");
+
+                $('#tblForm27EBloodEquipment').append(tr);
+            }
+        }
+    }  ).fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Delete Equipment Request Failed: " + err);
+    });
+        }
+    }
+
+
+
+    $('#btnForm27EBloodEquipmentSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var rowCount = $('#tblForm27EBloodEquipment tr').length;     
+        if(rowCount==1)
+            alert('Please add atleast 1 Equipment to the list');
+        else 
+        {
+            var applicationtype = $('#BloodBankApplicantModel_ApplicationType').val() == undefined ? 'Grant' : $('#BloodBankApplicantModel_ApplicationType').val();
+            var data = {
+                ApplicationType : applicationtype
+            };
+            var url = '@Url.Action("SaveBloodBankEquipmentForm27E", "License", new { Area = "User" })';
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+            debugger;
+        
+            ShowModal(response);
+
+            if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                $('#btnForm27EBloodEquipmentSave').val('Update');
+                $('#btnForm27EBloodEquipmentSave').removeClass('btn-success');
+                $('#btnForm27EBloodEquipmentSave').addClass('btn-primary');
+            }
+            else if (response.ReturnData.split(',')[1] == 'Completed') {
+                $('#btnForm27EBloodEquipmentSave').val('Update');
+                $('#btnForm27EBloodEquipmentSave').removeClass('btn-primary'); 
+                $('#btnForm27EBloodEquipmentSave').addClass('btn-success');
+            }
+            else if (response.ReturnData.split(',')[1] == 'Empty') {
+                $('#btnForm27EBloodEquipmentSave').val('Save');
+                $('#btnForm27EBloodEquipmentSave').removeClass('btn-success');
+                $('#btnForm27EBloodEquipmentSave').addClass('btn-primary');
+            }
+
+            // CheckforEnableSubmit();
+
+            console.log('Equipment Return Data: ' + response.ReturnData);
+            var transactionId = response.ReturnData.split(',')[0];
+
+            BindEquipmentSave(transactionId);  //Get method after inserting
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Equipment Request Failed: " + err);
+    });
+        }
+    });
+
+
+    function BindEquipmentSave(transactionId){
+        var url = '@Url.Action("GetBloodBankEquipmentForm27E", "License", new { Area = "User" })';
+        var data = {transactionId : transactionId};
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblForm27EBloodEquipment tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].Type + "</td>");
+                tr.append("<td>" + json[i].MachineModel + "</td>");
+                tr.append("<td>" + json[i].SerialNumber + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteBloodEquipmentForm27E(" + i + ");'/></td>");
+
+                $('#tblForm27EBloodEquipment').append(tr);
+            }
+
+            $('#btnForm27EBloodEquipmentSave').val('Update');
+            $('#btnForm27EBloodEquipmentSave').removeClass('btn-primary');
+            $('#btnForm27EBloodEquipmentSave').addClass('btn-success');
+        }
+        else if(json == undefined || json.length == 0){
+            $('#btnForm27EBloodEquipmentSave').val('Save');
+            $('#btnForm27EBloodEquipmentSave').removeClass('btn-success');
+            $('#btnForm27EBloodEquipmentSave').addClass('btn-primary');
+        }
+    })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetEquipments Request Failed: " + err);
+        });
+
+    }
+
+
+    $('#btnForm27EAttachmnetsSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var applicationtype = $('#BloodBankApplicantModel_ApplicationType').val() == undefined ? 'Grant' : $('#BloodBankApplicantModel_ApplicationType').val();
+        var isFormValid = $('#form27EAttachmnets').valid();
+        if (true){  // isFormValid) {
+            var url = '@Url.Action("SaveBloodBankDeclarationForm27E", "License", new { Area = "User" })';
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+                var plandocument = $("#Form27EplanPremises").get(0).files[0];
+                var ownerdocument = $("#Form27EownerPremises").get(0).files[0];
+                var idproffdocument = $("#Form27EIdProff").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+                fileData.append('planPremises', plandocument);
+                fileData.append('OwnerPremises', ownerdocument);
+                fileData.append('IdProff', idproffdocument);
+                fileData.append('Id', $('#Form27EAttachmentId').val() == '' ? 0 : $('#Form27EAttachmentId').val());
+                fileData.append('InspectionDate', $('#BloodBankAttachments_InspectionDate').val());
+                fileData.append('DeclareDate', $('#Form27EdeclareDate').val());
+                fileData.append('Name', $('#Form27EinspectionName').val());
+                fileData.append('Designation', $('#Form27EinspectionDesignation').val());
+                fileData.append('Place', $('#Form27EinspectionPlace').val());
+                if (plandocument != undefined)
+                    fileData.append('planPremisesPath', plandocument.name);
+                if (ownerdocument != undefined)
+                    fileData.append('OwnerPremisesPath', ownerdocument.name);
+                if (idproffdocument != undefined)
+                    fileData.append('IdProffPath', idproffdocument.name);
+                fileData.append('ApplicationType',  applicationtype);
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    cache: false,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#Form27EAttachmentId').val(response.ReturnData.split(',')[0]);
+                        ShowModal(response);
+
+                        if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                            $('#btnForm27EAttachmnetsSave').val('Update');
+                            $('#btnForm27EAttachmnetsSave').removeClass('btn-success');
+                            $('#btnForm27EAttachmnetsSave').addClass('btn-primary');
+                        }
+                        else if (response.ReturnData.split(',')[1] == 'Completed') {
+                            $('#btnForm27EAttachmnetsSave').val('Update');
+                            $('#btnForm27EAttachmnetsSave').removeClass('btn-primary');
+                            $('#btnForm27EAttachmnetsSave').addClass('btn-success');
+                        }
+                        else if (response.ReturnData.split(',')[1] == 'Empty') {
+                            $('#btnForm27EAttachmnetsSave').val('Save');
+                            $('#btnForm27EAttachmnetsSave').removeClass('btn-success');
+                            $('#btnForm27EAttachmnetsSave').addClass('btn-primary');
+                        }
+                        BindEnclosuresCnt();
+                       // CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+
+
+</script>
+<script>
+    $(function () {
+        BindBloodBankApplicantDataForm27E();
+        BindBloodBankEstablishmentDataForm27E();
+        BindBBEListofItemsData();
+        BindTechnicalData();
+        BindBBEEquipmentData();
+        BindBloodBankAttachmentForm27E();
+        BindEnclosuresCnt();
+       // CheckforEnableSubmit();
+    })
+
+    function BindBloodBankApplicantDataForm27E(){
+        var bbeapplicantModel = @Html.Raw(Json.Encode(Model.BloodBankApplicantModel));
+        if(bbeapplicantModel.FormStatus != 0){
+
+            $('#btnForm27EApplicantSave').val('Update');
+
+            if (bbeapplicantModel.FormStatus == 1) {
+                // Partially Saved
+                $('#btnForm27EApplicantSave').removeClass('btn-success');
+                $('#btnForm27EApplicantSave').addClass('btn-primary');
+            }
+            else if (bbeapplicantModel.FormStatus == 2) {
+                // Completely Saved
+                $('#btnForm27EApplicantSave').removeClass('btn-primary');
+                $('#btnForm27EApplicantSave').addClass('btn-success');
+            }
+
+
+            if(bbeapplicantModel.DistrictId > 0)
+            {
+                BindMandals('bbeApplicant', bbeapplicantModel.DistrictId);
+                setTimeout(
+                   function(){
+                       if(bbeapplicantModel.MandalId > 0){
+                           $('#bbeApplicantMandalId').val(bbeapplicantModel.MandalId).trigger('change');
+                           BindVillages('bbeApplicant', bbeapplicantModel.MandalId);
+                           setTimeout(function(){
+                               if(bbeapplicantModel.VillageId > 0){
+                                   $('#bbeApplicantVillageId').val(bbeapplicantModel.VillageId).trigger('change');
+                               }
+                           }, 2000);
+                       }
+                   }
+                    , 2000);
+            }
+        }
+    }
+
+    function BindBloodBankEstablishmentDataForm27E(){
+        var establishmentModel = @Html.Raw(Json.Encode(Model.BloodBankEstablishmentModel));
+        if(establishmentModel.FormStatus != 0){
+            $('#btnForm27EEstablishmentSave').val('Update');
+
+            if (establishmentModel.FormStatus == 1) {
+                // Partially Saved
+                $('#btnForm27EEstablishmentSave').removeClass('btn-success');
+                $('#btnForm27EEstablishmentSave').addClass('btn-primary');
+            }
+            else if (establishmentModel.FormStatus == 2) {
+                // Completely Saved
+                $('#btnForm27EEstablishmentSave').removeClass('btn-primary');
+                $('#btnForm27EEstablishmentSave').addClass('btn-success');
+            }
+
+            if(establishmentModel.DistrictId > 0)
+            {
+                BindMandals('bbeEstablishment', establishmentModel.DistrictId);
+                setTimeout(
+                   function(){
+                       if(establishmentModel.MandalId > 0){
+                           $('#bbeEstablishmentMandalId').val(establishmentModel.MandalId).trigger('change');
+                           BindVillages('bbeEstablishment', establishmentModel.MandalId);
+                           setTimeout(function(){
+                               if(establishmentModel.VillageId > 0){
+                                   $('#bbeEstablishmentVillageId').val(establishmentModel.VillageId).trigger('change');
+                               }
+                           }, 2000);
+                       }
+                   }
+                    , 2000);
+            }
+        }
+    }
+
+    function BindBBEListofItemsData(){
+        var listOfItems = @Html.Raw(Json.Encode(Model.BloodBankList));
+        if(listOfItems.length > 0){
+            $('#btnForm27EItemsSave').val('Update');
+            $('#btnForm27EItemsSave').removeClass('btn-primary');
+            $('#btnForm27EItemsSave').addClass('btn-success');
+        }
+        else{
+            $('#btnForm27EItemsSave').removeClass('btn-success');
+            $('#btnForm27EItemsSave').addClass('btn-primary');
+        }
+    }
+
+    function BindTechnicalData(){
+        debugger;
+        var employees = @Html.Raw(Json.Encode(Model.TechnicalList));
+        if(employees.length > 0){
+            $('#btnBloodBankTechnicalSave').val('Update');
+            $('#btnBloodBankTechnicalSave').removeClass('btn-primary');
+            $('#btnBloodBankTechnicalSave').addClass('btn-success');
+        }
+        else{
+            $('#btnBloodBankTechnicalSave').removeClass('btn-success');
+            $('#btnBloodBankTechnicalSave').addClass('btn-primary');
+        }
+    }
+
+    function BindBBEEquipmentData(){
+        debugger;
+        var equipments = @Html.Raw(Json.Encode(Model.EquipmentList));
+        if(equipments.length > 0){
+            $('#btnForm27EBloodEquipmentSave').val('Update');
+            $('#btnForm27EBloodEquipmentSave').removeClass('btn-primary');
+            $('#btnForm27EBloodEquipmentSave').addClass('btn-success');
+        }
+        else{
+            $('#btnForm27EBloodEquipmentSave').removeClass('btn-success');
+            $('#btnForm27EBloodEquipmentSave').addClass('btn-primary');
+        }
+    }
+
+    function BindBloodBankAttachmentForm27E(){
+        var AttachmentModel = @Html.Raw(Json.Encode(Model.BloodBankAttachments));
+        if(AttachmentModel.FormStatus != 0){
+            $('#btnForm27EAttachmnetsSave').val('Update');
+
+            if (AttachmentModel.FormStatus == 1) {
+                // Partially Saved
+                $('#btnForm27EAttachmnetsSave').removeClass('btn-success');
+                $('#btnForm27EAttachmnetsSave').addClass('btn-primary');
+            }
+            else if (AttachmentModel.FormStatus == 2) {
+                // Completely Saved
+                $('#btnForm27EAttachmnetsSave').removeClass('btn-primary');
+                $('#btnForm27EAttachmnetsSave').addClass('btn-success');
+            }
+
+        }
+    }
+
+    function CheckforEnableSubmit(){
+        var result = false;
+        if($('#btnForm27EApplicantSave').hasClass('btn-success') && $('#btnForm27EEstablishmentSave').hasClass('btn-success')
+            && $('#btnForm27EItemsSave').hasClass('btn-success') && $('#btnBloodBankTechnicalSave').hasClass('btn-success')
+            && $('#btnForm27EBloodEquipmentSave').hasClass('btn-success') && $('#btnForm27EAttachmnetsSave').hasClass('btn-success'))
+        {
+            result = true;
+        }
+        else
+        {
+            result = false;
+        }
+
+        return result;
+    }
+
+    function ChekforBloodBankForm27E(){
+        var result = false;
+        if($('#btnForm27EApplicantSave').hasClass('btn-success') && $('#btnForm27EEstablishmentSave').hasClass('btn-success')
+             && $('#btnForm27EItemsSave').hasClass('btn-success') && $('#btnBloodBankTechnicalSave').hasClass('btn-success')
+             && $('#btnForm27EBloodEquipmentSave').hasClass('btn-success') && $('#btnForm27EAttachmnetsSave').hasClass('btn-success'))
+        {
+            result = true;
+        }
+        else
+        {
+            result = false;
+        }
+
+        return result;
+    }
+
+    function BindEnclosuresCnt(){
+        debugger;
+        var serviceName='BloodBankForm27E';
+        var url = '@Url.Action("EnclosureCount", "License", new { Area = "User" })';
+        var data = {
+            ServiceName:  serviceName
+        };
+        var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var enclosureJson ;
+        if (response instanceof Object)
+            enclosureJson = response;
+        else
+            enclosureJson = $.parseJSON(response);
+
+        console.log(enclosureJson);
+        if(enclosureJson[0].EnclosureCnt !=0)
+        {
+            $('#BloodBankAttachments_EnclosureCnt').val(enclosureJson[0].Column1);
+        }
+        else
+        {
+            $('#BloodBankAttachments_EnclosureCnt').val(0);
+        }
+        
+    })
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("enclosureJson Request Failed: " + err);
+});
+
+    }
+
+    function ValidateForm27ECompleted(){
+        var result = false;
+        debugger;
+
+        if($('#btnForm27EApplicantSave').hasClass('btn-success'))
+
+        {
+            result= true;
+        }
+        else
+        {
+           
+            $('#liApplicant27ETab').removeClass('active'); 
+            $('#liEstablishment27ETab').removeClass('active'); 
+            $('#lilistofitems27ETab').removeClass('active'); 
+            $('#liTechnicalStaff27eTab').removeClass('active'); 
+            $('#liEquipment27ETab').removeClass('active'); 
+            $('#liAttachment27ETab').removeClass('active'); 
+           
+
+            $('#tabBloodApplicantForm27E').removeClass('active'); 
+            $('#tabBloodEstablishmentForm27E').removeClass('active'); 
+            $('#tabForm27EItems').removeClass('active'); 
+            $('#tabForm27EBloodTechnical').removeClass('active'); 
+            $('#tabForm27EBloodEquipment').removeClass('active'); 
+            $('#tabForm27EAttachmnets').removeClass('active'); 
+          
+
+            $('#liApplicant27ETab').addClass('active');
+            $('#tabBloodApplicantForm27E').addClass('active');
+
+            result= false;
+            
+    
+        }
+        if(result==true)
+        {
+            if($('#btnForm27EEstablishmentSave').hasClass('btn-success'))
+            {
+                result=true;
+            }
+            else
+            {
+                $('#liApplicant27ETab').removeClass('active'); 
+                $('#liEstablishment27ETab').removeClass('active'); 
+                $('#lilistofitems27ETab').removeClass('active'); 
+                $('#liTechnicalStaff27eTab').removeClass('active'); 
+                $('#liEquipment27ETab').removeClass('active'); 
+                $('#liAttachment27ETab').removeClass('active'); 
+           
+
+                $('#tabBloodApplicantForm27E ').removeClass('active'); 
+                $('#tabBloodEstablishmentForm27E').removeClass('active'); 
+                $('#tabForm27EItems').removeClass('active'); 
+                $('#tabForm27EBloodTechnical').removeClass('active'); 
+                $('#tabForm27EBloodEquipment').removeClass('active'); 
+                $('#tabForm27EAttachmnets').removeClass('active'); 
+
+                $('#liEstablishment27ETab').addClass('active');
+                $('#tabBloodEstablishmentForm27E').addClass('active');
+                result= false;
+            }
+        }
+        if(result==true)
+        {
+            if($('#btnForm27EItemsSave').hasClass('btn-success'))
+            {
+                result=true;
+            }
+            else
+            {
+                $('#liApplicant27ETab').removeClass('active'); 
+                $('#liEstablishment27ETab').removeClass('active'); 
+                $('#lilistofitems27ETab').removeClass('active'); 
+                $('#liTechnicalStaff27eTab').removeClass('active'); 
+                $('#liEquipment27ETab').removeClass('active'); 
+                $('#liAttachment27ETab').removeClass('active'); 
+           
+
+                $('#tabBloodApplicantForm27E ').removeClass('active'); 
+                $('#tabBloodEstablishmentForm27E').removeClass('active'); 
+                $('#tabForm27EItems').removeClass('active'); 
+                $('#tabForm27EBloodTechnical').removeClass('active'); 
+                $('#tabForm27EBloodEquipment').removeClass('active'); 
+                $('#tabForm27EAttachmnets').removeClass('active'); 
+
+                $('#lilistofitems27ETab').addClass('active');
+                $('#tabForm27EItems').addClass('active');
+                result= false;
+            }
+        }
+        if(result==true)
+        {
+            if($('#btnBloodBankTechnicalSave').hasClass('btn-success'))
+            {
+                result=true;
+            }
+            else
+            {
+                $('#liApplicant27ETab').removeClass('active'); 
+                $('#liEstablishment27ETab').removeClass('active'); 
+                $('#lilistofitems27ETab').removeClass('active'); 
+                $('#liTechnicalStaff27eTab').removeClass('active'); 
+                $('#liEquipment27ETab').removeClass('active'); 
+                $('#liAttachment27ETab').removeClass('active'); 
+           
+
+                $('#tabBloodApplicantForm27E ').removeClass('active'); 
+                $('#tabBloodEstablishmentForm27E').removeClass('active'); 
+                $('#tabForm27EItems').removeClass('active'); 
+                $('#tabForm27EBloodTechnical').removeClass('active'); 
+                $('#tabForm27EBloodEquipment').removeClass('active'); 
+                $('#tabForm27EAttachmnets').removeClass('active'); 
+
+                $('#liTechnicalStaff27eTab').addClass('active');
+                $('#tabForm27EBloodTechnical').addClass('active');
+                result= false;
+            }
+        }
+        if(result==true)
+        {
+            if($('#btnForm27EBloodEquipmentSave').hasClass('btn-success'))
+            {
+                result=true;
+            }
+            else
+            {
+                $('#liApplicant27ETab').removeClass('active'); 
+                $('#liEstablishment27ETab').removeClass('active'); 
+                $('#lilistofitems27ETab').removeClass('active'); 
+                $('#liTechnicalStaff27eTab').removeClass('active'); 
+                $('#liEquipment27ETab').removeClass('active'); 
+                $('#liAttachment27ETab').removeClass('active'); 
+           
+
+                $('#tabBloodApplicantForm27E ').removeClass('active'); 
+                $('#tabBloodEstablishmentForm27E').removeClass('active'); 
+                $('#tabForm27EItems').removeClass('active'); 
+                $('#tabForm27EBloodTechnical').removeClass('active'); 
+                $('#tabForm27EBloodEquipment').removeClass('active'); 
+                $('#tabForm27EAttachmnets').removeClass('active'); 
+ 
+
+                $('#liEquipment27ETab').addClass('active');
+                $('#tabForm27EBloodEquipment').addClass('active');
+                result= false;
+            }
+        }
+        if(result==true)
+        {
+            if($('#btnForm27EAttachmnetsSave').hasClass('btn-success'))
+            {
+                result=true;
+            }
+            else
+            {
+                $('#liApplicant27ETab').removeClass('active'); 
+                $('#liEstablishment27ETab').removeClass('active'); 
+                $('#lilistofitems27ETab').removeClass('active'); 
+                $('#liTechnicalStaff27eTab').removeClass('active'); 
+                $('#liEquipment27ETab').removeClass('active'); 
+                $('#liAttachment27ETab').removeClass('active'); 
+           
+
+                $('#tabBloodApplicantForm27E ').removeClass('active'); 
+                $('#tabBloodEstablishmentForm27E').removeClass('active'); 
+                $('#tabForm27EItems').removeClass('active'); 
+                $('#tabForm27EBloodTechnical').removeClass('active'); 
+                $('#tabForm27EBloodEquipment').removeClass('active'); 
+                $('#tabForm27EAttachmnets').removeClass('active');   
+
+                $('#liAttachment27ETab').addClass('active');
+                $('#tabForm27EAttachmnets').addClass('active');
+                result= false;
+            }
+        }
+       
+
+
+        return result;
+
+    }
+</script>

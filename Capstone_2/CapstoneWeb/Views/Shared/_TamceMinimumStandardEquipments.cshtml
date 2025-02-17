@@ -1,0 +1,965 @@
+﻿
+@model Capstone.Models.TAMCEFacilityModel
+
+<div class="row">
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large;">Part-III</span>
+            <br />
+            <i>Minumum Standards for Equipment and Furniture</i>
+            <br />
+            <span style="font-size:x-large;"> FOR HOSPITALS AND NURSING HOMES (Norms are Bed Strength Based)</span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">FOR HOSPITALS AND NURSING HOMES (Norms are Bed Strength Based) </legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> A) O.T Equipment :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th style="width:30px;">S.No.</th>
+                                    <th style="width:528px;">Name</th>
+                                    <th>>= 100 Bedded</th>
+                                    <th>50 to 100 Bedded</th>
+                                    <th><= 50 Bedded</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                @*<tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>*@
+                                <tr>
+                                    <td style="width:30px;">1</td>
+                                    <td style="width:528px;">
+                                        OPERATING TABLE, ORDINARY
+                                    </td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">2</td>
+                                    <td style="width:528px;">
+                                        OPERATING TABLE, HYDRAULIC
+                                    </td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">3</td>
+                                    <td style="width:528px;">
+                                        AUTOCLAVE, HP, HORIZONTAL
+                                    </td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">4</td>
+                                    <td style="width:528px;">
+                                        AUTOCLAVE, HP, VERTICAL
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">5</td>
+                                    <td style="width:528px;">
+                                        AUTPCLAVE,ELECTRICAL WITH BURNERS, 2-BIN
+                                    </td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">6</td>
+                                    <td style="width:528px;">
+                                        SHADOWLESS, LAMP, OT, MOBILE
+                                    </td>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">7</td>
+                                    <td style="width:528px;">
+                                        OT LIGHTS, CEILING (SHADOWLESS)
+                                    </td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">8</td>
+                                    <td style="width:528px;">
+                                        FOCUSING LIGHTS, OT(MOBILE)
+                                    </td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">9</td>
+                                    <td style="width:528px;">
+                                        SUCTION APPARATUS(HIGH VACUME MTP)
+                                    </td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">10</td>
+                                    <td style="width:528px;">
+                                        SUCTION APPARATUS,ELECTRICAL
+                                    </td>
+                                    <td>15</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">11</td>
+                                    <td style="width:528px;">
+                                        FOOT SUCTION APPARATUS
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">12</td>
+                                    <td style="width:528px;">
+                                        VACCUM EXTRACTOR
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">13</td>
+                                    <td style="width:528px;">
+                                        STERILISER INSTRUMENT
+                                    </td>
+                                    <td>25</td>
+                                    <td>10</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">14</td>
+                                    <td style="width:528px;">
+                                        ELECTRO-SURGERY MACHINE
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">15</td>
+                                    <td style="width:528px;">
+                                        CAUTERY SET, ELECTRIC(GYNAE)
+                                    </td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">16</td>
+                                    <td style="width:528px;">
+                                        AUTOMIST (OT FUMIGATOR)
+                                    </td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">17</td>
+                                    <td style="width:528px;">
+                                        SHORT-WAVE DIATHERMY
+                                    </td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">18</td>
+                                    <td style="width:528px;">
+                                        VENTILATOR,ADULT
+                                    </td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">19</td>
+                                    <td style="width:528px;">
+                                        ANESTHETIC M/C(BOYLES WITH FLOTEC)
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">20</td>
+                                    <td style="width:528px;">
+                                        ANESTHETIC M/C(BOYLES WITHOUT FLOTEC)
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">21</td>
+                                    <td style="width:528px;">
+                                        PULSE OXIMETER
+                                    </td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">22</td>
+                                    <td style="width:528px;">
+                                        ECG MACHINE(12-LEAD)
+                                    </td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">23</td>
+                                    <td style="width:528px;">
+                                        CARDIAC MONITOR
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">24</td>
+                                    <td style="width:528px;">
+                                        DEFIBRILLATOR
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">25</td>
+                                    <td style="width:528px;">
+                                        PHOTOTHERAPY UNIT
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">26</td>
+                                    <td style="width:528px;">
+                                        RADIANT HEATER,4KW
+                                    </td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">27</td>
+                                    <td style="width:528px;">
+                                        INCUBATORS
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">28</td>
+                                    <td style="width:528px;">
+                                        OPEN CARE UNITS
+                                    </td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">29</td>
+                                    <td style="width:528px;">
+                                        NEONATAL RESUSCITATION UNIT
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> B) GENERAL EQUIPMENT :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th  style="width:30px;">S.No.</th>
+                                    <th  style="width:528px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td  style="width:30px;">1</td>
+                                    <td style="width:528px;">
+                                        REFRIGERATOR, 165/300 LITRES
+                                    </td>
+                                    <td>8</td>
+                                    <td>5</td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">2</td>
+                                    <td style="width:528px;">
+                                        AIR CONDITIONERS
+                                    </td>
+                                    <td>8</td>
+                                    <td>5</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">3</td>
+                                    <td style="width:528px;">
+                                        WATER COOLER, 60/120 LITRES
+                                    </td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">4</td>
+                                    <td style="width:528px;">
+                                        GENERATOR, 15KVA
+                                    </td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">5</td>
+                                    <td style="width:528px;">
+                                        GENERATOR, 50KVA
+                                    </td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">6</td>
+                                    <td style="width:528px;">
+                                        INTERCOM-15 LINES
+                                    </td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">7</td>
+                                    <td style="width:528px;">
+                                        INTERCOM-40 LINES
+                                    </td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">8</td>
+                                    <td style="width:528px;">
+                                        FAX MACHINE
+                                    </td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">9</td>
+                                    <td style="width:528px;">
+                                        TELEPHONE LINES
+                                    </td>
+                                    <td>12</td>
+                                    <td>6</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">10</td>
+                                    <td style="width:528px;">
+                                        VEHICLES
+                                    </td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">11</td>
+                                    <td style="width:528px;">
+                                        AMBULANCE
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> C) MINOR EQUIPMENT :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th style="width:30px;">S.No.</th>
+                                    <th style="width:528px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">1</td>
+                                    <td style="width:528px;">
+                                        BP MACHINE
+                                    </td>
+                                    <td>24</td>
+                                    <td>12</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">2</td>
+                                    <td style="width:528px;">
+                                        WEIGHING SCALE,ADULT
+                                    </td>
+                                    <td>12</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">3</td>
+                                    <td style="width:528px;">
+                                        WEIGHING SCALE,INFANT
+                                    </td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">4</td>
+                                    <td style="width:528px;">
+                                        OXYGEN CYLINDERS
+                                    </td>
+                                    <td>40</td>
+                                    <td>20</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">5</td>
+                                    <td style="width:528px;">
+                                        NITROUS OXIDE CYLINDERS
+                                    </td>
+                                    <td>20</td>
+                                    <td>10</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">6</td>
+                                    <td style="width:528px;">
+                                        REGULATOR AND FLOWMETERS
+                                    </td>
+                                    <td>16</td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">7</td>
+                                    <td style="width:528px;">
+                                        AMBU-BAG
+                                    </td>
+                                    <td>16</td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">8</td>
+                                    <td style="width:528px;">
+                                        HOT PLATE,DOMESTIC
+                                    </td>
+                                    <td>6</td>
+                                    <td>3</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">9</td>
+                                    <td style="width:528px;">
+                                        EMERGENCY LAMP
+                                    </td>
+                                    <td>16</td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">10</td>
+                                    <td style="width:528px;">
+                                        FIRE EXTINGUISHERS EACH
+                                    </td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">11</td>
+                                    <td style="width:528px;">
+                                        LARYNGOSCOPES
+                                    </td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">12</td>
+                                    <td style="width:528px;">
+                                        OTOSCOPE
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">13</td>
+                                    <td style="width:528px;">
+                                        RESUSCITATION EQUIPMENT
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> D) HOSPITAL FURNITURE :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th style="width:30px;">S.No.</th>
+                                    <th  style="width:528px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">1</td>
+                                    <td style="width:528px;">
+                                        EXAMINATION TABLE
+                                    </td>
+                                    <td>30</td>
+                                    <td>15</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">2</td>
+                                    <td style="width:528px;">
+                                        LABOUR TABLE
+                                    </td>
+                                    <td>6</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">3</td>
+                                    <td style="width:528px;">
+                                        FOOT STEPS
+                                    </td>
+                                    <td>30</td>
+                                    <td>15</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">4</td>
+                                    <td style="width:528px;">
+                                        BEDSIDE SCREENS
+                                    </td>
+                                    <td>40</td>
+                                    <td>20</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">5</td>
+                                    <td style="width:528px;">
+                                        REVOLVING STOOL
+                                    </td>
+                                    <td>40</td>
+                                    <td>20</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">6</td>
+                                    <td style="width:528px;">
+                                        SALINE STANDS
+                                    </td>
+                                    <td>50</td>
+                                    <td>25</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">7</td>
+                                    <td style="width:528px;">
+                                        WHEEL CHAIRS
+                                    </td>
+                                    <td>12</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">8</td>
+                                    <td style="width:528px;">
+                                        EMERGENCY/RECOVERY TROLLEY
+                                    </td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">9</td>
+                                    <td style="width:528px;">
+                                        STRETCHER ON TROLLEY
+                                    </td>
+                                    <td>12</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">10</td>
+                                    <td style="width:528px;">
+                                        OXYGEN CYLINDER STANDS
+                                    </td>
+                                    <td>16</td>
+                                    <td>8</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">11</td>
+                                    <td style="width:528px;">
+                                        IRON COT
+                                    </td>
+                                    <td>AS PER BED STRENGTH</td>
+                                    <td>AS PER BED STRENGTH</td>
+                                    <td>AS PER BED STRENGTH</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">12</td>
+                                    <td style="width:528px;">
+                                        SIDE RAILS
+                                    </td>
+                                    <td>10</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">13</td>
+                                    <td style="width:528px;">
+                                        BABY COT
+                                    </td>
+                                    <td>12</td>
+                                    <td>6</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">14</td>
+                                    <td style="width:528px;">
+                                        BEDSIDE LOCKER
+                                    </td>
+                                    <td>AS PER BED STRENGTH</td>
+                                    <td>AS PER BED STRENGTH</td>
+                                    <td>AS PER BED STRENGTH</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">15</td>
+                                    <td style="width:528px;">
+                                        DRESSING TROLLEY
+                                    </td>
+                                    <td>12</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">16</td>
+                                    <td style="width:528px;">
+                                        MAYO'S TROLLEY
+                                    </td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">17</td>
+                                    <td style="width:528px;">
+                                        SURGICAL INSTRUMENT CABINET
+                                    </td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">18</td>
+                                    <td style="width:528px;">
+                                        MEDICINE CABINET
+                                    </td>
+                                    <td>10</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">19</td>
+                                    <td style="width:528px;">
+                                        INSTRUMENT TROLLEY
+                                    </td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">20</td>
+                                    <td style="width:528px;">
+                                        LINEN TROLLEY
+                                    </td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">21</td>
+                                    <td style="width:528px;">
+                                        KICK BUCKET
+                                    </td>
+                                    <td>16</td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">22</td>
+                                    <td style="width:528px;">
+                                        BUCKET(GALVANISED)
+                                    </td>
+                                    <td>20</td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">23</td>
+                                    <td style="width:528px;">
+                                        BED PANS AND URINALS
+                                    </td>
+                                    <td>20</td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">24</td>
+                                    <td style="width:528px;">
+                                        ATTENDENT SCHOOL
+                                    </td>
+                                    <td>AS PER STRENGTH</td>
+                                    <td>AS PER STRENGTH</td>
+                                    <td>AS PER STRENGTH</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">25</td>
+                                    <td style="width:528px;">
+                                        WASH BASIN STANDS
+                                    </td>
+                                    <td>40</td>
+                                    <td>20</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">26</td>
+                                    <td style="width:528px;">
+                                        INSTRUMENT/MEDICINE TRAY WITH COVER
+                                    </td>
+                                    <td>24</td>
+                                    <td>12</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">27</td>
+                                    <td style="width:528px;">
+                                        BOWLS AND KIDNEY TRAYS
+                                    </td>
+                                    <td>40</td>
+                                    <td>20</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">28</td>
+                                    <td style="width:528px;">
+                                        CHAIR(DOCTORS,NURSES)
+                                    </td>
+                                    <td>50</td>
+                                    <td>24</td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">29</td>
+                                    <td style="width:528px;">
+                                        SWAB BACK(OT)
+                                    </td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">30</td>
+                                    <td style="width:528px;">
+                                        FRACTURE TABLE(POP)
+                                    </td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">31</td>
+                                    <td style="width:528px;">
+                                        MATTRESS AND PILLOWS
+                                    </td>
+                                    <td>AS PER STRENGTH</td>
+                                    <td>AS PER STRENGTH</td>
+                                    <td>AS PER STRENGTH</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">32</td>
+                                    <td style="width:528px;">
+                                        BENCHS
+                                    </td>
+                                    <td>ADEQUATE NUMBERS</td>
+                                    <td>ADEQUATE NUMBERS</td>
+                                    <td>ADEQUATE NUMBERS</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label> E) OTHER ITEMS :</label>
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th style="width:30px;">S.No.</th>
+                                    <th style="width:528px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">1</td>
+                                    <td style="width:528px;">
+                                        HEIGHT MEASURING STAND
+                                    </td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">2</td>
+                                    <td style="width:528px;">
+                                        ARM BOARD(CHILD AND ADULT)
+                                    </td>
+                                    <td>60</td>
+                                    <td>40</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">3</td>
+                                    <td style="width:528px;">
+                                        JAR, CHEATLE FORCEPS
+                                    </td>
+                                    <td>20</td>
+                                    <td>10</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">4</td>
+                                    <td style="width:528px;">
+                                        PATELLA HAMMER
+                                    </td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">5</td>
+                                    <td style="width:528px;">
+                                        TONGUE DEPRESSER
+                                    </td>
+                                    <td>20</td>
+                                    <td>12</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">6</td>
+                                    <td style="width:528px;">
+                                        OXYGEN MASKS WITH REGULATOR
+                                    </td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30px;">7</td>
+                                    <td style="width:528px;">
+                                        TORCH LIGHT
+                                    </td>
+                                    <td>12</td>
+                                    <td>8</td>
+                                    <td>2</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+

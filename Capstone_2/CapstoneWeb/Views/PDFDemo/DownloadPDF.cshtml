@@ -1,0 +1,536 @@
+﻿
+@{
+    ViewBag.Title = "DownloadPDF";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<h2>DownloadPDF</h2>
+<script type="text/javascript">
+        $(function () {
+            $('#Export').click(function () {
+                var nonSerialized = $('#demoTable').html();
+                //            var serialized = $.toJSON(nonSerialized);
+                var serialized = Encode(nonSerialized);
+                var setting = {
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    async: false,
+                    data: { serializedString: serialized },
+                    url: '/PDFDemo/GetAndReturnSerializedString'
+                }
+                $.ajax(setting);
+                var url = '/PDFDemo/RenderPdf';
+                window.open(url, 'PDF');
+                //$.ajax(setting);
+            });
+            function Encode(input) {
+                return $('<div/>').text(input).html();
+            }
+            /*
+            var setting = {
+            type: 'GET',
+            dataType: 'json',
+            cache: false,
+            async: false,
+            data: { serializedString: serialized },
+            url: '/home/GetAndReturnSerializedString',
+            success: function (data) {
+            if (data.Success) {
+            alert(data.data);
+            }
+            }
+            };
+            */
+        });
+</script>
+
+
+    <h2>
+        About
+    </h2>
+    <p>
+        Put content here.
+        <button id="Export" name="Export" value="Export">
+            Export
+        </button>
+    </p>
+    <div class="klsExport">
+        <div id="testtable">
+            <table>
+                <tr>
+                    <th>
+                        Department
+                    </th>
+                    <th>
+                        Seats Available
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        CSE
+                    </td>
+                    <td>
+                        120
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ECE
+                    </td>
+                    <td>
+                        120
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        EEE
+                    </td>
+                    <td>
+                        120
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        IT
+                    </td>
+                    <td>
+                        60
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <p>
+            Include iTextSharp.dll in your reference.
+            <br />
+            Create a document(Pdf from iTextSharp). Initialize an output stream and
+            <br />
+            stream writer with the HTML string you want to render as PDF.
+            <br />
+            Now Output your response setting content type as PDF.
+        </p>
+        <div class="mContainer">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tbody>
+                    <tr>
+                        <td style="padding-left: 10px;">
+                            <div class="error1">
+                                <div id="ErrorMsg">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <a class="expandAll" href="#.">Expand All</a> | <a class="collopseAll" href="#.">
+                Collapse
+                All
+            </a>
+            <br>
+            <br>
+            <div id="demoTable">
+                <table cellspacing="0" cellpadding="0" border="0" width="100%" class="hbox" id="tblElectionSummary">
+                    <tbody>
+                        <tr class="headrow">
+                            <td width="25%">
+                                Coverage
+                            </td>
+                            <td colspan="4">
+                                Employee Cost (per pay check)
+                            </td>
+                            <td width="12%">
+                                Employer Cost
+                            </td>
+                            <td colspan="2">
+                                Coverage Date
+                            </td>
+                            <td width="10%">
+                                Dependents
+                            </td>
+                            <td width="9%">
+                                Beneficiary
+                            </td>
+                            <td width="4%" class="action"></td>
+                        </tr>
+                        <tr class="oddrow">
+                            <td align="center" width="25%" valign="top"></td>
+                            <td align="center" width="4%" valign="top">
+                                <strong>Pre Tax</strong>
+                            </td>
+                            <td align="center" width="5%" valign="top">
+                                <strong>Post Tax</strong>
+                            </td>
+                            <td align="center" width="9%" valign="top">
+                                <strong>Flexi Credit Deduction</strong>
+                            </td>
+                            <td align="center" width="6%" valign="top">
+                                <strong>Total</strong>
+                            </td>
+                            <td align="center" width="12%" valign="top"></td>
+                            <td align="center" width="8%" valign="top">
+                                <strong>Start</strong>
+                            </td>
+                            <td align="center" width="8%" valign="top">
+                                <strong>End</strong>
+                            </td>
+                            <td align="center" width="10%" valign="top"></td>
+                            <td align="center" width="9%" valign="top"></td>
+                            <td align="center" width="4%" valign="top" class="action"></td>
+                        </tr>
+                        <tr class="evenrow">
+                            <td width="25%">
+                                <div onclick="showRow(this,'1');" class="tbx01_on tTxt02">
+                                    Health
+                                </div>
+                            </td>
+                            <td width="4%"></td>
+                            <td width="5%"></td>
+                            <td width="9%"></td>
+                            <td width="6%"></td>
+                            <td width="12%"></td>
+                            <td width="8%"></td>
+                            <td width="8%"></td>
+                            <td width="10%"></td>
+                            <td width="9%"></td>
+                            <td width="4%" class="action"></td>
+                        </tr>
+                        <tr class="tcon_1 planrow">
+                            <td align="left" width="25%" valign="top" class="conRow">
+                                Capstone
+                            </td>
+                            <td align="right" width="4%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="5%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="9%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="6%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="12%" valign="top">
+                                -
+                            </td>
+                            <td align="center" width="8%" valign="top">
+                                -
+                            </td>
+                            <td align="center" width="8%" valign="top">
+                                -
+                            </td>
+                            <td align="left" width="10%" valign="top">
+                                Waived
+                            </td>
+                            <td align="left" width="9%" valign="top">
+                                --
+                            </td>
+                            <td align="left" width="4%" valign="top" class="action">
+                                <a href="../HealthPlanType/GetHealthPlan?PlanCategoryId=a12fb71a-111c-e011-9e64-95551e491eb2&amp;TenantPlanTypeId=7fcba679-7275-e011-b572-bc305bad8b6f">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tcon_1 planrow">
+                            <td align="left" width="25%" valign="top" class="conRow">
+                                Dental
+                            </td>
+                            <td align="right" width="4%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="5%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="9%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="6%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="12%" valign="top">
+                                -
+                            </td>
+                            <td align="center" width="8%" valign="top">
+                                -
+                            </td>
+                            <td align="center" width="8%" valign="top">
+                                -
+                            </td>
+                            <td align="left" width="10%" valign="top">
+                                Waived
+                            </td>
+                            <td align="left" width="9%" valign="top">
+                                --
+                            </td>
+                            <td align="left" width="4%" valign="top" class="action">
+                                <a href="../HealthPlanType/GetHealthPlan?PlanCategoryId=a12fb71a-111c-e011-9e64-95551e491eb2&amp;TenantPlanTypeId=83cba679-7275-e011-b572-bc305bad8b6f">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tcon_1 planrow">
+                            <td align="left" width="25%" valign="top" class="conRow">
+                                Vision<br>
+                                &nbsp;&nbsp;- Vasan Eye Care<br>
+                                &nbsp;&nbsp;- (EE Only)
+                            </td>
+                            <td align="right" width="4%" valign="top">
+                                $21.00
+                            </td>
+                            <td align="right" width="5%" valign="top">
+                                $0.00
+                            </td>
+                            <td align="right" width="9%" valign="top">
+                                $0.00
+                            </td>
+                            <td align="right" width="6%" valign="top">
+                                $21.00
+                            </td>
+                            <td align="right" width="12%" valign="top">
+                                $0.00
+                            </td>
+                            <td align="center" width="8%" valign="top">
+                                07/01/2011
+                            </td>
+                            <td align="center" width="8%" valign="top"></td>
+                            <td align="left" width="10%" valign="top"></td>
+                            <td align="left" width="9%" valign="top">
+                                --
+                            </td>
+                            <td align="left" width="4%" valign="top" class="action">
+                                <a href="../HealthPlanType/GetHealthPlan?PlanCategoryId=a12fb71a-111c-e011-9e64-95551e491eb2&amp;TenantPlanTypeId=87cba679-7275-e011-b572-bc305bad8b6f">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="evenrow">
+                            <td width="25%">
+                                <div onclick="showRow(this,'2');" class="tbx01_on tTxt02">
+                                    Life
+                                </div>
+                            </td>
+                            <td width="4%"></td>
+                            <td width="5%"></td>
+                            <td width="9%"></td>
+                            <td width="6%"></td>
+                            <td width="12%"></td>
+                            <td width="8%"></td>
+                            <td width="8%"></td>
+                            <td width="10%"></td>
+                            <td width="9%"></td>
+                            <td width="4%" class="action"></td>
+                        </tr>
+                        <tr class="tcon_2 planrow">
+                            <td align="left" width="25%" valign="top" class="conRow">
+                                Basic Life<br>
+                                &nbsp;&nbsp;- Sridhar Life Plans<br>
+                                &nbsp;&nbsp;- Actual Coverage Amount: $682,500.00<br>
+                                &nbsp;&nbsp;- Age Reduced Coverage Amount: $341250.0000
+                            </td>
+                            <td align="right" width="4%" valign="top">
+                                $21.00
+                            </td>
+                            <td align="right" width="5%" valign="top">
+                                $0.00
+                            </td>
+                            <td align="right" width="9%" valign="top">
+                                $0.00
+                            </td>
+                            <td align="right" width="6%" valign="top">
+                                $27,982.50
+                            </td>
+                            <td align="right" width="12%" valign="top">
+                                $13,650.00
+                            </td>
+                            <td align="center" width="8%" valign="top">
+                                07/01/2011
+                            </td>
+                            <td align="center" width="8%" valign="top"></td>
+                            <td align="left" width="10%" valign="top">
+                                --
+                            </td>
+                            <td align="left" width="9%" valign="top"></td>
+                            <td align="left" width="4%" valign="top" class="action">
+                                <a href="../EmployeeLifePlan/Get?PlanCategoryId=dbf33f97-523b-e011-81da-001ec9dab123&amp;TenantPlanTypeId=8bcba679-7275-e011-b572-bc305bad8b6f">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="evenrow">
+                            <td width="25%">
+                                <div onclick="showRow(this,'3');" class="tbx01_on tTxt02">
+                                    Critial Illness
+                                </div>
+                            </td>
+                            <td width="4%"></td>
+                            <td width="5%"></td>
+                            <td width="9%"></td>
+                            <td width="6%"></td>
+                            <td width="12%"></td>
+                            <td width="8%"></td>
+                            <td width="8%"></td>
+                            <td width="10%"></td>
+                            <td width="9%"></td>
+                            <td width="4%" class="action"></td>
+                        </tr>
+                        <tr class="tcon_3 planrow">
+                            <td align="left" width="25%" valign="top" class="conRow">
+                                Critical life
+                            </td>
+                            <td align="right" width="4%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="5%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="9%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="6%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="12%" valign="top">
+                                -
+                            </td>
+                            <td align="center" width="8%" valign="top">
+                                -
+                            </td>
+                            <td align="center" width="8%" valign="top">
+                                -
+                            </td>
+                            <td align="left" width="10%" valign="top">
+                                Waived
+                            </td>
+                            <td align="left" width="9%" valign="top">
+                                --
+                            </td>
+                            <td align="left" width="4%" valign="top" class="action">
+                                <a href="../EmployeeCriticalIllnessPlan/GetCriticalIllnessPlan?PlanCategoryId=f7510521-903d-e011-810a-001ec9dab123&amp;TenantPlanTypeId=97cba679-7275-e011-b572-bc305bad8b6f">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="evenrow">
+                            <td width="25%">
+                                <div onclick="showRow(this,'4');" class="tbx01_on tTxt02">
+                                    Cafeteria
+                                </div>
+                            </td>
+                            <td width="4%"></td>
+                            <td width="5%"></td>
+                            <td width="9%"></td>
+                            <td width="6%"></td>
+                            <td width="12%"></td>
+                            <td width="8%"></td>
+                            <td width="8%"></td>
+                            <td width="10%"></td>
+                            <td width="9%"></td>
+                            <td width="4%" class="action"></td>
+                        </tr>
+                        <tr class="tcon_4 planrow">
+                            <td align="left" width="25%" valign="top" class="conRow">
+                                FSA
+                            </td>
+                            <td align="right" width="4%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="5%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="9%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="6%" valign="top">
+                                -
+                            </td>
+                            <td align="right" width="12%" valign="top">
+                                -
+                            </td>
+                            <td align="center" width="8%" valign="top">
+                                -
+                            </td>
+                            <td align="center" width="8%" valign="top">
+                                -
+                            </td>
+                            <td align="left" width="10%" valign="top">
+                                You didn't Elect this PlanType.
+                            </td>
+                            <td align="left" width="9%" valign="top">
+                                --
+                            </td>
+                            <td align="left" width="4%" valign="top" class="action">
+                                <a href="../EmployeeCafeteriaPlan/Get?PlanCategoryId=c1b2a4cc-1b64-e011-bead-001ec9dab123&amp;TenantPlanTypeId=a3cba679-7275-e011-b572-bc305bad8b6f">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tcon_4 planrow">
+                            <td align="left" width="25%" valign="top" class="conRow">
+                                Cafeteria PlanType<br>
+                                &nbsp;&nbsp;- Net Cafe
+                            </td>
+                            <td align="right" width="4%" valign="top">
+                                $0.00
+                            </td>
+                            <td align="right" width="5%" valign="top">
+                                $0.00
+                            </td>
+                            <td align="right" width="9%" valign="top">
+                                $0.00
+                            </td>
+                            <td align="right" width="6%" valign="top">
+                                $0.00
+                            </td>
+                            <td align="right" width="12%" valign="top">
+                                $0.00
+                            </td>
+                            <td align="center" width="8%" valign="top">
+                                07/01/2011
+                            </td>
+                            <td align="center" width="8%" valign="top"></td>
+                            <td align="left" width="10%" valign="top">
+                                --
+                            </td>
+                            <td align="left" width="9%" valign="top">
+                                --
+                            </td>
+                            <td align="left" width="4%" valign="top" class="action">
+                                <a href="../EmployeeCafeteriaPlan/Get?PlanCategoryId=c1b2a4cc-1b64-e011-bead-001ec9dab123&amp;TenantPlanTypeId=a7cba679-7275-e011-b572-bc305bad8b6f">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="totalRow">
+                            <td align="right" width="25%" valign="top">
+                                Total
+                            </td>
+                            <td align="right" width="4%" valign="top">
+                                $42.00
+                            </td>
+                            <td align="right" width="5%" valign="top">
+                                $0.00
+                            </td>
+                            <td align="right" width="9%" valign="top">
+                                $0.00
+                            </td>
+                            <td align="right" width="6%" valign="top">
+                                $28,003.50
+                            </td>
+                            <td align="right" width="12%" valign="top">
+                                $13,650.00
+                            </td>
+                            <td align="center" width="8%" valign="top"></td>
+                            <td align="center" width="8%" valign="top"></td>
+                            <td align="left" width="10%" valign="top"></td>
+                            <td align="left" width="9%" valign="top"></td>
+                            <td align="left" width="4%" valign="top" class="action"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="CL">
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+<h2>@ViewBag.Message</h2>
+<p>
+    To learn more about ASP.NET MVC visit ASP.NET MVC Website
+</p>
+<br />
+@using (Html.BeginForm("ConvertThisPageToPdf", "Demo", FormMethod.Post, new { id = "convertForm" }))
+{
+    <div id="convertThisPageButtonDiv">
+        <input type="submit" value="Convert
+                        This Page To PDF" />
+    </div>
+}
+<br />
+@using (Html.BeginForm("ConvertAboutPageToPdf", "Demo", FormMethod.Post, new { id = "convertForm" }))
+{
+    <div id="convertAboutPageButtonDiv">
+        <input type="submit" value="Convert
+                        About Page To PDF" />
+    </div>
+}
+<br />
+<br />
+<div id="testdiv">
+    <h1>
+        @*@Session["MySessionVariable"].ToString()*@
+        mounika
+    </h1>
+</div>
+<br />
+<br />
+@*<img alt=""
+     style="height: 100px"
+     src="/Images/banner.png" />*@
+

@@ -1,0 +1,211 @@
+﻿@model Medical.Models.APMCEViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabServices" data-toggle="tab">Amendment - 3 (Staff List)</a></li>
+                @*<li><a href="#tabRegistration" data-toggle="tab">Amendment - @Model.AmendmentSNo</a></li>*@
+            </ul>
+            <div class="tab-content">
+
+                <div id="formStaffDetails" class="tab-pane active">
+                    <form id="formStaffDetails">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.StaffDetails.StaffDesignation, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.StaffDetails.Id)
+                                @Html.DropDownListFor(model => model.StaffDetails.StaffDesignation,
+                            new List<SelectListItem> {
+                                new SelectListItem {Text = "Select", Value = "", Selected = true },
+                                new SelectListItem {Text = "Doctors", Value = "Doctors" },
+                                new SelectListItem {Text = "Nursing Staff", Value = "Nursing Staff" },
+                                new SelectListItem {Text = "Para Medical Staff", Value = "Para Medical Staff" },
+                                new SelectListItem {Text = "Supporting Staff", Value = "Supporting Staff" },
+                                new SelectListItem {Text = "Specialists", Value = "Specialists" }
+                            },
+                            new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.StaffDetails.StaffDesignation, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="nonsupportingstaff supportingstaff specialists">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.StaffDetails.Name, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.StaffDetails.Name, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.StaffDetails.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="nonsupportingstaff specialists">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.StaffDetails.RegistrationNumber, new { @class = "control-label", @id = "lblStaffRegiNumber" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.StaffDetails.RegistrationNumber, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.StaffDetails.RegistrationNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="supportingstaff">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.StaffDetails.PhoneNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.StaffDetails.PhoneNumber, new { htmlAttributes = new { @class = "form-control numeric" } })
+                                    @Html.ValidationMessageFor(model => model.StaffDetails.PhoneNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="specialists">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.StaffDetails.Speciality, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.StaffDetails.Speciality,//SpecialtyId,
+                                                                                                            // new List<SelectListItem>() { new SelectListItem() { Text = "Select Speciality", Value = "", Selected = true } },
+                           new List<SelectListItem> {
+                                new SelectListItem {Text = "Select Speciality", Value = "", Selected = true },
+                                new SelectListItem {Text = "Cardiologist", Value = "Cardiologist" },
+                                new SelectListItem {Text = "Dermatologist", Value = "Dermatologist" },
+                                new SelectListItem {Text = "Gastroenterologist", Value = "Gastroenterologist" },
+                                new SelectListItem {Text = "Gynecologist", Value = "Gynecologist" }
+                            },
+                            new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.StaffDetails.Speciality, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="supportingstaff">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.StaffDetails.Email, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.StaffDetails.Email, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.StaffDetails.Email, "", new { @class = "text-danger" })
+
+                                </div>
+                                @*<div class="col-md-1 text-right " id="btnhide" >
+                        <input type="button" value="Add" id="btnAddStaffDetails" class="btn btn-default" />
+                    </div>*@
+                            </div>
+
+
+                        </div>
+
+                        <div class="row nonsupportingstaff specialists">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.StaffDetails.UploadedFilePath, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.StaffDetails.UploadedFilePath, new { @type = "file" })
+
+                                @if (!string.IsNullOrEmpty(Model.StaffDetails.UploadedFilePath))
+                                {
+                                    var addressindex = Model.StaffDetails.UploadedFilePath.LastIndexOf("/");
+                                    var addressfileName = Model.StaffDetails.UploadedFilePath.Substring(addressindex + 1);
+                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                        new { Area = "", path = Model.StaffDetails.UploadedFilePath, downloadName = addressfileName },
+                        null
+                        );
+                                }
+
+                                @Html.ValidationMessageFor(model => model.StaffDetails.UploadedFilePath, "", new { @class = "text-danger" })
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-1  nonsupportingstaff supportingstaff specialists">
+                            <input type="button" value="Add" id="btnAddStaffDetails" class="btn btn-default" />
+                        </div>
+                    </form>
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Items List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblStaffdetails" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Designation</th>
+                                                <th>Name</th>
+                                                <th>RegistrationNo</th>
+                                                <th>Uploaded File</th>
+                                                <th>Email</th>
+                                                <th>Mobile</th>
+                                                <th>Speciality</th>
+                                                <th>Status</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.StaffDetailsList != null)
+                                            {
+                                                for (int i = 0; i < Model.StaffDetailsList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td> @Convert.ToInt32(@i + 1)</td>
+                                                        <td>@Model.StaffDetailsList[i].StaffDesignation</td>
+                                                        <td>@Model.StaffDetailsList[i].Name</td>
+                                                        <td>@Model.StaffDetailsList[i].RegistrationNumber</td>
+                                                        <td>
+                                                            @if (Model.StaffDetailsList[i].UploadedFilePath != null)
+                                                            {
+                                                                var addressindex = Model.StaffDetailsList[i].UploadedFilePath.LastIndexOf("/");
+                                                                var addressfileName = Model.StaffDetailsList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                                @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                        new { Area = "", path = Model.StaffDetailsList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                            }
+                                                        </td>
+                                                        <td>@Model.StaffDetailsList[i].Email</td>
+                                                        <td>@Model.StaffDetailsList[i].PhoneNumber</td>
+                                                        <td>@Model.StaffDetailsList[i].Speciality</td>
+
+
+
+                                                        @if (@Model.StaffDetailsList[i].Id != 0)
+                                                        {
+                                                            <td>Existing</td>
+                                                            <td><input type='button' value='Delete' onclick='DeleteStaffDetails(@i);' /></td>
+                                                        }
+                                                        else if (@Model.StaffDetailsList[i].Id == 0)
+                                                        {
+                                                            <td>New</td>
+                                                            <td><input type='button' value='Delete' onclick='DeleteStaffDetails(@i);' /></td>
+                                                        }
+                                                        else if (@Model.StaffDetailsList[i].Id != 0 && @Model.StaffDetailsList[i].IsDeleted == true)
+                                                        {
+                                                            <td>Deleted</td>
+
+                                                        }
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="button" id="btnStaffDetailsClear" value="Clear" class="btn btn-default" />
+                            <input type="button" id="btnStaffDetailsSave" value="Save" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>
+

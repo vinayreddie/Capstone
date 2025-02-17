@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewBag.Title = "ExistingUserRegistration";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+<div class="row">
+    <br/><br />
+    <div class="form-group">
+
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <label>License Number</label>
+        </div>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="txtlicensenumber" placeholder="Enter License Number" />
+        </div>
+        <input type="button" class="btn btn-success" value="Search" id="btnSearchLicense" onclick="SearchLicenseNumber()" />
+
+        <br /><br />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12" hidden id="divtable">
+        <div class="table-responsive">
+            <table class="table table-bordered table-responsive" id="tblExistingUsers">
+                <thead>
+                    <tr>
+                        @*<th>Sl.No</th>*@
+                        <th>TransId</th>
+                        <th>Name</th>
+                        <th>License Number</th>
+                        <th>Applicant Address</th>
+                        <th>Aadhar No</th>
+                        <th>License Issue Date</th>
+                        <th>License Expiry Date</th>
+                        <th>Mobile No</th>
+                        <th>EmailID</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<br />
+
+    <script type="text/javascript">
+
+        function SearchLicenseNumber() {
+                if($('#txtlicensenumber').val() == "")
+                {
+                    alert('Please Enter License Number!');
+                    return;
+                }
+            var url = '@Url.Action("GetExistingLicenseDetails", "Account", new { Area = "" })';
+            var jqxhr = $.post(url, { LicenseNumber: $('#txtlicensenumber').val() }, function () { }, 'json')
+                 .done(function (response) {
+            debugger;
+                     if (response instanceof Object)
+                         var json = response;
+                     else
+                         var json = $.parseJSON(response);
+                     console.log(json);
+                     //BindLicenNumberDetails(json)
+                     $('#tblExistingUsers').find("tr:gt(0)").remove();
+                     if (json.length > 0) {
+                         $('#divtable').show();
+                         $('#otp').show();
+                     }
+
+                     for (var i = 0; i < json.length; i++) {
+                         var Mobile = json[i].Mobile;                      
+                            if(Mobile != null)
+                            {
+                                Mobile = Mobile.substr(0, 3);
+                                Mobile = Mobile + "XXXXXXX";
+                            }
+                         //Mobile = Mobile.substr(0, 3);
+                         //Mobile = Mobile + "XXXXXXX";
+                         var tr;
+                         tr = $('<tr/>');
+                         //tr.append("<td>" + (i + 1) + "</td>")
+                         tr.append("<td>" + json[i].Id + "</td>")
+                         tr.append("<td>" + json[i].Name + "</td>")
+                         tr.append("<td>" + json[i].ExistingLicenseNumber + "</td>")
+                         tr.append("<td>" + json[i].Address + "</td>")
+                         tr.append("<td>" + json[i].Aadhar + "</td>")
+                         tr.append("<td>" + json[i].LicenseIssuedDate + "</td>")
+                         tr.append("<td>" + json[i].LicenseExpiryDate + "</td>")
+                         tr.append("<td>" + Mobile + "</td>")
+                         tr.append("<td>" + json[i].Email + "</td>")
+                        if(Mobile != null)
+                        {
+                        tr.append("<td><input type='button' value='Generate OTP' class='btn btn-success' onclick='GenerateOTP(" + json[i].Mobile + "," + json[i].Id + ")' /></td>")
+                        //tr.append("<td><input type='button' value='Generate OTP' class='btn btn-success' onclick='GenerateOTP(" + json[i].Mobile + "," + json[i].Id + "," + json[i].Email + ")' /></td>")
+                        }
+                        else
+                        {
+                         tr.append("<td>-</td>")
+                        }
+                         //tr.append("<td><a href='Url.Action("ExistingApplication", "Account")' class='btn btn-success col-sm-12 col-md-12'>Existing</a></td>")
+
+                         $("[id$=tblExistingUsers]").append(tr);
+                     }
+                 })
+                 .fail(function (jqxhr, textStatus, error) {
+                     var err = textStatus + ", " + error;
+                     console.log("Existing License Request Failed: " + err);
+                     alert('No Record found');
+                     $('#tblExistingUsers').find("tr:gt(0)").remove();
+                     $('#txtlicensenumber').val("");
+                 });
+            }
+
+            function EditApplication(Id) {
+                var viewlink = '@Url.Action("ExistingApplication", "Account", new { Area = "", Id = 1 })';
+                viewlink = viewlink.replace("1", Id);
+                window.location.href = '@Url.Action("Register", "Account", new { Area = ""})';
+            }
+
+        function RequestOTP() {
+
+        }
+
+        function GenerateOTP(mobile,Id) {
+        
+                if(mobile == "" || Id == "")
+                {
+                alert('Mobile Number/Id must be required!');
+                return;
+                }
+           
+            var data = {
+                MobileNumber: mobile,
+                transactionId: Id
+                //EmailId : emailId
+            }
+            var url = '@Url.Action("GenerateOTP", "Account", new { Area = "" })';
+            var jqxhr = $.post(url, data, function () { }, 'html')
+                 .done(function (response) {
+                     debugger;
+                     var jsonObject = GetModalJSON();
+                    jsonObject.Title = '';
+                     jsonObject.BodyContent = response;
+                     ShowModal(jsonObject);
+                 })
+                 .fail(function (jqxhr, textStatus, error) {
+                     var err = textStatus + ", " + error;
+                     console.log("Existing License Request Failed: " + err);
+                    
+                     //$('#tblExistingUsers').find("tr:gt(0)").remove();
+                     // $('#txtlicensenumber').val("");
+                 });
+            }
+
+            function ActivateUserLicense() {
+                var jqxhr = $.post('ActivateUserLicense', { LicenseNumber: $('#txtlicensenumber').val() }, function () { }, 'json')
+                 .done(function (response) {
+                     if (response instanceof Object)
+                         var json = response;
+                     else
+                         var json = $.parseJSON(response);
+                     console.log('success' + json);
+                     if (json.length > 0) {
+                         // Html.Action("HomePage","UserAccounts");
+                     }
+                 })
+                 .fail(function (jqxhr, textStatus, error) {
+                     var err = textStatus + ", " + error;
+                     console.log("Existing License Request Failed: " + err);
+                 });
+            }
+
+</script>
+
+

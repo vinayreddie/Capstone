@@ -1,0 +1,1130 @@
+﻿@model Capstone.Models.AllopathicDrugStoreViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <span style="font-size:x-large;">Allopathic Drug Store - FORM 19C</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabAD19CApplicant" data-toggle="tab">Applicant</a></li>
+                <li><a href="#tabAD19CPharmacy" data-toggle="tab">Pharmacy</a></li>
+                <li><a href="#tabAD19CCompetent" data-toggle="tab">Competent Person</a></li>
+                <li><a href="#tabAD19CDrugs" data-toggle="tab">Drugs</a></li>
+                <li><a href="#tabAD19CDeclaration" data-toggle="tab">Declaration</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabAD19CApplicant">
+                    <form id="formAD19CApplicant">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.Name, "Owner Name", new { @class = "control-label alphabet" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.ADApplicantModel.Id, new { @id = "AD19c_ApplicantID" })
+                                @Html.EditorFor(model => model.ADApplicantModel.Name, new { htmlAttributes = new { @class = "form-control", @id = "AD19c_ApplicantName" } })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.OwnershipType, "Ownership Type", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ADApplicantModel.OwnershipType,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select Owner Type", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Individual", Value = "Individual" },
+                                    new SelectListItem {Text = "Partner", Value = "Partner" },
+                                    new SelectListItem {Text = "Company", Value = "Company" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "AD19c_ApplicantOwnerType" })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.OwnershipType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.Aadhar, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADApplicantModel.Aadhar, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD19c_ApplicantAadhar" } })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.Aadhar, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.PAN, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADApplicantModel.PAN, new { htmlAttributes = new { @class = "form-control", @id = "AD19c_ApplicantPAN", @Style = "text-transform: uppercase;" } })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.PAN, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.MobileNo, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADApplicantModel.MobileNo, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD19c_ApplicantMobile" } })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.MobileNo, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ADApplicantModel.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "AD19c_ApplicantDistrictId" })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ADApplicantModel.MandalId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "AD19c_ApplicantMandalId" })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.MandalId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ADApplicantModel.VillageId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "AD19c_ApplicantVillageId" })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.VillageId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADApplicantModel.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "AD19c_ApplicantHouseNo" } })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADApplicantModel.StreetName, new { htmlAttributes = new { @class = "form-control", @id = "AD19c_ApplicantStreet" } })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.StreetName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADApplicantModel.PINCode, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD19c_ApplicantPINCode" } })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.PINCode, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.UploadDocument, "Document (AOA/MOA/Ownership)", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.ADApplicantModel.UploadDocument, new { @class = "", type = "file", @id = "AD19c_ApplicantUpload" })
+
+                                @*@if (!string.IsNullOrEmpty(Model.HDApplicantModel.UploadDocument))
+                    {
+                        var documentindex = Model.HDApplicantModel.UploadDocument.LastIndexOf("/");
+                        var documentfileName = Model.HDApplicantModel.UploadDocument.Substring(documentindex + 1);
+                        @Html.ActionLink(documentfileName, "DownloadFile", "Generic",
+                new { Area = "", path = Model.HDApplicantModel.UploadDocument, downloadName = documentfileName },
+                null
+                );
+                    }*@
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.UploadDocument, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 text-right pull-right">
+                                <input type="button" value="Clear" id="btnAD19CApplicantClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnAD19CApplicantSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="tabAD19CPharmacy">
+                    <form id="formAD19CPharmacy">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADPharmacyModel.Name, "Pharmacy Name", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.ADPharmacyModel.Id, new { @id = "AD19c_PharmacyID" })
+                                @Html.EditorFor(model => model.ADPharmacyModel.Name, new { htmlAttributes = new { @class = "form-control", @id = "AD19c_PharmacyName" } })
+                                @Html.ValidationMessageFor(model => model.ADPharmacyModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADPharmacyModel.OwnedBy, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ADPharmacyModel.OwnedBy,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select Owner Type", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Own", Value = "Own" },
+                                    new SelectListItem {Text = "Rent", Value = "Rent" },
+                                    new SelectListItem {Text = "Lease", Value = "Lease" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "AD19c_PharmacyType" })
+                                @Html.ValidationMessageFor(model => model.ADPharmacyModel.OwnedBy, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADPharmacyModel.Rent, "Rent/Lease", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(model => model.ADPharmacyModel.Fromdate, new { @class = "form-control datepicker", @id = "AD19c_PharmacyFromDate", @Value = "", @placeholder = "From Date" })
+                                        @Html.ValidationMessageFor(model => model.ADPharmacyModel.Fromdate, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(model => model.ADPharmacyModel.ToDate, new { @class = "form-control datepicker", @id = "AD19c_PharmacyToDate", @Value = "", @placeholder = "To Date" })
+                                        @Html.ValidationMessageFor(model => model.ADPharmacyModel.ToDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADPharmacyModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ADPharmacyModel.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "AD19c_PharmacyDistrictId" })
+                                @Html.ValidationMessageFor(model => model.ADPharmacyModel.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADPharmacyModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ADPharmacyModel.MandalId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "AD19c_PharmacyMandalId" })
+                                @Html.ValidationMessageFor(model => model.ADPharmacyModel.MandalId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADPharmacyModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ADPharmacyModel.VillageId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "AD19c_PharmacyVillageId" })
+                                @Html.ValidationMessageFor(model => model.ADPharmacyModel.VillageId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADPharmacyModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADPharmacyModel.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "AD19c_PharmacyHouseNo" } })
+                                @Html.ValidationMessageFor(model => model.ADPharmacyModel.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADPharmacyModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADPharmacyModel.StreetName, new { htmlAttributes = new { @class = "form-control", @id = "AD19c_PharmacyStreet" } })
+                                @Html.ValidationMessageFor(model => model.ADPharmacyModel.StreetName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADPharmacyModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADPharmacyModel.PINCode, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD19c_PharmacyPINCode" } })
+                                @Html.ValidationMessageFor(model => model.ADPharmacyModel.PINCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 text-right pull-right">
+                                <input type="button" value="Clear" id="btnAD19CPharmacyClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnAD19CPharmacySave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tabAD19CCompetent" class="tab-pane">
+                    <form id="formAD19CCompetent">
+                        @Html.HiddenFor(model => model.ADApplicantModel.Id, new { @id = "AD19C_CompetentID" })
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.Name, "Owner Name", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADApplicantModel.Name, new { htmlAttributes = new { @class = "form-control", @id = "AD19C_CompetentName" } })
+                                @Html.ValidationMessageFor(model => model.ADPharmacyModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.Aadhar, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADApplicantModel.Aadhar, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD19C_CompetentAadhar" } })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.Aadhar, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.MobileNo, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADApplicantModel.MobileNo, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD19C_CompetentMobile" } })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.MobileNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ADApplicantModel.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "AD19C_CompetentDistrictId" })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ADApplicantModel.MandalId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "AD19C_CompetentMandalId" })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.MandalId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ADApplicantModel.VillageId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;", @id = "AD19C_CompetentVillageId" })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.VillageId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADApplicantModel.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "AD19C_CompetentHouseNo" } })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADApplicantModel.StreetName, new { htmlAttributes = new { @class = "form-control", @id = "AD19C_CompetentStreet" } })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.StreetName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADApplicantModel.PINCode, new { htmlAttributes = new { @class = "form-control numeric", @id = "AD19C_CompetentPINCode" } })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.PINCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.FileType, "File Type", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ADApplicantModel.FileType,
+                                                        new List<SelectListItem> {
+                                                            new SelectListItem {Text = "Select Type", Value = "", Selected = true },
+                                                            new SelectListItem {Text = "Education", Value = "Education" },
+                                                            new SelectListItem {Text = "Experience", Value = "Experience" }
+                                                        },
+                                                        new { @class = "form-control select2", @id = "AD19C_CompetentFileType", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.ADApplicantModel.FileType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADApplicantModel.uploadedDocuments, "Certificate Upload ", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.ADApplicantModel.uploadedDocuments, new { @type = "file" ,@id="AD19C_UploadDocuments"})
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <input type="button" value="Upload" id="btn19CAddCompetentCertificate" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-body table-responsive no-padding">
+                                    <table id="tbl19CCompetentCertificate" class="table table-hover">
+                                        <tr>
+                                            <th>S.No.</th>
+                                            <th>File Type</th>
+                                            <th>Documents</th>
+                                            <th></th>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 text-right pull-right">
+                            <input type="button" value="Clear" id="btnAD19CCompetentClear" class="btn btn-default" />
+                            <input type="button" value="Save" id="btnAD19CCompetentSave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabAD19CDrugs">
+                    <form id="formAD19CDrugs">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-1">
+                                @Html.LabelFor(model => model.ADDrugNameModel.Name, "Category Name", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.ADDrugNameModel.Name, new { @class = "form-control", @id = "AD19cDrug_Name" })
+                                @Html.ValidationMessageFor(model => model.ADDrugNameModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <input type="button" value="Add" id="btn19cDrugName" class="btn btn-default" />
+                            </div>
+                        </div>
+                      
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tbl19cDrugNames" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.AllopathicDrugList != null)
+                                            {
+                                                for (int i = 0; i < Model.AllopathicDrugList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.AllopathicDrugList[i].Name</td>
+                                                        @*<td><input type='button' value='Delete' onclick='DeleteDrugNames(@i);' /></td>*@
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 text-right pull-right">
+                                <input type="button" value="Clear" id="btnAD19CDrugsClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnAD19CDrugsSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabAD19CDeclaration" class="tab-pane">
+                    <form id="form19CDeclaration">
+                        @Html.HiddenFor(model => model.ADDeclaration.Id, new { @id = "AD19cDeclaration_Id" })
+                        <br />
+                        <div class="row">
+
+                            <div class="col-md-1" style="text-align:right; margin-top:-1%">
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.ADDeclaration.HasAppliedSpecialStorage, new
+                                                   {
+                                                       htmlAttributes = new
+                                                       {
+                                                           @class = "allopathic",
+                                                           @id = "ADDeclaration_19cHasAppliedSpecialStorage"
+                                                       }
+                                                   })
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-10">
+                                @Html.LabelFor(model => model.ADDeclaration.HasAppliedSpecialStorage, "Particulars of Special Storage accommodation", htmlAttributes: new { @class = "control-label" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 focus" id="div19cDescription" hidden>
+                                @Html.TextAreaFor(model => model.ADDeclaration.TextArea, new { style = "width:100%", @id = "TextArea19C" }
+
+                                               )
+                                @Html.ValidationMessageFor(model => model.ADDeclaration.TextArea, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ADDeclaration.Date, "Date", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.ADDeclaration.Date, new { @class = "form-control datepicker", @id = "ADDeclaration19c_Date", @Value = "" })
+                            </div>
+                            <div class="col-md-6 text-right">
+                                @Html.LabelFor(model => model.ADDeclaration.Sign, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ADDeclaration.Sign, new { htmlAttributes = new { @class = "form-control", @id = "ADDeclaration19c_Sign" } })
+                                @Html.ValidationMessageFor(model => model.ADDeclaration.Sign, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 text-right pull-right">
+                                <input type="button" value="Clear" id="btnAD19DeclarationClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnAD19CDeclarationSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>
+
+<script>
+    $(function () {
+       
+        Bind19cApplicantData();
+        Bind19cPharmacyData();
+        Bind19cCompetentInchargeData();
+        Bind19cDrugsData();
+        Bindq9cDeclarationData();
+        CheckforEnableSubmit();
+
+    });
+
+
+    function Bind19cApplicantData(){
+
+        var applicantModel = @Html.Raw(Json.Encode(Model.ADApplicantModel));
+        if(applicantModel.FormStatus != 0){
+            if(applicantModel.DistrictId > 0)
+            {
+                $('#btnAD19CApplicantSave').val('Update');
+                $('#btnAD19CApplicantSave').removeClass('btn-primary');
+                $('#btnAD19CApplicantSave').addClass('btn-success');
+                BindMandals('AD19c_Applicant', applicantModel.DistrictId);
+                setTimeout(
+                   function(){
+                       if(applicantModel.MandalId > 0){
+                           $('#AD19c_ApplicantMandalId').val(applicantModel.MandalId).trigger('change');
+                           BindVillages('AD19c_Applicant', applicantModel.MandalId);
+                           setTimeout(function(){
+                               if(applicantModel.VillageId > 0){
+                               
+                                   $('#AD19c_ApplicantVillageId').val(applicantModel.VillageId).trigger('change');
+                               }
+                           }, 2000);
+                       }
+                   }
+                    , 2000);
+            }
+        }
+    }
+    function Bind19cPharmacyData(){
+        var Pharmacy = @Html.Raw(Json.Encode(Model.ADPharmacyModel));
+        if(Pharmacy.FormStatus != 0){
+            if(Pharmacy.DistrictId > 0)
+            {
+                $('#btnAD19CPharmacySave').val('Update');
+                $('#btnAD19CPharmacySave').removeClass('btn-primary');
+                $('#btnAD19CPharmacySave').addClass('btn-success');
+                BindMandals('AD19c_Pharmacy', Pharmacy.DistrictId);
+                setTimeout(
+                   function(){
+                       if(Pharmacy.MandalId > 0){
+                           $('#AD19c_PharmacyMandalId').val(Pharmacy.MandalId).trigger('change');
+                           BindVillages('AD19c_Pharmacy', Pharmacy.MandalId);
+                           setTimeout(function(){
+                               if(Pharmacy.VillageId > 0){
+                                   $('#AD19c_PharmacyVillageId').val(Pharmacy.VillageId).trigger('change');
+                               }
+                           }, 2000);
+                       }
+                   }
+                    , 2000);
+            }
+        }
+    }
+    function Bind19cCompetentInchargeData(){
+        var CompetentIncharge = @Html.Raw(Json.Encode(Model.ADCompetentPersonModel));
+        if(CompetentIncharge.FormStatus != 0){
+            if(CompetentIncharge.DistrictId > 0)
+            {
+                $('#btnAD19CCompetentSave').val('Update');
+                $('#btnAD19CCompetentSave').removeClass('btn-primary');
+                $('#btnAD19CCompetentSave').addClass('btn-success');
+                BindMandals('AD19C_Competent', CompetentIncharge.DistrictId);
+                setTimeout(
+                   function(){
+                       if(CompetentIncharge.MandalId > 0){
+                           $('#AD19C_CompetentMandalId').val(CompetentIncharge.MandalId).trigger('change');
+                           BindVillages('AD19C_Competent', CompetentIncharge.MandalId);
+                           setTimeout(function(){
+                               if(CompetentIncharge.VillageId > 0){
+                                   $('#AD19C_CompetentVillageId').val(CompetentIncharge.VillageId).trigger('change');
+                               }
+                           }, 2000);
+                       }
+                   }
+                    , 2000);
+            }
+        }
+    }
+
+
+    function Bind19cDrugsData(){
+      
+        var DrugsData = @Html.Raw(Json.Encode(Model.AllopathicDrugList));
+        if(DrugsData!=null){
+            $('#btnAD19CDrugsSave').val('Update');
+            $('#btnAD19CDrugsSave').removeClass('btn-primary');
+            $('#btnAD19CDrugsSave').addClass('btn-success');
+
+        }
+           
+    }
+
+     
+ 
+    
+    function Bindq9cDeclarationData(){
+    
+        var DeclarationModel = @Html.Raw(Json.Encode(Model.ADDeclaration));
+        if(DeclarationModel.FormStatus != 0){
+            if(DeclarationModel.TextArea!=null){
+                $("#ADDeclaration_19cHasAppliedSpecialStorage").iCheck('check') ;
+                $('#divDescription').show();  
+
+            }
+            $('#btnAD19CDeclarationSave').val('Update');
+            $('#btnAD19CDeclarationSave').removeClass('btn-primary');
+            $('#btnAD19CDeclarationSave').addClass('btn-success');
+        }
+    }
+    function CheckforAllopathicDrugStoreForm19cComplete(){
+        debugger;
+        var result = false;
+        if($('#btnAD19CApplicantSave').hasClass('btn-success')
+            && $('#btnAD19CPharmacySave').hasClass('btn-success') && $('#btnAD19CCompetentSave').hasClass('btn-success')
+            && $('#btnAD19CDrugsSave').hasClass('btn-success') && $('#btnAD19CDeclarationSave').hasClass('btn-success')
+       
+            ){
+            result = true;
+            //$('#btnPreview').removeAttr("disabled");
+        }
+        else
+        {
+            result = false;
+            //$('#btnPreview').attr('disabled', 'disabled');
+        }
+
+        return result;
+    }
+
+
+    $('#AD19c_ApplicantDistrictId').on('change', function () {
+        debugger;
+        BindMandals('AD19c_Applicant', this.value);
+    });
+
+    $('#AD19c_ApplicantMandalId').on('change', function () {
+        BindVillages('AD19c_Applicant', this.value);
+    });
+
+    $('#AD19c_PharmacyDistrictId').on('change', function () {
+        BindMandals('AD19c_Pharmacy', this.value);
+    });
+
+    $('#AD19c_PharmacyMandalId').on('change', function () {
+        debugger;
+        BindVillages('AD19c_Pharmacy', this.value);
+    });
+
+    $('#AD19C_CompetentDistrictId').on('change', function () {
+        BindMandals('AD19C_Competent', this.value);
+    });
+
+    $('#AD19C_CompetentMandalId').on('change', function () {
+        BindVillages('AD19C_Competent', this.value);
+    });
+
+   
+   
+        $("#ADDeclaration_19cHasAppliedSpecialStorage").on('ifToggled', function (event) {
+            debugger;
+            if (this.checked) {
+                $('#div19cDescription').show();
+            } else
+                $('#div19cDescription').hide();
+
+
+        });
+
+        $('#btnAD19CApplicantSave').on('click', function (e) {
+
+
+            e.preventDefault();
+            if ($('#formAD19CApplicant').valid()) {
+
+                var url = '@Url.Action("SaveADForm19Applicant", "Application", new { Area = "User" })';
+                if (window.FormData !== undefined) {
+                    var AD19c_ApplicantUpload = $("#AD19c_ApplicantUpload").get(0).files[0];
+
+                    // Create FormData object
+                    var fileData = new FormData();
+
+                    //Applicant Data
+                    fileData.append('uploadForm', 'AllopathicForm19C');
+                    fileData.append('Id', $('#AD19c_ApplicantID').val() == '' ? 0 : $('#AD19c_ApplicantID').val())
+                    fileData.append('ServiceId', 37);
+                    fileData.append('Name', $('#AD19c_ApplicantName').val());
+                    fileData.append('OwnershipType', $('#AD19c_ApplicantOwnerType').val());
+                    fileData.append('Aadhar', $('#AD19c_ApplicantAadhar').val());
+                    fileData.append('PAN', $('#AD19c_ApplicantPAN').val());
+                    fileData.append('MobileNo', $('#AD19c_ApplicantMobile').val());
+                    fileData.append('DistrictId', $('#AD19c_ApplicantDistrictId').val());
+                    fileData.append('MandalId', $('#AD19c_ApplicantMandalId').val());
+                    fileData.append('VillageId', $('#AD19c_ApplicantVillageId').val());
+                    fileData.append('HouseNumber', $('#AD19c_ApplicantHouseNo').val());
+                    fileData.append('StreetName', $('#AD19c_ApplicantStreet').val());
+                    fileData.append('PINCode', $('#AD19c_ApplicantPINCode').val());
+                    //fileData.append('FileType', 'AllopathicForm19');
+                    fileData.append('UploadDocument', AD19c_ApplicantUpload);
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: fileData,
+                        contentType: false,
+                        processData: false,
+                        async: true,
+                        success: function (response) {
+                            var json;
+                            if (response instanceof Object)
+                                json = response;
+                            else
+                                json = $.parseJSON(response);
+
+                            $('#AD19c_ApplicantID').val(response.ReturnData.split(',')[0]);
+                            ShowModal(response);
+
+                            if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                                $('#btnAD19CApplicantSave').val('Update');
+                                $('#btnAD19CApplicantSave').removeClass('btn-success');
+                                $('#btnAD19CApplicantSave').addClass('btn-primary');
+                            }
+                            else if (response.ReturnData.split(',')[1] == 'Completed') {
+                                $('#btnAD19CApplicantSave').val('Update');
+                                $('#btnAD19CApplicantSave').removeClass('btn-primary');
+                                $('#btnAD19CApplicantSave').addClass('btn-success');
+                            }
+                            else if (response.ReturnData.split(',')[1] == 'Empty') {
+                                $('#btnAD19CApplicantSave').val('Save');
+                                $('#btnAD19CApplicantSave').removeClass('btn-success');
+                                $('#btnAD19CApplicantSave').addClass('btn-primary');
+                            }
+
+                            //CheckforEnableSubmit();
+
+                        },
+                        failure: function (response) {
+                            alert('failure: ' + response.d);
+                        },
+                        error: function (response) {
+                            alert('error: ' + response.d);
+                        }
+                    });
+                }
+            }
+        });
+    $('#btnAD19CPharmacySave').on('click', function (e) {
+
+
+        e.preventDefault();
+        //if ($('#formAD19CPharmacy').valid()) {
+
+            var url = '@Url.Action("SaveADForm19Pharmacy", "Application", new { Area = "User" })';
+
+            var data = {
+                model: {
+                    Id: $('#AD19c_PharmacyID').val() == '' ? 0 : $('#AD19c_PharmacyID').val(),
+                    ServiceId:37,
+                    Name: $('#AD19c_PharmacyName').val(),
+                    OwnedBy: $('#AD19c_PharmacyType').val(),
+                    Fromdate: $('#AD19c_PharmacyFromDate').val(),
+                    ToDate: $('#AD19c_PharmacyToDate').val(),
+                    DistrictId: $('#AD19c_PharmacyDistrictId').val(),
+                    MandalId: $('#AD19c_PharmacyMandalId').val(),
+                    VillageId: $('#AD19c_PharmacyVillageId').val(),
+                    HouseNumber: $('#AD19c_PharmacyHouseNo').val(),
+                    StreetName: $('#AD19c_PharmacyStreet').val(),
+                    PINCode: $('#AD19c_PharmacyPINCode').val()
+                }
+            }
+        //};
+
+        var jqxhr = $.post(url, data, function () { })
+               .done(function (response) {
+                   var json;
+                   if (response instanceof Object)
+                       json = response;
+                   else
+                       json = $.parseJSON(response);
+
+                   $('#AD19c_PharmacyID').val(response.ReturnData.split(',')[0]);
+                   ShowModal(response);
+
+                   if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                       $('#btnAD19CPharmacySave').val('Update');
+                       $('#btnAD19CPharmacySave').removeClass('btn-success');
+                       $('#btnAD19CPharmacySave').addClass('btn-primary');
+                   }
+                   else if (response.ReturnData.split(',')[1] == 'Completed') {
+                       $('#btnAD19CPharmacySave').val('Update');
+                       $('#btnAD19CPharmacySave').removeClass('btn-primary');
+                       $('#btnAD19CPharmacySave').addClass('btn-success');
+                   }
+                   else if (response.ReturnData.split(',')[1] == 'Empty') {
+                       $('#btnAD19CPharmacySave').val('Save');
+                       $('#btnAD19CPharmacySave').removeClass('btn-success');
+                       $('#btnAD19CPharmacySave').addClass('btn-primary');
+                   }
+
+                  // CheckforEnableSubmit();
+               })
+       .fail(function (jqxhr, status, error) {
+           var err = status + ", " + error;
+           console.log("Save Disposal Request Failed: " + err);
+       });
+
+    });
+
+    $('#btnAD19CCompetentSave').on('click', function (e) {
+
+
+        e.preventDefault();
+        if ($('#formAD19CCompetent').valid()) {
+
+            var url = '@Url.Action("SaveADForm19Competent", "Application", new { Area = "User" })';
+
+            var data = {
+                model: {
+                    Id: $('#AD19C_CompetentID').val() == '' ? 0 : $('#AD19C_CompetentID').val(),
+                    ServiceId: 37,
+                    Name: $('#AD19C_CompetentName').val(),
+                    Aadhar: $('#AD19C_CompetentAadhar').val(),
+                    MobileNo: $('#AD19C_CompetentMobile').val(),
+                    DistrictId: $('#AD19C_CompetentDistrictId').val(),
+                    MandalId: $('#AD19C_CompetentMandalId').val(),
+                    VillageId: $('#AD19C_CompetentVillageId').val(),
+                    HouseNumber: $('#AD19C_CompetentHouseNo').val(),
+                    StreetName: $('#AD19C_CompetentStreet').val(),
+                    PINCode: $('#AD19C_CompetentPINCode').val(),
+
+                }
+            }
+        };
+
+
+        var jqxhr = $.post(url, data, function () { })
+               .done(function (response) {
+                   var json;
+                   if (response instanceof Object)
+                       json = response;
+                   else
+                       json = $.parseJSON(response);
+
+                   $('#AD19C_CompetentID').val(response.ReturnData.split(',')[0]);
+                   ShowModal(response);
+
+                   if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                       $('#btnAD19CCompetentSave').val('Update');
+                       $('#btnAD19CCompetentSave').removeClass('btn-success');
+                       $('#btnAD19CCompetentSave').addClass('btn-primary');
+                   }
+                   else if (response.ReturnData.split(',')[1] == 'Completed') {
+                       $('#btnAD19CCompetentSave').val('Update');
+                       $('#btnAD19CCompetentSave').removeClass('btn-primary');
+                       $('#btnAD19CCompetentSave').addClass('btn-success');
+                   }
+                   else if (response.ReturnData.split(',')[1] == 'Empty') {
+                       $('#btnAD19CCompetentSave').val('Save');
+                       $('#btnAD19CCompetentSave').removeClass('btn-success');
+                       $('#btnAD19CCompetentSave').addClass('btn-primary');
+                   }
+
+                   CheckforEnableSubmit();
+               })
+       .fail(function (jqxhr, status, error) {
+           var err = status + ", " + error;
+           console.log("Saving Failed: " + err);
+       });
+
+    });
+    $('#btn19CAddCompetentCertificate').click(function (e) {
+
+        e.preventDefault();
+
+
+        var uploadedFile = $("#AD19C_UploadDocuments").get(0).files[0];
+
+        if (uploadedFile !== undefined) {
+            var uri = '@Url.Action("AddDocuments", "Application", new { Area = "User" })';
+            // Create FormData object
+            var fileData = new FormData();
+
+            fileData.append('UploadType', $("#AD19C_CompetentFileType option:selected").val());
+            fileData.append('ReferenceId', 2);
+            fileData.append('DocumentPath', uploadedFile);
+
+            $.ajax({
+                type: "POST",
+                url: uri,
+                data: fileData,
+                contentType: false,
+                processData: false,
+                async: true,
+                success: function (response) {
+                    // Clear controls
+                    $('#AD19C_UploadDocuments').val('');
+                    // $('#AD_CompetentFileType').val("");
+                    $('#AD19C_CompetentFileType').val('').trigger('change');
+
+                    BindUploads(response);
+
+                    //ShowModal(response);
+
+                    //if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                    //    $('#btnAD19DrugsSave').val('Update');
+                    //    $('#btnAD19DrugsSave').removeClass('btn-success');
+                    //    $('#btnAD19DrugsSave').addClass('btn-primary');
+                    //}
+                    //else if (response.ReturnData.split(',')[1] == 'Completed') {
+                    //    $('#btnAD19DrugsSave').val('Update');
+                    //    $('#btnAD19DrugsSave').removeClass('btn-primary');
+                    //    $('#btnAD19DrugsSave').addClass('btn-success');
+                    //}
+                    //else if (response.ReturnData.split(',')[1] == 'Empty') {
+                    //    $('#btnAD19DrugsSave').val('Save');
+                    //    $('#btnAD19DrugsSave').removeClass('btn-success');
+                    //    $('#btnAD19DrugsSave').addClass('btn-primary');
+                    //}
+
+                },
+                failure: function (response) {
+                    alert('failure: ' + response.d);
+                },
+                error: function (response) {
+                    alert('error: ' + response.d);
+                }
+            });
+        }
+
+    });
+
+    function BindUploads(response) {
+
+        $('#tbl19CCompetentCertificate tr').not(function () { return !!$(this).has('th').length; }).remove();
+        $("#tbl19CCompetentCertificate").empty()
+        var json = response;
+
+        var tr;
+        tr = $('<tr/>');
+        tr.append("<th>S.No.</th>");
+        tr.append("<th>File Type</th>");
+        tr.append("<th>Uploaded File</th>");
+        $('#tbl19CCompetentCertificate').append(tr);
+
+        //Append each row to html table
+        for (var i = 0; i < json.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + (i + 1) + "</td>");
+            tr.append("<td>" + json[i].UploadType + "</td>");
+            var path = json[i].DocumentPath;
+            var index = path.indexOf("/");
+            var displayFileName = path.substring(index + 1, path.length);
+            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+            fileLink = fileLink.replace("displaytext", displayFileName);
+            fileLink = fileLink.replace("DocumentType", json[i].UploadType);
+            fileLink = fileLink.replace("filepath", json[i].DocumentPath);
+            fileLink = fileLink.replace("downloadfilename", displayFileName);
+            tr.append("<td>" + fileLink + "</td>");
+            $('#tbl19CCompetentCertificate').append(tr);
+        }
+    }
+    $('#btn19cDrugName').click(function (e) {
+        debugger;
+        e.preventDefault();
+        var data = {
+            DrugName: $('#AD19cDrug_Name').val(),
+            Type: "AD19CDrug"
+        }
+        var uri = '@Url.Action("AddDrugs", "Application", new { Area = "User" })';
+        var jqxhr = $.post(uri, data, function () { })
+        .done(function (response) {
+            BindDrugs(response);
+        }
+        );
+    });
+
+
+    function BindDrugs(response) {
+
+        $('#tbl19cDrugNames tr').not(function () { return !!$(this).has('th').length; }).remove();
+        $("#tbl19cDrugNames").empty()
+        var json = response;
+
+        var tr;
+        tr = $('<tr/>');
+        tr.append("<th>S.No.</th>");
+        tr.append("<th>Name</th>");
+        $('#tbl19cDrugNames').append(tr);
+
+        //Append each row to html table
+        for (var i = 0; i < json.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + (i + 1) + "</td>");
+            tr.append("<td>" + json[i].Name + "</td>");
+
+            $('#tbl19cDrugNames').append(tr);
+        }
+    }
+
+    $('#btnAD19CDrugsSave').on('click', function (e) {
+
+
+        e.preventDefault();
+
+
+        var url = '@Url.Action("SaveADDrugDetails", "Application", new { Area = "User" })';
+
+        var data = {
+
+            ServiceId: 37,
+
+
+
+        };
+
+
+
+        var jqxhr = $.post(url, data, function () { })
+               .done(function (response) {
+                   var json;
+                   if (response instanceof Object)
+                       json = response;
+                   else
+                       json = $.parseJSON(response);
+
+                
+                   ShowModal(response);
+
+                   if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                       $('#btnAD19CDrugsSave').val('Update');
+                       $('#btnAD19CDrugsSave').removeClass('btn-success');
+                       $('#btnAD19CDrugsSave').addClass('btn-primary');
+                   }
+                   else if (response.ReturnData.split(',')[1] == 'Completed') {
+                       $('#btnAD19CDrugsSave').val('Update');
+                       $('#btnAD19CDrugsSave').removeClass('btn-primary');
+                       $('#btnAD19CDrugsSave').addClass('btn-success');
+                   }
+                   else if (response.ReturnData.split(',')[1] == 'Empty') {
+                       $('#btnAD19CDrugsSave').val('Save');
+                       $('#btnAD19CDrugsSave').removeClass('btn-success');
+                       $('#btnAD19CDrugsSave').addClass('btn-primary');
+                   }
+
+                   //CheckforEnableSubmit();
+               })
+       .fail(function (jqxhr, status, error) {
+           var err = status + ", " + error;
+           console.log("Saving Failed: " + err);
+       });
+
+    });
+    $('#btnAD19CDeclarationSave').on('click', function (e) {
+        debugger;
+
+        e.preventDefault();
+        //var validation = $('#form19CDeclaration').validate();
+      //  var declare = validation.element('#TextArea19C');
+       // var sign = validation.element('#ADDeclaration19c_Sign');
+       // console.log(declare + ' ' + sign);
+       // var sometext = $('#form19CDeclaration').valid();
+       // if ($('#form19CDeclaration').valid()) {
+         
+            var url = '@Url.Action("SaveADDeclaration", "Application", new { Area = "User" })';
+
+            var data = {
+                model: {
+                    TextArea: $('#TextArea19C').val(),
+                    Date: $('#ADDeclaration19c_Date').val(),
+                    Sign: $('#ADDeclaration19c_Sign').val()
+
+                },
+                ServiceId: 37
+            }
+            var jqxhr = $.post(url, data, function () { })
+               .done(function (response) {
+                   var json;
+                   if (response instanceof Object)
+                       json = response;
+                   else
+                       json = $.parseJSON(response);
+
+                   $('#AD19cDeclaration_Id').val(response.ReturnData.split(',')[0]);
+                   ShowModal(response);
+
+                   if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                       $('#btnAD19CDeclarationSave').val('Update');
+                       $('#btnAD19CDeclarationSave').removeClass('btn-success');
+                       $('#btnAD19CDeclarationSave').addClass('btn-primary');
+                   }
+                   else if (response.ReturnData.split(',')[1] == 'Completed') {
+                       $('#btnAD19CDeclarationSave').val('Update');
+                       $('#btnAD19CDeclarationSave').removeClass('btn-primary');
+                       $('#btnAD19CDeclarationSave').addClass('btn-success');
+                   }
+                   else if (response.ReturnData.split(',')[1] == 'Empty') {
+                       $('#btnAD19CDeclarationSave').val('Save');
+                       $('#btnAD19CDeclarationSave').removeClass('btn-success');
+                       $('#btnAD19CDeclarationSave').addClass('btn-primary');
+                   }
+
+                   //CheckforEnableSubmit();
+               })
+       .fail(function (jqxhr, status, error) {
+           var err = status + ", " + error;
+           console.log("Save Disposal Request Failed: " + err);
+       });
+        }
+        
+
+  //  }
+    );
+
+
+   
+</script>
+
+

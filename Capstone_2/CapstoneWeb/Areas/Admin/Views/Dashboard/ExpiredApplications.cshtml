@@ -1,0 +1,173 @@
+﻿
+@{
+    ViewBag.Title = "ExpiredApplications";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<section class="content-header">
+    
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("index","Dashboard","User")"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        @*<li><a href="#">Licenses</a></li>*@
+        <li class="active">Registrations</li>
+    </ol>
+</section>
+<br/>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Registrations</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblLicenses" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Registration Number</th>
+                                <th>Issued Date</th>
+                                <th>Expiry Date</th>
+                                <th>District</th>
+                                @*<th>Status</th>*@
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(function () {
+        $("#tblLicenses").DataTable();
+        GetLicenses();
+    });
+
+    function GetLicenses() {
+        debugger;
+        var url = '@Url.Action("GetCommissionerExpiredApplications", "Dashboard", new { Area = "Admin" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                BindDetails(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetLicenses in User, Request Failed: " + err);
+            });
+    }
+
+    function BindDetails(json) {
+        var table = $('#tblLicenses').DataTable();
+
+        // Clear all existing rows
+        table.clear().draw();
+
+
+
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+
+            //var RenewalLink;
+            //if (json[i].IsExpiringSoon == 1)
+            //    RenewalLink = '<input type="button" value="Renewal" onclick="Renewal(' + json[i].Id + ',' + json[i].ServiceId + ',\'' + json[i].TableName + '\')"/>';
+            //else
+            //    RenewalLink = '';
+
+            //var AmendmentLink;
+            //if (json[i].Status != 'Cancelled')
+            //    AmendmentLink = '<input type="button" value="Ammendments" onclick="Ammendments(' + json[i].Id + ',' + json[i].ServiceId + ',\'' + json[i].TableName + '\')"/>';
+            //else
+            //    AmendmentLink = '';
+
+            table.row.add([
+        (i + 1),
+        json[i].LicenseNumber,
+        json[i].LicenseIssuedDate,
+        json[i].LicenseExpiryDate,
+        json[i].District,
+        //json[i].Status,
+        '<input type="button" value="View" onclick="ViewLicense(' + json[i].Id + ',\'' + json[i].TableName + '\')"/>',
+        //AmendmentLink,
+        ////'<input type="button" value="Reject" onclick="RejectLicense(' + json[i].Id + ')"/>',
+        //RenewalLink
+            ]);
+        }
+        table.draw();
+    }
+
+    function ViewLicense(Id, TableName) {
+        debugger;
+        var url = '@Url.Action("GetViewLicense", "License", new { Area = "User" })';
+        var data = {
+            TransactionId: Id,
+            TableName: TableName
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "License";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetPCPNDTLicense Request Failed: " + err);
+        });
+    }
+
+    function Renewal(id, serviceId, tableName) {
+        var link = '@Url.Action("Renewal", "License", new { Area = "User", id = -1, serviceId = -2, tableName=-3 })';
+        link = link.replace("-1", id);
+        link = link.replace("-2", serviceId);
+        link = link.replace("-3", tableName);
+        link = link.replace("amp;", "");
+        window.location.href = link;
+    }
+
+    function Ammendments(id, serviceId, tableName) {
+        debugger;
+        var link = '@Url.Action("Questionnaire", "Amendment", new { Area = "User",  id = -1, serviceId = -2, tableName =-3, Tid = -4})';
+        link = link.replace("-1", id);
+        link = link.replace("-2", serviceId);
+        link = link.replace("-3", tableName);
+        link = link.replace("-4", id);
+        link = link.replace("amp;", "");
+        link = link.replace("amp;", "");
+
+        window.location.href = link;
+    }
+
+    function RejectLicense(ApplicationId) {
+        var url = '@Url.Action("GetRejectLicenseApplications", "License", new { Area = "User" })';
+        var data = {
+            ApplicationId: ApplicationId
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "Rejection Certificate";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetPCPNDTLicense Request Failed: " + err);
+        });
+    }
+</script>

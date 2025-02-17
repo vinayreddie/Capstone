@@ -1,0 +1,164 @@
+﻿@model Capstone.Models.LicenseQuestionnaireModel
+
+@{
+    ViewBag.Title = "Application Form";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.5.1/jQuery.print.js"></script>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1 hidden>
+        New Application for Registration
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("index","Dashboard","User")"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="@Url.Action("Drafts","Dashboard","User")">Questionnaire</a></li>
+        <li class="active">New</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">    
+    @if (Model.ApplicationModel.ApplicationType == Capstone.Models.ApplicationType.Resubmit) 
+    {
+        @Html.HiddenFor(model=>model.ApplicationModel.ApplicationType)
+        <div class="row">
+            <div class="col-md-3">
+                @Html.HiddenFor(model => model.ApplicationModel.ExistingApplicationId)
+                @Html.LabelFor(model => model.ApplicationModel.ExistingApplicationNumber, "Existing Application Number", new { @class = "control-label" })
+            </div>
+            <div class="col-md-9">
+                @Html.ActionLink(Model.ApplicationModel.ExistingApplicationNumber, "ApplicationView", "License", new {Area="User",id=Model.ApplicationModel.ExistingApplicationId}, null)
+            </div>
+        </div>
+    }
+    @if (Model.HasAppliedforAPMCE)
+    {
+        Html.RenderPartial("_APMCE", Model.ApplicationModel.APMCEModel);
+    }
+    @if (Model.HasAppliedforPCPNDT)
+    {
+        Html.RenderPartial("_PCPNDT", Model.ApplicationModel.PCPNDTModel);
+        <div id="divspinner" hidden>
+            <img src="~/Content/images/spinner.gif" alt="Loading" />
+        </div>
+    }
+    @if (Model.HasAppliedforBloodBank)
+    {
+        Html.RenderPartial("_BloodBankForm27C", Model.ApplicationModel.BloodBankModel);
+    }
+    @if (Model.HasAppliedforBloodBankForm27E)
+    {
+        Html.RenderPartial("_BloodBankForm27E", Model.ApplicationModel.BloodBankForm27EModel);
+    }
+     @if(Model.HasAppliedforBioCapstone)
+     {
+         Html.RenderPartial("_BioCapstone", Model.ApplicationModel.BioCapstoneModel);
+     }
+    @if(Model.HasAppliedforHomeopathicDrugStore)
+    {
+    Html.RenderPartial("_Homeopathy", Model.ApplicationModel.HomeopathyDrugStore);
+    }
+    @if(Model.HasAppliedforAllopathicDrugStoreForm19)
+    {
+
+        Html.RenderPartial("_AllopathicForm19", Model.ApplicationModel.AllopathicDrugModel);
+
+        //Html.RenderPartial("_AllopathicForm19C", Model.ApplicationModel.AllopathicDrugModel);
+    }
+    @if (Model.HasAppliedforAllopathicDrugStoreForm19C)
+    {
+
+        Html.RenderPartial("_AllopathicForm19C", Model.ApplicationModel.AllopathicDrugModel);
+
+        //Html.RenderPartial("_AllopathicForm19C", Model.ApplicationModel.AllopathicDrugModel);
+    }
+    @if (Model.HasAppliedforOrganTransplantation)
+    {
+        Html.RenderPartial("_OrganTransplant", Model.ApplicationModel.OrganTransplantModel);
+    }
+     <div>
+        <h4>NOTE: <span style="color:red">*</span> fields are mandatory.</h4>
+     </div>
+    <div class="row text-right">
+            <input type="button" id="btnPreview" value="Preview & Submit" class="btn btn-success" />        
+    </div>
+</section>
+
+<script>
+
+   
+    
+    function CheckforEnableSubmit() {
+        
+        var application = @Html.Raw(Json.Encode(Model));
+        var result = false;
+        if(application.HasAppliedforAPMCE)
+            result = ValidateAPMCECompleted();   //CheckforAPMCEComplete();
+        
+        if(application.HasAppliedforPCPNDT)
+            result = ValidatePCPNDTCompleted();   // CheckforPCPNDTComplete();
+
+        if(application.HasAppliedforBloodBank)
+            result =  ValidateForm27CCompleted();   //ChekforBloodBankForm27C();
+
+        if(application.HasAppliedforBloodBankForm27E)
+            result =  ValidateForm27ECompleted(); //ChekforBloodBankForm27E();
+        
+        if(application.HasAppliedforHomeopathicDrugStore)
+            result =ValidateHomeopathyCompleted();    // ChekforHomeopathyDrugStore();
+
+        if(application.HasAppliedforOrganTransplantation)
+            result=true;
+        if(application.HasAppliedforBioCapstone)
+            result= ValidateBioCapstoneCompleted();       ///CheckforBioCapstoneComplete();
+        if(application.HasAppliedforAllopathicDrugStoreForm19)
+            result=CheckforAllopathicDrugStoreForm19Complete();
+        if(application.HasAppliedforAllopathicDrugStoreForm19C)
+            result=CheckforAllopathicDrugStoreForm19cComplete();
+        
+        return result;
+        //if(result)
+        //    $('#btnPreview').removeAttr("disabled");
+        //else
+        //    $('#btnPreview').attr('disabled', 'disabled');
+    }
+
+    $('#btnPreview').on('click', function () {
+      
+        var result= CheckforEnableSubmit();
+        if(result==true)
+        {
+            var url = '@Url.Action("PreviewApplication", "License", new { Area = "User" })';
+            var data = {
+                applicationType : '@Model.ApplicationModel.ApplicationType'
+            };
+            //  alert(data.applicationType);
+            var jqxhr = $.post(url, data, function () { }, 'html')
+            .done(function (response) {
+                StopSpinner();
+                var notificationModel = GetModalJSON();
+                notificationModel.Title = "Application Preview";
+                notificationModel.BodyContent = response;
+                notificationModel.IsLargeModal = true;
+                ShowModal(notificationModel);
+            })
+            .fail(function (jqxhr, status, error) {
+                
+                var err = status + ", " + error;
+                console.log("Preview Application Request Failed: " + err);
+            });
+        }
+    });
+  
+</script>
+<script>
+        function ShowSpinner() {
+            $('#divspinner').fadeIn();
+        }
+
+        function StopSpinner() {
+            $('#divspinner').fadeOut();
+        }
+</script>
+
+

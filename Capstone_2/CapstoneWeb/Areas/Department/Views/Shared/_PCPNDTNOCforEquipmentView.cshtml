@@ -1,0 +1,124 @@
+﻿
+@model  Capstone.Models.NOCforquipmentModel
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Equipment Details of NOC</legend>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-body">
+                    <div class="row table-responsive no-padding">
+                        <table id="tblEquiments" class="table table-hover">
+                            <tr>
+                                <th>Name</th>
+                                <th>Serial No.</th>
+                                <th>Model</th>
+                                <th>Make</th>
+                                <th>Type</th>
+                                @*<th>Uploaded File</th>*@
+                                <th>Invoice</th>
+                                <th>NOC</th>
+                                <th>Transfer</th>
+                                <th>Installation</th>
+                                <th>Image</th>
+                            </tr>
+                            @if (Model != null)
+                        {
+
+                                <tr>
+                                    <td>@Model.EquipmentDetails.Name</td>
+                                    <td>@Model.EquipmentDetails.SerialNumber</td>
+                                    <td>@Model.EquipmentDetails.MachineModel</td>
+                                    <td>@Model.EquipmentDetails.Make</td>
+                                    <td>@Model.EquipmentDetails.Type</td>
+                                    @*<td>
+                                                                                    @if (!string.IsNullOrEmpty(Model.EquipmentDetails.UploadedFilePath))
+                                                                                    {
+                                                                                        var layoutindex = Model.EquipmentDetails.UploadedFilePath.LastIndexOf("/");
+                                                                                        var layoutfileName = Model.EquipmentDetails.UploadedFilePath.Substring(layoutindex + 1);
+                                                                                    @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                        new { Area = "", path = Model.EquipmentDetails.UploadedFilePath, downloadName = layoutfileName }, null);
+                                                                                    }
+                                                                                </td>*@
+                                    <td>
+                                        @if (Model.EquipmentDetails.InvoicePath != null && Model.EquipmentDetails.InvoicePath != "")
+                                        {
+                                            var layoutindex = Model.EquipmentDetails.InvoicePath.LastIndexOf("/");
+                                            var layoutfileName = Model.EquipmentDetails.InvoicePath.Substring(layoutindex + 1);
+                                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentDetails.InvoicePath, downloadName = layoutfileName }, null);
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (Model.EquipmentDetails.NocFilePath != null && Model.EquipmentDetails.NocFilePath != "")
+                                        {
+                                            var layoutindex = Model.EquipmentDetails.NocFilePath.LastIndexOf("/");
+                                            var layoutfileName = Model.EquipmentDetails.NocFilePath.Substring(layoutindex + 1);
+                                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentDetails.NocFilePath, downloadName = layoutfileName }, null);
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (Model.EquipmentDetails.TransferCertificatePath != null && Model.EquipmentDetails.TransferCertificatePath != "")
+                                        {
+                                            var layoutindex = Model.EquipmentDetails.TransferCertificatePath.LastIndexOf("/");
+                                            var layoutfileName = Model.EquipmentDetails.TransferCertificatePath.Substring(layoutindex + 1);
+                                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentDetails.TransferCertificatePath, downloadName = layoutfileName }, null);
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (Model.EquipmentDetails.InstallationCerticatePath != null && Model.EquipmentDetails.InstallationCerticatePath != "")
+                                        {
+                                            var layoutindex = Model.EquipmentDetails.InstallationCerticatePath.LastIndexOf("/");
+                                            var layoutfileName = Model.EquipmentDetails.InstallationCerticatePath.Substring(layoutindex + 1);
+                                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentDetails.InstallationCerticatePath, downloadName = layoutfileName }, null);
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (Model.EquipmentDetails.ImagePath != null && Model.EquipmentDetails.ImagePath != "")
+                                        {
+                                            var layoutindex = Model.EquipmentDetails.ImagePath.LastIndexOf("/");
+                                            var layoutfileName = Model.EquipmentDetails.ImagePath.Substring(layoutindex + 1);
+                                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentDetails.ImagePath, downloadName = layoutfileName }, null);
+                                        }
+                                    </td>
+                                </tr>
+
+                        }
+
+                        </table>
+                    </div>
+                    <div class="row">
+                        
+                        @if (Model.Type == "DistrictId")
+                        {
+                            <div> <label>Equipment Moved To </label> <b>@Model.DistrictName </b> <label>District</label> </div>
+                        }
+
+                        else
+                        {
+                            <div><label>Equipment Moved To Other State : </label> <b> @Model.OtherState </b></div>
+                        }
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 text-right">
+                            @Html.LabelFor(model => model.Remarks)  :
+                        </div>
+                        <div class="col-md-2">
+                            @Html.DisplayFor(model=>model.Remarks)
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</fieldset>
+

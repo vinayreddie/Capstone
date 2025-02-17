@@ -1,0 +1,1374 @@
+﻿@model Capstone.Models.TAMCEFacilityModel
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">7. OPERATION THEATRE </legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th style="width:480px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th style="width:260px;">Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Availability of staff on OT as per norms
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMyhelpYou" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td style="width:528px;">
+                                        Concept of clean,neutral and sterile zone followed by providing variuos self closing double doors
+                                        or air coutain etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td style="width:528px;">
+                                        Dimensions of operation thattre are measured and dose of potassium permonganate and formaldehyde calculated for doing
+                                        fumigation on when indicated,. Verify the record
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td style="width:528px;">
+                                        Availability of seperate OTs for septic and infected cases and also different specilities
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td style="width:528px;">
+                                        Swabs from OT are snet for culture and action taken and verify documents.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td style="width:528px;">
+                                        Pre operative waiting room with toilet facilities available
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td style="width:528px;">
+                                        Availability of well equipped post operative ward with adequate no. of beds and resuscitation measures.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td style="width:528px;">
+                                        Uptodate mainatenance of OT records
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td style="width:528px;">
+                                        Proepr steps taken for disposal of OT waste as per bioCapstone waste management rules
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td style="width:528px;">
+                                        OT Staff nurses available round the clock
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td style="width:528px;">
+                                        Hose keeping and biosafety measures adopted in OT
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td style="width:528px;">
+                                        Availability of BOyles apparatus, OT table, Shedowless lamp, suction appartus,Air conditioner,Electric cautery, refirgerator and
+                                        Auto claves.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td style="width:528px;">
+                                        Availability of portable X-ray macines on OT alaong with dark room
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>14</td>
+                                    <td style="width:528px;">
+                                        Check the list attached to the patient posted for operation
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>15</td>
+                                    <td style="width:528px;">
+                                        Arrangements of transport of patient posted for operation
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>16</td>
+                                    <td style="width:528px;">
+                                        Availablity of seperate changing room for doctors,nurses attached toilet and locker facility and entire staff use OT attire.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>17</td>
+                                    <td style="width:528px;">
+                                        Availablity of Fire fighting equipemtns and knowledge to use them.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">8. CENTRAL STERILE SUPPLY DEPARTMENT </legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th style="width:480px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th style="width:260px;">Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Availability of HP Horizontal Serilizers (HPHS)
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMyhelpYou" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td style="width:528px;">
+                                        Trained OT Attendant Unser supervision of OT Staff nurse performs and autoclaving
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td style="width:528px;">
+                                        A Details chart showing how to operate HPHS displayed
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td style="width:528px;">
+                                        Wall Clock Made available for noting the time during autoclaving process
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td style="width:528px;">
+                                        All autoclavingtape should be preserved and posted on register datewises and checked by Anaesthesist.
+                                        (verify register).
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td style="width:528px;">
+                                        Anesthesist/Pathologist should be incharge of CSSD
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td style="width:528px;">
+                                       Knowledge of staff nurse for disfecion of fiber optic scopes, linen, sharp instruments etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">9. LABOUR ROOM </legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th style="width:480px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th style="width:260px;">Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Seperate Labour room with aitomatic double door for cleanand septic cases available.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMyhelpYou" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td style="width:528px;">
+                                        Examination of special tests like widal, serum bilirubin, LFT, VDRL , BS for M.P , stool examinations, semen analysis,
+                                        electrolyte study,boold gas analysis, kidney function tests, CSF examination etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td style="width:528px;">
+                                        Minimum 2 Labour tbles in clean labour room with plastic curtain partition
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td style="width:528px;">
+                                        Availability of Deep freeze and key for preservation of still born, placenta, till they are disposed off.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td style="width:528px;">
+                                        Enough No.of Aluminium/ plastic basges for Indentifaction of Baby and mother.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td style="width:528px;">
+                                        Regular washing and fumigation of Labour room
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td style="width:528px;">
+                                        Observance of Proper housekeeping
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td style="width:528px;">
+                                        Proper wrinting notes and includes foor prints of Baby,mother with attestation of nurse conducting delivery.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td style="width:528px;">
+                                        Maintenance of call book in prescribed format and attendance of calls in time
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td style="width:528px;">
+                                        Interview of 5 mothers delivered recently about their experience regarding facilities.etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td style="width:528px;">
+                                        Availability of attached toilet facility near labour room.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td style="width:528px;">
+                                        Availability of seperate incubators for hospital delivery cases.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td style="width:528px;">
+                                        Staff trained in premature baby care.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>14</td>
+                                    <td style="width:528px;">
+                                        Availability of Phototherapy unit, oxygen hoods.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>15</td>
+                                    <td style="width:528px;">
+                                        Proper maintenance of record , registers of newborns.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>16</td>
+                                    <td style="width:528px;">
+                                        Written Instrunctions about operation of incubator displayed
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">10. WARDS </legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th style="width:480px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th style="width:260px;">Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Satisfactory cleanliness of the wards
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMyhelpYou" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td style="width:528px;">
+                                        Satisfactorycondition of the sanitory blocks
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td style="width:528px;">
+                                       If Floor beds in wards present,analyze the reason
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td style="width:528px;">
+                                       Satisfactory upkeepment of costs,bedside lockers and lenin etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td style="width:528px;">
+                                        Use of Hospital uniforms by all patients
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td style="width:528px;">
+                                        Availability of suction appartus,wheel chairs,stretcher trolly and stationaries,forms etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td style="width:528px;">
+                                        Suggesion book in wards and cognizance taken.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td style="width:528px;">
+                                        Concept of prograssive patient care.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td style="width:528px;">
+                                        Display of name at head end of patients
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td style="width:528px;">
+                                        Adequacy of geysers in working conditions
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td style="width:528px;">
+                                        Srutinze4 inpatient case sheets,operation and anesthesia notes,etc, &
+                                        Patients relatives satisfaction.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td style="width:528px;">
+                                        Satisfaction of patients about type of diet, quality if provided by the facility
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td style="width:528px;">
+                                        Maintenance of inventory of variuos sera, reagent and consumables and verify.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">11. DIET AND KITCHEN FACILITY </legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th style="width:480px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th style="width:260px;">Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Availability of different types of diets
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMyhelpYou" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td style="width:528px;">
+                                        Physical Verification of dietary articles done any time
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td style="width:528px;">
+                                        Availability of diet charts for adult,special diets.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td style="width:528px;">
+                                        Arrangements for washing vegetable and vegetable cutting platform.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td style="width:528px;">
+                                        Satisfactory arrangements for preventing rat nuisance
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td style="width:528px;">
+                                        Availability of modern gadgets like mixer grinder,bulk cooker,atta meeding machines.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td style="width:528px;">
+                                        Availability of stainless steel with copper based utensils for cooking
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td style="width:528px;">
+                                        Availability of food testing register and remarks
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td style="width:528px;">
+                                        Satisfactory arrangements for storing the food grains
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td style="width:528px;">
+                                        regular Capstone checkup for food handlers
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td style="width:528px;">
+                                        Regular Organization of diet committe meeting
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td style="width:528px;">
+                                        Sending o samples of dietary articles of PAF studies and action taken on results
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td style="width:528px;">
+                                        Availability of LActometer measuring unit and weighing machine and weights
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>14</td>
+                                    <td style="width:528px;">
+                                        Action taken on substandard supply of dietary articles
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>15</td>
+                                    <td style="width:528px;">
+                                        Availability of ultra sound scan facility and trained rediologist/ gynecologist posted
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">12. LINEN AND LAUNDRY SERVICES </legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th style="width:480px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th style="width:260px;">Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Availability of Linen Keeper/satisfactory alternative arrangements
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMyhelpYou" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td style="width:528px;">
+                                        Availability of linen as per norms
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td style="width:528px;">
+                                        Availability of buffer stock of linen to face disaster emergencies.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td style="width:528px;">
+                                        Upkeep of linen register
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td style="width:528px;">
+                                        Hospital linen stamped by Dhobi ink
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td style="width:528px;">
+                                        Regular disposal of condemned linen materials
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td style="width:528px;">
+                                        Services of tailor utilized adequately for making new OT wears eye shade and mending the torn cloths etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td style="width:528px;">
+                                        A Practice of Dirty/spoiled linen are decontaminated/washed and given to Dhobi, is followed
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td style="width:528px;">
+                                        Whether Linen is kept seperately and washed separately
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td style="width:528px;">
+                                       use of aprons by Doctors
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td style="width:528px;">
+                                        ParaCapstone Uniforms
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td style="width:528px;">
+                                        Class IV Uniforms
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td style="width:528px;">
+                                        Concept of Central Linen System Implemented
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿@model Capstone.Models.ApplicationTrackModel
+@{
+    ViewBag.Title = "TestInspection";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+    //Layout=null;
+}
+<section class="content">
+    <div>
+        @{
+            Html.RenderPartial("_TransactionTrack", Model);
+        }
+    </div>
+
+</section>

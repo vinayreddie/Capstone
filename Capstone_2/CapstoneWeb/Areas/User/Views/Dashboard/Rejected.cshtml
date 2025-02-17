@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewBag.Title = "Rejected";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Rejected Applications
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">Rejected Applications</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Rejected Applications</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblRejected" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sl.No</th>
+                                <th>Application Number</th>
+                                <th>Application Type</th>
+                                <th>Submitted On</th>
+                                <th>Remarks</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(function () {
+        debugger;
+        GetRejectedApplications();
+    });
+
+    function GetRejectedApplications() {
+        debugger;
+        var url = '@Url.Action("GetRejectedApplications", "Dashboard", new { Area = "User" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+
+                BindDetails(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetRejectedApplications in User, Request Failed: " + err);
+            });
+    }
+
+    function BindDetails(json) {
+        debugger;
+        var table = $('#tblRejected').DataTable();
+
+        var resubmitlink;
+        var appeallink;
+        var FormClink;
+
+        // Clear all existing rows
+        table.clear().draw();
+
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+
+            //
+            if (json[i].StatusId == 10 || json[i].TransactionType=='Amendment' || json[i].TransactionType=='Appeal') {
+                resubmitlink = '';
+                appeallink = '';
+                FormClink = '';
+            }
+            else {
+                resubmitlink = '<input type="button" value="Re Submit" onclick="Resubmit(' + json[i].TransactionId + ', \'' + json[i].TableName + '\',' + json[i].Id +')"/>';
+                appeallink = '<input type="button" value="Appeal" onclick="Appeal(' + json[i].TransactionId + ')"/>';
+                FormClink = '<input type="button" value="FORMC" onclick="RejectionFORMC(' + json[i].TransactionId + ', \'' + json[i].TableName + ', \'' + json[i].Id + '\')"/>';
+            }
+
+
+
+            table.row.add([
+        (i + 1),
+        json[i].ApplicationNumber,
+        json[i].ServiceName,
+        json[i].SubmittedOn,
+        json[i].Remarks,            
+        '<input type="button" value="View" onclick="ViewApplication(' + json[i].TransactionId + ', \'' + json[i].TableName + '\')"/>',
+        resubmitlink,
+        appeallink,
+        FormClink,
+            ]);
+        }
+
+        table.draw();
+    }
+
+    function ViewApplication(TransactionId, TransactionType) {
+        debugger;
+        var link = '@Url.Action("ApplicationView", "License", new { Area = "User", TransactionId = "_transactionId", TransactionType = "_transactionType" })';
+        link = link.replace("_transactionId", TransactionId).replace("&amp;", "&").replace("_transactionType", TransactionType);
+        window.location.href = link;
+    }
+
+    function Resubmit(TransactionId, TransactionType, ApplicationId) {
+        debugger;
+        var link = '@Url.Action("Resubmit", "License", new { Area = "User", TransactionId = "_transactionId", TransactionType = "_transactionType",ApplicationId="_applicationId" })';
+        link = link.replace("_transactionId", TransactionId).replace("_transactionType", TransactionType).replace("&amp;", "&").replace("_applicationId", ApplicationId).replace("&amp;", "&");
+        window.location.href = link;
+    }
+
+    function Appeal(id) {
+        var link = '@Url.Action("Appeal", "License", new { Area = "User", id = 1 })';
+        link = link.replace("1", id);
+        window.location.href = link;
+    }
+    function RejectionFORMC(transactionId, transactionType, applicationId) {
+         debugger;
+        var url = '@Url.Action("GetRejectLicenseApplications", "License", new { Area = "User" })';
+        var data = {
+            TransactionId: transactionId,
+            TransactionType:transactionType,
+            ApplicationId: applicationId
+
+        };
+        var jqxhr = $.post(url, data, function () { }, "html")
+        .done(function (response) {
+            var notificationModel = GetModalJSON();
+            notificationModel.Title = "Reject";
+            notificationModel.BodyContent = response;
+            notificationModel.IsLargeModal = true;
+            ShowModal(notificationModel);
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetRejectionForm Request Failed: " + err);
+        });
+    }
+</script>
+

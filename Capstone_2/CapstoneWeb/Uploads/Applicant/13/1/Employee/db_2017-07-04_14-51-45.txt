@@ -1,0 +1,141 @@
+USE [MedicalDev]
+GO
+
+/****** Object:  UserDefinedTableType [dbo].[EmployeeModel]    Script Date: 03-Jul-17 6:54:36 PM ******/
+DROP TYPE [dbo].[EmployeeModel]
+GO
+
+/****** Object:  UserDefinedTableType [dbo].[EmployeeModel]    Script Date: 03-Jul-17 6:54:36 PM ******/
+CREATE TYPE [dbo].[EmployeeModel] AS TABLE(
+	[DesignationName] [varchar](500) NULL,
+	[Id] [int] NULL,
+	[EmployeeLogId] [int] NULL,
+	[Name] [varchar](500) NULL,
+	[DesignationId] [int] NULL,
+	[Experience] [varchar](100) NULL,
+	ExpYears INT NULL,
+	ExpMonths INT NULL,
+	ExpDays INT NULL,
+	[RegistrationNumber] [varchar](50) NULL,
+	[UploadedFilePath] [varchar](500) NULL,
+	[CreatedUserId] [int] NULL,
+	[IsDeleted] [bit] NULL,
+	[FormStatus] [int] NULL
+)
+GO
+
+
+
+
+
+
+
+
+
+
+USE [MedicalDev]
+GO
+/****** Object:  StoredProcedure [dbo].[InsertEmployeeBulk]    Script Date: 03-Jul-17 6:57:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Raj K>
+-- Create date: <16-05-2017>
+-- Description:	<Bulk insert or update t_equipments>
+-- =============================================
+ALTER PROCEDURE [dbo].[InsertEmployeeBulk]
+	-- Add the parameters for the stored procedure here
+	@ApplicationId INT OUT, @TransactionId INT OUT, @CreatedUserId INT,
+	@EmployeeList EmployeeModel READONLY, @ApplicationNumber VARCHAR(50) OUT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	-- Check for Application Save
+	EXEC [dbo].[SaveApplication] @ApplicationId, @CreatedUserId;
+	IF @ApplicationId IS NULL OR @ApplicationId = 0
+		SET @ApplicationId = @@IDENTITY;
+
+	SET @ApplicationNumber = (SELECT ApplicationNumber FROM t_application WHERE Id = @ApplicationId);
+
+	-- Check for Transaction Save
+	EXEC [dbo].[SaveTransaction] @TransactionId, @ApplicationId, 2, 1,
+				NULL, NULL, NULL, 4, @CreatedUserId;
+	IF @TransactionId IS NULL OR @TransactionId = 0
+		SET @TransactionId = @@IDENTITY;
+
+    MERGE t_employee AS TARGET
+	USING @EmployeeList AS SOURCE ON SOURCE.Id = TARGET.Id
+
+	WHEN MATCHED THEN
+		UPDATE SET Name = SOURCE.Name, DesignationId = SOURCE.DesignationId, Experience = SOURCE.Experience,
+		ExpYears = SOURCE.ExpYears, ExpMonths = SOURCE.ExpMonths, ExpDays = SOURCE.ExpDays,
+		RegistrationNumber = SOURCE.RegistrationNumber, UploadedFilePath = SOURCE.UploadedFilePath, IsDeleted = SOURCE.IsDeleted,
+		LastModifiedOn = SYSDATETIME()
+					
+	WHEN NOT MATCHED BY TARGET THEN
+		INSERT (TransactionId, Name, DesignationId, Experience, ExpYears, ExpMonths, ExpDays, RegistrationNumber, 
+		UploadedFilePath, IsDeleted, CreatedUserId, CreatedOn)
+		VALUES (@TransactionId, Name, DesignationId, Experience, ExpYears, ExpMonths, ExpDays, RegistrationNumber, 
+		UploadedFilePath, IsDeleted, CreatedUserId, SYSDATETIME());
+END
+
+
+
+
+
+
+
+
+
+
+
+USE [MedicalDev]
+GO
+/****** Object:  StoredProcedure [dbo].[InsertEmployeeDetailsBulkOld]    Script Date: 03-Jul-17 6:59:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,kishore>
+-- Create date: <Create Date,13-06-17,>
+-- Description:	<Description,  Emaloyee Details inserted (Bulk Data),>
+-- =============================================
+ALTER PROCEDURE  [dbo].[InsertEmployeeDetailsBulkOld]
+
+--@ApplicationId INT OUT, 
+@TransactionId INT OUT, 
+@CreatedUserId INT,
+@EmployeeList EmployeeModel READONLY
+--@ApplicationNumber VARCHAR(50) OUT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	MERGE t_employeelog AS TARGET
+	USING @EmployeeList AS SOURCE ON SOURCE.Id = TARGET.Id
+
+	WHEN MATCHED THEN
+		UPDATE SET Name = SOURCE.Name, DesignationId = SOURCE.DesignationId, Experience = SOURCE.Experience,
+		RegistrationNumber = SOURCE.RegistrationNumber, UploadedFilePath = SOURCE.UploadedFilePath, IsDeleted = SOURCE.IsDeleted,
+		LastModifiedOn = SYSDATETIME()
+					
+	WHEN NOT MATCHED BY TARGET THEN
+		INSERT (TransactionId, Name, DesignationId, Experience, RegistrationNumber, UploadedFilePath, IsDeleted, CreatedUserId,
+		CreatedOn)
+		VALUES (@TransactionId, Name, DesignationId, Experience, RegistrationNumber, UploadedFilePath, IsDeleted, CreatedUserId,
+		SYSDATETIME());
+END
+
+
+
+
+

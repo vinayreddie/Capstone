@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "ApprovedList";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Approved List</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblApproved" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sl.No</th>
+                                <th>Applicant  Name</th>
+                                <th>Service Name</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(function () {
+        debugger;
+        GetApprovedApplications();
+    });
+
+    function GetApprovedApplications() {
+        debugger;
+        var url = '@Url.Action("GetApprovedList", "Dashboard", new { Area = "Department" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                BindDetails(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetApprovedApplications  Request Failed: " + err);
+            });
+    }
+
+    function BindDetails(json) {
+        var table = $('#tblApproved').DataTable();
+        // Clear all existing rows
+        table.clear().draw();
+
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+
+            table.row.add([
+        (i + 1),
+        json[i].ApplicantName,
+        json[i].ServiceName
+       
+            ]);
+        }
+
+        table.draw();
+    }
+</script>

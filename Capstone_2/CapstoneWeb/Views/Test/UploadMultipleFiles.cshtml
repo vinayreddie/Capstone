@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "UploadMultipleFiles";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<h2>Upload Multiple Files</h2>
+
+<div class="row">
+    <div class="col-md-2">
+        Select Multiple Files
+    </div>
+    <div class="col-md-2">
+        <input type="file" multiple id="txtMultipleUpload" name="txtMultipleUpload" />
+    </div>
+    <div class="col-md-2">
+        <input type="button" id="btnUpload" value="Upload" />
+    </div>
+</div>
+
+<script>
+    $('#btnUpload').on('click', function (e) {
+        var url = '@Url.Action("Test3", "Test")';
+        
+        var fileData = new FormData();
+        var singleFile = $("#txtMultipleUpload").get(0).files[0];
+        var x = [];
+        for (var i = 0; i < $("#txtMultipleUpload").get(0).files.length; i++) {
+            x.push($("#txtMultipleUpload").get(0).files[i]);
+            fileData.append('multipleFiles', $("#txtMultipleUpload").get(0).files[i]);
+        }
+        var multipleFiles = $("#txtMultipleUpload").get(0).files;
+
+        
+        fileData.append('singleFile', singleFile);
+        //fileData.append('multipleFiles', x);
+
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: fileData,
+            contentType: false,
+            processData: false,
+            async: true,
+            success: function (response) {
+                console.log(response);
+            },
+            failure: function (response) {
+                //alert('failure: ' + response.d);
+            },
+            error: function (response) {
+                ///  alert('error: ' + response.d);
+            }
+        });
+    });
+</script>
+

@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Dashboard
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        @*<li class="active">General Elements</li>*@
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3><span id="spanDrafts"></span></h3>
+                    <p>Cab Service</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/draft.png" /></i>
+                </div>
+                @Html.ActionLink("More info", "CabService", "Dashboard", new { Area = "User" }, new { @class = "small-box-footer" })
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3><span id="spanSubmitted"></span></h3>
+                    <p>Bank Account</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/applicationSubmit.png" /></i>
+                </div>
+                @Html.ActionLink("More info", "OtherServices", "Dashboard", new { Area = "User" }, new { @class = "small-box-footer" })
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3><span id="spanRejected"></span></h3>
+                    <p>View Rentals</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/registration.png" /></i>
+                </div>
+                @Html.ActionLink("More info", "RentHome", "Dashboard", new { Area = "User" }, new { @class = "small-box-footer" })
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3><span id="spanLicenses"></span></h3>
+                    <p>Driving License</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/registration.png" /></i>
+                </div>
+                @Html.ActionLink("More info", "DrivingServices", "Dashboard", new { Area = "User" }, new { @class = "small-box-footer" })
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3><span id="spanAmmendments"></span></h3>
+                    <p>Mobility</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/registration.png" /></i>
+                </div>
+                @Html.ActionLink("More info", "MobilityServices", "Dashboard", new { Area = "User" }, new { @class = "small-box-footer" })
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box " style="background-color:#004B8D">
+                <div class="inner" style="color:#fff;">
+                    <h3><span id="spanQueries"></span></h3>
+                    <p>Offers</p>
+                </div>
+                <div class="icon">
+                   
+                    <i><img src="~/Content/images/raised.png" /></i>
+                </div>
+                @Html.ActionLink("More info", "Offers", "Dashboard", new { Area = "User" }, new { @class = "small-box-footer" })
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+</section>
+
+<script>
+    $(function () {
+        var url = '@Url.Action("GetUserDashboard", "Dashboard", new { Area = "User" })';
+        var jqxhr = $.getJSON(url, function () { })
+       .done(function (response) {
+           var json;
+           if (response instanceof Object)
+               json = response;
+           else
+               json = $.parseJSON(response);
+           $('#spanDrafts').text(json.Table[0]["Drafts"]);
+           $('#spanSubmitted').text(json.Table1[0]["Submitted"]);
+           $('#spanLicenses').text(json.Table2[0]["Licenses"]);
+           $('#spanAmmendments').text(json.Table3[0]["Ammendments"]);
+           $('#spanQueries').text(json.Table4[0]["QueriesRaised"]);
+           $('#spanRejected').text(json.Table5[0]["Rejected"]);
+
+       })
+   .fail(function (jqxhr, status, error) {
+       var err = status + ", " + error;
+       console.log("GetUserDashboard Request Failed: " + err);
+   });
+    });
+</script>

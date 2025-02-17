@@ -1,0 +1,583 @@
+﻿@using Medical.Models;
+@model ExistingLicense
+
+@{
+    ViewBag.Title = "Existing Licenses Index";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Existing License Details | Index
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        @*<li class="active">General Elements</li>*@
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Existing Licenses Details</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered" id="tblExistingLicensesList">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Application No.</th>
+                                <th>Existing License No.</th>
+                                <th>License Valid Dates Range</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="divModalExistingLicenseEdit" style="width:1025px;display:inline;height:500px;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="width:801px; margin-left:17%;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Existing License Details</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="hfExistingLicenseTransId" value="0" />
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.ApplicationNumber, new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.ApplicationNumber, new { htmlAttributes = new { @class = "form-control numeric" } })
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.SubmittedOn, new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.EditorFor(model => model.SubmittedOn, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.ExistingLicenseNumber, "Existing License No.", new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.ExistingLicenseNumber, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.LicenseIssueDate, "License Issue Date", new { @class = "control-label" })
+                            <span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.LicenseIssueDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                            @Html.ValidationMessageFor(model => model.LicenseIssueDate, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.LicenseExpiryDate, "License Expiry Date", new { @class = "control-label" })
+                            <span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.LicenseExpiryDate, new { htmlAttributes = new { @class = "form-control datepicker", @disabled = true } })
+                            @Html.ValidationMessageFor(model => model.LicenseExpiryDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.MobileNo, "Mobile No.", new { @class = "control-label" })
+                            <span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control numeric", @maxlength = 10 } })
+                            @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.Aadhar, new { @class = "control-label" })
+                            <span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.Aadhar, new { htmlAttributes = new { @class = "form-control numeric", @maxlength = 12 } })
+                            @Html.ValidationMessageFor(model => model.Aadhar, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.PAN, new { @class = "control-label" })
+                            <span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.PAN, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PAN, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.DistrictID, "District", new { @class = "control-label" })
+                            <span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.DropDownListFor(model => model.DistrictID,
+                        new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                        new { @class = "form-control select2", @style = "width:100%;" })
+                            @Html.ValidationMessageFor(model => model.DistrictID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.MandalID, "Mandal", new { @class = "control-label" })
+                            <span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.DropDownListFor(model => model.MandalID,
+                        new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                        new { @class = "form-control select2", @style = "width:100%;" })
+                            @Html.ValidationMessageFor(model => model.MandalID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.VillageID, "Village", new { @class = "control-label" })
+                            <span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.DropDownListFor(model => model.VillageID,
+                        new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+                        new { @class = "form-control select2", @style = "width:100%;" })
+                            @Html.ValidationMessageFor(model => model.VillageID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.HouseNo, new { @class = "control-label" })
+                            <span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.HouseNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HouseNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.StreetName, new { @class = "control-label" })
+                            <span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.StreetName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2  text-right">
+                            @Html.LabelFor(model => model.Pincode, new { @class = "control-label" })
+                            <span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.Pincode, new { htmlAttributes = new { @class = "form-control numeric", @maxlength = 6 } })
+                            @Html.ValidationMessageFor(model => model.Pincode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnNonAction" type="button" class="btn btn-default" data-dismiss="modal" hidden>Close</button>
+                    <input type="button" id="btnExistingLicenseSave" value="Update" class="btn btn-primary" />
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+</section>
+
+<script>
+    $(function () {
+    $("#tblExistingLicensesList").DataTable();
+        BindExistingLicensesIndex();
+    });
+
+    function EditExistingLicense(id) {
+        if (id > 0) {
+            BindExistingLicenseTrans(id);
+        }
+    }
+
+    function BindExistingLicenseTrans(TransId) {
+        $('#divModalExistingLicenseEdit').modal('show');
+
+        var url = '@Url.Action("BindExistingLicenseTrans", "License", new { Area = "User" })';
+        var data = { TransactionId : TransId };
+        var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+
+            $('#Pincode').val(json[0].PINCode);
+            $('#hfExistingLicenseTransId').val(json[0].Id);
+            $('#Name').val(json[0].Name);
+            $('#ApplicationNumber').val(json[0].ApplicationNumber);
+            $('#SubmittedOn').val(json[0].SubmittedOn);
+             $('#LicenseNumber').val(json[0].LicenseNumber);
+             $('#ExistingLicenseNumber').val(json[0].ExistingLicenseNumber);
+                          $('#LicenseIssueDate').val(json[0].LicenseIssuedDate);
+                          $('#LicenseExpiryDate').val(json[0].LicenseExpiryDate);
+                          $('#CurrentDesignationId').val(json[0].CurrentDesignationId);
+                         $('#DistrictID').val(json[0].DistrictID).change();
+                         $('#MandalID').val(json[0].MandalID).change();
+                         $('#VillageID').val(json[0].VillageID).change();
+                         $('#MobileNo').val(json[0].Mobile);
+                         $('#Aadhar').val(json[0].Aadhar);
+                         $('#PAN').val(json[0].PAN);
+                         $('#HouseNo').val(json[0].HouseNumber);
+                         $('#StreetName').val(json[0].StreetName);
+
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.log("Bind Inspections List Index Request Failed: " + err);
+        });
+    }
+
+      function BindExistingLicensesIndex() {
+        var url = '@Url.Action("GetExistingLicensesIndex", "License", new { Area = "User" })';
+        var data = '';
+        var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            var table = $('#tblExistingLicensesList').DataTable();
+            table.clear().draw();
+
+
+            $("#tblExistingLicensesList tbody").empty();
+            var trans = json;
+            var tr;
+            for (var i = 0; i < json.length; i++) {
+
+                var editlink = '@Url.Action("EditAssignInspection", "Inspection", new { Area = "DOS", assignedInspectionId = 1 })';
+                editlink = editlink.replace("1", json[i].Id);
+
+                var deleteLink = 'WarnOnAssignInspectionDelete(' + json[i].Id + ')';
+
+                table.row.add([
+                    (i + 1),
+                    json[i].Name,
+                    json[i].ApplicationNumber,
+                    json[i].ExistingLicenseNumber,
+                    json[i].ExistingLicenseRangeDates,
+                    '&nbsp; <a class ="glyphicon glyphicon-pencil actionlink-button" data-toggle="modal" data- target="#divModal1" href="#" onclick="EditExistingLicense(' + json[i].Id + ');"></a> ',
+                    //'&nbsp;<a class = "glyphicon glyphicon-pencil actionlink-button" href = ' + editlink + ' target = "_self" ></a >&nbsp;',
+                    '&nbsp; <a class="glyphicon glyphicon-remove actionlink-button" href="javascript:void(0);" onclick="WarnOnExistingLicenseDelete(' + json[i].Id + ');"></a>'
+                ]);
+            }
+
+            table.draw();
+
+            // TODO : Bind data to table
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.log("GetExistingLicensesIndex Request Failed: " + err);
+        });
+    }
+
+    function WarnOnExistingLicenseDelete(id) {
+        var jsonObject = GetModalJSON();
+        jsonObject.NotificationTypeClass = 'Warning';
+        jsonObject.Title = 'Warning';
+        jsonObject.NotificationMessage = 'Do you really want to delete this Existing License Details?';
+        jsonObject.ShowActionButton = true;
+        jsonObject.ActionButtonClass = 'Default';
+        jsonObject.ActionButtonText = 'Continue';
+        jsonObject.ShowNonActionButton = true;
+        jsonObject.NonActionButtonClass = 'Warning';
+        jsonObject.NonActionButtonText = 'Cancel';
+
+        $('#btnAction').on('click', function () {
+            DeleteExistingLicense(id);
+        });
+        ShowModal(jsonObject);
+    }
+
+    function DeleteExistingLicense(Id) {
+        var url = '@Url.Action("DeleteExistingLicense", "License", new { Area = "User" })'
+        var Data = {
+            Id: Id
+        }
+        var jqxhr = $.post(url, Data, function () { }, 'json')
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            ShowModal(json.notification);
+            location.reload();
+        });
+    }
+
+</script>
+
+<script type="text/javascript">
+    $(function(){
+
+    });
+    $('#DistrictID').on('change', function () {
+            BindMandals1(this.value);
+    });
+    $('#MandalID').on('change', function () {
+            BindVillages1(this.value);
+    });
+</script>
+
+<script>
+
+    $('#LicenseIssueDate').change(function(){
+            var issuedDate=$('#LicenseIssueDate').val();
+            var strDate = issuedDate.split('-');
+           // var date = new Date(parseInt(strDate[0]), parseInt(strDate[1])-1, parseInt(strDate[2]));
+            var date = new Date(parseInt(strDate[2]), parseInt(strDate[1])-1,parseInt(strDate[0]) );
+            var expiryDate = new Date(date);
+            expiryDate.setDate(date.getDate() + 364);
+            var dd = ('0' + expiryDate.getDate()).slice(-2); // expiryDate.getDate();
+            var mm=(expiryDate.getMonth()+1);
+            if (expiryDate.getMonth()+1 < 10)
+                mm = '0' + (expiryDate.getMonth()+1);
+            else
+                mm = (expiryDate.getMonth()+1);
+
+            var y = expiryDate.getFullYear();
+
+            var someFormattedDate = dd + '-' + mm + '-' + y;
+            $('#LicenseExpiryDate').val(someFormattedDate);
+    });
+
+
+    function BindMandals1(controlValue) {
+        // Clear existing Mandal values
+        $('#MandalID').empty();
+        $('#MandalID').append('<option value="">Select Mandal</option>');
+        // Clear existing Village values
+        $('#VillageID').empty();
+        $('#VillageID').append('<option value="">Select Village</option>');
+
+        if (controlValue != '') {
+            var url = '@Url.Action("GetMandals", "License", new { Area = "User" })';
+
+            var data = {
+                id: controlValue
+            };
+
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#MandalID').append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetMandals api Request Failed: " + err);
+            });
+        }
+    }
+
+    function BindVillages1(controlValue) {
+         // Clear existing Village values
+        $('#VillageID').empty();
+        $('#VillageID').append('<option value="">Select Village</option>');
+
+        if (controlValue != '') {
+            var url = '@Url.Action("GetVillages", "License", new { Area = "User" })';
+
+            var data = {
+                id: controlValue
+            };
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#VillageID').append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetVillages api Request Failed: " + err);
+            });
+        }
+    }
+</script>
+
+<script>
+    var isExistingLicense = true,IsValidData=true;
+        $('#btnExistingLicenseSave').on('click', function (e) {
+            IsValidData=true;
+            var clinicType="",bedStrength="",speciality="";
+            e.preventDefault();
+            
+            if($('#ApplicationNumber').val() == "" || $('#SubmittedOn').val() =="")
+            {
+                IsValidData=false;
+                alert('Please Enter Appln No & Submit Date!');
+                return;
+            }
+            if($('#DistrictID').val() == "")
+            {
+                IsValidData=false;
+                alert('Please Select District!');
+                return;
+            }
+            else if($('#MandalID').val() == "")
+            {
+                IsValidData=false;
+                alert('Please Select Mandal!');
+                return;
+            }
+            else if($('#VillageID').val() == "")
+            {
+                IsValidData=false;
+                alert('Please Select Village!');
+                return;
+            }
+            else if($('#MobileNo').val() == "")
+            {
+                IsValidData=false;
+                alert('Please Enter MobileNo!');
+                return;
+            }
+            else if($('#Aadhar').val() == "")
+            {
+                IsValidData=false;
+                alert('Please Enter Aadhar Number!');
+                return;
+            }
+            else if($('#PAN').val() == "")
+            {
+                IsValidData=false;
+                alert('Please Enter PAN Number!');
+                return;
+            }
+            else if($('#HouseNo').val() == "")
+            {
+                IsValidData=false;
+                alert('Please Enter House Number!');
+                return;
+            }
+            else if($('#StreetName').val() == "")
+            {
+                IsValidData=false;
+                alert('Please Enter Street Name!');
+                return;
+            }
+            else if($('#Pincode').val() == "")
+            {
+                IsValidData=false;
+                alert('Please Enter Pincode!');
+                return;
+            }
+
+            if (IsValidData) {
+    
+                var url = '@Url.Action("SaveExistingLicenseDetails", "License", new { Area = "User" })';
+                var facilityType = $("input:radio[name='RegistrationModel.FacilityType']:checked").val();
+                var licenseNumber = facilityType == 'Branch' ? $('#RegistrationModel_LicenseNumber').val() : null;
+
+                var data = {
+                    model: {
+                        Id: $('#hfExistingLicenseTransId').val(),
+                        Name: $('#Name').val(),
+                        ApplicationNumber : $('#ApplicationNumber').val(),
+                        SubmittedOn : $('#SubmittedOn').val(),
+                        LicenseNumber: $('#ExistingLicenseNumber').val(),
+                        ExistingLicenseNumber : $('#ExistingLicenseNumber').val(),
+                        LicenseIssueDate : $('#LicenseIssueDate').val(),
+                        LicenseExpiryDate : $('#LicenseExpiryDate').val(),
+                        CurrentDesignationId : $('#CurrentDesignationId').val(),
+                        DistrictID: $('#DistrictID').val(),
+                        MandalID: $('#MandalID').val(),
+                        VillageID: $('#VillageID').val(),
+                        MobileNo: $('#MobileNo').val(),
+                        Aadhar: $('#Aadhar').val(),
+                        PAN: $('#PAN').val(),
+                        HouseNo: $('#HouseNo').val(),
+                        StreetName: $('#StreetName').val(),
+                        Pincode: $('#Pincode').val()
+                    }
+                };
+                var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+               
+                $('#Id').val(response.ReturnData.split(',')[0]);
+                ShowModal(response);
+            
+            })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Save Existing license Details Request Failed: " + err);
+        });
+            }
+        });
+</script>
+
+

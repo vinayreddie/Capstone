@@ -1,0 +1,109 @@
+﻿
+@model Capstone.Models.PCPNDTViewModel
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Equipment List</legend>
+
+
+    <table id="tblEquiments" class="table table-hover">
+        <tr>
+            <th>S.No.</th>
+            <th>Name</th>
+            <th>Serial No.</th>
+            <th>Model</th>
+            <th>Make</th>
+            <th>Type</th>
+            @*<th>Uploaded File</th>*@
+            <th>Invoice</th>
+            <th>NOC</th>
+            <th>Transfer</th>
+            <th>Installation</th>
+            <th>Image</th>
+            <th>Action</th>
+        </tr>
+        @if (Model.EquipmentListLog != null)
+                                            {
+                                                for (int i = 0; i < Model.EquipmentListLog.Count; i++)
+                                                {
+                <tr>
+                    <td>@Convert.ToInt32(i + 1)</td>
+                    <td>@Model.EquipmentListLog[i].Name</td>
+                    <td>@Model.EquipmentListLog[i].SerialNumber</td>
+                    <td>@Model.EquipmentListLog[i].MachineModel</td>
+                    <td>@Model.EquipmentListLog[i].Make</td>
+                    <td>@Model.EquipmentListLog[i].Type</td>
+                    @*<td>
+                        @if (Model.EquipmentListLog[i].UploadedFilePath != null)
+                                                            {
+                                                                var layoutindex = Model.EquipmentListLog[i].UploadedFilePath.LastIndexOf("/");
+                                                                var layoutfileName = Model.EquipmentListLog[i].UploadedFilePath.Substring(layoutindex + 1);
+                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentListLog[i].UploadedFilePath, downloadName = layoutfileName }, null);
+                                                            }
+                    </td>*@
+                    <td>
+                        @if (Model.EquipmentListLog[i].InvoicePath != null && Model.EquipmentListLog[i].InvoicePath != "")
+                        {
+                            var layoutindex = Model.EquipmentListLog[i].InvoicePath.LastIndexOf("/");
+                            var layoutfileName = Model.EquipmentListLog[i].InvoicePath.Substring(layoutindex + 1);
+                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentListLog[i].InvoicePath, downloadName = layoutfileName }, null);
+                        }
+                    </td>
+                    <td>
+                        @if (Model.EquipmentListLog[i].NocFilePath != null && Model.EquipmentListLog[i].NocFilePath != "")
+                        {
+                            var layoutindex = Model.EquipmentListLog[i].NocFilePath.LastIndexOf("/");
+                            var layoutfileName = Model.EquipmentListLog[i].NocFilePath.Substring(layoutindex + 1);
+                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentListLog[i].NocFilePath, downloadName = layoutfileName }, null);
+                        }
+                    </td>
+                    <td>
+                        @if (Model.EquipmentListLog[i].TransferCertificatePath != null && Model.EquipmentListLog[i].TransferCertificatePath != "")
+                        {
+                            var layoutindex = Model.EquipmentListLog[i].TransferCertificatePath.LastIndexOf("/");
+                            var layoutfileName = Model.EquipmentListLog[i].TransferCertificatePath.Substring(layoutindex + 1);
+                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentListLog[i].TransferCertificatePath, downloadName = layoutfileName }, null);
+                        }
+                    </td>
+                    <td>
+                        @if (Model.EquipmentListLog[i].InstallationCerticatePath != null && Model.EquipmentListLog[i].InstallationCerticatePath != "")
+                        {
+                            var layoutindex = Model.EquipmentListLog[i].InstallationCerticatePath.LastIndexOf("/");
+                            var layoutfileName = Model.EquipmentListLog[i].InstallationCerticatePath.Substring(layoutindex + 1);
+                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentListLog[i].InstallationCerticatePath, downloadName = layoutfileName }, null);
+                        }
+                    </td>
+                    <td>
+                        @if (Model.EquipmentListLog[i].ImagePath != null && Model.EquipmentListLog[i].ImagePath != "")
+                        {
+                            var layoutindex = Model.EquipmentListLog[i].ImagePath.LastIndexOf("/");
+                            var layoutfileName = Model.EquipmentListLog[i].ImagePath.Substring(layoutindex + 1);
+                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentListLog[i].ImagePath, downloadName = layoutfileName }, null);
+                        }
+                    </td>
+
+                    <td>
+                        @if(Model.EquipmentListLog[i].IsDeleted)
+                                                           {
+                            @Html.Label("Deleted")
+                        }
+                        else if(Model.EquipmentListLog[i].Id > 0)
+                        {
+                            @Html.Label("Existing")
+                        }
+                        else
+                        {
+                            @Html.Label("New")
+                                                           }
+                    </td>
+                </tr>
+                                                }
+                                            }
+
+    </table>
+</fieldset>
+                                  

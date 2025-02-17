@@ -1,0 +1,298 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+@model Capstone.Models.PaymentModel
+    @using (Html.BeginForm("MakePayment", "License", FormMethod.Post))
+    {
+        <section class="content" id="sectionPayment">
+            @Html.HiddenFor(model => model.ApplicationId)
+            <input type="hidden" name="ApplicationNumber" value="@ViewBag.ApplicationNumber" />
+            @*@Html.HiddenFor(model => model.ApplicationNumber, new { value = ViewBag.ApplicationNumber })*@
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Payment </h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="form-horizontal">
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Fee</legend>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="box">
+                                                <div class="box-body table-responsive no-padding">
+                                                    <table id="tblTAMCE" class="table table-hover" hidden>
+                                                        <tr>
+                                                            <th>S.No.</th>
+                                                            <th>ServiceName</th>
+                                                            <th>Category</th>
+                                                            <th>Amount</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </table>
+                                                    <table id="tblPCPNDT" class="table table-hover" hidden>
+                                                        <tr>
+                                                            <th>S.No.</th>
+                                                            <th>ServiceName</th>
+                                                            <th>Amount</th>
+                                                            <th></th>
+                                                        </tr>
+
+                                                    </table>
+
+                                                    <table id="tblBloodBank" class="table table-hover" hidden>
+                                                        <tr>
+                                                            <th>S.No.</th>
+                                                            <th>ServiceName</th>
+                                                            <th>Amount</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <!-- /.box-body -->
+                                            </div>
+                                            <!-- /.box -->
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                @*  @if (Model.HasAppliedforAPMCE == true)
+    {
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">APMCE FEE</legend>
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.BasicSpecialty, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.BasicSpecialty, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PhysiotherapyCenters,  new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.PhysiotherapyCenters, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.DiagnosticCenters, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.DiagnosticCenters, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.DiagnosticCentersHiequipment, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.DiagnosticCentersHiequipment, new { @class = "form-control" })
+                </div>
+            </div>
+            </fieldset>
+            }
+            @if (Model.HasAppliedforPCPNDT == true)
+            {
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">PCPNDT FEE</legend>
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SingleFacilities, new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.SingleFacilities, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MultipleFacilities, new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.MultipleFacilities, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    </fieldset>
+                    }
+                    @if (Model.HasAppliedforBloodBank == true)
+                    {
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.BloodBank, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.BloodBank, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    }*@
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-2 text-right">
+                            @Html.LabelFor(model => model.SubTotal, new { @class = "control-label" })
+                        </div>
+
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(model => model.RazorPay.Amount, new { @class = "form-control" ,@readonly=true})
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-10 col-md-2">
+                            <button type="submit" class="btn btn-primary" value="Make Payment">Make Payment</button>
+                            @*<input type="button" id="btnPayment" value="Go To Payment" class="btn btn-primary" />*@
+                        </div>
+                    </div>
+
+
+                    </div>
+                                            </div>
+                            </div>
+                        </div>
+                    </div>
+        </section>
+    }
+
+<script>
+    $(function () {
+        debugger;
+        var applicationId =  @ViewBag.Data
+        BindPaymentDetails(applicationId);
+    });
+
+    function BindPaymentDetails(applicationId) {
+      
+        var url = '@Url.Action("GetPaymentDetails", "License", new { Area = "User" })';
+        var data = { applicationId: applicationId };
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json = response;
+        //if (response instanceof Object)
+        //    json = response;
+        //else
+        //    json = $.parseJSON(response);
+
+       // $('#tblPayment tr').not(function () { return !!$(this).has('th').length; }).remove();
+        debugger;
+
+        //APMCE Payment
+       
+        console.log(json);
+        var grandTotal = 0;
+       // console.log('id' + json.Table1.ServiceId);
+        //Append each row to html 
+
+        $('#tblTAMCE').find("tr:gt(0)").remove();
+        $('#tblTAMCE').show();
+        for (var i = 0; i < json.length; i++) {
+            var categoryType = json[i].CategoryType;
+            if (categoryType == null)
+                categoryType = 'NA';
+            var tr;
+            tr = $('<tr/>');
+            tr.append("<td>" + (i + 1) + "</td>");
+            tr.append("<td>" + json[i].Description + "</td>");
+            tr.append("<td>" + categoryType + "</td>");
+            tr.append("<td>" + json[i].Fee + "</td>");
+
+            grandTotal += json[i].Fee;
+            $('#tblTAMCE').append(tr);
+        }
+
+        ////PCPNDT Payment 
+        //if (json.Table1[0].ServiceId == 2) {
+        //    $('#tblPCPNDT').find("tr:gt(0)").remove();
+        //    $('#tblPCPNDT').show();
+        //    console.log(json);
+        //    //Append each row to html table
+        //    for (var i = 0; i < json.Table1.length; i++) {
+        //        var tr;
+        //        tr = $('<tr/>');
+        //        tr.append("<td>" + (i + 1) + "</td>"); 
+        //        tr.append("<td>" + json.Table1[i].Name + "</td>");
+        //        tr.append("<td>" + json.Table1[i].Fee + "</td>");
+        //        $('#tblPCPNDT').append(tr);
+
+        //        grandTotal += json.Table1[i].Fee;
+        //    }
+        //}
+
+        //// BloodBank 27C Payment
+        //if (json.Table1[0].ServiceId == 31) {
+        //    $('#tblBloodBank').find("tr:gt(0)").remove();
+        //    $('#tblBloodBank').show();
+        //    console.log(json);
+        //    //Append each row to html table
+        //    for (var i = 0; i < json.Table1.length; i++) {
+        //        var tr;
+        //        tr = $('<tr/>');
+        //        tr.append("<td>" + (i + 1) + "</td>");
+        //        tr.append("<td>" + json.Table1[i].Name + "</td>");
+        //        tr.append("<td>" + json.Table1[i].Fees + "</td>");
+        //        $('#tblBloodBank').append(tr);
+        //        grandTotal += json.Table1[i].Fees;
+        //    }
+        //}
+
+        //// BloodBank 27E Payment
+        //if (json.Table1[0].ServiceId == 32) {
+        //    $('#tblBloodBank').find("tr:gt(0)").remove();
+        //    $('#tblBloodBank').show();
+        //    console.log(json);
+        //    //Append each row to html table
+        //    for (var i = 0; i < json.Table1.length; i++) {
+        //        var tr;
+        //        tr = $('<tr/>');
+        //        tr.append("<td>" + (i + 1) + "</td>");
+        //        tr.append("<td>" + json.Table1[i].Name + "</td>");
+        //        tr.append("<td>" + json.Table1[i].Fees + "</td>");
+        //        $('#tblBloodBank').append(tr);
+        //        grandTotal += json.Table1[i].Fees;
+        //    }
+        //}
+        
+        
+        $('#RazorPay_Amount').val(grandTotal);
+
+        console.log('Payment' + response);
+    })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetPayment Request Failed: " + err);
+        });
+    }
+
+    $('#btnPayment').on('click', function (e) {
+        debugger;
+        var tid = $('#ApplicationId').val();
+         @*var link = '@Url.Action("Payment", "License", new { Area = "User", Id = "ApplicationId" })';
+        link = link.replace("ApplicationId", tid);
+        window.location.href = link;*@
+       var url = '@Url.Action("SubmitApplication", "License", new { Area = "User" })';
+       var Data = {
+           Id: tid
+       }
+        debugger;
+        var jqxhr = $.post(url, Data, function () { })
+    .done(function (response) {
+        debugger;
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+        ShowModal(response);
+        $('#btnPreview').attr('disabled', 'disabled');
+        $('#btnPreview').val('Submitted');
+    })
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("SubmitApplication Request Failed: " + err);
+});
+        //window.location.href = '@Url.Action("Application", "License", new { Area = "User" })';
+    });
+</script>

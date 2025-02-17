@@ -1,0 +1,198 @@
+﻿@using Medical.Models;
+
+@{
+    ViewBag.Title = "DistrictwiseCentresReport";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        District-wise Hospitals/Centres | Index
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">District-wise Hospitals/Centres Details</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-1  text-right">
+                        @Html.Label("District", new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownList("DistrictID",
+                    new SelectList(ViewBag.DistrictList, "Id", "Name"), "All",
+                    new { @class = "form-control select2", @style = "width:100%;" })
+                    </div>
+                    <div class="col-md-1  text-right">
+                        @Html.Label("Centre", new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.DropDownList("CentreID",
+                    new SelectList(ViewBag.CentresList, "Id", "Name"), "All",
+                    new { @class = "form-control select2", @style = "width:100%;" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <input type="button" class="btn btn-primary" value="Get Services" id="btnSearchData" />
+                        &nbsp;&nbsp;<input type="button" class="btn btn-default" value="Clear" id="btnClearData" />
+                    </div>
+                    <br />
+                </div>
+
+                <!-- /.box-header -->
+                @using (Html.BeginForm("ExportCentres", "DepartmentUser", FormMethod.Post))
+                {
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="submit" name="btnExportLicensing" style="width: 140px;margin-left:930px;"
+                                   value="Export" id="exportLicensing" class="form-control btn-success" />
+                        </div>
+                    </div>
+
+                    <div class="box-body">
+                        <table class="table table-bordered" id="tblDistrictwiseCentresList">
+                            <thead>
+                                <tr>
+                                    <th style="width:5px;">#</th>
+                                    @*<th>District</th>*@
+                                    <th style="width:245px;">Centre</th>
+                                    <th>Contact Details</th>
+                                    <th>Mobile</th>
+                                    <th>Services</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+
+                }
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</section>
+
+<script>
+    var user;
+    $(function () {
+        user = @Html.Raw(Json.Encode(Session["User"] as UserModel));
+        if(user.RoleId == 4)
+        {
+            BindDistrictwiseCentresList(user.DistrictId,0);
+            $('#DistrictID').val(user.DistrictId).change();
+            $("#DistrictID").prop("disabled", true);
+        }
+        else
+            BindDistrictwiseCentresList(0,0);
+    });
+
+     $('#DistrictID').on('change', function (e) {
+            GetCentresList(this.value);
+    });
+
+    function GetCentresList(districtId) {
+
+        $('#CentreID').empty();
+        $('#CentreID').append('<option value="">Select Centre</option>');
+        
+       // if (districtId != '') {
+            var url = '@Url.Action("GetCentresList", "License", new { Area = "User" })';
+
+            var data = {
+                DistrictId: districtId
+            };
+
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#CentreID').append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetCentres Request Failed: " + err);
+            });
+       // }       
+    }
+
+
+      function BindDistrictwiseCentresList(districtId,centreId) {
+        var url = '@Url.Action("GetDistrictwiseCentresReport", "DepartmentUser", new { Area = "Department" })';
+        var data = {
+                    DistrictId : districtId,
+                    CentreId : centreId
+                };
+        var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            var table = $('#tblDistrictwiseCentresList').DataTable();
+            table.clear().draw();
+
+
+            $("#tblDistrictwiseCentresList tbody").empty();
+            var trans = json;
+            var tr;
+            for (var i = 0; i < json.length; i++) {
+
+                table.row.add([
+                    (i + 1),
+                    //json[i].District,
+                    json[i].CentreName,
+                    json[i].AddressDetails,
+                    json[i].MobileNumber,
+                    json[i].OfferedServices
+                ]);
+            }
+
+            table.draw();
+
+            // TODO : Bind data to table
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.log("BindDistrictwiseCentresList Request Failed: " + err);
+        });
+    }
+
+</script>
+
+<script>
+    $('#btnSearchData').click(function(){    
+                var distId=$('#DistrictID').val();
+                var centreId=$('#CentreID').val();
+    BindDistrictwiseCentresList(distId,centreId);
+    //if($('#DistrictID').val() == 0 && $('#CentreID').val())
+    //{
+     //   alert('Please Select District/Centre!');
+     //   return;
+   // }
+   // else
+   //     BindDistrictwiseCentresList(distId,centreId);
+    });
+
+    $('#btnClearData').click(function(){
+       $('#DistrictID').val('');
+       $('#CentreID').val('');
+    });
+
+</script>
+
+

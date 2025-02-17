@@ -1,0 +1,261 @@
+﻿
+@{
+    ViewBag.Title = "Workflow | Index";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Workflow
+    </h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> Workflow</li>
+        <li class="active">Index</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    @*<p><h3 class="box-title">Index</h3> <h5>0 rows found</h5></p>*@
+                    <div class="row">
+                        <div class="col-md-1">
+                            <h3 class="box-title">Index</h3> 
+                        </div>
+                        <div class="col-md-3">
+                            <h5 class="box-title" style="font-size:inherit"><span id="spanRowsCount">0</span> row(s) found</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row" style="margin-bottom:0px;">
+                        <div class="col-md-3">
+                            <label>Service Name</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Service Type</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Act Type</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Workflow Type</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select id="ddlServiceNames" class="form-control">
+                                <option value="All">All</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="ddlServiceTypes" class="form-control">
+                                <option value="All">All</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="ddlActTypes" class="form-control">
+                                <option value="All">All</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="ddlWorkflowTypes" class="form-control">
+                                <option value="All">All</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="tblWorkflowIndex" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Service Name</th>
+                                        <th>Service Type</th>
+                                        <th>Act Type</th>
+                                        <th>Workflow Type</th>
+                                        <th>From Role</th>
+                                        <th>To Role</th>
+                                        <th>SLA Days</th>
+                                        <th>Auto Slide</th>
+                                        <th>Raise Query</th>
+                                        <th>Inspection</th>
+                                        <th>Return</th>
+                                        <th>Approval</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- onload script -->
+<script>
+    var workflowJson = [];
+    $(function () {
+        GetWorkflowIndex();
+    });
+
+    function GetWorkflowIndex() {
+        var url = '@Url.Action("GetWorkflowIndex", "Workflow", new { Area = "Department" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                workflowJson = json;
+                BindWorkflowIndex(json);
+                BindDropdownControls(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                workflowJson = [];
+                var err = status + ", " + error;
+                console.log(url + " api request failed: " + err);
+            });
+    }
+
+    function BindWorkflowIndex(json) {
+        // clear existing data
+        $('#tblWorkflowIndex tbody').empty();
+
+        var tr;
+        for (var i = 0; i < json.length; i++) {
+            var autoSlide = 'No'; if (json[i].HasAutoSlide) autoSlide = '<span style="color:#006400;font-weight:bold">Yes</span>';
+            var raiseQuery = 'No'; if (json[i].HasRaiseQueryPrivilege) raiseQuery = '<span style="color:#006400;font-weight:bold">Yes</span>';
+            var inspection = 'No'; if (json[i].HasInspectionPrivilege) inspection = '<span style="color:#006400;font-weight:bold">Yes</span>';
+            var returnPrivilege = 'No'; if (json[i].HasReturnPrivilege) returnPrivilege = '<span style="color:#006400;font-weight:bold">Yes</span>';
+            var approval = 'No'; if (json[i].HasApprovalPrivilege) approval = '<span style="color:#006400;font-weight:bold">Yes</span>';
+
+            tr = $('<tr/>');
+            tr.append('<td>' + (i + 1) + '</td>');
+            tr.append('<td>' + json[i].ServiceName + '</td>');
+            tr.append('<td>' + json[i].ServiceType + '</td>');
+            tr.append('<td>' + json[i].ActType + '</td>');
+            tr.append('<td>' + json[i].WorkflowType + '</td>');
+            tr.append('<td>' + json[i].FromRole + '</td>');
+            tr.append('<td>' + json[i].ToRole + '</td>');
+            tr.append('<td>' + json[i].SLA + ' day(s)</td>');
+            tr.append('<td style="text-align:center">' + autoSlide + '</td>');
+            tr.append('<td style="text-align:center">' + raiseQuery + '</td>');
+            tr.append('<td style="text-align:center">' + inspection + '</td>');
+            tr.append('<td style="text-align:center">' + returnPrivilege + '</td>');
+            tr.append('<td style="text-align:center">' + approval + '</td>');
+
+            $('#tblWorkflowIndex').append(tr);
+        }
+
+        $('#spanRowsCount').text(json.length);
+    }
+
+    function BindDropdownControls(json) {
+        var serviceNames = [];
+        var serviceTypes = [];
+        var actTypes = [];
+        var workflowTypes = [];
+
+        if (json.length > 0) {
+            // preparing Service Names
+            serviceNames.push(json[0].ServiceName);
+            $.each(workflowJson, function (index, item) {
+                if ($.inArray(item.ServiceName, serviceNames) == -1)
+                    serviceNames.push(item.ServiceName);
+            });
+
+            // preparing Service Types
+            serviceTypes.push(json[0].ServiceType);
+            $.each(workflowJson, function (index, item) {
+                if ($.inArray(item.ServiceType, serviceTypes) == -1)
+                    serviceTypes.push(item.ServiceType);
+            });
+
+            // preparing Act Types
+            actTypes.push(json[0].ActType);
+            $.each(workflowJson, function (index, item) {
+                if ($.inArray(item.ActType, actTypes) == -1)
+                    actTypes.push(item.ActType);
+            });
+
+            // preparing Workflow Types
+            workflowTypes.push(json[0].WorkflowType);
+            $.each(workflowJson, function (index, item) {
+                if ($.inArray(item.WorkflowType, workflowTypes) == -1)
+                    workflowTypes.push(item.WorkflowType);
+            });
+        }
+
+        // binding Service Names
+        $.each(serviceNames, function (index, value) {
+            $('#ddlServiceNames').append('<option value="'+ value +'">' + value + '</option>');
+        });
+
+        // binding Service Types
+        $.each(serviceTypes, function (index, value) {
+            $('#ddlServiceTypes').append('<option value="' + value + '">' + value + '</option>');
+        });
+
+        // binding Act Types
+        $.each(actTypes, function (index, value) {
+            $('#ddlActTypes').append('<option value="' + value + '">' + value + '</option>');
+        });
+
+        // binding Workflow Types
+        $.each(workflowTypes, function (index, value) {
+            $('#ddlWorkflowTypes').append('<option value="' + value + '">' + value + '</option>');
+        });
+    }
+</script>
+
+<!-- filter data -->
+<script>
+    $('#ddlServiceNames').on('change', function (e) {
+        FilterData();
+    });
+
+    $('#ddlServiceTypes').on('change', function (e) {
+        FilterData();
+    });
+
+    $('#ddlActTypes').on('change', function (e) {
+        FilterData();
+    });
+
+    $('#ddlWorkflowTypes').on('change', function (e) {
+        FilterData();
+    });
+
+    function FilterData() {
+        var filteredData = workflowJson;
+        var serviceName = $('#ddlServiceNames').val();
+        var serviceType = $('#ddlServiceTypes').val();
+        var actType = $('#ddlActTypes').val();
+        var workflowType = $('#ddlWorkflowTypes').val();
+
+        if (serviceName != 'All')
+            filteredData = filteredData.filter(item => item.ServiceName == serviceName);
+
+        if (serviceType != 'All')
+            filteredData = filteredData.filter(item => item.ServiceType == serviceType);
+
+        if (actType != 'All')
+            filteredData = filteredData.filter(item => item.ActType == actType);
+
+        if (workflowType != 'All')
+            filteredData = filteredData.filter(item => item.WorkflowType == workflowType);
+
+        BindWorkflowIndex(filteredData);
+    }
+</script>

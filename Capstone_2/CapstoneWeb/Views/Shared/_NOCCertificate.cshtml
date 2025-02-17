@@ -1,0 +1,106 @@
+﻿@model Capstone.Models.NOCforquipmentModel
+<div id="divPrint">
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">NOC Certificate</legend>
+        <div class="row">
+            @*<b>  <span>ORIGINAL/Duplicate/Reneval</span></b>
+            <div style="text-align:center">
+                <img src="~/Content/images/logogovts.png" />
+            </div>*@
+
+            <div class="col-md-12" style="text-align:center;">
+                <span style="font-size:20px; font-family:Times New Roman"><b>OFFICE OF THE DISTRICT Capstone & HEALTH OFFICER,</b></span>
+                <br />
+                <span style="font-size:20px; font-family:Times New Roman"><b>@Model.DistrictName,</b></span>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-offset-1 col-md-4">
+                        <p>
+                            <b><u>Rc.No. @Model.LicenseNumber</u></b> 
+                        </p>
+            </div>
+            
+            <div class="col-md-2"><p>
+    <b><u>Dated: @Model.Date</u></b>
+</p></div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-1">
+              <p><b>Sub:-</b></p>
+            </div>
+            <div class="col-md-8">DM&HO-@Model.DistrictName- PC&PNDT- Shifting of @Model.Address to @Model.DistrictState .</div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-1">
+                <p><b>Ref:-</b></p>
+            </div>
+            <div class="col-md-8">Letter received From @Model.FacilityName , Dated : @Model.Date . </div>
+        </div>
+        <div class="row" style="text-align:center;">  ***  </div>
+        <div class="row col-md-offset-1 col-md-10">
+            <p style="text-indent: 4em;">With reference to the subject cited above, that the M/s. @Model.Address had registered
+            @Model.EquipmentDetails.Name, 
+            Maker: @Model.EquipmentDetails.Make, 
+            Model: @Model.EquipmentDetails.MachineModel,
+            Sl.No. @Model.EquipmentDetails.SerialNumber,
+             has given an application for shifting to @Model.DistrictState.</p>
+
+        </div>
+        <div class="row col-md-offset-1 col-md-10">
+            <p style="text-indent: 4em;">Hence the District Appropriate Authority for PC&PNDT Act 1994, Rules 1996.,is requested to accept NOC and further necessary action. </p>
+</div>
+        <div class="row col-md-offset-9 col-md-3" style="text-align:center">
+            <div >
+                <b> DM&HO & </b>                                                                                                                   
+            </div>
+            <div>
+                <b>  District Appropriate Authority </b>     
+            </div>
+            <div>
+                <b> for PC&PNDT. @Model.DistrictName. </b>
+            </div>
+        </div>
+       
+      <div class="row">
+          <div class="col-md-offset-1 col-md-10">
+              <b>To,</b>
+              <p>@Model.Address</p>
+              <div><p>Copy to the District Appropriate Authority for PC PNDT Act 1994, the District Capstone and Health Officer, @Model.DistrictName.</p></div>
+
+          </div>
+
+      </div>
+
+    </fieldset>
+</div>
+
+<div class="row">
+    <div class="col-md-12" style="text-align:center;">
+        <input type="button" id="btnClosePreview" value="Close" data-dismiss="modal" class="btn btn-default" />
+        <input type="button" id="btnPrintNOC" value="Print" class="btn btn-primary" />
+    </div>
+</div>
+<script>
+    $('#btnPrintNOC').on('click', function (e) {
+        debugger;
+        printDiv();
+    });
+
+    function printDiv() {
+        debugger;
+        var divToPrint = document.getElementById('divPrint');
+
+        var newWin = window.open('', 'Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function () { newWin.close(); }, 10);
+
+    }
+</script>

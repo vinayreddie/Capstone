@@ -1,0 +1,59 @@
+
+==================== 19 March 2021  12:04:55 ====================
+==============
+Error Details }
+==============
+Request Page :
+Error Class Name : 
+Error Method Name: Register
+Error Line No : 0
+Error Description :Object reference not set to an instance of an object.
+Custom Message :
+DB Object : 
+
+==================
+Parent Parameters }
+==================
+
+==================
+Master Parameters }
+==================
+Id: 0
+FirstName: Test Reg1
+LastName: null
+UserName: null
+Password: ITzdsqHR1v1BqlJMCYkhKbgpy5ErsyV0KPaRp1PP2WU=
+MobileNumber: 5678903456
+DateofBirth: 01/01/0001 00:00:00
+EmailId: chandrakanth.m2011@gmail.com
+AadharNumber: 123456789078
+PANNumber: ertui2345d
+DateofJoin: 01/01/0001 00:00:00
+Address: null
+RoleType: 0
+DepartmentId: 0
+DesignationId: 0
+DesignationName: null
+JurisdictionId: 0
+JurisdictionLevel: null
+DistrictId: 1
+MandalId: 1153
+VillageId: 80
+SecurityQuestion: null
+SecurityAnswer: null
+CreatedUserId: 0
+CreatedOn: 01/01/0001 00:00:00
+LastModifiedUserId: 0
+LastModifiedOn: 01/01/0001 00:00:00
+RoleId: 0
+Role: null
+StreetName: test existing appln
+HouseNo: 12-7
+OTP: null
+SaltCode: null
+
+=================
+Child Parameters }
+
+====================
+Special Trace Fiels }

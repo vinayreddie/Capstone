@@ -1,0 +1,3014 @@
+﻿
+@{
+    ViewBag.Title = "Graphs";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+@*<script src="~/Content/plugins/datatables/jquery.dataTables.js"></script>
+<script src="~/Content/plugins/datatables/dataTables.bootstrap.js"></script>*@
+<script src="~/Content/plugins/fusion/js/fusioncharts.js"></script>
+<script src="~/Content/plugins/fusion/js/fusioncharts.theme.fint.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD9mrbCwptxSBRQoCcZkmPpWummFLmiiRw"></script>
+
+
+<div class="row">
+    @*<div class="col-md-6" hidden>
+            <div class="box">
+                <!-- box-header -->
+                <div class="box-header">
+                    <h3 class="box-title">
+                        Service wise
+                    </h3>
+                    <div class="box-tools">
+
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div id="divApplicantGraph" style="padding-bottom: 20px;"></div>
+
+            </div>
+
+        </div>*@
+    <div><br/></div>
+    <div class="col-md-12">
+        <div class="col-md-1 text-right">
+        </div>
+        <div class="col-md-2 text-right">
+            <label>From Date</label>
+        </div>
+        <div class="col-md-2">
+            @*@Value = @System.DateTime.Today.ToString("dd-MM-yyyy")*@
+            @Html.Editor("FromDate", new { htmlAttributes = new { @class = "form-control datepicker", @Value = "" } })
+        </div>
+        <div class="col-md-1 text-right">
+            <label>To Date</label>
+        </div>
+        <div class="col-md-2">
+            @Html.Editor("ToDate", new { htmlAttributes = new { @class = "form-control datepicker", @Value = "" } })
+        </div>
+        <div>
+            <input type="button" class="btn btn-primary" value="Search" id="btnSearchData" />
+            &nbsp;&nbsp;<input type="button" class="btn btn-default" value="Clear" id="btnClearData" />
+        </div>
+        <br />
+    </div>
+   
+
+    <div class="col-md-12">
+        <div class="col-md-6">
+            @*<div class="box">
+                    <!-- box-header -->
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            Service wise
+                        </h3>
+                        <div class="box-tools">
+                            <small><span id="spanActDetails"></span></small>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div id="divServiceGraph"></div>
+
+                </div>*@
+            <h4> Applied Applications</h4>
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs pull-right">
+                    <li><a href="#tabPcpndt" data-toggle="tab" style="display:none;">PCPNDT</a></li>
+                    <li class="active"><a href="#tabAPMCE" data-toggle="tab">TAMCE</a></li>
+                    <li><a href="#tabBloodBank" data-toggle="tab" style="display:none;">Blod Bank</a></li>
+                    @*<li class="pull-left header"><i class="fa fa-th"></i>Licenses Issued</li>*@
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane " id="tabPcpndt">
+                        <div id="divServiceGraph"></div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane  active" id="tabAPMCE">
+                        <div id="divServiceGraphapmce"></div>
+                    </div>
+                    <div class="tab-pane" id="tabBloodBank">
+                        <div id="divServiceGraphbloodbank"></div>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-6">
+            <!-- Custom Tabs (Pulled to the right) -->
+            <h4>Pending Applications</h4>
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs pull-right">
+                    <li class="active"><a href="#tabPending" data-toggle="tab">Pending</a></li>
+
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tabPending">
+                        <div id="divPendingGraph1"></div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- nav-tabs-custom -->
+        </div>
+
+        <div class="col-md-4" style="display:none;">
+            <!-- Custom Tabs (Pulled to the right) -->
+            <h4>Registrations Issued</h4>
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs pull-right">
+                    <li class="active"><a href="#tabCumulative" data-toggle="tab">Cumulative</a></li>
+                    <li><a href="#tabToday" data-toggle="tab">Today</a></li>
+
+                    @*<li class="pull-left header"><i class="fa fa-th"></i>Licenses Issued</li>*@
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane" id="tabToday">
+                        <div id="divLicenseIssueTodayGraph"></div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane active" id="tabCumulative">
+                        <div id="divLicenseIssueCumulativeGraph"></div>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- nav-tabs-custom -->
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        
+        <!-- Custom Tabs (Pulled to the right) -->
+       
+        <div class="col-md-12">
+            <h4>Expired / Registrations About to Expire</h4>
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs pull-right">
+                    <li class="active"><a href="#tabExpired" data-toggle="tab">Expired</a></li>
+                    <li><a href="#tabExpireSixMonths" data-toggle="tab">Expires in 6 months</a></li>
+                    @*<li class="pull-left header"><i class="fa fa-th"></i>Licenses Issued</li>*@
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tabExpired">
+                        <div id="divExpired"></div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="tabExpireSixMonths">
+                        <div id="divExpireSixMonths"></div>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+
+
+</div>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    @*<div class="col-md-10">
+        <div class="box">
+            <!-- box-header -->
+            <div class="box-header">
+                <h3 class="box-title">
+                    Pending Applications
+                </h3>
+            </div>
+            <!-- /.box-header -->
+            <div id="divPendingGraph" ></div>
+        </div>
+    </div>*@
+
+    @*<div class="col-md-6">
+        <div class="box">
+            <!-- box-header -->
+            <div class="box-header">
+                <h3 class="box-title">
+                    Licenses Expiry
+                </h3>
+            </div>
+            <!-- /.box-header -->
+            <div id="divLicenseExpiryGraph" style="padding-bottom: 40px;"></div>
+        </div>
+    </div>*@
+</div>
+
+    @*<div class="col-md-6" hidden>
+        <!-- Custom Tabs (Pulled to the right) -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs pull-right">
+                <li class="active"><a href="#tabWeek" data-toggle="tab">This Week</a></li>
+                <li><a href="#tab15Days" data-toggle="tab">Next 15 Days</a></li>
+                <li><a href="#tabMonth" data-toggle="tab">Month</a></li>
+                <li class="pull-left header"><i class="fa fa-th"></i>Licenses Expiry</li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabWeek">
+                    <div>
+                        <div id="divExpiryWeekGraph" style="padding-bottom: 20px;"></div>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tab15Days">
+                    <div>
+                        <div id="divExpiry15DaysGraph" style="padding-bottom: 20px;"></div>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabMonth">
+                    <div>
+                        <div id="divExpiryMonthGraph" style="padding-bottom: 20px;"></div>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>*@
+
+
+    <!-- ./Graphs -->
+
+
+<div class="row" style="display:none;">
+    <div class="col-md-12">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+            <!-- Custom Tabs (Pulled to the right) -->
+            <div class="nav-tabs-custom" id="divMap">
+                <ul class="nav nav-tabs pull-right">
+
+                    <li class="active"><a href="#tabPCPNDT" data-toggle="tab"><span id="spanPCPNDT"></span></a></li>
+                    @*<li><a href="#tabAPMCE" data-toggle="tab"><span id="spanAPMCE"></span></a></li>
+                    <li><a href="#tabBloodBankForm27C" data-toggle="tab"><span id="spanBloodBankForm27C"></span></a></li>
+                    <li><a href="#tabBloodBankForm27E" data-toggle="tab"><span id="spanBloodBankForm27C"></span></a></li>*@
+                    <li class="pull-left header"><i class="fa fa-th"></i>Google Maps</li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tabPCPNDT">
+                        <div id="divPCPNDTMap" style="height: 500px;"></div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="tabAPMCE">
+                        <div id="divAPMCEMap" style="height: 500px;"></div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="tabBloodBankForm27C">
+                        <div id="divBloodBankMapForm27C" style="height: 500px;"></div>
+                    </div>
+                    <div class="tab-pane" id="tabBloodBankForm27E">
+                        <div id="divBloodBankMapForm27E" style="height: 500px;"></div>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+</div>
+
+<div class="modal fade" id="divGraphPopup">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 1150px; margin-left: -260px;">
+            <div class="modal-header">
+                
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>*@
+                <h4 class="modal-title" id="divModalDefaultHeaderText">District wise Applications</h4>
+                <div class="text-right">
+                    <input type="button" class="btn btn-danger" value="Close" id="btnDistrictCancel" />
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="divGraphContent"></div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="divGraphPopupMandal">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 1150px; margin-left: -260px;">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>*@
+                <h4 class="modal-title" id="divModalDefaultHeaderText">Mandal wise Applications</h4>
+                <div class="text-right">
+                    <input type="button" class="btn btn-success" value="Go Back to Districts List" id="btnBackToDistrict" />
+                    &nbsp;
+                    <input type="button" class="btn btn-danger" value="Close" id="btnMandalCancel" />
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="divGraphContentMandal"></div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="divGraphPopupVillage">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 1150px; margin-left: -260px;">
+            <div class="modal-header">                
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>*@
+                <h4 class="modal-title" id="divModalDefaultHeaderText">Village wise Applications</h4>
+                <div class="text-right">
+                    <input type="button" class="btn btn-success" value="Go Back to Mandals List" id="btnBackToMandal" />
+                    &nbsp;
+                    <input type="button" class="btn btn-danger" value="Close" id="btnVillageCancel" />
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="divGraphContentVillage"></div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="divTabularGraphPopup">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 1150px; margin-left: -260px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="divTabularModalDefaultHeaderText">District wise Bar Chart</h4>
+            </div>
+            <div class="modal-body">
+                <div id="divTabularGraphContent">
+                    <table id="tblGraphContent" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>S. No.</th>
+                                <th>License No.</th>
+                                <th>Applicant Name</th>
+                                <th>Contact No.</th>
+                                <th>Address</th>
+                                <th>Renewal Status</th>
+                                <th>SMS Alert</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="divCommissionerModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <label id="lblStatus"></label>
+                @*<h4 class="modal-title">Approved Records</h4>*@
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div id="divFarmerDetails">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    @*<h2>Details</h2>*@
+                                    @*<span id="spnHyperLink">hjjjh</span>*@
+
+                                    <ol class="breadcrumb pull-left">
+                                        <li>
+                                            <a href="#" id="lnkHome">
+                                                <i class="fa fa-dashboard"></i>
+                                                <span id="spanHome">Dashboard</span>
+                                            </a>
+                                        </li>
+                                        <li id="liDistricts"><a href="javascript:void(0);" id="lnkDistricts"></a></li>
+                                        <li id="liMandal"><a href="javascript:void(0);" id="lnkMandal"></a></li>
+                                        <li class="active"><span id="spanText"></span></li>
+                                    </ol>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="card-box table-responsive">
+                                        <table id="tblCommissioner" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>S. No.</th>
+                                                    <th><span id="spanName"></span></th>
+                                                    <th>No.of Applications</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div> 
+
+<script>
+    var gFromDate=null,gToDate=null;
+     $('#btnSearchData').click(function(){        
+    gFromDate= $('#FromDate').val();
+    gToDate= $('#ToDate').val();
+    console.log('from Date : '+ gFromDate + " and To Date :"+ gToDate);
+    if(gFromDate == null || gFromDate == "" || gToDate == null || gToDate == "")
+    {
+        alert('Please Enter From/To date Fields!');
+        return;
+    }
+    if (Date.parse(gFromDate) > Date.parse(gToDate)) {
+        alert("Invalid Date Range!\nStart Date cannot be after End Date!")
+        return false;
+    }
+    GetTAMCEData(gFromDate,gToDate);
+    BindPendingwiseGraph();
+    });
+
+    $('#btnClearData').click(function(){
+        $('#FromDate').val('');
+        $('#ToDate').val('');
+    });
+
+</script>
+
+<script>
+    var returnDistrict;
+    var returnMandal;
+    var returnServiceId;
+    var returnVillage;
+
+    $(function () {
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+           
+            var currentTab = $(e.target).text(); // get current tab
+            var LastTab = $(e.relatedTarget).text(); // get last tab
+            var as = currentTab.split("(");
+            var serviceType = as[0];
+            if(serviceType=='TAMCE')
+            {
+                var serviceId = 1;
+                BindGraphServicewise(serviceId);
+            }
+            else if(serviceType=='PCPNDT')
+            {
+                var serviceId = 2;
+                BindGraphServicewise(serviceId);
+            }
+            else if (serviceType == 'BloodBank Form27C') {
+                var serviceId = 31;
+                BindGraphServicewise(serviceId);
+            }
+            else if (serviceType == 'BloodBank Form27E') {
+                var serviceId = 32;
+                BindGraphServicewise(serviceId);
+            }
+        });
+
+        //$('#tblWeek').DataTable();
+       // $('#tbl15Days').DataTable();
+        //$('#tblMonth').DataTable();
+       // GetCommissionerDashBoardCounts();
+     //   GetTAMCEData(null);
+       // var today = new Date();
+      //  var date =  today.getDate() + '-' + (today.getMonth()+1) + '-' + today.getFullYear();
+       // GetTAMCEData(date,date);
+        GetTAMCEData(null,null);
+        //GetPCPNDTData();
+        //GetTAMCERegData();
+        BindLicenseIssueTodaywiseGraph();
+        BindLicenseIssueCumulativewiseGraph();
+        BindPendingwiseGraph();
+     
+       // BindExpirywiseGraph('divExpiry15DaysGraph');
+       // BindExpirywiseGraph('divExpiryMonthGraph');
+        var sId = 2;// By default loading PCPNDT service in graph --kishore 10-11-2017
+        //BindGraphServicewise(sId);
+        BindMapsCount();
+        BindPendingwiseGraph2();
+        BindExpirywiseGraph();
+        BindExpirywiseGraph('divExpiryWeekGraph');
+        BindApplicantGraph();
+        GetExpiredLicenses();
+    });
+   
+
+   
+
+ 
+    function CumulativeDistrictwiseGraph(ServiceId) {
+      
+        console.log('serviceId:' + ServiceId);
+        var url = '@Url.Action("GetCumulativeLicensedApplications", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            serviceId: ServiceId,
+            districtId: 0,
+            mandalId: 0,
+            villageId: 0
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+              
+                console.log('Cumulative json:' + json);
+               BindCumulativeDistricts(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+
+    function BindCumulativeDistricts(json) {
+       
+        $('#spanName').text('District Name');
+        var table = $('#tblCommissioner').DataTable();
+        // Clear all existing rows
+        table.clear().draw();
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+            //Count hyper link
+            var viewlink = '@Url.Action("CommissionerDashBoardView", "Dashboard", new { Area= "Admin", did =-1,T=-2,mid=-3,vid=-4 })';
+            viewlink = viewlink.replace("-1", json[i].DistrictId);
+            viewlink = viewlink.replace("-2", json[i].ServiceId);
+            viewlink = viewlink.replace("-3", 0);
+            viewlink = viewlink.replace("-4", 0);
+
+            table.row.add([
+        (i + 1),
+
+       '<a href=javascript:myFunction(' + json[i].DistrictId + ',\'' + json[i].ServiceId + '\')>' + json[i].DistrictName + '</a>',
+       '<a href=' + viewlink + '>' + json[i].value + '</a>',
+
+            ]);
+
+        }
+        table.draw();
+        $('#divCommissionerModal').modal('show');
+    }
+    function myFunction(id, ServiceId) {
+        var url = '@Url.Action("GetCumulativeLicensedApplications", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            serviceId: ServiceId,
+            districtId: id,
+            mandalId: 0,
+            villageId: 0
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+               
+                CumulativeBindMandals(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+    function CumulativeBindMandals(json) {
+        //header Name
+        $('#spanName').text('Mandal Name');
+        var table = $('#tblCommissioner').DataTable();
+        // Clear all existing rows
+        table.clear().draw();
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+            var viewlink = '@Url.Action("CommissionerDashBoardView", "Dashboard", new { Area= "Admin", did =-1,mid=-2,vid=-3, T = -4 })';
+            viewlink = viewlink.replace("-1", json[i].DistrictId);
+            viewlink = viewlink.replace("-2", json[i].MandalId);
+            viewlink = viewlink.replace("-3", 0);
+            viewlink = viewlink.replace("-4", json[i].ServiceId);
+            var drildowndistrictName = json[i].DistrictName
+            $('#lnkDistricts').text(drildowndistrictName);
+            table.row.add([
+        (i + 1),
+        '<a href=javascript:myVillageFunction(' + json[i].DistrictId + ',' + json[i].MandalId + ',\'' + json[i].ServiceId + '\')>' + json[i].MandalName + '</a>',
+        '<a href=' + viewlink + '>' + json[i].value + '</a>',
+            ]);
+        }
+        table.draw();
+        $('#divCommissionerModal').modal('show');
+    }
+    function myVillageFunction(did, mid, serviceId) {
+        returnDistrict = did;
+        returnMandal = mid;
+        returnServiceId = serviceId;
+        returnVillage = 0;
+        var url = '@Url.Action("GetCumulativeLicensedApplications", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            serviceId: serviceId,
+            districtId: did,
+            mandalId: mid,
+            villageId: 0
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindCumulativeVillages(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+    function BindCumulativeVillages(json) {
+        $('#spanName').text('Village Name');
+        var table = $('#tblCommissioner').DataTable();
+        // Clear all existing rows
+      
+        table.clear().draw();
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+            //Count hyper link
+            var viewlink = '@Url.Action("CommissionerDashBoardView", "Dashboard", new { Area= "Admin", did = -1, mid = -2, vid = -3, T = -4 })';
+            viewlink = viewlink.replace("-1", json[i].DistrictId);
+            viewlink = viewlink.replace("-2", json[i].MandalId);
+            viewlink = viewlink.replace("-3", json[i].VillageId);
+            viewlink = viewlink.replace("-4", json[i].ServiceId);
+
+            // drilldown
+            $('#lnkDistricts').text(json[i].DistrictName);
+            $('#lnkMandal').text(json[i].MandalName);
+            table.row.add([
+        (i + 1),
+         json[i].VillageName,
+         '<a href=' + viewlink + '>' + json[i].value + '</a>',
+            ]);
+        }
+        table.draw();
+        $('#divCommissionerModal').modal('show');
+    }
+    function BindPendingwiseGraph() {
+        var url = '@Url.Action("GetPendingApplications", "Dashboard", new { Area = "Admin" })';
+        var data = { FromDate : $('#FromDate').val(),
+            ToDate : $('#ToDate').val()
+            }
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindPendingGraph(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+    function BindPendingGraph(json) {
+        //var jsonObject = JSON.parse(response.d);
+        var total = 0;
+        //$.each(jsonObject, function (index, item) {
+        //    total = total + parseInt(item.value);
+        //});
+
+
+        var total = 0;
+        for (var j = 0; j < json.length; j++) {
+
+            total += Number(json[j].value);
+        }
+        var revenueChart = new FusionCharts({
+            type: 'doughnut2d',
+            renderAt: 'divPendingGraph1',
+            width: '300',
+            height: '300',
+            dataFormat: 'json',
+            dataSource: {
+                "chart": {
+                    //"caption": "Split of Revenue by Product Categories",
+                    //"subCaption": "Last year",
+                    //"numberPrefix": "$",
+                    "paletteColors": "#f45b00,#8e0000,#f2c500,#0075c2,#1aaf5d,#8e0000,#b300c6",
+                    "bgColor": "#ffffff",
+                    "showBorder": "0",
+                    "use3DLighting": "0",
+                    "showShadow": "0",
+                    "enableSmartLabels": "0",
+                    "startingAngle": "310",
+                    "showLabels": "0",
+                    "showPercentValues": "1",
+                    "showLegend": "1",
+                    "legendShadow": "0",
+                    "legendBorderAlpha": "0",
+                    "defaultCenterLabel": "Total : " + total,
+                    "centerLabel": "$label: $value",
+                    "centerLabelBold": "1",
+                    "showTooltip": "0",
+                    "decimals": "0",
+                    "captionFontSize": "14",
+                    "subcaptionFontSize": "14",
+                    "subcaptionFontBold": "0"
+                },
+                "data": json
+            },
+            "events": {
+                "slicingStart": function (eventObj, dataObj) {
+                    if (!dataObj.slicedState) {
+                        GetDistrictWisePendingApplications(json[dataObj.dataIndex].DeptUserId);
+                    }
+                },
+                "slicingEnd": function (eventObj, dataObj) {
+                    if (!dataObj.slicedState) {
+                        // nothing
+                    }
+                }
+            }
+        }).render();
+    }
+
+    function GetDistrictWisePendingApplications(deptUserId) {
+       
+        var url = '@Url.Action("GetDistrictWisePendingApplicationsByDeptUser", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            DeptUserId:deptUserId,
+            FromDate : $('#FromDate').val(),
+            ToDate : $('#ToDate').val()
+        };
+        var jqxhr = $.post(url, data, function () { }, 'json')
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+
+                BindDistrictWisePendingAppilcations(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                alert('fail');
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+
+    }
+    function BindDistrictWisePendingAppilcations(json) {
+        
+        var jsonObject;
+        var title;
+        FusionCharts.ready(function () {
+            var revenueChart = new FusionCharts({
+                type: 'column2d',
+                renderAt: 'divGraphContent',
+                width: '900',
+                height: '400',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "District Wise Applications",
+                        "xAxisName": "District",
+                        "yAxisName": "Applications",
+                        "paletteColors": "#0075c2",
+                        "bgColor": "#ffffff",
+                        "borderAlpha": "20",
+                        "canvasBorderAlpha": "0",
+                        "usePlotGradientColor": "0",
+                        "plotBorderAlpha": "10",
+                        "placevaluesInside": "1",
+                        "rotatevalues": "1",
+                        "valueFontColor": "#ffffff",
+                        "showXAxisLine": "1",
+                        "xAxisLineColor": "#999999",
+                        "divlineColor": "#999999",
+                        "divLineIsDashed": "1",
+                        "showAlternateHGridColor": "0",
+                        "subcaptionFontBold": "0",
+                        "subcaptionFontSize": "14"
+                    },
+                    "data": json,
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "startvalue": "700000",
+                                    "color": "#1aaf5d",
+                                    "valueOnRight": "1",
+                                    "displayvalue": "Monthly Target"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }).render();
+        });
+
+        //$('#divModalDefaultHeaderText').text(title);
+        $('#divGraphPopup').modal('show');
+    }
+
+    function GetPendingApplicationsByDeptUser(DeptUserId, DistrictId) {
+
+        var viewlink = '@Url.Action("PCPNDTPendingApplicationsView", "Dashboard", new { Area = "Admin", deptUserId = -1, DistrictId=-2, FromDate=-3, ToDate =-4 })';
+        viewlink = viewlink.replace("-1", DeptUserId);
+        viewlink = viewlink.replace("-2", DistrictId);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+    }
+    
+
+    function BindPendingApplicationsDistrictwise(ServiceId) {
+
+        console.log('serviceId:' + ServiceId);
+        var url = '@Url.Action("GetPendingApplicationsDistrictwise", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            serviceId: ServiceId,
+            districtId: 0,
+            mandalId: 0,
+            villageId: 0
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+
+                console.log('Cumulative json:' + json);
+                BindPendingDistricts(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+
+    function BindPendingDistricts(json) {
+
+        $('#spanName').text('District Name');
+        var table = $('#tblCommissioner').DataTable();
+        // Clear all existing rows
+        table.clear().draw();
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+            //Count hyper link
+            var viewlink = '@Url.Action("PendingApplicationsView", "Dashboard", new { Area= "Admin", did =-1,T=-2,mid=-3,vid=-4 })';
+            viewlink = viewlink.replace("-1", json[i].DistrictId);
+            viewlink = viewlink.replace("-2", json[i].ServiceId);
+            viewlink = viewlink.replace("-3", 0);
+            viewlink = viewlink.replace("-4", 0);
+            table.row.add([
+        (i + 1),
+
+       '<a href=javascript:DistrictwisePendingApplications(' + json[i].DistrictId + ',\'' + json[i].ServiceId + '\')>' + json[i].DistrictName + '</a>',
+       '<a href=' + viewlink + '>' + json[i].value + '</a>',
+
+            ]);
+
+        }
+        table.draw();
+        $('#divCommissionerModal').modal('show');
+    }
+    function DistrictwisePendingApplications(id, ServiceId) {
+        var url = '@Url.Action("GetPendingApplicationsDistrictwise", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            serviceId: ServiceId,
+            districtId: id,
+            mandalId: 0,
+            villageId: 0
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+
+                BindPendingMandals(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+    function BindPendingMandals(json) {
+        //header Name
+        $('#spanName').text('Mandal Name');
+        var table = $('#tblCommissioner').DataTable();
+        // Clear all existing rows
+        table.clear().draw();
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+            var viewlink = '@Url.Action("PendingApplicationsView", "Dashboard", new { Area= "Admin", did = -1, T = -2, mid = -3, vid = -4 })';
+            viewlink = viewlink.replace("-1", json[i].DistrictId);
+            viewlink = viewlink.replace("-2", json[i].ServiceId);
+            viewlink = viewlink.replace("-3", json[i].MandalId);
+            viewlink = viewlink.replace("-4", 0);
+
+            var drildowndistrictName = json[i].DistrictName
+            $('#lnkDistricts').text(drildowndistrictName);
+            table.row.add([
+        (i + 1),
+        '<a href=javascript:MandalwisePendingApplications(' + json[i].DistrictId + ',' + json[i].MandalId + ',\'' + json[i].ServiceId + '\')>' + json[i].MandalName + '</a>',
+        '<a href=' + viewlink + '>' + json[i].value + '</a>',
+            ]);
+        }
+        table.draw();
+        $('#divCommissionerModal').modal('show');
+    }
+    function MandalwisePendingApplications(did, mid, serviceId) {
+        returnDistrict = did;
+        returnMandal = mid;
+        returnServiceId = serviceId;
+        returnVillage = 0;
+        var url = '@Url.Action("GetPendingApplicationsDistrictwise", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            serviceId: serviceId,
+            districtId: did,
+            mandalId: mid,
+            villageId: 0
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindPendingVillages(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+    function BindPendingVillages(json) {
+        $('#spanName').text('Village Name');
+        var table = $('#tblCommissioner').DataTable();
+        // Clear all existing rows
+
+        table.clear().draw();
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+            //Count hyper link
+            var viewlink = '@Url.Action("PendingApplicationsView", "Dashboard", new { Area= "Admin", did = -1, T = -2, mid = -3, vid = -4 })';
+            viewlink = viewlink.replace("-1", json[i].DistrictId);
+            viewlink = viewlink.replace("-2", json[i].ServiceId);
+            viewlink = viewlink.replace("-3", json[i].MandalId);
+            viewlink = viewlink.replace("-4", json[i].VillageId);
+
+            // drilldown
+            $('#lnkDistricts').text(json[i].DistrictName);
+            $('#lnkMandal').text(json[i].MandalName);
+            table.row.add([
+        (i + 1),
+         json[i].VillageName,
+         '<a href=' + viewlink + '>' + json[i].value + '</a>',
+            ]);
+        }
+        table.draw();
+        $('#divCommissionerModal').modal('show');
+    }
+
+
+
+    function BindExpirywiseGraph(divId) {
+
+        var jsonObject;
+        if (divId == 'divExpiryWeekGraph') {
+            jsonObject = [
+                    {
+                        "label": "PCPNDT",
+                        "value": "4"
+                    },
+                    {
+                        "label": "APMCE",
+                        "value": "13"
+                    },
+                    {
+                        "label": "Blood Bank",
+                        "value": "6"
+                    }
+            ];
+        }
+        else if (divId == 'divExpiry15DaysGraph') {
+            jsonObject = [
+                    {
+                        "label": "PCPNDT",
+                        "value": "12"
+                    },
+                    {
+                        "label": "APMCE",
+                        "value": "24"
+                    },
+                    {
+                        "label": "Blood Bank",
+                        "value": "10"
+                    }
+            ];
+        }
+        else if (divId == 'divExpiryMonthGraph') {
+            jsonObject = [
+                    {
+                        "label": "PCPNDT",
+                        "value": "21"
+                    },
+                    {
+                        "label": "APMCE",
+                        "value": "33"
+                    },
+                    {
+                        "label": "Blood Bank",
+                        "value": "25"
+                    }
+            ];
+        }
+
+        var total = 0;
+        $.each(jsonObject, function (index, item) {
+            total = total + parseInt(item.value);
+        });
+        var revenueChart = new FusionCharts({
+            type: 'doughnut2d',
+            renderAt: divId,
+            width: '500',
+            height: '400',
+            dataFormat: 'json',
+            dataSource: {
+                "chart": {
+                    //"caption": "Split of Revenue by Product Categories",
+                    //"subCaption": "Last year",
+                    //"numberPrefix": "$",
+                    "paletteColors": "#0075c2,#1aaf5d,#8e0000,#f2c500,#f45b00,#8e0000,#b300c6",
+                    "bgColor": "#ffffff",
+                    "showBorder": "0",
+                    "use3DLighting": "0",
+                    "showShadow": "0",
+                    "enableSmartLabels": "0",
+                    "startingAngle": "310",
+                    "showLabels": "0",
+                    "showPercentValues": "1",
+                    "showLegend": "1",
+                    "legendShadow": "0",
+                    "legendBorderAlpha": "0",
+                    "defaultCenterLabel": "Total : " + total,
+                    "centerLabel": "$label: $value",
+                    "centerLabelBold": "1",
+                    "showTooltip": "0",
+                    "decimals": "0",
+                    "captionFontSize": "14",
+                    "subcaptionFontSize": "14",
+                    "subcaptionFontBold": "0"
+                },
+                "data": jsonObject
+            },
+            "events": {
+                "slicingStart": function (eventObj, dataObj) {
+                    if (!dataObj.slicedState) {
+                        var typename;
+                        if (divId == 'divExpiryWeekGraph')
+                            typename = ' a Week';
+                        else if (divId == 'divExpiry15DaysGraph')
+                            typename = ' 15 Days';
+                        else if (divId == 'divExpiryMonthGraph')
+                            typename = ' a Month';
+                        ActwiseExpiryGraph(dataObj.dataIndex, typename);
+                    }
+                },
+                "slicingEnd": function (eventObj, dataObj) {
+                    if (!dataObj.slicedState) {
+                        // nothing
+                    }
+                }
+            }
+        }).render();
+    }
+
+    function ActwiseExpiryGraph(index, type) {
+        var jsonObject;
+        var title;
+        switch (index) {
+            case 0:
+                title = 'PCPNDT License Expiry - within ' + type;
+                jsonObject = [
+                { License: 'L1', Name: 'Bharath', Mobile: '9867584564', Address: 'Kondapur, Hyderabad', Status: 'Applied' },
+                { License: 'L2', Name: 'Chandrakanth', Mobile: '9967257567', Address: 'Kondapur, Hyderabad', Status: 'Applied' }
+                ];
+                break;
+            case 1:
+                title = 'APMCE License Expiry - within ' + type;
+                jsonObject = [
+                { License: 'L3', Name: 'Mounika', Mobile: '9123774224', Address: 'Ameerpet, Hyderabad', Status: 'Applied' },
+                { License: 'L4', Name: 'Raj', Mobile: '8143728601', Address: 'Champapet, Hyderabad', Status: 'Applied' },
+                { License: 'L5', Name: 'Prakash', Mobile: '9586412458', Address: 'Kukatpally, Hyderabad', Status: 'Not yet' }
+                ];
+                break;
+            case 2:
+                title = 'Blood Bank License Expiry - within ' + type;
+                jsonObject = [
+                { License: 'L6', Name: 'Siva', Mobile: '9123774224', Address: 'Krishna Nagar, Hyderabad', Status: 'Not yet' },
+                { License: 'L7', Name: 'Kishore', Mobile: '9547884422', Address: 'Krishna Nagar, Hyderabad', Status: 'Not yet' },
+                { License: 'L8', Name: 'Suresh', Mobile: '9586412458', Address: 'Kondapur, Hyderabad', Status: 'Not yet' }];
+                break;
+        }
+        $('#tblGraphContent tbody').empty();
+        $('#divTabularModalDefaultHeaderText').text(title);
+        for (var i = 0; i < jsonObject.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + (i + 1) + "</td>");
+            tr.append("<td>" + jsonObject[i].License + "</td>");
+            tr.append("<td>" + jsonObject[i].Name + "</td>");
+            tr.append("<td>" + jsonObject[i].Mobile + "</td>");
+            tr.append("<td>" + jsonObject[i].Address + "</td>");
+            tr.append("<td>" + jsonObject[i].Status + "</td>");
+            if (jsonObject[i].Status != 'Applied') {
+                tr.append('<td><input type="button" class="btn btn-primary" value="Send SMS" onClick="SendSMSAlert();"/></td>');
+            }
+            else {
+                tr.append("<td></td>");
+            }
+            $('#tblGraphContent tbody').append(tr);
+        }
+        $('#divTabularGraphPopup').modal('show');
+    }
+
+    function SendSMSAlert() {
+        alert('An SMS alert has been sent');
+    }
+
+    var mapPCPNDT, mapAPMCE, mapBloodbank;
+
+    function BindMapsCount() {
+        var url = '@Url.Action("BindMapsCount", "Dashboard", new { Area = "Admin" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log('value' + json[0].value);
+                $('#spanAPMCE').text('APMCE' + '(' + json[0].value + ')');
+                $('#spanPCPNDT').text('PCPNDT');
+                $('#spanBloodBankForm27C').text('BloodBank Form27C' + '(' + json[2].value + ')');
+                $('#spanBloodBankForm27E').text('BloodBank Form27E' + '(' + json[3].value + ')');
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+   
+    $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+        console.log(e.target)
+    })
+    
+    function BindGraphServicewiseTEst(serviceId) {
+         
+        var url = '@Url.Action("BindMaps", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            serviceId: serviceId
+        }
+        var jqxhr = $.post(url,data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                
+               // BindMaps(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+
+    $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+        console.log(e.target)
+    })
+ 
+    function BindMaps(json) {
+         
+        console.log(json);
+        var markers = [
+         
+            json
+            //{ 'Latitude': '17.391328', 'Longitude': '78.490233', 'Name': 'Leelavathi Hospital', 'ImagePath': '~/Content/images/oasidknfpoae.jpg', 'Address': 'Some address', 'Category': 'PCPNDT' },
+            //{ 'Latitude': '17.400501', 'Longitude': '78.460536', 'Name': 'Kalavathi Hospital', 'ImagePath': 'http://fchc.in/wp-content/uploads/2016/06/pro-1.jpg', 'Address': '12-8, Hyderabad', 'Category': 'PCPNDT' }
+        ];
+        console.log(markers);
+        //var markers = [json[0]];
+           
+        //    //{ 'Latitude': '17.356163', 'Longitude': '78.470449', 'Name': 'Bharath Children Hospital', 'ImagePath': 'http://www.tripathihospital.com/images/hospital.jpg', 'Address': 'Some address', 'Category': 'APMCE' },
+        //    //{ 'Latitude': '17.375601', 'Longitude': '78.471608', 'Name': 'Chandra Care Hospital', 'ImagePath': 'https://www.saskatoonhealthregion.ca/locations_services/locations/PublishingImages/Hospitals/Lanigan_Hospital_Web.jpg', 'Address': '56-1, Hyderabad', 'Category': 'APMCE' }
+        //var markers = [
+        //    json[0]
+        //    //{ 'Latitude': '17.369621', 'Longitude': '78.478217', 'Name': 'Mounika Blood Bank', 'ImagePath': 'http://Capstonedialogues.in/wp-content/uploads/2016/06/blood-bank-1.jpg', 'Address': 'Some address', 'Category': 'BloodBank' },
+        //    //{ 'Latitude': '17.369949', 'Longitude': '78.521733', 'Name': 'Kishore Blood Bank', 'ImagePath': 'http://www.medindia.net/directories/images/300_250/blood-bank.jpg', 'Address': '15-4, Hyderabad', 'Category': 'BloodBank' }
+        //];
+
+        var mapOptions = {
+            center: new google.maps.LatLng(17.385044, 78.486671),
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var infoWindow = new google.maps.InfoWindow();
+
+        mapPCPNDT = new google.maps.Map(document.getElementById("divPCPNDTMap"), mapOptions);
+        mapAPMCE = new google.maps.Map(document.getElementById("divAPMCEMap"), mapOptions);
+        mapBloodbankForm27C = new google.maps.Map(document.getElementById("divBloodBankMapForm27C"), mapOptions);
+        mapBloodbankForm27E = new google.maps.Map(document.getElementById("divBloodBankMapForm27E"), mapOptions);
+        if (markers[0].ServiceId == 2)
+        {
+            for (i = 0; i < markers.length; i++) {
+                var data = markers[i]
+                var myLatlng = new google.maps.LatLng(data.Latitude, data.Longitude);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: mapPCPNDT,
+                    animation: google.maps.Animation.DROP,
+                    icon: GetIcons(data.Category).iconpath
+                });
+                (function (marker, data) {
+                    google.maps.event.addListener(marker, "click", function (e) {
+                        infoWindow.setContent('<div>' +
+                            '<img width="300px" height="200px" src="' + data.ImagePath + '"><br><br>'
+                            + '<strong>Name : </strong>' + data.Name + '<br>'
+                            + '<strong>Address : </strong>' + data.Address + '</div>'
+                            );
+                        //infoWindow.setContent(data.Name);
+                        infoWindow.open(mapPCPNDT, marker);
+                    });
+                })(marker, data);
+            }
+        }
+        if (markers[0].ServiceId == 1) {
+            for (i = 0; i < markers.length; i++) {
+                var data = markers[i]
+                var myLatlng = new google.maps.LatLng(data.Latitude, data.Longitude);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: mapAPMCE,
+                    animation: google.maps.Animation.DROP,
+                    icon: GetIcons(data.Category).iconpath
+                });
+                (function (marker, data) {
+                    google.maps.event.addListener(marker, "click", function (e) {
+                        infoWindow.setContent('<div>' +
+                            '<img width="300px" height="200px" src="' + data.ImagePath + '"><br><br>'
+                            + '<strong>Name : </strong>' + data.Name + '<br>'
+                            + '<strong>Address : </strong>' + data.Address + '</div>'
+                            );
+                        //infoWindow.setContent(data.Name);
+                        infoWindow.open(mapAPMCE, marker);
+                    });
+                })(marker, data);
+            }
+        }
+
+        if (markers[0].ServiceId == 31) {
+            for (i = 0; i < markers.length; i++) {
+                var data = markers[i]
+                var myLatlng = new google.maps.LatLng(data.Latitude, data.Longitude);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: mapBloodbankForm27C,
+                    animation: google.maps.Animation.DROP,
+                    icon: GetIcons(data.Category).iconpath
+                });
+                (function (marker, data) {
+                    google.maps.event.addListener(marker, "click", function (e) {
+                        infoWindow.setContent('<div>' +
+                            '<img width="300px" height="200px" src="'+ data.ImagePath +'"><br><br>'
+                            + '<strong>Name : </strong>' + data.Name + '<br>'
+                            + '<strong>Address : </strong>' + data.Address + '</div>'
+                            );
+                        //infoWindow.setContent(data.Name);
+                        infoWindow.open(mapBloodbankForm27C, marker);
+                    });
+                })(marker, data);
+            }
+        }
+        if (markers[0].ServiceId == 32) {
+
+            for (i = 0; i < markers.length; i++) {
+                var data = markers[i]
+                var myLatlng = new google.maps.LatLng(data.Latitude, data.Longitude);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: mapBloodbankForm27E,
+                    animation: google.maps.Animation.DROP,
+                    icon: GetIcons(data.Category).iconpath
+                });
+                (function (marker, data) {
+                    google.maps.event.addListener(marker, "click", function (e) {
+                        infoWindow.setContent('<div>' +
+                            '<img width="300px" height="200px" src="' + data.ImagePath + '"><br><br>'
+                            + '<strong>Name : </strong>' + data.Name + '<br>'
+                            + '<strong>Address : </strong>' + data.Address + '</div>'
+                            );
+                        //infoWindow.setContent(data.Name);
+                        infoWindow.open(mapBloodbankForm27E, marker);
+                    });
+                })(marker, data);
+            }
+        }
+       
+
+
+    }
+
+    $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+        var tabId = e.target.href.split('#')[1];
+        switch (tabId) {
+            case 'tabPCPNDT':
+                resizeMap(mapPCPNDT);
+                break;
+            case 'tabAPMCE':
+                resizeMap(mapAPMCE);
+                break;
+            case 'tabBloodBankForm27C':
+                resizeMap(mapBloodbankForm27C);
+            case 'tabBloodBankForm27E':
+                resizeMap(mapBloodbankForm27E);
+                break;
+        }
+    })
+
+    function resizeMap(map) {
+        setTimeout(function () {
+            var center = map.getCenter();
+            google.maps.event.trigger(map, "resize");
+            map.setCenter(center);
+        }, 1000);
+    }
+
+    function GetIcons(category) {
+        var features = {};
+        switch (category) {
+            case "PCPNDT": {
+                features.label = 'A';
+                features.iconpath = 'http://maps.google.com/mapfiles/marker_purpleP.png';
+            }
+                break;
+            case "APMCE": {
+                features.label = 'M';
+                features.iconpath = 'http://maps.google.com/mapfiles/marker_greenA.png ';
+            }
+                break;
+            case "BloodBankForm27C": {
+                features.label = 'T';
+                features.iconpath = 'http://maps.google.com/mapfiles/markerB.png ';
+            }
+            case "BloodBankForm27E": {
+                features.label = 'E';
+                features.iconpath = 'http://maps.google.com/mapfiles/markerB.png ';
+            }
+                break;
+            default: {
+                features.label = 'D';
+                features.iconpath = 'http://maps.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png';
+            }
+        }
+
+
+        return features;
+    }
+
+    function BindPendingwiseGraph2() {
+        FusionCharts.ready(function () {
+            var revenueChart = new FusionCharts({
+                type: 'column3d',
+                renderAt: 'divPendingGraph',
+                width: '500',
+                height: '300',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "Act wise Pending Applications",
+                        "subCaption": "",
+                        "xAxisName": "Act",
+                        "yAxisName": "Number of Applications",
+                        "paletteColors": "#0075c2",
+                        "valueFontColor": "#ffffff",
+                        "baseFont": "Helvetica Neue,Arial",
+                        "captionFontSize": "14",
+                        "subcaptionFontSize": "14",
+                        "subcaptionFontBold": "0",
+                        "placeValuesInside": "1",
+                        "rotateValues": "0",
+                        "showShadow": "0",
+                        "divlineColor": "#999999",
+                        "divLineIsDashed": "1",
+                        "divlineThickness": "1",
+                        "divLineDashLen": "1",
+                        "divLineGapLen": "1",
+                        "canvasBgColor": "#ffffff"
+                    },
+
+                    "data": [
+                        {
+                            "label": "PCPNDT",
+                            "value": "65",
+                            "link": "JavaScript:DistrictwiseGraph(0, 'Pending')"
+                        },
+                        {
+                            "label": "APMCE",
+                            "value": "36",
+                            "link": "JavaScript:DistrictwiseGraph(1, 'Pending')"
+                        },
+                        {
+                            "label": "Blood Bank",
+                            "value": "12",
+                            "link": "JavaScript:DistrictwiseGraph(2, 'Pending')"
+                        }
+                    ]
+                }
+            });
+            revenueChart.render();
+        });
+    }
+
+    function BindExpirywiseGraph() {
+         
+        var url = '@Url.Action("GetLicenseExpiryApplicationsCount", "Dashboard", new { Area = "Admin" })';
+
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindExpirywiseGraphCount(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+
+    function BindExpirywiseGraphCount(json) {
+        FusionCharts.ready(function () {
+            var salesChart = new FusionCharts({
+                type: 'MSColumn2D',
+                renderAt: 'divLicenseExpiryGraph',
+                width: '500',
+                height: '300',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "License Expiry over the Time",
+                        //"subcaption": "In Billion $",
+                        //"yaxismaxvalue": "250",
+                        "yAxisName": "Number of Applications",
+                        "decimals": "0",
+                        //"numberprefix": "$",
+                        //"numbersuffix": "B",
+                        //"valueFontColor": "#ffffff",
+                        "placevaluesinside": "1",
+                        "rotatevalues": "0",
+                        "divlinealpha": "50",
+                        "plotfillalpha": "80",
+                        "drawCrossLine": "1",
+                        "crossLineColor": "#cc3300",
+                        "crossLineAlpha": "100",
+                        "theme": "fint"
+                    },
+                    "categories": [{
+                        "category": [{
+                            "label": "PCPNDT"
+                        },
+                            {
+                                "label": "APMCE"
+                            },
+                            {
+                                "label": "Blood Bank Form 27C"
+                            }
+                        ]
+                    }],
+                    "dataset": [{
+                        "seriesname": "Week",
+                        "data": [{
+                            "value": json[0].value,
+                            "link": "JavaScript:ActwiseExpiryGraph(2, ' a Week');"
+                        },
+                            {
+                                "value": json[0].value,
+                               
+                                "link": "JavaScript:ActwiseExpiryGraph(1, ' a Week');"
+                            },
+                            {
+                                "value": json[0].value,
+                                "link": "JavaScript:ActwiseExpiryGraph(31, ' a Week');"
+                            }
+                        ]
+                    },
+                    ]
+                }
+            }).render();
+        });
+    }
+
+    function BindApplicantGraph() {
+        FusionCharts.ready(function () {
+            var visitChart = new FusionCharts({
+                type: 'msline',
+                renderAt: 'divApplicantGraph',
+                width: '550',
+                height: '350',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "Number of visitors last week",
+                        "subCaption": "Bakersfield Central vs Los Angeles Topanga",
+                        "captionFontSize": "14",
+                        "subcaptionFontSize": "14",
+                        "subcaptionFontBold": "0",
+                        "paletteColors": "#0075c2,#1aaf5d",
+                        "bgcolor": "#ffffff",
+                        "showBorder": "0",
+                        "showShadow": "0",
+                        "showCanvasBorder": "0",
+                        "usePlotGradientColor": "0",
+                        "legendBorderAlpha": "0",
+                        "legendShadow": "0",
+                        "showAxisLines": "0",
+                        "showAlternateHGridColor": "0",
+                        "divlineThickness": "1",
+                        "divLineIsDashed": "1",
+                        "divLineDashLen": "1",
+                        "divLineGapLen": "1",
+                        "xAxisName": "Day",
+                        "showValues": "0"
+                    },
+                    "categories": [
+                        {
+                            "category": [
+                                { "label": "Mon" },
+                                { "label": "Tue" },
+                                { "label": "Wed" },
+                                {
+                                    "vline": "true",
+                                    "lineposition": "0",
+                                    "color": "#6baa01",
+                                    "labelHAlign": "center",
+                                    "labelPosition": "0",
+                                    "label": "National holiday",
+                                    "dashed": "1"
+                                },
+                                { "label": "Thu" },
+                                { "label": "Fri" },
+                                { "label": "Sat" },
+                                { "label": "Sun" }
+                            ]
+                        }
+                    ],
+                    "dataset": [
+                        {
+                            "seriesname": "Bakersfield Central",
+                            "data": [
+                                { "value": "15123" },
+                                { "value": "14233" },
+                                { "value": "25507" },
+                                { "value": "9110" },
+                                { "value": "15529" },
+                                { "value": "20803" },
+                                { "value": "19202" }
+                            ]
+                        },
+                        {
+                            "seriesname": "Los Angeles Topanga",
+                            "data": [
+                                { "value": "13400" },
+                                { "value": "12800" },
+                                { "value": "22800" },
+                                { "value": "12400" },
+                                { "value": "15800" },
+                                { "value": "19800" },
+                                { "value": "21800" }
+                            ]
+                        }
+                    ],
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "startvalue": "17022",
+                                    "color": "#6baa01",
+                                    "valueOnRight": "1",
+                                    "displayvalue": "Average"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }).render();
+        });
+    }
+    //Licensed Applications return flow (drilldown)
+    $('#lnkDistricts').click(function () {
+        CumulativeDistrictwiseGraph(returnServiceId);
+        $('#lnkMandal').text('');
+    });
+    //return workflow   means Village -->Mandal-->District
+    $('#lnkMandal').click(function () {
+      
+        myFunction(returnDistrict, returnServiceId, returnMandal, returnVillage);
+        $('#lnkDistricts').text('');
+        $('#lnkMandal').text('');
+        $('#lnkVillage').text('');
+    });
+
+    //Pending Applications return flow (drilldown)
+    $('#lnkDistricts').click(function () {
+        BindPendingApplicationsDistrictwise(returnServiceId);
+        $('#lnkDistricts').text('');
+        $('#lnkMandal').text('');
+        $('#lnkVillage').text('');
+    });
+    //return workflow   means Village -->Mandal-->District
+    $('#lnkMandal').click(function () {
+        DistrictwisePendingApplications(returnDistrict, returnServiceId, returnMandal, returnVillage);
+        $('#lnkMandal').text('');
+        $('#lnkVillage').text('');
+    });
+</script>
+
+<script>
+    
+    function GetTAMCEData(fromDate,toDate)
+    {
+        var url = '@Url.Action("GetCommissionerTAMCEData", "Dashboard", new { Area = "Admin" })';
+            var data = { FromDate : fromDate,
+            ToDate : toDate
+            }
+        var jqxhr = $.post(url, data,function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindTAMCEData(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetDashBoardCount  Request Failed: " + err);
+            });
+    }
+
+    function BindTAMCEData(json)
+    {
+        var totalTAMCE = 0;
+        for (var j = 0; j < json.length; j++) {
+
+            totalTAMCE += Number(json[j].value);
+        }
+
+    var serviceGraphAPMCE = new FusionCharts({
+
+            type: 'doughnut2d',
+            renderAt: 'divServiceGraphapmce',
+            width: '300',
+            height: '300',
+            dataFormat: 'json',
+            dataSource: {
+                "chart": {
+                    //"caption": "Split of Revenue by Product Categories",
+                    //"subCaption": "Last year",
+                    "numberPrefix": "",
+                    "paletteColors": "#0075c2,#1aaf5d,#8e0000,#f2c500,#f45b00,#b300c6",
+                    "bgColor": "#ffffff",
+                    "showBorder": "0",
+                    "use3DLighting": "0",
+                    "showShadow": "0",
+                    "enableSmartLabels": "0",
+                    "startingAngle": "310",
+                    "showLabels": "0",
+                    "showPercentValues": "1",
+                    "showLegend": "1",
+                    "legendShadow": "0",
+                    "legendBorderAlpha": "0",
+                    "defaultCenterLabel": "Total :" + totalTAMCE,
+                    "centerLabel": "$label: $value",
+                    "centerLabelBold": "1",
+                    "showTooltip": "0",
+                    "decimals": "0",
+                    "captionFontSize": "14",
+                    "subcaptionFontSize": "14",
+                    "subcaptionFontBold": "0"
+                },
+                "data": json
+            },
+            "events": {
+                "slicingStart": function (eventObj, dataObj) {
+                    
+                    if (!dataObj.slicedState) {
+                        //if (dataObj.dataIndex == 0)
+                        //    $('#spanActDetails').text('Establishment - 3, Operations - 1');
+                        //else if (dataObj.dataIndex == 1)
+                        //    $('#spanActDetails').text('Establishment - 5, Operations - 3');
+                        //else
+                        //    $('#spanActDetails').text('Establishment - 5, Operations - 2');
+                        console.log('index: ' + dataObj.dataIndex);
+                        console.log(dataObj);
+                        var jsonItem = json.find(item => item.label == dataObj.data.label);
+                        GetDistrictWiseTAMCEData(jsonItem.StatusId);
+                    }
+                },
+                "slicingEnd": function (eventObj, dataObj) {
+                    if (!dataObj.slicedState) {
+                        $('#spanActDetails').text('');
+                    }
+                }
+            }
+        }).render();
+    }
+
+
+    function GetDistrictWiseTAMCEData(StatusId) {
+
+        var url = '@Url.Action("GetCommissionerTAMCEDrillDownData", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            statusId: StatusId,
+            FromDate : $('#FromDate').val(),
+            ToDate : $('#ToDate').val()
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindDistrictWiseTAMCEData(json);
+                console.log('test:' + json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+
+    function BindDistrictWiseTAMCEData(json) {
+
+        var jsonObject;
+        var title;
+
+        FusionCharts.ready(function () {
+            var revenueChart = new FusionCharts({
+                type: 'column2d',
+                renderAt: 'divGraphContent',
+                width: '1100',
+                height: '400',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "District Wise Applications",
+                        "xAxisName": "Districts",
+                        "yAxisName": "Applications",
+                        "paletteColors": "#0075c2",
+                        "bgColor": "#ffffff",
+                        "borderAlpha": "20",
+                        "canvasBorderAlpha": "0",
+                        "usePlotGradientColor": "0",
+                        "plotBorderAlpha": "10",
+                        "placevaluesInside": "1",
+                        "rotatevalues": "1",
+                        "valueFontColor": "#ffffff",
+                        "showXAxisLine": "1",
+                        "xAxisLineColor": "#999999",
+                        "divlineColor": "#999999",
+                        "divLineIsDashed": "1",
+                        "showAlternateHGridColor": "0",
+                        "subcaptionFontBold": "0",
+                        "subcaptionFontSize": "14"
+                    },
+                    "data": json,
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "startvalue": "700000",
+                                    "color": "#1aaf5d",
+                                    "valueOnRight": "1",
+                                    "displayvalue": "Monthly Target"
+                                }
+                            ]
+                        }
+                    ],
+                    //events: {
+                    //    'dataplotClick': function(evt, args) {
+                    //         
+                    //        window.showAlert = function () {
+                    //            alert('siva');
+                    //        };
+
+                    //    }
+                    //}
+                }
+            }).render();
+        });
+
+        //$('#divModalDefaultHeaderText').text(title);
+        $('#divGraphPopup').modal('show');
+    }
+    
+    function GetMandalWiseTAMCEData(StatusId,DistrictId)
+    {
+        var url = '@Url.Action("GetCommissionerTAMCEDrillDownData", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            statusId: StatusId,
+            districtID: DistrictId,
+            FromDate : $('#FromDate').val(),
+            ToDate : $('#ToDate').val()
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindMandalWiseTAMCEData(json);
+                console.log('test:' + json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+    function BindMandalWiseTAMCEData(json) {
+         
+        var jsonObject;
+        var title;
+
+        $('#divGraphPopup').modal('hide');
+        $('#divGraphPopupVillage').modal('hide');
+
+        FusionCharts.ready(function () {
+            var revenueChart = new FusionCharts({
+                type: 'column2d',
+                renderAt: 'divGraphContentMandal',
+                width: '1100',
+                height: '400',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "Mandal Wise Applications",
+                        "xAxisName": "Mandal",
+                        "yAxisName": "Applications",
+                        "paletteColors": "#0075c2",
+                        "bgColor": "#ffffff",
+                        "borderAlpha": "20",
+                        "canvasBorderAlpha": "0",
+                        "usePlotGradientColor": "0",
+                        "plotBorderAlpha": "10",
+                        "placevaluesInside": "1",
+                        "rotatevalues": "1",
+                        "valueFontColor": "#ffffff",
+                        "showXAxisLine": "1",
+                        "xAxisLineColor": "#999999",
+                        "divlineColor": "#999999",
+                        "divLineIsDashed": "1",
+                        "showAlternateHGridColor": "0",
+                        "subcaptionFontBold": "0",
+                        "subcaptionFontSize": "14"
+                    },
+                    "data": json,
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "startvalue": "700000",
+                                    "color": "#1aaf5d",
+                                    "valueOnRight": "1",
+                                    "displayvalue": "Monthly Target"
+                                }
+                            ]
+                        }
+                    ],
+                    //events: {
+                    //    'dataplotClick': function(evt, args) {
+                    //         
+                    //        window.showAlert = function () {
+                    //            alert('siva');
+                    //        };
+
+                    //    }
+                    //}
+                }
+            }).render();
+        });
+
+        //$('#divModalDefaultHeaderText').text(title);
+        
+        $('#divGraphPopupMandal').modal('show');
+    }
+
+    function GetVillageWiseTAMCEData(StatusId,DistrictId, MandalId) {
+        var url = '@Url.Action("GetCommissionerTAMCEDrillDownData", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            statusId: StatusId,
+            districtID: DistrictId,
+            mandalId:MandalId,
+            FromDate : $('#FromDate').val(),
+            ToDate : $('#ToDate').val()
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindVillageWiseTAMCEData(json);
+                console.log('test:' + json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+    function BindVillageWiseTAMCEData(json) {
+         $('#divGraphPopupMandal').modal('hide');
+        $('#divGraphPopup').modal('hide');
+        var jsonObject;
+        var title;
+
+        FusionCharts.ready(function () {
+            var revenueChart = new FusionCharts({
+                type: 'column2d',
+                renderAt: 'divGraphContentVillage',
+                width: '1100',
+                height: '400',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "Village Wise Applications",
+                        "xAxisName": "Village",
+                        "yAxisName": "Applications",
+                        "paletteColors": "#0075c2",
+                        "bgColor": "#ffffff",
+                        "borderAlpha": "20",
+                        "canvasBorderAlpha": "0",
+                        "usePlotGradientColor": "0",
+                        "plotBorderAlpha": "10",
+                        "placevaluesInside": "1",
+                        "rotatevalues": "1",
+                        "valueFontColor": "#ffffff",
+                        "showXAxisLine": "1",
+                        "xAxisLineColor": "#999999",
+                        "divlineColor": "#999999",
+                        "divLineIsDashed": "1",
+                        "showAlternateHGridColor": "0",
+                        "subcaptionFontBold": "0",
+                        "subcaptionFontSize": "14"
+                    },
+                    "data": json,
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "startvalue": "700000",
+                                    "color": "#1aaf5d",
+                                    "valueOnRight": "1",
+                                    "displayvalue": "Monthly Target"
+                                }
+                            ]
+                        }
+                    ],
+                    //events: {
+                    //    'dataplotClick': function(evt, args) {
+                    //         
+                    //        window.showAlert = function () {
+                    //            alert('siva');
+                    //        };
+
+                    //    }
+                    //}
+                }
+            }).render();
+        });
+
+        //$('#divModalDefaultHeaderText').text(title);
+        
+        $('#divGraphPopupVillage').modal('show');
+        
+    }
+
+    function GetTAMCEApplication(statusId, villageId)
+    {
+         
+        var viewlink = '@Url.Action("TAMCEApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, villageId=-2, FromDate=-3, ToDate=-4 })';
+        viewlink = viewlink.replace("-1", statusId);
+        viewlink = viewlink.replace("-2", villageId);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+    }
+
+
+    $('#btnBackToDistrict').click(function(){
+        $('#divGraphPopupVillage').modal('hide');
+        $('#divGraphPopupMandal').modal('hide');
+        $('#divGraphPopup').modal('show');
+    });
+
+    
+    $('#btnBackToMandal').click(function(){
+        $('#divGraphPopup').modal('hide');
+        $('#divGraphPopupVillage').modal('hide');
+        $('#divGraphPopupMandal').modal('show');
+    });
+
+     $('#btnDistrictCancel').click(function(){
+        $('#divGraphPopup').modal('hide');
+    });
+
+    $('#btnMandalCancel').click(function(){
+        $('#divGraphPopupMandal').modal('hide');
+    });
+
+    $('#btnVillageCancel').click(function(){
+        $('#divGraphPopupVillage').modal('hide');
+    });
+
+</script>
+
+<script>
+    function GetPCPNDTData() {
+
+        var url = '@Url.Action("GetCommissionerPCPNDTData", "Dashboard", new { Area = "Admin" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindPCPNDTData(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetDashBoardCount  Request Failed: " + err);
+            });
+    }
+    function BindPCPNDTData(json) {            //BindServicewiseGraph()
+
+        var total = 0;
+        for (var j = 0; j < json.length; j++) {
+
+            total += Number(json[j].value);
+        }
+
+        //$.each(jsonObject, function (index, item) {
+        //    total = total + parseInt(item.value);
+        //});
+        var revenueChart = new FusionCharts({
+
+            type: 'doughnut2d',
+            renderAt: 'divServiceGraph',
+            width: '300',
+            height: '300',
+            dataFormat: 'json',
+            dataSource: {
+                "chart": {
+                    //"caption": "Split of Revenue by Product Categories",
+                    //"subCaption": "Last year",
+                    "numberPrefix": "",
+                    "paletteColors": "#0075c2,#1aaf5d,#8e0000,#f2c500,#f45b00,#b300c6",
+                    "bgColor": "#ffffff",
+                    "showBorder": "0",
+                    "use3DLighting": "0",
+                    "showShadow": "0",
+                    "enableSmartLabels": "0",
+                    "startingAngle": "310",
+                    "showLabels": "0",
+                    "showPercentValues": "1",
+                    "showLegend": "1",
+                    "legendShadow": "0",
+                    "legendBorderAlpha": "0",
+                    "defaultCenterLabel": "Total : " + total,
+                    "centerLabel": "$label: $value",
+                    "centerLabelBold": "1",
+                    "showTooltip": "0",
+                    "decimals": "0",
+                    "captionFontSize": "14",
+                    "subcaptionFontSize": "14",
+                    "subcaptionFontBold": "0"
+                },
+                "data": json
+                //    [
+                //{
+                //    "label": "Food",
+                //    "value": "28504"
+                //},
+                //{
+                //    "label": "Apparels",
+                //    "value": "14633"
+                //},
+                //{
+                //    "label": "Electronics",
+                //    "value": "10507"
+                //},
+                //{
+                //    "label": "Household",
+                //    "value": "4910"
+                //}
+                //]
+            },
+            "events": {
+                "slicingStart": function (eventObj, dataObj) {
+
+                    if (!dataObj.slicedState) {
+                        //if (dataObj.dataIndex == 0)
+                        //    $('#spanActDetails').text('Establishment - 3, Operations - 1');
+                        //else if (dataObj.dataIndex == 1)
+                        //    $('#spanActDetails').text('Establishment - 5, Operations - 3');
+                        //else
+                        //    $('#spanActDetails').text('Establishment - 5, Operations - 2');
+                        console.log('index: ' + dataObj.dataIndex);
+                        console.log(dataObj);
+                        var jsonItem = json.find(item => item.label == dataObj.data.label);
+                        GetDistrictWisePCPNDTData(jsonItem.StatusId);
+                    }
+                },
+                "slicingEnd": function (eventObj, dataObj) {
+                    if (!dataObj.slicedState) {
+                        $('#spanActDetails').text('');
+                    }
+                }
+            }
+        }).render();
+
+        
+        var serviceGraphBloodBank = new FusionCharts({
+
+            type: 'doughnut2d',
+            renderAt: 'divServiceGraphbloodbank',
+            width: '300',
+            height: '300',
+            dataFormat: 'json',
+            dataSource: {
+                "chart": {
+                    //"caption": "Split of Revenue by Product Categories",
+                    //"subCaption": "Last year",
+                    "numberPrefix": "",
+                    "paletteColors": "#0075c2,#1aaf5d,#8e0000,#f2c500,#f45b00,#b300c6",
+                    "bgColor": "#ffffff",
+                    "showBorder": "0",
+                    "use3DLighting": "0",
+                    "showShadow": "0",
+                    "enableSmartLabels": "0",
+                    "startingAngle": "310",
+                    "showLabels": "0",
+                    "showPercentValues": "1",
+                    "showLegend": "1",
+                    "legendShadow": "0",
+                    "legendBorderAlpha": "0",
+                    "defaultCenterLabel": "Total :100 ",
+                    "centerLabel": "$label: $value",
+                    "centerLabelBold": "1",
+                    "showTooltip": "0",
+                    "decimals": "0",
+                    "captionFontSize": "14",
+                    "subcaptionFontSize": "14",
+                    "subcaptionFontBold": "0"
+                },
+                "data":
+                    [
+                {
+                    "label": "submitted",
+                    "value": "25"
+                },
+                {
+                    "label": "Rejected",
+                    "value": "10"
+                },
+                {
+                    "label": "Approved",
+                    "value": "50"
+                },
+                {
+                    "label": "Cancelled",
+                    "value": "15"
+                }
+                    ]
+            },
+            "events": {
+                "slicingStart": function (eventObj, dataObj) {
+
+                    if (!dataObj.slicedState) {
+                        //if (dataObj.dataIndex == 0)
+                        //    $('#spanActDetails').text('Establishment - 3, Operations - 1');
+                        //else if (dataObj.dataIndex == 1)
+                        //    $('#spanActDetails').text('Establishment - 5, Operations - 3');
+                        //else
+                        //    $('#spanActDetails').text('Establishment - 5, Operations - 2');
+                        console.log('index: ' + dataObj.dataIndex);
+                        console.log('dataobject' + dataObj);
+                        var jsonItem = json.find(item => item.label == dataObj.data.label);
+                        DistrictwiseGraph(jsonItem.ServiceId);
+                    }
+                },
+                "slicingEnd": function (eventObj, dataObj) {
+                    if (!dataObj.slicedState) {
+                        $('#spanActDetails').text('');
+                    }
+                }
+            }
+        }).render();
+    }
+
+    function GetDistrictWisePCPNDTData(StatusId) {
+
+        var url = '@Url.Action("GetCommissionerPCPNDTDrillDownData", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            statusId: StatusId
+
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindDistrictWisePCPNDTData(json);
+                console.log('test:' + json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+
+    function BindDistrictWisePCPNDTData(json) {
+
+        var jsonObject;
+        var title;
+
+        FusionCharts.ready(function () {
+            var revenueChart = new FusionCharts({
+                type: 'column2d',
+                renderAt: 'divGraphContent',
+                width: '1100',
+                height: '400',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "District Wise Applications",
+                        "xAxisName": "Districts",
+                        "yAxisName": "Applications",
+                        "paletteColors": "#0075c2",
+                        "bgColor": "#ffffff",
+                        "borderAlpha": "20",
+                        "canvasBorderAlpha": "0",
+                        "usePlotGradientColor": "0",
+                        "plotBorderAlpha": "10",
+                        "placevaluesInside": "1",
+                        "rotatevalues": "1",
+                        "valueFontColor": "#ffffff",
+                        "showXAxisLine": "1",
+                        "xAxisLineColor": "#999999",
+                        "divlineColor": "#999999",
+                        "divLineIsDashed": "1",
+                        "showAlternateHGridColor": "0",
+                        "subcaptionFontBold": "0",
+                        "subcaptionFontSize": "14"
+                    },
+                    "data": json,
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "startvalue": "700000",
+                                    "color": "#1aaf5d",
+                                    "valueOnRight": "1",
+                                    "displayvalue": "Monthly Target"
+                                }
+                            ]
+                        }
+                    ],
+                    //events: {
+                    //    'dataplotClick': function(evt, args) {
+                    //         
+                    //        window.showAlert = function () {
+                    //            alert('siva');
+                    //        };
+
+                    //    }
+                    //}
+                }
+            }).render();
+        });
+
+        //$('#divModalDefaultHeaderText').text(title);
+        $('#divGraphPopup').modal('show');
+    }
+
+    function GetMandalWisePCPNDTData(StatusId,DistrictId)
+    {
+        var url = '@Url.Action("GetCommissionerPCPNDTDrillDownData", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            statusId: StatusId,
+            districtID: DistrictId
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindMandalWisePCPNDTData(json);
+                console.log('test:' + json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+    function BindMandalWisePCPNDTData(json) {
+         
+        var jsonObject;
+        var title;
+
+        FusionCharts.ready(function () {
+            var revenueChart = new FusionCharts({
+                type: 'column2d',
+                renderAt: 'divGraphContent',
+                width: '1100',
+                height: '400',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "Mandal Wise Applications",
+                        "xAxisName": "Mandal",
+                        "yAxisName": "Applications",
+                        "paletteColors": "#0075c2",
+                        "bgColor": "#ffffff",
+                        "borderAlpha": "20",
+                        "canvasBorderAlpha": "0",
+                        "usePlotGradientColor": "0",
+                        "plotBorderAlpha": "10",
+                        "placevaluesInside": "1",
+                        "rotatevalues": "1",
+                        "valueFontColor": "#ffffff",
+                        "showXAxisLine": "1",
+                        "xAxisLineColor": "#999999",
+                        "divlineColor": "#999999",
+                        "divLineIsDashed": "1",
+                        "showAlternateHGridColor": "0",
+                        "subcaptionFontBold": "0",
+                        "subcaptionFontSize": "14"
+                    },
+                    "data": json,
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "startvalue": "700000",
+                                    "color": "#1aaf5d",
+                                    "valueOnRight": "1",
+                                    "displayvalue": "Monthly Target"
+                                }
+                            ]
+                        }
+                    ],
+                    //events: {
+                    //    'dataplotClick': function(evt, args) {
+                    //         
+                    //        window.showAlert = function () {
+                    //            alert('siva');
+                    //        };
+
+                    //    }
+                    //}
+                }
+            }).render();
+        });
+
+        //$('#divModalDefaultHeaderText').text(title);
+        $('#divGraphPopup').modal('show');
+    }
+
+    function GetVillageWisePCPNDTData(StatusId,DistrictId, MandalId) {
+        var url = '@Url.Action("GetCommissionerPCPNDTDrillDownData", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            statusId: StatusId,
+            districtID: DistrictId,
+            mandalId:MandalId
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindVillageWisePCPNDTData(json);
+                console.log('test:' + json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+    function BindVillageWisePCPNDTData(json) {
+         
+        var jsonObject;
+        var title;
+
+        FusionCharts.ready(function () {
+            var revenueChart = new FusionCharts({
+                type: 'column2d',
+                renderAt: 'divGraphContent',
+                width: '1100',
+                height: '400',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "Village Wise Applications",
+                        "xAxisName": "Village",
+                        "yAxisName": "Applications",
+                        "paletteColors": "#0075c2",
+                        "bgColor": "#ffffff",
+                        "borderAlpha": "20",
+                        "canvasBorderAlpha": "0",
+                        "usePlotGradientColor": "0",
+                        "plotBorderAlpha": "10",
+                        "placevaluesInside": "1",
+                        "rotatevalues": "1",
+                        "valueFontColor": "#ffffff",
+                        "showXAxisLine": "1",
+                        "xAxisLineColor": "#999999",
+                        "divlineColor": "#999999",
+                        "divLineIsDashed": "1",
+                        "showAlternateHGridColor": "0",
+                        "subcaptionFontBold": "0",
+                        "subcaptionFontSize": "14"
+                    },
+                    "data": json,
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "startvalue": "700000",
+                                    "color": "#1aaf5d",
+                                    "valueOnRight": "1",
+                                    "displayvalue": "Monthly Target"
+                                }
+                            ]
+                        }
+                    ],
+                    //events: {
+                    //    'dataplotClick': function(evt, args) {
+                    //         
+                    //        window.showAlert = function () {
+                    //            alert('siva');
+                    //        };
+
+                    //    }
+                    //}
+                }
+            }).render();
+       });
+
+        //$('#divModalDefaultHeaderText').text(title);
+        $('#divGraphPopup').modal('show');
+    }
+
+    function GetPCPNDTApplication(statusId, villageId)
+    {
+         
+        var viewlink = '@Url.Action("PCPNDTApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, villageId=-2 , FromDate =-3, ToDate = -4})';
+        viewlink = viewlink.replace("-1", statusId);
+        viewlink = viewlink.replace("-2", villageId);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+</script>
+
+<script>
+    function BindLicenseIssueTodaywiseGraph() {
+
+        var data = {
+            type: 'Today'
+        }
+        var url = '@Url.Action("GetCommissionerLicensedApplications", "Dashboard", new { Area = "Admin" })';
+
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindTodayGraph(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+
+    function BindTodayGraph(json) {
+
+        var total = 0;
+        for (var j = 0; j < json.length; j++) {
+
+            total += Number(json[j].Value);
+        }
+        var revenueChart = new FusionCharts({
+            type: 'doughnut2d',
+            renderAt: 'divLicenseIssueTodayGraph',
+            width: '300',
+            height: '300',
+            dataFormat: 'json',
+            dataSource: {
+                "chart": {
+                    //"caption": "Split of Revenue by Product Categories",
+                    //"subCaption": "Last year",
+                    //"numberPrefix": "$",
+                    "paletteColors": "#0075c2,#1aaf5d,#8e0000,#f2c500,#f45b00,#b300c6",
+                    "bgColor": "#ffffff",
+                    "showBorder": "0",
+                    "use3DLighting": "0",
+                    "showShadow": "0",
+                    "enableSmartLabels": "0",
+                    "startingAngle": "310",
+                    "showLabels": "0",
+                    "showPercentValues": "1",
+                    "showLegend": "1",
+                    "legendShadow": "0",
+                    "legendBorderAlpha": "0",
+                    "defaultCenterLabel": "Total : " + total,
+                    "centerLabel": "$label: $value",
+                    "centerLabelBold": "1",
+                    "showTooltip": "0",
+                    "decimals": "0",
+                    "captionFontSize": "14",
+                    "subcaptionFontSize": "14",
+                    "subcaptionFontBold": "0"
+                },
+                "data": json
+            },
+            "events": {
+                "slicingStart": function (eventObj, dataObj) {
+
+                        console.log('registration issued index : ' + dataObj.dataIndex);
+                        console.log(dataObj);
+
+                    if (!dataObj.slicedState) {
+                        var jsonItem = json.find(item => item.label == dataObj.data.label);
+
+                        GetDistrictWiseLicensedApplications('Today', jsonItem.label);
+                    }
+                }
+            }
+        }).render();
+    }
+
+
+    function BindLicenseIssueCumulativewiseGraph() {
+
+        var data = {
+            type: 'Cumulative'
+        }
+
+        var url = '@Url.Action("GetCommissionerLicensedApplicationsForTAMCE", "Dashboard", new { Area = "Admin" })';
+
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindCumulativeGraph(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+    function BindCumulativeGraph(json) {
+         debugger;
+        var total1 = 0;
+        for (var j = 0; j < json.length; j++) {
+
+            total1 += Number(json[j].value);
+        }
+        var revenueChart = new FusionCharts({
+            type: 'doughnut2d',
+            renderAt: 'divLicenseIssueCumulativeGraph',
+            width: '300',
+            height: '300',
+            dataFormat: 'json',
+            dataSource: {
+                "chart": {
+                    //"caption": "Split of Revenue by Product Categories",
+                    //"subCaption": "Last year",
+                    "numberPrefix": "",
+                    "paletteColors": "#0075c2,#1aaf5d,#8e0000,#f2c500,#f45b00,#b300c6",
+                    "bgColor": "#ffffff",
+                    "showBorder": "0",
+                    "use3DLighting": "0",
+                    "showShadow": "0",
+                    "enableSmartLabels": "0",
+                    "startingAngle": "310",
+                    "showLabels": "0",
+                    "showPercentValues": "1",
+                    "showLegend": "1",
+                    "legendShadow": "0",
+                    "legendBorderAlpha": "0",
+                    "defaultCenterLabel": "Total :" + total1,
+                    "centerLabel": "$label: $value",
+                    "centerLabelBold": "1",
+                    "showTooltip": "0",
+                    "decimals": "0",
+                    "captionFontSize": "14",
+                    "subcaptionFontSize": "14",
+                    "subcaptionFontBold": "0"
+                },
+                "data": json
+            },
+            "events": {
+                     "slicingStart": function (eventObj, dataObj) {
+                    
+                                    if (!dataObj.slicedState) {
+                                        //if (dataObj.dataIndex == 0)
+                                        //    $('#spanActDetails').text('Establishment - 3, Operations - 1');
+                                        //else if (dataObj.dataIndex == 1)
+                                        //    $('#spanActDetails').text('Establishment - 5, Operations - 3');
+                                        //else
+                                        //    $('#spanActDetails').text('Establishment - 5, Operations - 2');
+                                        console.log('index: ' + dataObj.dataIndex);
+                                        console.log(dataObj);
+                                        var jsonItem = json.find(item => item.label == dataObj.data.label);
+                                        //GetDistrictWiseTAMCEData(jsonItem.StatusId);
+                                        GetDistrictWiseLicensedApplications('Cumulative',jsonItem.label);
+                                    }
+                                },
+                                "slicingEnd": function (eventObj, dataObj) {
+                                    if (!dataObj.slicedState) {
+                                        $('#spanActDetails').text('');
+                                    }
+                                }
+               
+            }
+        }).render();
+    }
+
+    function GetDistrictWiseLicensedApplications(type,applicationType) {
+
+        var url = '@Url.Action("GetDistrictWiseLicensedApplications", "Dashboard", new { Area = "Admin" })';
+        var data = {
+            Type: type,
+            ApplicationType: applicationType
+
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindDistrictWiseLicensedData(json);
+                console.log('test:' + json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+
+    function BindDistrictWiseLicensedData(json) {
+
+        var jsonObject;
+        var title;
+        FusionCharts.ready(function () {
+            var revenueChart = new FusionCharts({
+                type: 'column2d',
+                renderAt: 'divGraphContent',
+                width: '900',
+                height: '400',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "District Wise Applications",
+                        "xAxisName": "District",
+                        "yAxisName": "Applications",
+                        "paletteColors": "#0075c2",
+                        "bgColor": "#ffffff",
+                        "borderAlpha": "20",
+                        "canvasBorderAlpha": "0",
+                        "usePlotGradientColor": "0",
+                        "plotBorderAlpha": "10",
+                        "placevaluesInside": "1",
+                        "rotatevalues": "1",
+                        "valueFontColor": "#ffffff",
+                        "showXAxisLine": "1",
+                        "xAxisLineColor": "#999999",
+                        "divlineColor": "#999999",
+                        "divLineIsDashed": "1",
+                        "showAlternateHGridColor": "0",
+                        "subcaptionFontBold": "0",
+                        "subcaptionFontSize": "14"
+                    },
+                    "data": json,
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "startvalue": "700000",
+                                    "color": "#1aaf5d",
+                                    "valueOnRight": "1",
+                                    "displayvalue": "Monthly Target"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }).render();
+        });
+
+        //$('#divModalDefaultHeaderText').text(title);
+        $('#divGraphPopup').modal('show');
+    }
+    function GetApprovedAmendments(Type,DistrictId) {
+        var viewlink = '@Url.Action("ApprovedAmendments", "Dashboard", new { Area = "Admin", Type=-1,DistrictId=-2 })';
+        viewlink = viewlink.replace("-1", Type);
+        viewlink = viewlink.replace("-2", DistrictId);
+        viewlink = viewlink.replace("&amp;", "&");
+        window.location.href = viewlink;
+    }
+    function GetApprovedRegistrations(Type,DistrictId) {
+        var viewlink = '@Url.Action("ApprovedRegistrations", "Dashboard", new { Area = "Admin", Type=-1, DistrictId = -2 })';
+        viewlink = viewlink.replace("-1", Type);
+        viewlink = viewlink.replace("-2", DistrictId);
+        viewlink = viewlink.replace("&amp;", "&");
+        window.location.href = viewlink;
+    }
+
+
+</script>
+
+<script>
+    function GetExpiredLicenses() {
+        var url = '@Url.Action("GetExpiredLicenses", "Dashboard", new { Area = "Admin" })';
+       
+        var jqxhr = $.post(url,  function () { })
+            .done(function (response) {
+                var json;
+                 
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindTodayExpiredLicenses(json.Table, 'divExpired');
+                BindTodayExpiredLicenses(json.Table1, 'divExpireSixMonths');
+                console.log(response);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get DashBoard Details  Request Failed: " + err);
+            });
+    }
+    function BindTodayExpiredLicenses(json,renderAt) {
+
+        var jsonObject;
+        var title;
+        FusionCharts.ready(function () {
+            var revenueChart = new FusionCharts({
+                type: 'column2d',
+                renderAt: renderAt,
+                width: '900',
+                height: '400',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "District Wise Applications",
+                        "xAxisName": "District",
+                        "yAxisName": "Applications",
+                        "paletteColors": "#0075c2",
+                        "bgColor": "#ffffff",
+                        "borderAlpha": "20",
+                        "canvasBorderAlpha": "0",
+                        "usePlotGradientColor": "0",
+                        "plotBorderAlpha": "10",
+                        "placevaluesInside": "1",
+                        "rotatevalues": "1",
+                        "valueFontColor": "#ffffff",
+                        "showXAxisLine": "1",
+                        "xAxisLineColor": "#999999",
+                        "divlineColor": "#999999",
+                        "divLineIsDashed": "1",
+                        "showAlternateHGridColor": "0",
+                        "subcaptionFontBold": "0",
+                        "subcaptionFontSize": "14"
+                    },
+                    "data": json,
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "startvalue": "700000",
+                                    "color": "#1aaf5d",
+                                    "valueOnRight": "1",
+                                    "displayvalue": "Monthly Target"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }).render();
+        });
+
+       
+    }
+
+    function GetExpiredApplications(Type, DistrictId) {
+        var viewlink = '@Url.Action("ExpiredApplications", "Dashboard", new { Area = "Admin", Type=-1,DistrictId=-2 })';
+        viewlink = viewlink.replace("-1", Type);
+        viewlink = viewlink.replace("-2", DistrictId);
+        viewlink = viewlink.replace("&amp;", "&");
+        window.location.href = viewlink;
+    }
+</script>
+
+<script>
+    $(function () {
+        GetSurveyImagesLatLog();
+    });
+    function GetSurveyImagesLatLog() {
+
+        var url = '@Url.Action("BindMaps", "Dashboard",new { Area="Admin"})'
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                BindonMap(response);
+            },
+            failure: function (response) {
+                alert(response.d);
+            },
+            error: function (response) {
+                alert(response.d);
+            }
+        });
+        }
+    function BindonMap(response) {
+         
+        var markers = response;
+        //var markers = [
+        //    { 'Code': 'some code', 'Latitude': '16.4347273', 'Longitude': '80.9776098', 'Name': 'some Name', 'ImagePath': '../Images/SchoolImages/School1.jpg', 'Address': 'Some address', 'Category': 'AWC' },
+        //    { 'Code': 'another code', 'Latitude': '16.447262', 'Longitude': '80.9889924', 'Name': 'another Name', 'ImagePath': '', 'Address': '', 'Category': 'Muncipal School' }
+        //];
+
+        var mapOptions = {
+            center: new google.maps.LatLng(17.3850, 78.4867),
+        zoom: 7,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var infoWindow = new google.maps.InfoWindow();
+        var map = new google.maps.Map(document.getElementById("divPCPNDTMap"), mapOptions);
+        for (i = 0; i < markers.length; i++) {
+            19.9975, 73.7898
+        console.log("Latitute");
+        console.log(markers[i]);
+        var data = markers[i]
+        var myLatlng = new google.maps.LatLng(data.Latitude, data.Longitude);
+        var marker = new google.maps.Marker({
+            
+        position: myLatlng,
+        map: map,
+        animation: google.maps.Animation.DROP,
+        icon: GetIcons('RedDot').iconpath
+        });
+        (function (marker, data) {
+        google.maps.event.addListener(marker, "click", function (e) {
+            debugger;
+        var filepath = '@Url.Content("~/Uploads/")';
+            // var imagename = data.ImagePath.split('/');
+            var imagename = data.ImagePath;
+        filepath = filepath + imagename;
+        infoWindow.setContent('<div>' +
+            '<img width="300px" height="200px" src=' + filepath + '><br>' +
+                  '<strong>Name : </strong>' + data.Name + '<br>' + '<strong>Address: </strong>' + data.Address + '</div>');
+                    //infoWindow.setContent(data.Name);
+            infoWindow.open(map, marker);
+            }); 
+            })(marker, data);
+            }
+            }
+            function GetIcons(category) {
+            var features = {};
+            switch (category) {
+            case "White": {
+            features.label = 'A';
+            features.iconpath = 'http://maps.google.com/mapfiles/marker_whiteA.png';
+            }
+            break;
+            case "Purple": {
+            features.label = 'M';
+            features.iconpath = 'http://maps.google.com/mapfiles/marker_purpleM.png ';
+            }
+            break;
+            case "Green": {
+            features.label = 'P';
+            features.iconpath = 'http://maps.google.com/mapfiles/marker_greenT.png ';
+            }
+            break;
+            case "Orange": {
+            features.label = 'Z';
+            features.iconpath = 'http://maps.google.com/mapfiles/marker_orangeZ.png ';
+            }
+                break;
+            case "RedDot": {
+              
+                features.iconpath = 'http://maps.google.com/mapfiles/ms/micons/red-dot.png';
+            }
+                    
+            break;
+            default: {
+            features.label = 'D';
+            features.iconpath = 'http://maps.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png';
+            }
+            }
+
+
+            return features;
+            }
+            </script>
+
+
+

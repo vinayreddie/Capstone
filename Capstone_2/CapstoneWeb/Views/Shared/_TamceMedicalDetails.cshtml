@@ -1,0 +1,358 @@
+﻿@model Capstone.Models.TAMCEFacilityModel
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">13. Capstone / NON-Capstone STORES </legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th style="width:480px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th style="width:260px;">Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Suitability of location for all sections of Hospital and adequate space for Capstone store
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMyhelpYou" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td style="width:528px;">
+                                        Staff Knowledge in materials management, system of FIFO,binCard, lead time, buffer stock reorder level are followed
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td style="width:528px;">
+                                        Availability of Vital, essential and desirable drugs sufficient to last for at least three months
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td style="width:528px;">
+                                        Upkeep of expiry date register and its regular inspection By RMO
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td style="width:528px;">
+                                        Proper arrangements of the drugs as per ABC/VED category and storage or running stocks as per guidelines.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td style="width:528px;">
+                                        Knowledge of minimum levels for each drug to store leeper by bin card system
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td style="width:528px;">
+                                        All ampoules are stamped with hospital name
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td style="width:528px;">
+                                        Satisfactory storage drugs with reference to temperature, sunlight, protection from moisture, availability of refrigerators
+                                        and exhaust fans.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td style="width:528px;">
+                                        Sending of samples of chemical laboratory to check it as per specification and standard and actiion taken thereon
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td style="width:528px;">
+                                        Maintenance of seperate register for the batches declared unfit for use
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td style="width:528px;">
+                                        Availability of licenses for spirit, morphine, opium
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td style="width:528px;">
+                                        Availability of Fire Fighting equipments and Knowledge to operate
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">14. Capstone RECORDS </legend>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th style="width:480px;">Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th style="width:260px;">Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                            </table>
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr style="display:none;">
+                                    <th>S.No.</th>
+                                    <th>Facility Name</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Partial Mismatch</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td style="width:528px;">
+                                        Availability of Capstone Record Room with enough number of racks and cupboards etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMyhelpYou" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td style="width:528px;">
+                                        Knowledge of staff in keeping the Capstone records in desired fashion.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td style="width:528px;">
+                                        Regular reporting of Births & Deaths to the appropriate authority (veriffy)
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td style="width:528px;">
+                                        Regular WHO (ICD 10) classification of diseases.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td style="width:528px;">
+                                        Quarterly Submission of the morbidity, mortality reports
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td style="width:528px;">
+                                        Monthly death audit meetings held& minutes of meeting recorded / reported
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td style="width:528px;">
+                                        Organization of Hospital Infection control committee meetings, Action taken on minutes and investigation done if any (Verify)
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td style="width:528px;">
+                                        Organization of clinical Meetings and recording of Minutes involvement of IMA or professional associations etc.
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="" value="Yes">Yes
+                                        <input type="radio" name="" value="No">No
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkFlowChart" />
+                                    </td>
+                                    <td style="text-align-last:end"><input type="text" style="width:180px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

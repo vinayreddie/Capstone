@@ -1,0 +1,132 @@
+﻿@model Capstone.Models.APMCERenewalModel
+
+<style>
+    .reportheadertext {
+        text-align: center;
+        font-size: larger;
+    }
+
+    .textunderline {
+        text-decoration: underline;
+    }
+
+    .parabody {
+        text-indent: 50px;
+        text-align: justify;
+    }
+</style>
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">APMCE Renewal</legend>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large;">FORM-VII</span>
+            <br />
+            <i>[See rule 5(c)]</i>
+            <br />
+            <span style="font-size:x-large;">Government of TELANGANA</span>
+            <br />
+            <span style="font-size:x-large;">Health Capstone & Family Welfare Department District Registering Authority</span>
+            <br />
+            <span style="font-size:x-large;">Certificate of Renewal of Registration of Allopathic Private Capstone Care Establishment</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <ol>
+                <li>
+                    <p>
+                        Application No. and Date: @*<b>@Model.ApplicationNumber</b> &nbsp; <b>@Model.ApplicationDate.ToString("dd-MM-yyyy")</b>*@
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Original File number of Registration Authority: 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Date of Issue of the Certificate of Registration: 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Date of Expiry of the Certificate of Registration: 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Date of Renewal of the Certificate of Registration: 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Renewal of Certificate of Registration valid up to: 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This is to Certify that the Certificate of Registration issued to, 
+                        M/s is hereby renewal under the provisions of A.P 
+                        Allopathic Private Capstone Care Establishments(Registration and Regulation) Act, 2002, to
+                        provide following Capstone care services:
+                    </p>
+                    <ol type="A">
+                        @foreach (string item in Model.ServiceDetails)
+                        {
+                            <li>
+                                <b>@item</b>
+                            </li>
+                        }
+                    </ol>
+                </li>
+                <li>
+                    <p>
+                        This Renewal of Certificate of registration shall be in force for a period  of Five(5) years 
+                        from the date of issue.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This Certificate shall be produced whenever it is required to the officer authorised by 
+                        the Registration Authority.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This Establishment shall not rent,lend,sell,transfer or otherwise close down the without 
+                        obtaining prior permission of the registration authority.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Any unauthorized change in personnel,equipment or working conditions as mentioned in the
+                        application by the Establishmnet shall constitute a branch of registration.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        The Establishmnet shall not violate the provisions of A.P. Allopathic Private Capstone Care
+                        Establishments(Registration and Regulation) Act, 2002 as amended from time time and the rules 
+                        made there under.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        The Certificate is subject to the conditions and the provisions of the A.P. Allopathic Private 
+                        Capstone Care Establishments(Registration and Regulation) Act, 2002.
+                    </p>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-3 col-md-12">
+            <div style="text-align:center;">
+                Dr. K. Raju, MBBS, DLO
+                <br />
+                Registering Authority
+            </div>
+        </div>
+    </div>
+</fieldset>

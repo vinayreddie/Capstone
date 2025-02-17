@@ -1,0 +1,15 @@
+﻿@model Medical.Models.APMCEViewModel
+
+
+<div id="divRegistration">
+    <form id="formRegistration">
+        <div class="row">
+            <div class="col-md-2 text-right">
+                @Html.LabelFor(model => model.RegistrationModelLog.Name, new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.RegistrationModelLog.Name)
+            </div>
+        </div>
+    </form>
+</div>

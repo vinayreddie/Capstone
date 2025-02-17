@@ -1,0 +1,83 @@
+﻿@model Medical.Models.APMCEViewModel
+
+
+<form id="formFacilitiesAvailable">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-4">
+            @Html.LabelFor(model => model.FacilitiesAvailableLogModel.HasLaborRoom, new { @class = "control-label" })
+        </div>
+        <div class="col-md-1">
+            @if (Model.FacilitiesAvailableLogModel.HasLaborRoom)
+            {<text>Yes</text>}
+            else
+            {<text>No</text>}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-4">
+            @Html.LabelFor(model => model.FacilitiesAvailableLogModel.HasOperationTheater, new { @class = "control-label" })
+        </div>
+        <div class="col-md-1">
+            @if (Model.FacilitiesAvailableLogModel.HasOperationTheater)
+            {<text>Yes</text>}
+            else
+            {<text>No</text>}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-4">
+            @Html.LabelFor(model => model.FacilitiesAvailableLogModel.HasDiagnosticFacility, new { @class = "control-label" })
+        </div>
+        <div class="col-md-1">
+            @if (Model.FacilitiesAvailableLogModel.HasDiagnosticFacility)
+            {<text>Yes</text>}
+            else
+            {<text>No</text>}
+        </div>
+    </div>
+    <br /><br />
+    <div class="row" id="divDeclarationStampDetails">
+
+        @if (Model.FacilitiesAvailableLogModel.DeclarationStampFilePath != null && Model.FacilitiesAvailableLogModel.DeclarationStampFilePath != "" && Model.FacilitiesAvailableLogModel.DeclarationStampFilePath != string.Empty)
+        {
+            <div class="col-md-5">
+                @Html.LabelFor(model => Model.FacilitiesAvailableLogModel.DeclarationStampFilePath, new { @class = "control-label" })
+            </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.FacilitiesAvailableLogModel.DeclarationStampFilePath))
+                                        {
+                                            var index = Model.FacilitiesAvailableLogModel.DeclarationStampFilePath.LastIndexOf("/");
+                                            var fileName = Model.FacilitiesAvailableLogModel.DeclarationStampFilePath.Substring(index + 1);
+                                            @Html.ActionLink(fileName, "DownloadFile", "Generic",
+                                                    new { Area = "", path = Model.FacilitiesAvailableLogModel.DeclarationStampFilePath, downloadName = fileName },
+                                                    null
+                                                    );
+                                        }
+
+                                    </div>
+        }
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.FacilitiesAvailableLogModel.OtherInformationDescription, new { @class = "control-label" })
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayFor(model => model.FacilitiesAvailableLogModel.OtherInformationDescription, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+        <div class="col-md-6">
+            @if (!string.IsNullOrEmpty(Model.FacilitiesAvailableLogModel.OtherInformationDocumentPath))
+            {
+                var index = Model.FacilitiesAvailableLogModel.OtherInformationDocumentPath.LastIndexOf("/");
+                var fileName = Model.FacilitiesAvailableLogModel.OtherInformationDocumentPath.Substring(index + 1);
+                @Html.ActionLink(fileName, "DownloadFile", "Generic",
+                                                    new { Area = "", path = Model.FacilitiesAvailableLogModel.OtherInformationDocumentPath, downloadName = fileName },
+                                                    null
+                                                    );
+            }
+
+        </div>
+    </div>
+</form>
+

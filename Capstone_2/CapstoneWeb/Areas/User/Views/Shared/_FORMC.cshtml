@@ -1,0 +1,93 @@
+﻿@model Capstone.Models.PCPNDTLicenseInfoModel
+<style>
+    .reportheadertext {
+        text-align: center;
+        font-size: larger;
+    }
+
+    .textunderline {
+        text-decoration: underline;
+    }
+
+    .parabody {
+        text-indent: 50px;
+        text-align: justify;
+    }
+
+    p {
+        text-align: justify;
+    }
+
+    .table-wrapper {
+        background-image: url(../../Content/images/watermark.jpg);
+        /* if the image repeats nicely, tile it, using background-repeat */
+        background-repeat: repeat; /* repeat-x, repeat-y and no-repeat are options */
+        /* alternatively, you could stretch it to fit the div, using background-size */
+        background-size: 100% 100%;
+    }
+</style>
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">FORMC</legend>
+    <div class="row">
+        <b>  <span>ORIGINAL/Duplicate/Renewal</span></b>
+        <div style="text-align:center">
+            <img src="~/Content/images/logogovts.png" />
+        </div>
+
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large; color:red;">Government of Telangana</span>
+            <br />
+            <i>Capstone Health and Family Welfare Department</i>
+            <br />
+            <i>The pre-conception and pre-natal diagnostic techniques</i>
+            <br />
+            <i>(prohibition of sex selection)act, 1994 & rules, 1996</i>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large;">FORM C</span>
+            <br />
+            <i>[Refer rules 6(3), 6(5) and 8(3)]</i>
+            <br />
+            <span style="font-size:x-large; color:red;">REJECTION OF APPLICATION FOR GRANT/RENEWAL OF REGISTRATION</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <ol>
+                    <p>
+                        In exercise of the powers conferred under Section 19(2) of the Pre-natal Daignostic Techniques
+                        (Registration and Prevention of Misuse) Act, 1994, the Appropriate Authority.
+                        <b>..........</b> hereby rejects application for<b> grant*/renewal* </b> of registration
+                        of the undermentioned Genetic Counselling Center*/Genetic Laboratory*/Genetic Clinic*/Ultrasound CLinic*
+                        /Imaging Center*.
+                    </p>
+                <li>
+                    <p>
+                        Name and address of the Genetic Counselling Center*/Genetic Laboratory*/Genetic Clinic*
+                        /Ultrasound CLinic*/Imaging Center*.
+                    </p>
+                    </li>
+                        <li>
+                    <p>
+                       Reason for rejection of application for grant/renewal of registration.
+                    </p>
+                </li>
+              </ol>
+           </div>
+        </div>
+</fieldset>
+<div class="row">
+    <div class="col-md-12" style="text-align:center;">
+        <input type="button" id="btnClosePreview" value="Close" data-dismiss="modal" class="btn btn-default" />
+        <input type="button" id="btnPrintLicense" value="Print" class="btn btn-primary" />
+    </div>
+</div>
+
+<script>
+    //$('#btnPrintLicense').on('click', function (e) {
+    //    alert('this will come soon');
+    //});
+</script>

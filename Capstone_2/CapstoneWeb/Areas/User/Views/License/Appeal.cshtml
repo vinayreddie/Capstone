@@ -1,0 +1,108 @@
+﻿@model Medical.Models.ApplicationModel
+@{
+    ViewBag.Title = "AppealForPCPNDT";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+@using (Html.BeginForm("Appeal", "License", FormMethod.Post))
+{
+<section class="content">
+
+    @if (Model.APMCEModel != null)
+    {
+        Html.RenderPartial("_APMCEView", Model.APMCEModel);
+        <div class="box">
+            <div class="row">
+                @Html.HiddenFor(model => model.APMCEModel.TransactionId)
+                <div class="col-md-offset-1 col-md-2">
+                    @Html.LabelFor(model => model.APMCEModel.RejectionRemarks, "Remarks for rejection", new { @class = "control-label" })
+                </div>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.APMCEModel.RejectionRemarks)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-2">
+                    @Html.LabelFor(model => model.APMCEModel.ReasonforAppeal, "Reason for Appeal", new { @class = "control-label" })
+                </div>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.APMCEModel.ReasonforAppeal, new { @class = "control-label" })
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.PCPNDTModel != null)
+    {
+        Html.RenderPartial("_PCPNDTView", Model.PCPNDTModel);
+        <div class="box">
+            <div class="row">
+                @Html.HiddenFor(model => model.PCPNDTModel.TransactionId)
+                <div class="col-md-offset-1 col-md-2">
+                    @Html.LabelFor(model => model.PCPNDTModel.RejectionRemarks, "Remarks for rejection", new { @class = "control-label" })
+                </div>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.PCPNDTModel.RejectionRemarks)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-2">
+                    @Html.LabelFor(model => model.PCPNDTModel.ReasonforAppeal, "Reason for Appeal", new { @class = "control-label" })
+                </div>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.PCPNDTModel.ReasonforAppeal, new { @class = "control-label" })
+                    @Html.ValidationMessageFor(model=>model.PCPNDTModel.ReasonforAppeal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <input type="submit" value="Appeal" id="btnAppeal" class="btn btn-primary" />
+        </div>
+    </div>
+</section> 
+}
+<script> 
+
+    var applicationModel = @Html.Raw(Json.Encode(Model));
+    console.log('ApplicationModel'+applicationModel);
+
+    $('#btnAppeal').click(function (e) {
+        debugger;
+        e.preventDefault();
+        var transactionId;
+        var remarks;
+        var type;
+       
+        if(applicationModel.PCPNDTModel != null)
+        {
+            transactionId = $('#PCPNDTModel_TransactionId').val();     
+            remarks= $('#PCPNDTModel_ReasonforAppeal').val();
+            type='PCPNDT';
+        }
+        else if(applicationModel.APMCEModel != null)
+        {
+            transactionId= $('#APMCEModel_TransactionId').val();    
+            remarks= $('#APMCEModel_ReasonforAppeal').val();
+            type='APMCE';
+        }
+        var uri = '@Url.Action("SaveAppeal", "License", new { Area = "User" })';
+        var data = {
+            transactionId:transactionId,
+            remarks:remarks,
+            type:type
+           
+        }
+            var jqxhr = $.post(uri, data, function () { }, 'json')
+            .done(function (response) {
+                ShowModal(response);
+
+                // Disable Appeal button once it has appealed.
+                $('#btnAppeal').prop('disabled', true);
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                console.log("Appeal Request Failed: " + err);
+            });
+    });
+</script>
+

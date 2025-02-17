@@ -1,0 +1,13 @@
+https://www.codeproject.com/Articles/676309/ADO-NET-Entity-Framework-Interview-Questions
+http://www.dotnetfunda.com/forums/show/18820/what-is-the-advantage-of-entityframework-over-adonet
+https://softwareengineering.stackexchange.com/questions/117357/is-entity-framework-suitable-for-high-traffic-websites
+http://www.dotnetspan.com/2014/07/advantage-of-entity-framework.html
+https://social.msdn.microsoft.com/Forums/en-US/16f4db07-2b8a-42fe-94a4-924b6916984d/what-is-the-advantage-and-disadvantage-of-entity-framework?forum=adodotnetentityframework
+
+https://www.youtube.com/watch?v=_V6DEkSnZns&t=97s
+https://www.youtube.com/watch?v=FhdBBD_GcLg
+https://www.youtube.com/watch?v=CV7p66_WoUs
+https://www.youtube.com/watch?v=sAAKu_SsaoA
+https://www.youtube.com/watch?v=Npc4rsQIrks
+https://www.youtube.com/watch?v=J1bXDajOaFs
+https://www.youtube.com/watch?v=NYWY4c7uQO8

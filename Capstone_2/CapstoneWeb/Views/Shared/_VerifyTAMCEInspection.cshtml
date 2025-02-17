@@ -1,0 +1,278 @@
+﻿@model Capstone.Models.APMCEViewModel
+<div class="row">
+    @*<div class="col-md-12">
+        <span style="font-size:large">Hospital (TAMCE ACT,2002)</span>
+    </div>
+    <div style="text-align:center">
+        <img src="~/Content/images/logogovts.png" />
+    </div>
+    <div class="col-md-12" style="text-align:center;">
+        <span style="font-size:x-large; color:red;">Government of Telangana</span>
+        <br />
+        <i>Capstone, Health and Family Welfare Department</i>
+        <br />
+        <i>TAMCE</i>
+        <br />
+        <i>(prohibition of sex selection)act, 1994 & rules, 1996</i>
+    </div>*@
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large;">Inspection Report</span>
+            <br />
+            <i>[Under rule 4 (b)]</i>
+            @*<br />
+            <span style="font-size:x-large;">Government of Telangana </span>*@
+            <br />
+            <span style="font-size:x-large;"> Proforma of Inspection Report for Granting License to Private Capstone Care</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2 text-right" style="font-size: larger;">
+        <label>Application Number: </label>
+    </div>
+    <div class="col-md-3" style="font-size: large;">
+        <b> @Html.DisplayFor(model => model.APMCECertificateModel.ApplicationNumber)</b>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2 text-right" style="font-size: larger;">
+        <label>Application Date: </label>
+    </div>
+    <div class="col-md-3" style="font-size: large;">
+        <b> @Html.DisplayFor(model => model.APMCECertificateModel.ApplicationDate)</b>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form id="formRegistration">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Capstone Care Details </legend>
+                
+                <div class="row">
+
+                </div>
+                <div class="row">
+                    <div class="col-md-3 text-right">
+                        @*@Html.LabelFor(model => model.RegistrationModel.Name, new { @class = "control-label" })*@
+                        <label>Name of Capstone Care :</label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.RegistrationModel.Name)
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-3 text-right">
+                        <label>Name of Applicant :</label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.CorrespondingAddress.Name)
+                    </div>
+                    <div class="col-md-3  text-right">
+                        @Html.LabelFor(model => model.RegistrationModel.FacilityType, new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-3">
+                        <b> @Html.DisplayFor(model => model.RegistrationModel.FacilityType)</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 text-right">
+                        @*@Html.LabelFor(model => model.RegistrationModel.Name, new { @class = "control-label" })*@
+                        <label>Address of Capstone Care :</label>
+                    </div>
+                    <div class="col-md-3" style="font-size:medium;">
+                        # @Html.DisplayFor(model => model.RegistrationModel.HouseNumber),
+                        <br />@Html.DisplayFor(model => model.RegistrationModel.StreetName),
+                        <br />
+                        @Html.DisplayFor(model => model.RegistrationModel.VillageName),
+                        <br /> @Html.DisplayFor(model => model.RegistrationModel.MandalName),
+                        <br />
+                        @Html.DisplayFor(model => model.RegistrationModel.DistrictName) - @Html.DisplayFor(model => model.RegistrationModel.PINCode).
+                    </div>
+                    <div class="col-md-3 text-right">
+                        @*@Html.LabelFor(model => model.RegistrationModel.Name, new { @class = "control-label" })*@
+                        <label>Address of Applicant :</label>
+                    </div>
+                    <div class="col-md-3" style="font-size:medium;">
+                        # @Html.DisplayFor(model => model.CorrespondingAddress.HouseNumber),
+                        <br />@Html.DisplayFor(model => model.CorrespondingAddress.StreetName),
+                        <br />
+                        @Html.DisplayFor(model => model.CorrespondingAddress.VillageName),
+                        <br /> @Html.DisplayFor(model => model.CorrespondingAddress.MandalName),
+                        <br />
+                        @Html.DisplayFor(model => model.CorrespondingAddress.DistrictName) - @Html.DisplayFor(model => model.CorrespondingAddress.PINCode).
+                    </div>
+                </div>
+                <div class="row">                    
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Staff List</legend>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblStaffdetails" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Designation</th>
+                                    <th>Name</th>
+                                    <th>RegistrationNo</th>
+                                    <th>Uploaded File</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Speciality</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Remarks</th>
+                                </tr>
+                                @if (Model.StaffDetailsList != null)
+                                {
+                                    for (int i = 0; i < Model.StaffDetailsList.Count; i++)
+                                    {
+                                <tr>
+                                    <td> @Convert.ToInt32(@i + 1)</td>
+                                    <td>@Model.StaffDetailsList[i].StaffDesignation</td>
+                                    <td>@Model.StaffDetailsList[i].Name</td>
+                                    <td>@Model.StaffDetailsList[i].RegistrationNumber</td>
+                                    <td>
+                                        @if (Model.StaffDetailsList[i].UploadedFilePath != null)
+                                        {
+                                            var addressindex = Model.StaffDetailsList[i].UploadedFilePath.LastIndexOf("/");
+                                            var addressfileName = Model.StaffDetailsList[i].UploadedFilePath.Substring(addressindex + 1);
+                                            @Html.ActionLink("Download", "DownloadFile", "Generic",
+        new { Area = "", path = Model.StaffDetailsList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                        }
+                                    </td>
+                                    <td>@Model.StaffDetailsList[i].Email</td>
+                                    <td>@Model.StaffDetailsList[i].PhoneNumber</td>
+                                    <td>@Model.StaffDetailsList[i].Speciality</td>
+                                    <td>
+                                        <input type="radio" name="@i-Staff" value="Yes">Yes
+                                        <input type="radio" name="@i-Staff" value="No">No
+                                    </td>
+                                    <td><input type="text" /></td>
+                                </tr>
+                                    }
+                                }
+
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Equipment Furniture List</legend>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblInfraStructure" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Model</th>
+                                    <th>Remarks</th>
+                                    <th>Uploaded File</th>
+                                    <th>Availability(Yes/No)</th>
+                                    <th>Remarks(if not Satisfied)</th>
+                                </tr>
+                                @if (Model.InfraStructureList != null)
+                                {
+                                    for (int i = 0; i < Model.InfraStructureList.Count; i++)
+                                    {
+                                        <tr>
+                                            <td> @Convert.ToInt32(@i + 1)</td>
+                                            <td>@Model.InfraStructureList[i].Name</td>
+                                            <td>@Model.InfraStructureList[i].Quantity</td>
+                                            <td>@Model.InfraStructureList[i].ItemModel</td>
+                                            <td>@Model.InfraStructureList[i].Remarks</td>
+                                            <td>
+                                                @if (Model.InfraStructureList[i].UploadedFilePath != null)
+                                                {
+                                                    var addressindex = Model.InfraStructureList[i].UploadedFilePath.LastIndexOf("/");
+                                                    var addressfileName = Model.InfraStructureList[i].UploadedFilePath.Substring(addressindex + 1); // addressfileName
+                                                    @Html.ActionLink("Download", "DownloadFile", "Generic",
+                new { Area = "", path = Model.InfraStructureList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                }
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="@i-Equipment" value="Yes">Yes
+                                                <input type="radio" name="@i-Equipment" value="No">No
+                                             </td>
+                                            <td><input type="text"/></td>
+                                            </tr>
+                                            }
+                                        }
+</table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Service Offered Details </legend>
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    @Html.LabelFor(model => model.OfferedServices.BedStrength, new { @class = "control-label" })
+                </div>
+                <div class="col-md-2">
+                    @Html.HiddenFor(model => model.OfferedServices.Id)
+                    @Html.DisplayFor(model => model.OfferedServices.BedStrength, new { htmlAttributes = new { @class = "form-control numeric" } })
+
+                </div>
+                <div class="col-md-2 text-right">
+                    @Html.LabelFor(model => model.OfferedServices.OfferedServices, new { @class = "control-label" })
+                </div>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.OfferedServices.OfferedServices, new { htmlAttributes = new { @class = "form-control numeric" } })
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    @Html.Label("Avaialability(Yes/No)", new { @class = "control-label" })
+                </div>
+                <div  class="col-md-2">
+                    <input type="radio" name="OfferedServicesBedStrength" value="Yes" />Yes &nbsp;
+                    <input type="radio" name="OfferedServicesBedStrength" value="No" />No
+                </div>
+                <div class="col-md-2 text-right">
+                    @Html.Label("Remarks", new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.Editor("Remarks", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+
+    </div>
+</div>
+

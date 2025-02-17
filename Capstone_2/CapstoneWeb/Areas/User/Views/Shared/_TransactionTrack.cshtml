@@ -1,0 +1,642 @@
+﻿@using Capstone.Models
+@using Capstone.Framework
+@model Capstone.Models.ApplicationTrackModel
+
+
+<section class="content-header">
+    <h1>
+        Application Track
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("index","Dashboard","User")"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="@Url.Action("Submitted","Dashboard","User")">Applications</a></li>
+        <li class="active">Track</li>
+    </ol>
+</section>
+
+@if (Model.HasTrackforAPMCE)
+{
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Status - @Model.APMCETrackModel.ServiceName</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.HiddenFor(model => Model.ApplicationId, new { @id = "hfApplicationid" })
+                                <ul class="timeline timeline-horizontal">
+                                    @for (int i = 0; i < Model.APMCETrackModel.GraphicalListModel.Count; i++)
+                                    {
+                                        if (Model.APMCETrackModel.GraphicalListModel[i].Id == Model.APMCETrackModel.CurrentDesignationId)
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.APMCETrackModel.GraphicalListModel[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+                                        else if (Model.APMCETrackModel.GraphicalListModel[i].Id <= Model.APMCETrackModel.CurrentDesignationId)
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge success" id="div_user1"><i class="glyphicon glyphicon-check"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.APMCETrackModel.GraphicalListModel[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge success" id="div_user1"><i class="glyphicon glyphicon-unchecked"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.APMCETrackModel.GraphicalListModel[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+
+
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">History - @Model.APMCETrackModel.ServiceName</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="tblAPMCETransactions" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Sl.No</th>
+                                    <th>UserDepartment</th>
+                                    <th>Remarks</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@if (Model.HasTrackforPCPNDT)
+{
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Status - @Model.PCPNDTTrackModel.ServiceName</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.HiddenFor(model => Model.ApplicationId, new { @id = "hfApplicationid" })
+                                <ul class="timeline timeline-horizontal">
+                                    @for (int i = 0; i < Model.PCPNDTTrackModel.GraphicalListModel.Count; i++)
+                                    {
+                                        if (Model.PCPNDTTrackModel.GraphicalListModel[i].Id == Model.PCPNDTTrackModel.CurrentDesignationId)
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.PCPNDTTrackModel.GraphicalListModel[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+                                        else if (Model.PCPNDTTrackModel.GraphicalListModel[i].Id <= Model.PCPNDTTrackModel.CurrentDesignationId)
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge success" id="div_user1"><i class="glyphicon glyphicon-check"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.PCPNDTTrackModel.GraphicalListModel[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge default" id="div_user1"><i class="glyphicon glyphicon-unchecked"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.PCPNDTTrackModel.GraphicalListModel[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+
+
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">History - @Model.PCPNDTTrackModel.ServiceName</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="tblPCPNDTTransactions" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Sl.No</th>
+                                    <th>UserDepartment</th>
+                                    <th>Remarks</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+}
+@if (Model.HasTrackForBloodBank27C)
+{
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Status - @Model.BloodBankForm27CModel.ServiceName</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.HiddenFor(model => Model.ApplicationId, new { @id = "hfApplicationid" })
+                                <ul class="timeline timeline-horizontal">
+                                    @for (int i = 0; i < Model.BloodBankForm27CModel.GraphicalListModel.Count; i++)
+                                    {
+                                        if (Model.BloodBankForm27CModel.GraphicalListModel[i].Id == Model.BloodBankForm27CModel.CurrentDesignationId)
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.BloodBankForm27CModel.GraphicalListModel[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+                                        else if (Model.BloodBankForm27CModel.GraphicalListModel[i].Id <= Model.BloodBankForm27CModel.CurrentDesignationId)
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge success" id="div_user1"><i class="glyphicon glyphicon-check"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.BloodBankForm27CModel.GraphicalListModel[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge default" id="div_user1"><i class="glyphicon glyphicon-unchecked"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.BloodBankForm27CModel.GraphicalListModel[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+
+
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">History - @Model.BloodBankForm27CModel.ServiceName</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="tblBloodBankForm27CTransactions" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Sl.No</th>
+                                    <th>UserDepartment</th>
+                                    <th>Remarks</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+}
+@if (Model.HasTrackForBloodBank27E)
+{
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Status - @Model.bbForm27EModel.ServiceName</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.HiddenFor(model => Model.ApplicationId, new { @id = "hfApplicationid" })
+                                <ul class="timeline timeline-horizontal">
+                                    @for (int i = 0; i < Model.bbForm27EModel.GraphicalListModel.Count; i++)
+                                    {
+                                        if (Model.bbForm27EModel.GraphicalListModel[i].Id == Model.bbForm27EModel.CurrentDesignationId)
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.bbForm27EModel.GraphicalListModel[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+                                        else if (Model.bbForm27EModel.GraphicalListModel[i].Id <= Model.bbForm27EModel.CurrentDesignationId)
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge success" id="div_user1"><i class="glyphicon glyphicon-check"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.bbForm27EModel.GraphicalListModel[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge default" id="div_user1"><i class="glyphicon glyphicon-unchecked"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.bbForm27EModel.GraphicalListModel[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+
+
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">History - @Model.bbForm27EModel.ServiceName</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="tblBloodBankForm27ETransactions" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Sl.No</th>
+                                    <th>UserDepartment</th>
+                                    <th>Remarks</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<style type="text/css">
+    /* Timeline */
+    .timeline,
+    .timeline-horizontal {
+        list-style: none;
+        padding: 20px;
+        position: relative;
+    }
+
+        .timeline:before {
+            top: 40px;
+            bottom: 0;
+            position: absolute;
+            content: " ";
+            width: 3px;
+            background-color: #eeeeee;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+
+        .timeline .timeline-item {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+            .timeline .timeline-item:before,
+            .timeline .timeline-item:after {
+                content: "";
+                display: table;
+            }
+
+            .timeline .timeline-item:after {
+                clear: both;
+            }
+
+            .timeline .timeline-item .timeline-badge {
+                color: #fff;
+                width: 54px;
+                height: 54px;
+                line-height: 52px;
+                font-size: 22px;
+                text-align: center;
+                position: absolute;
+                top: 18px;
+                left: 50%;
+                margin-left: -25px;
+                background-color: #7c7c7c;
+                border: 3px solid #ffffff;
+                z-index: 100;
+                border-top-right-radius: 50%;
+                border-top-left-radius: 50%;
+                border-bottom-right-radius: 50%;
+                border-bottom-left-radius: 50%;
+            }
+
+                .timeline .timeline-item .timeline-badge i,
+                .timeline .timeline-item .timeline-badge .fa,
+                .timeline .timeline-item .timeline-badge .glyphicon {
+                    top: 2px;
+                    left: 0px;
+                }
+
+                .timeline .timeline-item .timeline-badge.primary {
+                    background-color: #1f9eba;
+                }
+
+                .timeline .timeline-item .timeline-badge.info {
+                    background-color: #5bc0de;
+                }
+
+                .timeline .timeline-item .timeline-badge.success {
+                    background-color: #59ba1f;
+                }
+
+                .timeline .timeline-item .timeline-badge.warning {
+                    background-color: #d1bd10;
+                }
+
+                .timeline .timeline-item .timeline-badge.danger {
+                    background-color: #ba1f1f;
+                }
+
+            .timeline .timeline-item .timeline-panel {
+                position: relative;
+                width: 46%;
+                float: left;
+                right: 16px;
+                border: 1px solid #c0c0c0;
+                background: #ffffff;
+                border-radius: 2px;
+                padding: 20px;
+                -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+                box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+            }
+
+                .timeline .timeline-item .timeline-panel:before {
+                    position: absolute;
+                    top: 26px;
+                    right: -16px;
+                    display: inline-block;
+                    border-top: 16px solid transparent;
+                    border-left: 16px solid #c0c0c0;
+                    border-right: 0 solid #c0c0c0;
+                    border-bottom: 16px solid transparent;
+                    content: " ";
+                }
+
+                .timeline .timeline-item .timeline-panel .timeline-title {
+                    margin-top: 0;
+                    color: inherit;
+                }
+
+                .timeline .timeline-item .timeline-panel .timeline-body > p,
+                .timeline .timeline-item .timeline-panel .timeline-body > ul {
+                    margin-bottom: 0;
+                }
+
+                    .timeline .timeline-item .timeline-panel .timeline-body > p + p {
+                        margin-top: 5px;
+                    }
+
+            .timeline .timeline-item:last-child:nth-child(even) {
+                float: right;
+            }
+
+            .timeline .timeline-item:nth-child(even) .timeline-panel {
+                float: right;
+                left: 16px;
+            }
+
+                .timeline .timeline-item:nth-child(even) .timeline-panel:before {
+                    border-left-width: 0;
+                    border-right-width: 14px;
+                    left: -14px;
+                    right: auto;
+                }
+
+    .timeline-horizontal {
+        list-style: none;
+        position: relative;
+        padding: 20px 0px 20px 0px;
+        display: inline-block;
+    }
+
+        .timeline-horizontal:before {
+            height: 3px;
+            top: auto;
+            bottom: 26px;
+            left: 56px;
+            right: 0;
+            width: 60%;
+            margin-bottom: 20px;
+        }
+
+        .timeline-horizontal .timeline-item {
+            display: table-cell;
+            height: 35px;
+            width: 20%;
+            min-width: 320px;
+            float: none !important;
+            padding-left: 0px;
+            padding-right: 52px;
+            margin: 0 auto;
+            vertical-align: bottom;
+        }
+
+            .timeline-horizontal .timeline-item .timeline-panel {
+                top: auto;
+                bottom: 64px;
+                display: inline-block;
+                float: none !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 60%;
+                margin-bottom: 20px;
+            }
+
+                .timeline-horizontal .timeline-item .timeline-panel:before {
+                    top: auto;
+                    bottom: -16px;
+                    left: 28px !important;
+                    right: auto;
+                    border-right: 16px solid transparent !important;
+                    border-top: 16px solid #c0c0c0 !important;
+                    border-bottom: 0 solid #c0c0c0 !important;
+                    border-left: 16px solid transparent !important;
+                }
+
+            .timeline-horizontal .timeline-item:before,
+            .timeline-horizontal .timeline-item:after {
+                display: none;
+            }
+
+            .timeline-horizontal .timeline-item .timeline-badge {
+                top: auto;
+                bottom: 0px;
+                left: 43px;
+            }
+</style>
+<script>
+    $(function () {
+        debugger;
+        //alert($('#hfApplicationid').val());
+        var x = '@Model.HasTrackforAPMCE';
+        console.log(x);
+        debugger;
+        if (x == 'True') {
+             BindDetails('@Html.Raw(Json.Encode(Model.APMCETrackModel.TransactionHistory))', 'tblAPMCETransactions');
+        }
+        var y = '@Model.HasTrackforPCPNDT';
+        console.log(y);
+        if (y == 'True') {
+            BindDetails('@Html.Raw(Json.Encode(Model.PCPNDTTrackModel.TransactionHistory))', 'tblPCPNDTTransactions');
+        }
+        var a = '@Model.HasTrackForBloodBank27C';
+        console.log(a);
+        if (a == 'True') {
+            BindDetails('@Html.Raw(Json.Encode(Model.BloodBankForm27CModel.TransactionHistory))', 'tblBloodBankForm27CTransactions');
+        }
+        var b = '@Model.HasTrackForBloodBank27E';
+        if (b == 'True') {
+            BindDetails('@Html.Raw(Json.Encode(Model.bbForm27EModel.TransactionHistory))', 'tblBloodBankForm27ETransactions');
+        }
+    });
+
+    function BindDetails(json, tableid) {
+        debugger;
+        if (json instanceof Object)
+            json = json;
+        else
+            json = $.parseJSON(json);
+
+        $('#' + tableid).find("tr:gt(0)").remove();
+        console.log(json);
+        for (var i = 0; i < json.length; i++) {
+            var tr;
+            tr = $('<tr/>');
+
+            tr.append("<td>" + (i + 1) + "</td>")
+            tr.append("<td>" + json[i].UserName + "</td>")
+            tr.append("<td>" + json[i].Remarks + "</td>")
+            tr.append("<td>" + json[i].Status + "</td>")
+            tr.append("<td>" + json[i].CreatedOn + "</td>")
+
+            $("[id$="+ tableid +"]").append(tr);
+        }
+
+
+        //var table = $('#tblTrasactions').DataTable();
+        //// Clear all existing rows
+        //table.clear().draw();
+        //// Bind new rows
+        //for (var i = 0; i < json.length; i++) {
+        //    table.row.add([
+        //(i + 1),
+        //json[i].UserDepartment,
+        //json[i].Remarks,
+        //json[i].Date
+        //    ]);
+        //}
+        //table.draw();
+    }
+</script>
+

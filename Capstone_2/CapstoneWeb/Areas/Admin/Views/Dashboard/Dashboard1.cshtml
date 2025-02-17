@@ -1,0 +1,1243 @@
+﻿@using Capstone.Models
+@model DistrictModel
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Dashboard
+        <small></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+    <div class="row" id="divDistricts">
+        <div class="col-md-3"></div>
+        <div class="col-md-2 text-right">
+            @Html.LabelFor(model => model.Id, "District")
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownListFor(model => model.Id,
+                                     new SelectList(string.Empty), "Select District",
+                                     new { id = "ddlDistrictId", @Class = "form-control select2", @data_placeholder = "Select District" })
+        </div>
+    </div>
+</section>
+<!-- Main content -->
+<section class="content" hidden>
+    
+    <div class="row" hidden>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box" style="background-color:#004B8D">
+                <div class="inner" style="color:#fff;">
+                    <h3><span id="spanTotalApplications">0</span></h3>
+
+                    <p> Applications Received Today</p>
+                </div>
+                <div class="icon">
+                    <i>
+                        <img src="~/Content/images/applicationReceivedToday.png" style="margin-top:-30px" />
+                    </i>
+                </div>
+                <a href="#" id="aTotalApplications" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box" style="background-color:#DC4C46">
+                <div class="inner" style="color:#fff;">
+                    <h3><span id="spanWithinSLA">0</span></h3>
+
+                    <p> Applications within SLA</p>
+                </div>
+                <div class="icon">
+
+                    <i>
+                        <img src="~/Content/images/spa.png" />
+                    </i>
+                </div>
+                <a href="#" id="aApplicationswithSLA" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box" style="background-color:#005960">
+                <div class="inner" style="color:#fff;">
+                    <h3><span id="spanBeyondSLA">0</span></h3>
+                    <p>Applications Exceeding SLA</p>
+                </div>
+                <div class="icon">
+                    <i>
+                        <img src="~/Content/images/exceeding.png" />
+                    </i>
+                </div>
+                <a href="#" id="aApplicationExceedingSAL" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box" style="background-color:#D2691E">
+                <div class="inner" style="color:#fff;">
+                    <h3><span id="spanTotalQueries">0</span></h3>
+                    <p>Query</p>
+                </div>
+                <div class="icon">
+                    <i>
+                        <img src="~/Content/images/raised.png" />
+                    </i> @*class="fa fa-building-o"*@
+                </div>
+                <a href="#" id="aTotalQueries" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box" style="background-color:#5cb85c">
+                <div class="inner" style="color:#fff;">
+                    <h3><span id="spanTotalAppeals">0</span></h3>
+
+                    <p>Appeals</p>
+                </div>
+                <div class="icon">
+                    <i>
+                        <img src="~/Content/images/appeals.png" />
+                    </i>   @*class="fa fa-building-o"*@
+                </div>
+                <a href="#" id="aAppealApplications" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box" style="background-color:#C48F65">
+                <div class="inner" style="color:#fff;">
+                    <h3><span id="spanFarward">0</span></h3>
+
+                    <p> Forward/Approved</p>
+                </div>
+                <div class="icon">
+                    <i>
+                        <img src="~/Content/images/forwardApproved.png" />
+                    </i>
+                </div>
+                <a href="#" id="aForward" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-purple-active">
+                <div class="inner">
+                    <h3><span id="spanResubmitRenewal">0</span></h3>
+
+                    <p>Resubmit/Renewals</p>
+                </div>
+                <div class="icon">
+                    <i>
+                        <img src="~/Content/images/resubmit.png" />
+                    </i>
+                </div>
+                <a href="#" id="aResubmit" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box" style="background-color:#672E3B">
+                <div class="inner" style="color:#fff;">
+                    <h3><span id="spanreturnedapplications">0</span></h3>
+                    <p>Returned Applications</p>
+                </div>
+                <div class="icon">
+                    <i>
+                        <img src="~/Content/images/returnedApplication1.png" />
+                    </i>
+                </div>
+                <a href="#" id="aReturnedApplications" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="divWithinSLA" hidden>
+        <div class="box">
+            <a href="#">Query Raised <span id="spanQueryRaised"></span></a> <br />
+            <a href="#">Responded <span id="spanResponded"></span></a><br />
+            <a href="@Url.Action("ListofApplications","DepartmentUser",new { Area = "Department"})">Pending <span id="spanPending1"></span></a><br />
+            <a href="#">Return/Reject <span id="spanReturn"></span> </a><br />
+            <a href="#">Forwarded <span id="spanForwarded"></span> </a>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="row">
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-olive-active">
+                <div class="inner">
+                    <h3><span id="spanReceivedToday"></span></h3>
+                    <p>Received Today</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/applicationReceivedToday.png" /></i>
+                </div>
+                <a href='javascript:ReceivedTodayNew()' id="ReceivedTodayApplications1" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3><span id="spanDrafts"></span></h3>
+                    <p>Drafts</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/draft.png" /></i>
+                </div>
+                <a href='javascript:DraftsNew()' id="DraftsApplications1" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3><span id="spanSubmitted"></span></h3>
+                    <p>Submitted Applications</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/applicationSubmit.png" /></i>
+                </div>
+                <a href='javascript:submittedAppsNew()' id="SubmittedApplications1" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                @*<a href="@Url.Action("Submitted","Dashboard",new { Area = "Department"})" id="aTotalApplications" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>*@
+                @*@Html.ActionLink("More info", "Submitted", "Dashboard", new { Area = "User" }, new { @class = "small-box-footer" })*@
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3><span id="spanRejected"></span></h3>
+                    <p>Rejected List</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/rejectedlist1.png" /></i>
+                </div>
+                <a href='javascript:RejectedNew()' id="RejectedApplications1" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-fuchsia" style="background-color:#005960">
+                <div class="inner">
+                    <h3><span id="spanForward"></span></h3>
+                    <p>Forward</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/forwardApproved.png" /></i>
+                </div>
+                <a href='javascript:ForwardNew()' id="ForwardApplications1" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box " style="background-color:#004B8D">
+                <div class="inner" style="color:#fff;">
+                    <h3><span id="spanQueries"></span></h3>
+                    <p>Raised Queries</p>
+                </div>
+                <div class="icon">
+
+                    <i><img src="~/Content/images/raised.png" /></i>
+                </div>
+                <a href='javascript:RaisedQueriesNew()' id="RaisedQueriesApplications1" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red-active" style="background-color:#75202c;">
+                <div class="inner">
+                    <h3><span id="spanReturned"></span></h3>
+                    <p>Returned</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/returnedApplication1.png" /></i>
+                </div>
+                <a href='javascript:ReturnedNew()' id="ReturnedApplications1" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-blue " style="background-color:#B52C71;">
+                <div class="inner">
+                    <h3><span id="spanSuspended"></span></h3>
+                    <p>Suspended</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/close.png" style="height:65px;" /></i>
+                </div>
+                <a href='javascript:SuspendedNew()' id="SuspendedApplications1" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-purple-active">
+                <div class="inner">
+                    <h3><span id="spanReturnForward"></span></h3>
+                    <p>ReturnForward</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/resubmit.png" /></i>
+                </div>
+                <a href='javascript:ReturnForwardNew()' id="ReturnForwardApplications1" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-maroon" style="background-color:#c35d66;">
+                <div class="inner">
+                    <h3><span id="spanCancelled"></span></h3>
+                    <p>Cancelled</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/rejectedlist1.png" /></i>
+                </div>
+                <a href='javascript:CancelledNew()' id="CancelledApplications1" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green" style="background-color:#079c0c;">
+                <div class="inner">
+                    <h3><span id="spanApproved"></span></h3>
+                    <p>Approved</p>
+                </div>
+                <div class="icon">
+                    <i><img src="~/Content/images/forwardApproved.png" /></i>
+                </div>
+                <a href='javascript:ApprovedNew()' id="ApprovedApplications1" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <!-- ./col -->
+    </div>
+</section>
+
+<section hidden>
+<div class="row" id="fsNewApplication">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="box">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">New Applications Received Today</legend>
+                <!-- /.col -->
+                <div class="col-md-4">
+                    @*<p>
+                            <strong>Total Applications -500</strong>
+                        </p>*@
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofApplications","DepartmentUser",new { Area = "Department",Type="NewToday"})">New Applications <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanNewApplications">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofAmendment","DepartmentUser",new { Area = "Department", Type="AmendmentsToday"})" id="aTotalAmendments" class="small-box-footer">Amendments <i class="fa fa-arrow-circle-right"></i></a></span>
+                        <span id="spanNewAmendments">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofAmendment","DepartmentUser",new { Area = "Department", Type="CancellationsToday"})">Cancellations <i class="fa fa-arrow-circle-right"></i></a></span>
+                        <span id="spanNewCancellations">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    @*<div class="progress-group">
+                            <span class="progress-text"><a href="@Url.Action("ListofAmendment", "DepartmentUser", new { Area = "Department", Type="RenewalsToday"})">Renewals <i class="fa fa-arrow-circle-right"></i> </a></span>
+                            <span id="spanNewRenewals">0</span>
+                            <div class="progress sm">
+                                <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
+                            </div>
+                        </div>*@
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofApplications", "DepartmentUser", new { Area = "Department", Type= "ExistingToday"})">Existing Registration Applications <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanNewExisting">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                </div>
+                <!-- /.col -->
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="fsApplicationwithSLA">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="box">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Applications with SLA</legend>
+                <!-- /.col -->
+                <div class="col-md-4">
+                    @*<p>
+                            <strong>Applications Pending-500</strong>
+                        </p>*@
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofApplications", "DepartmentUser", new { Area = "Department", Type= "NewWSLA"})">New Applications <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanWithinNewApplications">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofAmendment", "DepartmentUser", new { Area = "Department", Type= "AmendmentsWSLA"})">Amendments <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanWithinAmendments">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofAmendment", "DepartmentUser", new { Area = "Department", Type= "CancellationsWSLA"})">Cancellations <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanWithinCancellations">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    @*<div class="progress-group">
+                            <span class="progress-text"><a href="@Url.Action("ListofAmendment", "DepartmentUser", new { Area = "Department", Type= "RenewalsWSLA"})">Renewals <i class="fa fa-arrow-circle-right"></i> </a></span>
+                            <span id="spanWithinRenewals">0</span>
+                            <span class="progress-number"></span>
+                            <div class="progress sm">
+                                <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
+                            </div>
+                        </div>*@
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofApplications", "DepartmentUser", new { Area = "Department", Type= "ExistingWSLA"})">Existing Registration Applications <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanWithinExisting">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    @*<div class="progress-group">
+                            <span class="progress-text">@Html.ActionLink("Returned", "ActionName", "ControllerName")</span>
+                            <div class="progress sm">
+                                <div class="progress-bar progress-bar-blue" style="width: 80%"></div>
+                            </div>
+                        </div>*@
+                    <!-- /.progress-group -->
+                </div>
+                <!-- /.col -->
+
+
+
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="fsApplicationExceedingSLA">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="box">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Applications Exceeding SLA</legend>
+                <!-- /.col -->
+                <div class="col-md-4">
+                    @*<p>
+                            <strong>Applications Pending-500</strong>
+                        </p>*@
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofApplications", "DepartmentUser", new { Area = "Department", Type= "NewESLA"})">New Applications <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanBeyondNewApplications">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofAmendment", "DepartmentUser", new { Area = "Department", Type= "AmendmentsESLA"})">Amemdments <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanBeyondAmendments">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofAmendment", "DepartmentUser", new { Area = "Department", Type= "CancellationsESLA"})">Cancellations <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanBeyondCancellations">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    @*<div class="progress-group">
+                            <span class="progress-text"><a href="@Url.Action("ListofAmendment", "DepartmentUser", new { Area = "Department", Type= "RenewalsESLA"})">Renewals <i class="fa fa-arrow-circle-right"></i> </a></span>
+                            <span id="spanBeyondRenewals">0</span>
+                            <div class="progress sm">
+                                <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
+                            </div>
+                        </div>*@
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofApplications", "DepartmentUser", new { Area = "Department", Type= "ExistingESLA"})">Existing Registration Applications <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanBeyondExisting">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofApplications", "DepartmentUser", new { Area = "Department", Type= "Autoslided"})">AutoSlided Applications <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanAutoSlided">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-group">
+                        <span class="progress-text"> <a href="@Url.Action("ListofApplications", "DepartmentUser", new { Area = "Department", Type= "BeyondSLAReturned"})">Returned Applications <i class="fa fa-arrow-circle-right"></i> </a></span>
+
+                        <span id="spanBeyondSLAReturned">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-blue" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                </div>
+                <!-- /.col -->
+
+
+
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="fsApplicationPending">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="box">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Applications Pending Query</legend>
+                <!-- /.col -->
+                <div class="col-md-4">
+                    @*<p>
+                            <strong>Applications Pending-500</strong>
+                        </p>*@
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofApplications", "DepartmentUser", new { Area = "Department", Type= "QueryToday"})">Qurery Raised Awainting <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanQueriesRaised">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofApplications", "DepartmentUser", new { Area = "Department", Type= "QueryResToday"})">Query Responded to be processed <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanQueriesResponded">0</span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofApplications", "DepartmentUser", new { Area = "Department", Type= "QueryProcessed"})">Query Applications Processed <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanQueriesProcessed">0</span>
+                        @*<span class="progress-number"><b>480</b>/800</span>*@
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.col -->
+
+
+
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="fsApplicationAppeal">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="box">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Appeal Applications </legend>
+                <!-- /.col -->
+                <div class="col-md-4">
+                    @*<p>
+                            <strong>Applications Pending-500</strong>
+                        </p>*@
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofAmendment", "DepartmentUser", new { Area = "Department", Type= "AppealToday"})">New Appeals <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanAppealNew">0</span>
+                        <span class="progress-number"></span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofAmendment", "DepartmentUser", new { Area = "Department", Type= "AppealInProc"})">In-Process <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanAppealInprocess">0</span>
+                        <span class="progress-number"></span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofAmendment", "DepartmentUser", new { Area = "Department", Type= "AppealClosed"})">Closed <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanAppealClosed">0</span>
+                        <span class="progress-number"></span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col -->
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="fsFarword">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="box">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Forward/Approved </legend>
+                <!-- /.col -->
+                <div class="col-md-4">
+                    @*<p>
+                            <strong>Applications Pending-500</strong>
+                        </p>*@
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofForwardedApplications", "DepartmentUser", new { Area = "Department", Type= "ForwardAppToday"})">Forward/Approved <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanApproved">0</span>
+                        <span class="progress-number"></span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofForwardedApplications", "DepartmentUser", new { Area = "Department", Type= "RejectedToday"})">Rejected <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanRejected">0</span>
+                        <span class="progress-number"></span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+
+                </div>
+                <!-- /.col -->
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="fsResubmit" hidden>
+    <div class="col-md-offset-1 col-md-10">
+        <div class="box">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Resubmit/Renewals </legend>
+                <!-- /.col -->
+                <div class="col-md-4">
+                    @*<p>
+                            <strong>Applications Pending-500</strong>
+                        </p>*@
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofApplications", "DepartmentUser", new { Area = "Department", Type= "Resubmit"})">Resubmit <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanResubmit">0</span>
+                        <span class="progress-number"></span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofAmendment", "DepartmentUser", new { Area = "Department", Type= "Renewal"})">Renewal <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanRenewal">0</span>
+                        <span class="progress-number"></span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+
+                </div>
+                <!-- /.col -->
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="fsReturnApplication" hidden>
+    <div class="col-md-offset-1 col-md-10">
+        <div class="box">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Returned Applications</legend>
+                <!-- /.col -->
+                <div class="col-md-4">
+                    <div class="progress-group">
+                        <span class="progress-text"><a href="@Url.Action("ListofApplications", "DepartmentUser", new { Area = "Department", Type= "Returned"})">Returned Applications <i class="fa fa-arrow-circle-right"></i> </a></span>
+                        <span id="spanReturned">0</span>
+                        <span class="progress-number"></span>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                </div>
+                <!-- /.col -->
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+</section>
+
+<script>
+
+    function GetDistricts() {
+        var Url = '@Url.Action("GetDistricts", "License", new { Area="User"})'
+        var jqxhr = $.post(Url, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+            BindDistricts(json);
+
+        }).fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Get Districts Request Failed: " + err);
+        });
+    }
+
+    function BindDistricts(json) {
+        $('#ddlDistrictId').html('');
+       $('#ddlDistrictId').append($('<option></option>').val('-1').html('All'));        
+        $.each(json, function () {
+            $('#ddlDistrictId').append($('<option></option>').val(this.Id).html(this.Name));
+        });
+    }
+
+    @*function BindDistricts() {
+        $("select[id$=ddlDistrictId] > option").remove();
+        $('#ddlDistrictId').append('<option value="0">Select District</option>');
+        var url = '@Url.Action("GetDistricts", "Master", new { Area = "" })';
+        var jqxhr = $.post(url, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $.each(json, function (i, val) {
+                $('#ddlDistrictId').append('<option value="' + val.Id + '">' + val.DisplayName + '</option>');
+            });
+
+           // $('#ddlDistrictId').val(1);
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.log("GetDistricts Request Failed: " + err);
+        });
+    }*@
+
+    $('#ddlDistrictId').on('change', function () {        
+        if (this.value != '') {
+            GetDashboardCounts(this.value);
+        }
+    });
+
+
+    $(document).ready(function () {
+        $("#fsNewApplication").hide();
+        $("#fsApplicationwithSLA").hide();
+        $("#fsApplicationExceedingSLA").hide();
+        $("#fsApplicationPending").hide();
+        $("#fsApplicationAppeal").hide();
+        $("#fsFarword").hide();
+        $("#fsReturnApplication").hide();
+
+    });
+    $(aResubmit).click(function () {
+        $("#fsNewApplication").hide();
+        $("#fsApplicationwithSLA").hide();
+        $("#fsApplicationExceedingSLA").hide();
+        $("#fsApplicationPending-Stage").hide();
+        $("#fsApplicationAppeal").hide();
+        $("#fsFarword").hide();
+        $("#fsReturnApplication").hide();
+        $("#fsResubmit").show();
+    });
+
+    $("#aTotalApplications").click(function () {
+        $("#fsNewApplication").show();
+        $("#fsApplicationwithSLA").hide();
+        $("#fsApplicationExceedingSLA").hide();
+        $("#fsApplicationPending-Stage").hide();
+        $("#fsApplicationAppeal").hide();
+        $("#fsFarword").hide();
+        $("#fsResubmit").hide();
+    });
+
+    $("#aApplicationswithSLA").click(function () {
+
+        $("#fsNewApplication").hide();
+        $("#fsApplicationwithSLA").show();
+        $("#fsApplicationExceedingSLA").hide();
+        $("#fsApplicationPending").hide();
+        $("#fsApplicationAppeal").hide();
+        $("#fsFarword").hide();
+        $("#fsReturnApplication").hide();
+        $("#fsResubmit").hide();
+    });
+
+    $("#aApplicationExceedingSAL").click(function () {
+
+        $("#fsNewApplication").hide();
+        $("#fsApplicationwithSLA").hide();
+        $("#fsApplicationExceedingSLA").show();
+        $("#fsApplicationPending").hide();
+        $("#fsApplicationAppeal").hide();
+        $("#fsFarword").hide();
+        $("#fsResubmit").hide();
+        $("#fsReturnApplication").hide();
+    });
+
+    $("#aTotalQueries").click(function () {
+
+        $("#fsNewApplication").hide();
+        $("#fsApplicationwithSLA").hide();
+        $("#fsApplicationExceedingSLA").hide();
+        $("#fsApplicationPending").show();
+        $("#fsApplicationAppeal").hide();
+        $("#fsFarword").hide();
+        $("#fsResubmit").hide();
+        $("#fsReturnApplication").hide();
+    });
+
+    $("#aAppealApplications").click(function () {
+
+        $("#fsNewApplication").hide();
+        $("#fsApplicationwithSLA").hide();
+        $("#fsApplicationExceedingSLA").hide();
+        $("#fsApplicationPending").hide();
+        $("#fsApplicationAppeal").show();
+        $("#fsFarword").hide();
+        $("#fsResubmit").hide();
+        $("#fsReturnApplication").hide();
+    });
+
+    $("#aForward").click(function () {
+
+        $("#fsNewApplication").hide();
+        $("#fsApplicationwithSLA").hide();
+        $("#fsApplicationExceedingSLA").hide();
+        $("#fsApplicationPending").hide();
+        $("#fsApplicationAppeal").hide();
+        $("#fsFarword").show();
+        $("#fsResubmit").hide();
+        $("#fsReturnApplication").hide();
+    });
+
+    $("#aReturnedApplications").click(function () {
+
+        $("#fsNewApplication").hide();
+        $("#fsApplicationwithSLA").hide();
+        $("#fsApplicationExceedingSLA").hide();
+        $("#fsApplicationPending").hide();
+        $("#fsApplicationAppeal").hide();
+        $("#fsFarword").hide();
+        $("#fsResubmit").hide();
+        $("#fsReturnApplication").show();
+    });
+
+  </script>
+
+<script>
+
+    var user;        
+    $(function () {
+        user = @Html.Raw(Json.Encode(Session["User"] as UserModel));
+        console.log('user :' + user.DistrictId);
+        var userDistrictId=0;
+        userDistrictId='@ViewBag.DistrictId';
+        GetDistricts();
+    $('#ddlDistrictId').attr("disabled", false); 
+    $('#divDistricts').show();
+    if(user.RoleId == 1 ||user.RoleId == 9 || user.RoleId == 12)
+    {
+        GetDashboardCounts(0);
+    }
+    else 
+    {
+        $('#divDistricts').hide();
+        $('#ddlDistrictId').val(user.DistrictId).trigger('change');
+        $('#ddlDistrictId').attr("disabled", true); 
+        GetDashboardCounts(user.DistrictId);
+    }
+    });
+
+    function GetDashboardCounts(DistId) {
+   // ShowSpinner();
+        var url ='@Url.Action("BindDashboardCounts", "Dashboard", new { Area = "Admin" })';
+        var data = { DistrictId: DistId }
+        var jqxhr = $.post(url,data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+            console.log(' log :' + json.Table2[0]["QueryRaisedCount"])
+            
+            //ForwardCount ReturnCount QueryRaisedCount DraftCount SubmittedCount ApprovedCount RejectedCount ReturnForwardCount CancelledCount SuspendedCount ReceivedTodayCount
+
+           $('#spanDrafts').text(json.Table3[0]["DraftCount"]);
+           $('#spanSubmitted').text(json.Table4[0]["SubmittedCount"]);
+
+           $('#spanForward').text(json.Table[0]["ForwardCount"]);
+           $('#spanApproved').text(json.Table5[0]["ApprovedCount"]);
+
+           $('#spanQueries').text(json.Table2[0]["QueryRaisedCount"]);
+           $('#spanRejected').text(json.Table6[0]["RejectedCount"]);
+           $('#spanReturned').text(json.Table1[0]["ReturnCount"]);
+
+           $('#spanReturnForward').text(json.Table7[0]["ReturnForwardCount"]);
+           $('#spanCancelled').text(json.Table8[0]["CancelledCount"]);
+           $('#spanSuspended').text(json.Table9[0]["SuspendedCount"]);    
+           $('#spanReceivedToday').text(json.Table10[0]["ReceivedTodayCount"]); 
+           //   SetTotals(json);
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get Applications, Request Failed: " + err);
+            });
+    // StopSpinner();
+    }
+
+    function SetTotals(json) {
+        $('#spanTotalApplications').text(json.Table[0].Renewals + json.Table[0].Amendments + json.Table[0].Cancellations + json.Table[0].Existing + json.Table[0].New);
+        $('#spanWithinSLA').text(json.Table1[0].Renewals + json.Table1[0].Amendments + json.Table1[0].Cancellations + json.Table1[0].Existing + json.Table1[0].New);
+        $('#spanBeyondSLA').text(json.Table2[0].Renewals + json.Table2[0].Amendments + json.Table2[0].Cancellations + json.Table2[0].Existing + json.Table2[0].New + json.Table7[0].Autoslided + json.Table9[0].BeyondSLAReturned);
+        $('#spanTotalQueries').text(json.Table3[0].Amendment + json.Table3[0].NewQueryRaised + json.Table3[0].Processed + json.Table3[0].QureyResponded);
+        $('#spanTotalAppeals').text(json.Table4[0].ClosedAppeals + json.Table4[0].Inprocess + json.Table4[0].NewAppeals);
+        $('#spanFarward').text(json.Table5[0].Forwarded + json.Table5[0].Rejected);
+        $('#spanPending').text(" (" + json.Table[0].New + ")");
+        $('#spanResubmitRenewal').text(json.Table6[0].Resubmit + json.Table6[0].Renewal);
+        $('#spanreturnedapplications').text(json.Table8[0].newReturned + json.Table8[0].AppealReturn);
+
+
+        //Bind New Applications
+        $('#spanNewApplications').text(json.Table[0].New);
+        $('#spanNewAmendments').text(json.Table[0].Amendments);
+        $('#spanNewCancellations').text(json.Table[0].Cancellations);
+        $('#spanNewRenewals').text(json.Table[0].Renewals);
+        $('#spanNewExisting').text(json.Table[0].Existing);
+        //Bind Within SLA
+        $('#spanWithinNewApplications').text(json.Table1[0].New);
+        $('#spanWithinAmendments').text(json.Table1[0].Amendments);
+        $('#spanWithinCancellations').text(json.Table1[0].Cancellations);
+        $('#spanWithinRenewals').text(json.Table1[0].Renewals);
+        $('#spanWithinExisting').text(json.Table1[0].Existing);
+        //Bind Beyond SLA
+        $('#spanBeyondNewApplications').text(json.Table2[0].Existing + json.Table2[0].New);
+        $('#spanBeyondAmendments').text(json.Table2[0].Amendments);
+        $('#spanBeyondCancellations').text(json.Table2[0].Cancellations);
+        $('#spanBeyondRenewals').text(json.Table2[0].Renewals);
+        $('#spanBeyondExisting').text(json.Table2[0].Existing);
+        $('#spanAutoSlided').text(json.Table7[0].Autoslided);
+        $('#spanBeyondSLAReturned').text(json.Table9[0].BeyondSLAReturned);
+        //Bind Queries
+        $('#spanQueriesRaised').text(json.Table3[0].Amendment + json.Table3[0].NewQueryRaised);
+        $('#spanQueriesResponded').text(json.Table3[0].QureyResponded);
+        $('#spanQueriesProcessed').text(json.Table3[0].Processed);
+        //Bind Appeals
+        $('#spanAppealNew').text(json.Table4[0].NewAppeals);
+        $('#spanAppealInprocess').text(json.Table4[0].Inprocess);
+        $('#spanAppealClosed').text(json.Table4[0].ClosedAppeals);
+        //Bind Forward/Appeal
+        $('#spanApproved').text(json.Table5[0].Forwarded);
+        $('#spanRejected').text(json.Table5[0].Rejected);
+        //Bind Resubmit/Renewals
+        $('#spanResubmit').text(json.Table6[0].Resubmit);
+        $('#spanRenewal').text(json.Table6[0].Renewal);
+        //Bind Returned applications
+        $('#spanReturned').text(json.Table8[0].newReturned);
+
+    }
+
+    function preparejson() {
+
+        var Inspection = [];
+
+            Inspection.push({
+                QuestionId: 1,
+                Answer: "some text"
+            })
+
+            Inspection.push({
+                QuestionId: 2,
+                Answer: "some answer"
+            })
+            Inspection.push({
+                QuestionId: 3,
+                Answer: "some answer"
+            })
+
+
+        var data = {
+            Inspection: Inspection
+        }
+
+        //console.log(Inspection);
+        // console.log(data);
+        var url = '@Url.Action("test", "Dashboard", new { Area = "Department" })';
+        var jqxhr = $.post(url,data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                //BindCounts(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get Applications, Request Failed: " + err);
+            });
+    }
+
+</script>
+
+<script>
+    
+    function ReceivedTodayNew()
+    {
+        var viewlink = '@Url.Action("TAMCEReceivedTodayApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, DistrictId = -2, MandalId = -3, villageId =-4 })';
+        viewlink = viewlink.replace("-1", "1,5");
+        viewlink = viewlink.replace("-2", $('#ddlDistrictId option:selected').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        window.open(viewlink, '_blank');
+    }
+
+    function submittedAppsNew()
+    {
+        var viewlink = '@Url.Action("TAMCESubmittedApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, DistrictId = -2, MandalId = -3, villageId =-4, FromDate=-5, ToDate=-6 })';
+        viewlink = viewlink.replace("-1", 5);
+        viewlink = viewlink.replace("-2", $('#ddlDistrictId option:selected').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-5", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-6", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+    }
+
+    function DraftsNew()
+    {
+        var viewlink = '@Url.Action("TAMCEDraftApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, DistrictId = -2, MandalId = -3, villageId =-4, FromDate=-5, ToDate=-6 })';
+        viewlink = viewlink.replace("-1", 4);
+        viewlink = viewlink.replace("-2", $('#ddlDistrictId option:selected').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-5", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-6", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+    }
+    function RejectedNew()
+    {
+        var viewlink = '@Url.Action("TAMCERejectedApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, DistrictId = -2, MandalId = -3, villageId =-4, FromDate=-5, ToDate=-6 })';
+        viewlink = viewlink.replace("-1", 8);
+        viewlink = viewlink.replace("-2", $('#ddlDistrictId option:selected').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-5", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-6", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+    }
+
+    function ForwardNew()
+    {
+        var viewlink = '@Url.Action("TAMCEForwardApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, DistrictId = -2, MandalId = -3, villageId =-4, FromDate=-5, ToDate=-6 })';
+        viewlink = viewlink.replace("-1", 1);
+        viewlink = viewlink.replace("-2", $('#ddlDistrictId option:selected').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-5", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-6", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+    }
+
+    function RaisedQueriesNew()
+    {
+        var viewlink = '@Url.Action("TAMCERaisedQueriesApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, DistrictId = -2, MandalId = -3, villageId =-4, FromDate=-5, ToDate=-6 })';
+        viewlink = viewlink.replace("-1", 3);
+        viewlink = viewlink.replace("-2", $('#ddlDistrictId option:selected').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-5", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-6", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+    }
+
+    function ReturnedNew()
+    {
+        var viewlink = '@Url.Action("TAMCEReturnedApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, DistrictId = -2, MandalId = -3, villageId =-4, FromDate=-5, ToDate=-6 })';
+        viewlink = viewlink.replace("-1", 2);
+        viewlink = viewlink.replace("-2", $('#ddlDistrictId option:selected').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-5", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-6", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+    }
+
+    function SuspendedNew()
+    {
+        var viewlink = '@Url.Action("TAMCESuspendedApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, DistrictId = -2, MandalId = -3, villageId =-4, FromDate=-5, ToDate=-6 })';
+        viewlink = viewlink.replace("-1", 11);
+        viewlink = viewlink.replace("-2", $('#ddlDistrictId option:selected').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-5", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-6", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+    }
+
+    function ReturnForwardNew()
+    {
+        var viewlink = '@Url.Action("TAMCEReturnForwardApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, DistrictId = -2, MandalId = -3, villageId =-4, FromDate=-5, ToDate=-6 })';
+        viewlink = viewlink.replace("-1", 9);
+        viewlink = viewlink.replace("-2", $('#ddlDistrictId option:selected').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-5", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-6", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+    }
+    function CancelledNew()
+    {
+        var viewlink = '@Url.Action("TAMCECancelledApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, DistrictId = -2, MandalId = -3, villageId =-4, FromDate=-5, ToDate=-6 })';
+        viewlink = viewlink.replace("-1", 10);
+        viewlink = viewlink.replace("-2", $('#ddlDistrictId option:selected').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-5", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-6", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+    }
+
+    function ApprovedNew()
+    {
+        var viewlink = '@Url.Action("TAMCEApprovedApplicationsView", "Dashboard", new { Area = "Admin", statusId = -1, DistrictId = -2, MandalId = -3, villageId =-4, FromDate=-5, ToDate=-6 })';
+        viewlink = viewlink.replace("-1", 7);
+        viewlink = viewlink.replace("-2", $('#ddlDistrictId option:selected').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-3", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-4", 0);
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-5", $('#FromDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+        viewlink = viewlink.replace("-6", $('#ToDate').val());
+        viewlink = viewlink.replace("&amp;", "&");
+       // window.location.href = viewlink;
+        window.open(viewlink, '_blank');
+    }      
+</script>
+

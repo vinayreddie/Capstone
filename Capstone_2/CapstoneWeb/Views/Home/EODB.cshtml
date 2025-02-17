@@ -1,0 +1,458 @@
+﻿@model Capstone.Models.ProcedureCheckList
+@{
+    ViewBag.Title = "EODB";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<script src="~/Content/plugins/eodb/js/jquery.js"></script>
+<script src="~/Content/plugins/eodb/js/eodb.js"></script>
+<div style="overflow-x: hidden;">
+    <div id="mySidenav" class="sidenav nav-tabs" >
+        <a>
+        </a><a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><span class="glyphicon glyphicon glyphicon-remove" style="margin-right :4px;"></span> close</a>
+        <a href="javascript:void(0)" id="depa"><span class="glyphicon glyphicon-sort-by-attributes-alt" style="margin-right :4px;"></span> Departments</a>
+        <a href="javascript:void(0)" id="pca"><span class="glyphicon glyphicon-check" style="margin-right :4px;"></span> Procedure &amp; Checklist</a>
+        @*<a data-toggle="modal" href="#myModal"> <span class="glyphicon glyphicon-duplicate" style="margin-right: 4px;"></span>Common Application Form</a>*@
+        @*<a href="javascript:void(0)" id="cfa" style="margin-top: 10px" data-toggle="modal" data-target="#mymodal"> <span class="glyphicon glyphicon-duplicate" style="margin-right :4px;"></span>Common Application Form</a>*@
+        <a href="javascript:void(0)" id="AO" style="margin-top: 10px" data-toggle="modal" data-target="#mymodal"><span class="glyphicon glyphicon-edit" style="margin-right :4px;"></span>Apply Online</a>
+        <a href="javascript:void(0)" id="apptracka"><span class="glyphicon glyphicon-map-marker" style="margin-right: 4px;"></span>Application Tracking</a>
+        <a href="javascript:void(0)" id="tpva"><span class="glyphicon glyphicon-ban-circle" style="margin-right :4px;"></span>Third Party Verification</a>
+        <a data-toggle="modal" href="javascript:void(0)" id="cd" style="margin-top: 10px" data-target="#mymodal"><span class="glyphicon glyphicon-download-alt" style="margin-right: 4px;"></span>Certificate Download</a>
+        <a href="javascript:void(0)" id="offea"><span class="glyphicon glyphicon-flash" style="margin-right :4px;"></span>Offline Entry</a>
+    </div>
+
+    <span style="font-size:30px;cursor:pointer;border: 2px solid;border-radius:4px;" onclick="openNav()">&#9776;</span>
+    <div class="tab-content">
+
+        <!-- Departments Start-->
+        <div id="dep" class="tab-pane fade in active" style="color: #24b95c">
+
+            <div class="col-sm-0 col-md-2"></div>
+
+            <div class="col-sm-12 col-md-8 text-center depart">
+                <h2><a href="http://health.telangana.gov.in/" target="_blank" style="color: #24b95c">Department of Health, Capstone and Family Welfare </a></h2>
+                <ul style="text-align: left; margin-top: 1%;">
+                    <li><a href="http://chfw.telangana.gov.in/home.do" target="_blank"><h4> Commissionerate of Health and Family Welfare</h4></a></li>
+                    <li><a href="http://ayush.gov.in/" target="_blank"><h4> Department of AYUSH</h4></a></li>
+                    <li><a href="http://dphfw.telangana.gov.in/" target="_blank" ><h4> Directorate of Public Health and Family Welfare</h4></a></li>
+                    <li><a href="http://www.dca.telangana.gov.in/" target="_blank"><h4> Drugs Control Administration</h4></a></li>
+                    <li><a href="http://vvp.telangana.gov.in/" target="_blank"><h4> Telangana Vaidya Vidhana Parishad</h4></a></li>
+                    <li><a href="http://dme.telangana.gov.in/" target="_blank"><h4> Directorate of Capstone Education</h4></a></li>
+                    <li><a href="http://ipm.ap.nic.in/" target="_blank"><h4> Institute of Preventive Medicine</h4></a></li>
+                    <li><a href="http://tsmsidc.telangana.gov.in/" target="_blank"><h4> Telangana State Capstone Services &amp; Infrastructure Development Corporation (TSMSIDC)</h4></a></li>
+                    <li><a href="#"><h4> TSSACS</h4></a></li>
+                </ul>
+            </div>
+            <div class="col-sm-0 col-md-2 "></div>
+        </div>
+
+        <!-- Departments End -->
+        <!-- Procedures and checklists start -->
+        <div id="pc" class="tab-pane fade in active" style="display: none;">
+            <div class="container">
+                <h2 style="text-align:Center">Procedure & Checklist</h2>
+            </div>
+            <br/>
+            @*<div class="Container" style="background-color:white;">
+                <div class="col-sm-12 col-md-6">
+                    <h3 style="text-align:left">List Of Approvals</h3>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <h3 style="text-align:right;padding-right: 80px;" >Total Approvals:</h3>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <div class="col-sm-12 col-md-4">
+                            <label for="sel1">Select Department *</label>
+                            <select class="form-control" id="sel1">
+                                <option>Department of Health, Capstone and Family Welfare</option>
+
+                            </select>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <label for="Department">Select Sub Department*</label>
+                            <select class="form-control" id="SubDepartment">
+                                <option>Commissionerate of Health and Family Welfare</option>
+                                <option>Department of AYUSH</option>
+                                <option>Directorate of Public Health and Family Welfare</option>
+                                <option>Drugs Control Administration</option>
+                                <option>Telangana Vaidya Vidhana Parishad</option>
+                                <option>Directorate of Capstone Education</option>
+                                <option>Institute of Preventive Medicine</option>
+                                <option>TSMSIDC</option>
+                                <option>TSSACS</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <label for="Category">Select Category of Application *</label>
+                            <select class="form-control" id="Category">
+                                <option>Establishments</option>
+                                <option>Operations</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div style="overflow-x:auto; overflow-y:scroll; margin-top:2%;margin-bottom:4%;" class=" text-center col-sm-12 col-md-12">
+                    <table>
+                        <tr>
+                            <th>Service Name</th>
+                            <th>Checklist</th>
+                            <th>Service Type</th>
+                            <th>Apply Online</th>
+
+                        </tr>
+                        <!-- <tr> -->
+                        <!-- <td>Certificate of Registration </td> -->
+                        <!-- <td><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-download"></span>Download Sample</button></td> -->
+                        <!-- <td>Grant</td> -->
+                        <!-- <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-duplicate"></span>Apply Now</button></td> -->
+                        <!-- </tr> -->
+                        <!-- <tr> -->
+                        <!-- <td>Certificate of Registration </td> -->
+                        <!-- <td><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-download"></span>Download Sample</button></td> -->
+                        <!-- <td>Grant</td> -->
+                        <!-- <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-duplicate"></span>Apply Now</button></td> -->
+                        <!-- </tr> -->
+                        <!-- <tr> -->
+                        <!-- <td>Appeal against rejection</td> -->
+                        <!-- <td><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-download"></span>Download Sample</button></td> -->
+                        <!-- <td>Grant/Renewal</td> -->
+                        <!-- <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-duplicate"></span>Apply Now</button></td> -->
+                        <!-- </tr> -->
+                        <!-- <tr> -->
+                        <!-- <td>NOC by SBTC</td> -->
+                        <!-- <td><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-download"></span>Download Sample</button></td> -->
+                        <!-- <td>Grant</td> -->
+                        <!-- <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-duplicate"></span>Apply Now</button></td> -->
+                        <!-- </tr> -->
+                        <tr>
+                            <td>Correspondent Details</td>
+                            <td><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-download"></span>Download Sample</button></td>
+                            <td>Amendment</td>
+                            <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-duplicate"></span>Apply Now</button></td>
+
+                        </tr>
+                        <tr>
+                            <td>Types of Services </td>
+                            <td><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-download"></span>Download Sample</button></td>
+                            <td>Amendment</td>
+                            <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-duplicate"></span>Apply Now</button></td>
+
+                        </tr>
+                        <tr>
+                            <td>Facility Address Change</td>
+                            <td><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-download"></span>Download Sample</button></td>
+                            <td>Amendment</td>
+                            <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-duplicate"></span>Apply Now</button></td>
+
+                        </tr>
+                        <tr>
+                            <td>Renewal of Certification of Registration</td>
+                            <td><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-download"></span>Download Sample</button></td>
+                            <td>Renewal</td>
+                            <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-duplicate"></span>Apply Now</button></td>
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>*@
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.DeptName, "Department Name", new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.HiddenFor(model => model.Id, new { @id = "HD_ApplicantID" })
+                    @Html.EditorFor(model => model.DeptName, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+        <!-- Procedures and checklists end -->
+        <!-- Application Tracking Starts -->
+        <div id="apptrack" class="tab-pane fade in active" style="display:none; background-color: white;">
+            <div class="container">
+                <h2 style="text-align:Center">Application Tracking</h2>
+            </div>
+            <div class="container">
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <div class="col-sm-12 col-md-4"></div>
+                        <div class="col-sm-12 col-md-4" style="">
+                            <input type="text" class="form-control" id="txtApplicationNumber" placeholder="Enter Application Number" />
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <button type="button" id="btnApplication" class="btn btn-info col-sm-12 col-md-12"><span class="glyphicon glyphicon-search"></span>Search</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="overflow-x:auto; margin-top:2%;" class="text-center col-sm-12 col-md-12">
+
+                    <div class="box-body">
+                        <table id="tblApplications" class="table table-bordered table-striped">
+                            <thead>
+                                @*<tr>
+                                    <th>Application No</th>
+                                    <th>User Name</th>
+                                    <th>Status</th>
+                                    <th>Login For Complete Details</th>
+                                </tr>*@
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Application Tracking Ends -->
+        <!-- Third Party Verification -->
+        <div id="tpv" class="tab-pane fade in active" style="display: none;">
+            <div class="Container">
+               
+               
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-2">
+
+                             @Html.DropDownList("DistrictId",
+                                new SelectList(ViewBag.DistrictList, "Id", "Name" ), "Select District", 
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                        </div>
+                        <div class="col-md-2">
+
+                            @Html.DropDownList("MandalId", new List<SelectListItem>() {
+                                    new SelectListItem() {Text="Select Mandal", Value="0" } }, new { @style = "width:100%", @class = "form-control select2" })
+                        </div>
+                        <div class="col-md-2">
+
+    @Html.DropDownList("VillageId", new List<SelectListItem>() {
+                                    new SelectListItem() {Text="Select Village", Value="0" } }, new { @style = "width:100%", @class = "form-control select2" })
+
+</div>
+                        
+                        <div class="col-md-2">
+                            <input type="text" class="form-control"   id="txtLicense" placeholder="Enter License Number" />
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" style="width:50%" id="btnLicense" class="btn btn-info col-sm-12 col-md-12"><span class="glyphicon glyphicon-duplicate"></span>Get Details</button>
+                        </div>
+                    </div>
+                
+                <div style="overflow-x:auto; margin-top:2%;" class="text-center col-sm-12 col-md-12">
+
+                    <div class="box-body">
+                        <table id="tblLicenseDetails" class="table table-bordered table-striped">
+                            <thead>
+                                @*<tr>
+                                    <th>Dynamic Hospital Name(APMCE Act)/Diagnostic(PCPNDT Act)/Blood Bank(NOC by SBTC)</th>
+                                    <th>OLD LICENSE NUMBER</th>
+                                    <th>NEW LICENSE NUMBER</th>
+                                    <th>Issue Date</th>
+                                    <th>Expiry Date</th>
+                                    <th>District</th>
+                                    <th>Cluster</th>
+                                    <th>Mandal</th>
+                                    <th>Village</th>
+                                </tr>*@
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Third Party Verkication -->
+        <!-- Offline Entry -->
+        <div id="offe" class="tab-pane fade in active" style="display: none;">
+            <div class="col-sm-0 col-md-3"></div>
+
+            <div class="col-sm-12 col-md-6 text-center">
+                <h2>This Offline Entry feature is available for the applicants and Department users so as to digitize the existing application forms and final license certificates.</h2>
+                <h3><a data-toggle="modal" href="javascript:void(0)" id="login" style="margin-top: 10px" data-target="#mymodal">Please click here to login and enter data.</a></h3>
+
+            </div>
+            <div class="col-sm-0 col-md-3 "></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#dep").show();
+        $("#pc").hide();
+        $("#apptrack").hide();
+        $("#tpv").hide();
+        $("#offe").hide();
+
+    });
+    $(depa).click(function () {
+        $("#dep").show();
+        $("#pc").hide();
+        $("#apptrack").hide();
+        $("#tpv").hide();
+        $("#offe").hide();
+    });
+    $(pca).click(function () {
+        $("#dep").hide();
+        $("#pc").show();
+        $("#apptrack").hide();
+        $("#tpv").hide();
+        $("#offe").hide();
+    });
+    $(apptracka).click(function () {
+        $("#dep").hide();
+        $("#pc").hide();
+        $("#apptrack").show();
+        $("#tpv").hide();
+        $("#offe").hide();
+    });
+    $(tpva).click(function () {
+        $("#dep").hide();
+        $("#pc").hide();
+        $("#apptrack").hide();
+        $("#tpv").show();
+        $("#offe").hide();
+    });
+    $(offea).click(function () {
+        $("#dep").hide();
+        $("#pc").hide();
+        $("#apptrack").hide();
+        $("#tpv").hide();
+        $("#offe").show();
+    });
+</script>
+<script>
+    $('#btnApplication').click(function (e) {
+        debugger;
+        //alert(' Application'+$('#txtApplicationNumber').val());
+        e.preventDefault();
+
+        var uri = '@Url.Action("SearchApplicationNo", "Account", new { Area = "" })';
+        var data = {
+            model: {
+                ApplicationNumber: $('#txtApplicationNumber').val()
+            }
+        };
+        var jqxhr = $.post(uri,data, function () { }, 'json')
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                BindDetails(json);
+            })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.log("Application Details Request Failed: " + err);
+        });
+
+    });
+
+    function BindDetails(json) {			
+
+        //$("#tblApplications").find("tr:gt(0)").remove();
+        $("#tblApplications").empty()
+        //var json = response;
+        var tr;
+        tr = $('<tr/>');
+        //tr.append("<th>S.No.</th>");
+        tr.append("<th>Application No</th>");
+        tr.append("<th>User Name</th>");
+        tr.append("<th>Status</th>");
+        tr.append("<th>Login For Complete Details</th>");
+        $('#tblApplications').append(tr);
+    for (var i = 0; i < json.length ; i++) {          //json.length
+      
+        //if (json.Status == 4)
+        //{
+        //    var Status = 'Draft';
+        //}
+        var StateValues = ['All', 'Forward', 'Return', 'QueryRaised', 'Draft', 'Submitted', 'Approved', 'Rejected', 'ReturnForward', 'Cancelled', 'Suspended'];
+        console.log(json);
+        tr = $('<tr/>');
+        //tr.append("<td>" + (i + 1) + "</td>")
+        tr.append("<td>" + json[i].ApplicationNumber + " </td>")
+        tr.append("<td>" + json[i].usermodel.UserName + " </td>")     
+        tr.append("<td>" + StateValues[json[i].Status] + " </td>")
+        tr.append("<td><a data-toggle='modal' href='javascript:void(0)' id='login' style='margin-top: 10px' data-target='#mymodal'>Login</a></td>")
+
+        $('#tblApplications').append(tr)
+    }
+    }
+
+</script>
+<script>
+    $('#btnLicense').click(function (e) {
+        e.preventDefault();
+        var url = '@Url.Action("ThirdPartyVerification", "Account", new { Area = "" })';
+        var data = {
+            DistrictId: $('#DistrictId').val() == '' ? "0" : $('#DistrictId').val(),
+            MandalId: $('#MandalId').val() == '' ? "0" : $('#MandalId').val(),
+            VillageId: $('#VillageId').val() == '' ? "0" : $('#VillageId').val(),
+            LicenseNumber: $('#txtLicense').val()
+                        }
+        var jqxhr = $.post(url, data, function () { },'json')
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                BindLicenseDetails(json);
+            })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("License Request Failed: " + err);
+        });
+    });
+
+    function BindLicenseDetails(json) {
+        debugger;
+        $("#tblLicenseDetails").empty()
+
+        var tr;
+        tr = $('<tr/>');
+        tr.append("<th>Applicant Name</th>");
+        tr.append("<th>Application Type</th>");
+        tr.append("<th>NEW LICENSE NUMBER</th>");
+        tr.append("<th>Issue Date</th>");
+        tr.append("<th>Expiry Date</th>");
+        tr.append("<th>District</th>");
+        tr.append("<th>Cluster</th>");
+        tr.append("<th>Mandal</th>");
+        tr.append("<th>Village</th>");
+        $('#tblLicenseDetails').append(tr);
+        for (var i = 0; i < json.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + json[i].Name + " </td>")
+            tr.append("<td>" + json[i].Heading + " </td>")
+            tr.append("<td>" + json[i].LicenseNumber + " </td>")
+            tr.append("<td>" + json[i].LicenseIssuedDate + " </td>")
+            tr.append("<td>" + json[i].LicenseExpiryDate + " </td>")
+            tr.append("<td>" + json[i].DistrictId + " </td>")
+            tr.append("<td>" + json[i].Cluster + " </td>")
+            tr.append("<td>" + json[i].MandalId + " </td>")
+            tr.append("<td>" + json[i].VillageId + " </td>")
+            $('#tblLicenseDetails').append(tr);
+
+        }
+            
+       
+    }
+</script>
+<script>
+    $('#DistrictId').on('change', function () {
+        debugger;
+        BindMandals('', this.value);
+    });
+
+    $('#MandalId').on('change', function () {
+        BindVillages('', this.value);
+    });
+</script>
+
+
